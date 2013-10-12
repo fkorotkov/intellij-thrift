@@ -1,0 +1,41 @@
+<idea-plugin version="2">
+    <id>com.intellij.plugins.haxe</id>
+    <name>Thrift Support</name>
+    <description>Support for Thrift language</description>
+    <change-notes>
+        <![CDATA[
+      <p>0.1:</p>
+      <ul>
+      </ul>
+      ]]>
+    </change-notes>
+    <version>0.1</version>
+    <vendor>Twitter, Inc.</vendor>
+    <idea-version since-build="132.1"/>
+
+    <application-components>
+        <!-- Add your application components here -->
+    </application-components>
+    <extensions defaultExtensionNs="com.intellij">
+        <fileTypeFactory implementation="com.intellij.plugins.thrift.ThriftFileTypeLoader"/>
+
+        <!--<lang.parserDefinition/>-->
+        <!--<lang.formatter/>-->
+        <!--<lang.syntaxHighlighterFactory/>-->
+
+        <!--<lang.braceMatcher/>-->
+        <!--<lang.commenter/>-->
+        <!--<lang.foldingBuilder/>-->
+        <!--<lang.importOptimizer/>-->
+
+        <!--<colorSettingsPage/>-->
+        <!--<codeStyleSettingsProvider/>-->
+
+        <!--<langCodeStyleSettingsProvider/>-->
+
+        <!--<quoteHandler/>-->
+    </extensions>
+
+    <actions>
+    </actions>
+</idea-plugin>
