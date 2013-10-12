@@ -1,0 +1,109 @@
+{
+    parserClass="com.intellij.plugins.thrift.lang.parser.ThriftParser"
+    parserUtilClass="com.intellij.lang.parser.GeneratedParserUtilBase"
+
+    implements="com.intellij.plugins.thrift.lang.psi.ThriftPsiCompositeElement"
+    extends="com.intellij.plugins.thrift.lang.psi.impl.ThriftPsiCompositeElementImpl"
+
+    psiClassPrefix="Thrift"
+    psiImplClassSuffix="Impl"
+    psiPackage="com.intellij.plugins.thrift.lang.psi"
+    psiImplPackage="com.intellij.plugins.thrift.lang.psi.impl"
+
+    elementTypeHolderClass="com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes"
+    elementTypeClass="com.intellij.plugins.thrift.lang.lexer.ThriftElementType"
+    tokenTypeClass="com.intellij.plugins.thrift.lang.lexer.ThriftElementType"
+
+    tokens=[
+        Comment='regexp:#[^\r\n]*'
+        BlockComment='regexp:\/\* .* \*\/'
+        Literal="regexp:('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")"
+        Identifier='regexp:([:letter:] | \_)(\w | \\.)*'
+        STIdentifier='regexp:([:letter:] | \_)(\w | \. | -)*'
+        Number='regexp:\d+(\.\d*)?'
+        Multiply='regexp:\*'
+
+        LeftCurlyBrace='{'
+        RightCurlyBrace='}'
+        LeftBracket='['
+        RightBracket=']'
+        LeftBrace='('
+        RightBrace=')'
+        Equals='='
+        SemiColon=';'
+        Colon=':'
+        LT='<'
+        GT='>'
+        Comma=','
+        Plus='+'
+        Minus='-'
+    ]
+}
+
+Document ::=  Header* Definition*
+private Header ::=  Include | CppInclude | Namespace {recoverUntil=topLevelRecover}
+private topLevelRecover ::= !('const' | 'cpp_include' | 'enum' | 'exception' | 'include' | 'namespace' |
+                              'php_namespace' | 'senum' | 'service' | 'struct' | 'typedef' | 'union' |
+                              'xsd_namespace' )
+Include ::=  'include' Literal
+CppInclude ::=  'cpp_include' Literal
+Namespace ::=  std_namespace | php_namespace | xsd_namespace
+private xsd_namespace ::= 'xsd_namespace' Literal {pin=1}
+private php_namespace ::= 'php_namespace' Literal {pin=1}
+private std_namespace ::= 'namespace' (
+    ( NamespaceScope Identifier ) |
+    ( 'smalltalk.category' STIdentifier ) |
+    ( 'smalltalk.prefix' Identifier )
+) {pin=1}
+
+NamespaceScope  ::=  Multiply | 'cpp' | 'java' | 'py' | 'py.twisted' | 'perl' | 'rb' | 'js' | 'st' |
+                     'cocoa' | 'csharp' | 'c_glib' | 'go' | 'php' | 'delphi'
+private Definition ::=  Const | Typedef | Enum | Senum | Struct | Union | Exception | Service  {recoverUntil=topLevelRecover}
+
+Const           ::=  'const' FieldType Identifier '=' ConstValue ListSeparator? {pin=1}
+Typedef         ::=  'typedef' DefinitionType Identifier {pin=1}
+Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}' {pin=1}
+Senum           ::=  'senum' Identifier '{' (Literal ListSeparator?)* '}' {pin=1}
+Struct          ::=  'struct' Identifier 'xsd_all'? '{' fieldsWithCurlyRecovery '}' {pin=1}
+private fieldsWithCurlyRecovery ::= Field* {recoverUntil=curlyBraceRecovery}
+private curlyBraceRecovery ::= !('}')
+Union           ::=  'union' Identifier 'xsd_all'? '{' fieldsWithCurlyRecovery '}' {pin=1}
+Exception       ::=  'exception' Identifier '{' fieldsWithCurlyRecovery '}' {pin=1}
+Service         ::=  'service' Identifier ( 'extends' Identifier )? '{' functions '}' {pin=1}
+private functions ::= (Function ListSeparator?)* {recoverUntil=functionsRecovery}
+private functionsRecovery ::= !('}')
+
+Field           ::=  FieldID? FieldReq? FieldType Identifier ('=' ConstValue)? XsdFieldOptions ListSeparator?
+{recoverUntil=fieldRecovery}
+FieldID         ::=  IntConstant ':'
+FieldReq        ::=  'required' | 'optional'
+private fieldRecovery ::= !(')' | '+' | '-' | 'binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' |
+                            'map' | 'optional' | 'required' | 'set' | 'slist' | 'string' | '}' | Identifier | Number)
+
+XsdFieldOptions ::=  'xsd_optional'? 'xsd_nillable'? XsdAttrs?
+XsdAttrs        ::=  'xsd_attrs' '{' fieldsWithCurlyRecovery '}' {pin=1}
+
+Function        ::=  'oneway'? FunctionType Identifier '(' fieldsWithBraceRecovery ')' Throws? {pin=3 recoverUntil=functionRecovery}
+private functionRecovery ::= !('binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' | 'map' |
+                               'oneway' | 'set' | 'slist' | 'string' | 'void' | '}' | Identifier | ListSeparator)
+FunctionType    ::=  FieldType | 'void'
+private fieldsWithBraceRecovery ::= Field* {recoverUntil=braceRecovery}
+private braceRecovery ::= !(')')
+Throws          ::=  'throws' '(' fieldsWithBraceRecovery ')' {pin=1}
+
+FieldType       ::=  BaseType | ContainerType | Identifier
+private DefinitionType  ::=  BaseType | ContainerType
+BaseType        ::=  'bool' | 'byte' | 'i16' | 'i32' | 'i64' | 'double' | 'string' | 'binary' | 'slist'
+private ContainerType   ::=  MapType | SetType | ListType
+MapType         ::=  'map' CppType? '<' FieldType ',' FieldType '>' {pin=1}
+SetType         ::=  'set' CppType? '<' FieldType '>' {pin=1}
+ListType        ::=  'list' '<' FieldType '>' CppType? {pin=1}
+CppType         ::=  'cpp_type' Literal {pin=1}
+
+ConstValue      ::=  IntConstant | DoubleConstant | Literal | Identifier | ConstList | ConstMap
+IntConstant     ::=  ('+' | '-')? Number
+DoubleConstant  ::=  ('+' | '-')? Number ('.' Number)? ( ('E' | 'e') IntConstant )?
+ConstList       ::=  '[' (ConstValue ListSeparator?)* ']'
+ConstMap        ::=  '{' (ConstValue ':' ConstValue ListSeparator?)* '}'
+
+ListSeparator   ::=  ',' | ';'
