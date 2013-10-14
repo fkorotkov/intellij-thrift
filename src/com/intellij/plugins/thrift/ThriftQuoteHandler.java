@@ -1,6 +1,5 @@
 package com.intellij.plugins.thrift;
 
-import com.intellij.codeInsight.editorActions.QuoteHandler;
 import com.intellij.codeInsight.editorActions.SimpleTokenSetQuoteHandler;
 import com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypeSets;
 import com.intellij.psi.TokenType;
