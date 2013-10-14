@@ -2,7 +2,6 @@ package com.intellij.plugins.thrift.lang.psi;
 
 import com.intellij.navigation.ItemPresentation;
 import com.intellij.navigation.ItemPresentationProvider;
-import com.intellij.navigation.NavigationItem;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
