@@ -12,36 +12,36 @@ import javax.swing.*;
  * Created by fkorotkov.
  */
 public class ThriftFileType extends LanguageFileType {
-    public static final ThriftFileType INSTANCE = new ThriftFileType();
+  public static final ThriftFileType INSTANCE = new ThriftFileType();
 
-    @NonNls
-    public static final String DEFAULT_EXTENSION = "thrift";
+  @NonNls
+  public static final String DEFAULT_EXTENSION = "thrift";
 
-    protected ThriftFileType() {
-        super(ThriftLanguage.INSTANCE);
-    }
+  protected ThriftFileType() {
+    super(ThriftLanguage.INSTANCE);
+  }
 
-    @NotNull
-    @Override
-    public String getName() {
-        return ThriftBundle.message("thrift.name");
-    }
+  @NotNull
+  @Override
+  public String getName() {
+    return ThriftBundle.message("thrift.name");
+  }
 
-    @NotNull
-    @Override
-    public String getDescription() {
-        return ThriftBundle.message("thrift.description");
-    }
+  @NotNull
+  @Override
+  public String getDescription() {
+    return ThriftBundle.message("thrift.description");
+  }
 
-    @NotNull
-    @Override
-    public String getDefaultExtension() {
-        return DEFAULT_EXTENSION;
-    }
+  @NotNull
+  @Override
+  public String getDefaultExtension() {
+    return DEFAULT_EXTENSION;
+  }
 
-    @Nullable
-    @Override
-    public Icon getIcon() {
-        return AllIcons.FileTypes.Custom;
-    }
+  @Nullable
+  @Override
+  public Icon getIcon() {
+    return AllIcons.FileTypes.Custom;
+  }
 }

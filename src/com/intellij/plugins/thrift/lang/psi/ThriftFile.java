@@ -23,18 +23,18 @@ import com.intellij.psi.FileViewProvider;
 import org.jetbrains.annotations.NotNull;
 
 public class ThriftFile extends PsiFileBase {
-    public ThriftFile(@NotNull FileViewProvider viewProvider) {
-        super(viewProvider, ThriftLanguage.INSTANCE);
-    }
+  public ThriftFile(@NotNull FileViewProvider viewProvider) {
+    super(viewProvider, ThriftLanguage.INSTANCE);
+  }
 
-    @NotNull
-    @Override
-    public FileType getFileType() {
-        return ThriftFileType.INSTANCE;
-    }
+  @NotNull
+  @Override
+  public FileType getFileType() {
+    return ThriftFileType.INSTANCE;
+  }
 
-    @Override
-    public String toString() {
-        return "Thrift File";
-    }
+  @Override
+  public String toString() {
+    return "Thrift File";
+  }
 }

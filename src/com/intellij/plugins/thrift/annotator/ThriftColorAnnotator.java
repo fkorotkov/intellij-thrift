@@ -16,18 +16,18 @@ import org.jetbrains.annotations.NotNull;
  * Created by fkorotkov.
  */
 public class ThriftColorAnnotator implements Annotator {
-    @Override
-    public void annotate(@NotNull PsiElement element, @NotNull AnnotationHolder holder) {
-        if (element instanceof LeafPsiElement) {
-            IElementType tokenType = ((LeafPsiElement) element).getElementType();
-            if (tokenType == ThriftTokenTypes.IDENTIFIER && ThriftUtils.getKeywords().contains(element.getText())) {
-                annotateKeyword(element, holder);
-            }
-        }
+  @Override
+  public void annotate(@NotNull PsiElement element, @NotNull AnnotationHolder holder) {
+    if (element instanceof LeafPsiElement) {
+      IElementType tokenType = ((LeafPsiElement)element).getElementType();
+      if (tokenType == ThriftTokenTypes.IDENTIFIER && ThriftUtils.getKeywords().contains(element.getText())) {
+        annotateKeyword(element, holder);
+      }
     }
+  }
 
-    private void annotateKeyword(@NotNull PsiElement element, @NotNull AnnotationHolder holder) {
-        final Annotation annotation = holder.createInfoAnnotation(element, null);
-        annotation.setTextAttributes(TextAttributesKey.find(ThriftSyntaxHighlighterColors.THRIFT_KEYWORD));
-    }
+  private void annotateKeyword(@NotNull PsiElement element, @NotNull AnnotationHolder holder) {
+    final Annotation annotation = holder.createInfoAnnotation(element, null);
+    annotation.setTextAttributes(TextAttributesKey.find(ThriftSyntaxHighlighterColors.THRIFT_KEYWORD));
+  }
 }

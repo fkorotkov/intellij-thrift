@@ -18,40 +18,40 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
  * Created by fkorotkov.
  */
 public class ThriftSyntaxHighlighter extends SyntaxHighlighterBase {
-    private static final Map<IElementType, TextAttributesKey> ATTRIBUTES = new HashMap<IElementType, TextAttributesKey>();
+  private static final Map<IElementType, TextAttributesKey> ATTRIBUTES = new HashMap<IElementType, TextAttributesKey>();
 
-    static {
-        fillMap(ATTRIBUTES, OPERATORS, ThriftSyntaxHighlighterColors.OPERATION_SIGN);
+  static {
+    fillMap(ATTRIBUTES, OPERATORS, ThriftSyntaxHighlighterColors.OPERATION_SIGN);
 
-        ATTRIBUTES.put(NUMBER, ThriftSyntaxHighlighterColors.NUMBER);
+    ATTRIBUTES.put(NUMBER, ThriftSyntaxHighlighterColors.NUMBER);
 
-        ATTRIBUTES.put(LITERAL, ThriftSyntaxHighlighterColors.STRING);
+    ATTRIBUTES.put(LITERAL, ThriftSyntaxHighlighterColors.STRING);
 
-        ATTRIBUTES.put(LEFTBRACE, ThriftSyntaxHighlighterColors.PARENTHS);
-        ATTRIBUTES.put(RIGHTBRACE, ThriftSyntaxHighlighterColors.PARENTHS);
+    ATTRIBUTES.put(LEFTBRACE, ThriftSyntaxHighlighterColors.PARENTHS);
+    ATTRIBUTES.put(RIGHTBRACE, ThriftSyntaxHighlighterColors.PARENTHS);
 
-        ATTRIBUTES.put(LEFTCURLYBRACE, ThriftSyntaxHighlighterColors.BRACES);
-        ATTRIBUTES.put(RIGHTCURLYBRACE, ThriftSyntaxHighlighterColors.BRACES);
+    ATTRIBUTES.put(LEFTCURLYBRACE, ThriftSyntaxHighlighterColors.BRACES);
+    ATTRIBUTES.put(RIGHTCURLYBRACE, ThriftSyntaxHighlighterColors.BRACES);
 
-        ATTRIBUTES.put(LEFTBRACKET, ThriftSyntaxHighlighterColors.BRACKETS);
-        ATTRIBUTES.put(RIGHTBRACKET, ThriftSyntaxHighlighterColors.BRACKETS);
+    ATTRIBUTES.put(LEFTBRACKET, ThriftSyntaxHighlighterColors.BRACKETS);
+    ATTRIBUTES.put(RIGHTBRACKET, ThriftSyntaxHighlighterColors.BRACKETS);
 
-        ATTRIBUTES.put(COMMA, ThriftSyntaxHighlighterColors.COMMA);
-        ATTRIBUTES.put(SEMICOLON, ThriftSyntaxHighlighterColors.SEMICOLON);
+    ATTRIBUTES.put(COMMA, ThriftSyntaxHighlighterColors.COMMA);
+    ATTRIBUTES.put(SEMICOLON, ThriftSyntaxHighlighterColors.SEMICOLON);
 
-        ATTRIBUTES.put(BLOCKCOMMENT, ThriftSyntaxHighlighterColors.BLOCK_COMMENT);
-        ATTRIBUTES.put(COMMENT, ThriftSyntaxHighlighterColors.LINE_COMMENT);
+    ATTRIBUTES.put(BLOCKCOMMENT, ThriftSyntaxHighlighterColors.BLOCK_COMMENT);
+    ATTRIBUTES.put(COMMENT, ThriftSyntaxHighlighterColors.LINE_COMMENT);
 
-        fillMap(ATTRIBUTES, BAD_TOKENS, ThriftSyntaxHighlighterColors.BAD_CHARACTER);
-    }
+    fillMap(ATTRIBUTES, BAD_TOKENS, ThriftSyntaxHighlighterColors.BAD_CHARACTER);
+  }
 
-    @NotNull
-    public Lexer getHighlightingLexer() {
-        return new ThriftLexer();
-    }
+  @NotNull
+  public Lexer getHighlightingLexer() {
+    return new ThriftLexer();
+  }
 
-    @NotNull
-    public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
-        return pack(ATTRIBUTES.get(tokenType));
-    }
+  @NotNull
+  public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
+    return pack(ATTRIBUTES.get(tokenType));
+  }
 }

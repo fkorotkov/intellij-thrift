@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
  * Created by fkorotkov.
  */
 public class ThriftElementType extends IElementType {
-    public ThriftElementType(@NotNull @NonNls String debugName) {
-        super(debugName, ThriftLanguage.INSTANCE);
-    }
+  public ThriftElementType(@NotNull @NonNls String debugName) {
+    super(debugName, ThriftLanguage.INSTANCE);
+  }
 }

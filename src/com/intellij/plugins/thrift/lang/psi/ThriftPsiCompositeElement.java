@@ -22,5 +22,5 @@ import com.intellij.psi.tree.IElementType;
  * @author fedor.korotkov
  */
 public interface ThriftPsiCompositeElement extends NavigatablePsiElement {
-    IElementType getTokenType();
+  IElementType getTokenType();
 }

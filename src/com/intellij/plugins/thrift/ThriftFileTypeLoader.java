@@ -8,8 +8,8 @@ import org.jetbrains.annotations.NotNull;
  * Created by fkorotkov.
  */
 public class ThriftFileTypeLoader extends FileTypeFactory {
-    @Override
-    public void createFileTypes(@NotNull FileTypeConsumer fileTypeConsumer) {
-        fileTypeConsumer.consume(ThriftFileType.INSTANCE);
-    }
+  @Override
+  public void createFileTypes(@NotNull FileTypeConsumer fileTypeConsumer) {
+    fileTypeConsumer.consume(ThriftFileType.INSTANCE);
+  }
 }

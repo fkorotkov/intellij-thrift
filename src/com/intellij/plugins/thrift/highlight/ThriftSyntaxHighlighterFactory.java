@@ -10,9 +10,9 @@ import org.jetbrains.annotations.NotNull;
  * Created by fkorotkov.
  */
 public class ThriftSyntaxHighlighterFactory extends SyntaxHighlighterFactory {
-    @NotNull
-    @Override
-    public SyntaxHighlighter getSyntaxHighlighter(Project project, VirtualFile virtualFile) {
-        return new ThriftSyntaxHighlighter();
-    }
+  @NotNull
+  @Override
+  public SyntaxHighlighter getSyntaxHighlighter(Project project, VirtualFile virtualFile) {
+    return new ThriftSyntaxHighlighter();
+  }
 }

@@ -13,24 +13,24 @@ import java.util.ResourceBundle;
  * Created by fkorotkov.
  */
 public class ThriftBundle {
-    private static Reference<ResourceBundle> ourBundle;
+  private static Reference<ResourceBundle> ourBundle;
 
-    @NonNls
-    private static final String BUNDLE = "com.intellij.plugins.thrift.ThriftBundle";
+  @NonNls
+  private static final String BUNDLE = "com.intellij.plugins.thrift.ThriftBundle";
 
-    public static String message(@PropertyKey(resourceBundle = BUNDLE) String key, Object... params) {
-        return CommonBundle.message(getBundle(), key, params);
+  public static String message(@PropertyKey(resourceBundle = BUNDLE) String key, Object... params) {
+    return CommonBundle.message(getBundle(), key, params);
+  }
+
+  private static ResourceBundle getBundle() {
+    ResourceBundle bundle = null;
+
+    if (ourBundle != null) bundle = ourBundle.get();
+
+    if (bundle == null) {
+      bundle = ResourceBundle.getBundle(BUNDLE);
+      ourBundle = new SoftReference<ResourceBundle>(bundle);
     }
-
-    private static ResourceBundle getBundle() {
-        ResourceBundle bundle = null;
-
-        if (ourBundle != null) bundle = ourBundle.get();
-
-        if (bundle == null) {
-            bundle = ResourceBundle.getBundle(BUNDLE);
-            ourBundle = new SoftReference<ResourceBundle>(bundle);
-        }
-        return bundle;
-    }
+    return bundle;
+  }
 }

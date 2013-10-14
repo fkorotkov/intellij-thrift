@@ -9,7 +9,7 @@ import com.intellij.util.ArrayUtil;
  * Created by fkorotkov.
  */
 public class ThriftQuoteHandler extends SimpleTokenSetQuoteHandler {
-    public ThriftQuoteHandler() {
-        super(ArrayUtil.append(ThriftTokenTypeSets.STRINGS.getTypes(), TokenType.BAD_CHARACTER));
-    }
+  public ThriftQuoteHandler() {
+    super(ArrayUtil.append(ThriftTokenTypeSets.STRINGS.getTypes(), TokenType.BAD_CHARACTER));
+  }
 }

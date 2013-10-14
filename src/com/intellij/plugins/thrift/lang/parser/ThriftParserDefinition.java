@@ -32,44 +32,44 @@ import com.intellij.psi.tree.TokenSet;
 import org.jetbrains.annotations.NotNull;
 
 public class ThriftParserDefinition implements ParserDefinition {
-    @NotNull
-    public Lexer createLexer(Project project) {
-        return new ThriftLexer();
-    }
+  @NotNull
+  public Lexer createLexer(Project project) {
+    return new ThriftLexer();
+  }
 
-    public PsiParser createParser(Project project) {
-        return new ThriftParser();
-    }
+  public PsiParser createParser(Project project) {
+    return new ThriftParser();
+  }
 
-    public IFileElementType getFileNodeType() {
-        return ThriftTokenTypeSets.THRIFT_FILE;
-    }
+  public IFileElementType getFileNodeType() {
+    return ThriftTokenTypeSets.THRIFT_FILE;
+  }
 
-    @NotNull
-    public TokenSet getWhitespaceTokens() {
-        return ThriftTokenTypeSets.WHITESPACES;
-    }
+  @NotNull
+  public TokenSet getWhitespaceTokens() {
+    return ThriftTokenTypeSets.WHITESPACES;
+  }
 
-    @NotNull
-    public TokenSet getCommentTokens() {
-        return ThriftTokenTypeSets.COMMENTS;
-    }
+  @NotNull
+  public TokenSet getCommentTokens() {
+    return ThriftTokenTypeSets.COMMENTS;
+  }
 
-    @NotNull
-    public TokenSet getStringLiteralElements() {
-        return ThriftTokenTypeSets.STRINGS;
-    }
+  @NotNull
+  public TokenSet getStringLiteralElements() {
+    return ThriftTokenTypeSets.STRINGS;
+  }
 
-    @NotNull
-    public PsiElement createElement(ASTNode node) {
-        return ThriftTokenTypes.Factory.createElement(node);
-    }
+  @NotNull
+  public PsiElement createElement(ASTNode node) {
+    return ThriftTokenTypes.Factory.createElement(node);
+  }
 
-    public PsiFile createFile(FileViewProvider viewProvider) {
-        return new ThriftFile(viewProvider);
-    }
+  public PsiFile createFile(FileViewProvider viewProvider) {
+    return new ThriftFile(viewProvider);
+  }
 
-    public SpaceRequirements spaceExistanceTypeBetweenTokens(ASTNode left, ASTNode right) {
-        return SpaceRequirements.MAY;
-    }
+  public SpaceRequirements spaceExistanceTypeBetweenTokens(ASTNode left, ASTNode right) {
+    return SpaceRequirements.MAY;
+  }
 }

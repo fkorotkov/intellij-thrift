@@ -22,15 +22,15 @@ import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
 
 public class ThriftPsiCompositeElementImpl extends ASTWrapperPsiElement implements ThriftPsiCompositeElement {
-    public ThriftPsiCompositeElementImpl(@NotNull ASTNode node) {
-        super(node);
-    }
+  public ThriftPsiCompositeElementImpl(@NotNull ASTNode node) {
+    super(node);
+  }
 
-    public IElementType getTokenType() {
-        return getNode().getElementType();
-    }
+  public IElementType getTokenType() {
+    return getNode().getElementType();
+  }
 
-    public String toString() {
-        return getTokenType().toString();
-    }
+  public String toString() {
+    return getTokenType().toString();
+  }
 }

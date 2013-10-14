@@ -13,24 +13,24 @@ import org.jetbrains.annotations.Nullable;
  */
 public class ThriftBraceMatcher implements PairedBraceMatcher {
 
-    private static final BracePair[] PAIRS = new BracePair[]{
-            new BracePair(ThriftTokenTypes.LEFTCURLYBRACE, ThriftTokenTypes.RIGHTCURLYBRACE, false),
-            new BracePair(ThriftTokenTypes.LEFTBRACE, ThriftTokenTypes.RIGHTBRACE, false),
-            new BracePair(ThriftTokenTypes.LEFTBRACKET, ThriftTokenTypes.RIGHTBRACKET, false)
-    };
+  private static final BracePair[] PAIRS = new BracePair[]{
+    new BracePair(ThriftTokenTypes.LEFTCURLYBRACE, ThriftTokenTypes.RIGHTCURLYBRACE, false),
+    new BracePair(ThriftTokenTypes.LEFTBRACE, ThriftTokenTypes.RIGHTBRACE, false),
+    new BracePair(ThriftTokenTypes.LEFTBRACKET, ThriftTokenTypes.RIGHTBRACKET, false)
+  };
 
-    @Override
-    public BracePair[] getPairs() {
-        return PAIRS;
-    }
+  @Override
+  public BracePair[] getPairs() {
+    return PAIRS;
+  }
 
-    @Override
-    public boolean isPairedBracesAllowedBeforeType(@NotNull IElementType lbraceType, @Nullable IElementType contextType) {
-        return true;
-    }
+  @Override
+  public boolean isPairedBracesAllowedBeforeType(@NotNull IElementType lbraceType, @Nullable IElementType contextType) {
+    return true;
+  }
 
-    @Override
-    public int getCodeConstructStart(PsiFile file, int openingBraceOffset) {
-        return openingBraceOffset;
-    }
+  @Override
+  public int getCodeConstructStart(PsiFile file, int openingBraceOffset) {
+    return openingBraceOffset;
+  }
 }
