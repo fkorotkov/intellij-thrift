@@ -1,9 +1,9 @@
 <idea-plugin version="2">
-    <id>com.intellij.plugins.thrift</id>
-    <name>Thrift Support</name>
-    <description>Support for Thrift language</description>
-    <change-notes>
-        <![CDATA[
+  <id>com.intellij.plugins.thrift</id>
+  <name>Thrift Support</name>
+  <description>Support for Thrift language</description>
+  <change-notes>
+    <![CDATA[
       <p>0.1:</p>
       <ul>
         <li>Syntax error highlighting via parser</li>
@@ -14,34 +14,38 @@
         <li>Quote handler</li>
       </ul>
       ]]>
-    </change-notes>
-    <version>0.1</version>
-    <vendor>Twitter, Inc.</vendor>
-    <idea-version since-build="132.1"/>
+  </change-notes>
+  <version>0.1</version>
+  <vendor>Twitter, Inc.</vendor>
+  <idea-version since-build="132.1"/>
 
-    <application-components>
-        <!-- Add your application components here -->
-    </application-components>
-    <extensions defaultExtensionNs="com.intellij">
-        <fileTypeFactory implementation="com.intellij.plugins.thrift.ThriftFileTypeLoader"/>
-        <lang.parserDefinition language="thrift" implementationClass="com.intellij.plugins.thrift.lang.parser.ThriftParserDefinition"/>
-        <completion.contributor language="any" implementationClass="com.intellij.plugins.thrift.completion.ThriftKeywordCompletionContributor"/>
+  <application-components>
+    <!-- Add your application components here -->
+  </application-components>
+  <extensions defaultExtensionNs="com.intellij">
+    <fileTypeFactory implementation="com.intellij.plugins.thrift.ThriftFileTypeLoader"/>
+    <lang.parserDefinition language="thrift" implementationClass="com.intellij.plugins.thrift.lang.parser.ThriftParserDefinition"/>
+    <completion.contributor language="any" implementationClass="com.intellij.plugins.thrift.completion.ThriftKeywordCompletionContributor"/>
+    <itemPresentationProvider forClass="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration" implementationClass="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationPresentationProvider"/>
 
-        <lang.syntaxHighlighterFactory key="thrift" implementationClass="com.intellij.plugins.thrift.highlight.ThriftSyntaxHighlighterFactory"/>
-        <annotator language="thrift" implementationClass="com.intellij.plugins.thrift.annotator.ThriftColorAnnotator"/>
-        <!--<lang.formatter/>-->
+    <lang.syntaxHighlighterFactory key="thrift" implementationClass="com.intellij.plugins.thrift.highlight.ThriftSyntaxHighlighterFactory"/>
+    <annotator language="thrift" implementationClass="com.intellij.plugins.thrift.annotator.ThriftColorAnnotator"/>
+    <!--<lang.formatter/>-->
 
-        <lang.braceMatcher language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftBraceMatcher"/>
-        <lang.commenter language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftCommenter"/>
+    <lang.braceMatcher language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftBraceMatcher"/>
+    <lang.commenter language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftCommenter"/>
 
-        <!--<colorSettingsPage/>-->
-        <!--<codeStyleSettingsProvider/>-->
+    <!--<colorSettingsPage/>-->
+    <!--<codeStyleSettingsProvider/>-->
 
-        <!--<langCodeStyleSettingsProvider/>-->
+    <!--<langCodeStyleSettingsProvider/>-->
 
-        <quoteHandler fileType="Thrift" className="com.intellij.plugins.thrift.ThriftQuoteHandler"/>
-    </extensions>
+    <quoteHandler fileType="Thrift" className="com.intellij.plugins.thrift.ThriftQuoteHandler"/>
 
-    <actions>
-    </actions>
+    <fileBasedIndex implementation="com.intellij.plugins.thrift.index.ThriftDeclarationIndex"/>
+    <gotoClassContributor implementation="com.intellij.plugins.thrift.ThriftClassContributor"/>
+  </extensions>
+
+  <actions>
+  </actions>
 </idea-plugin>

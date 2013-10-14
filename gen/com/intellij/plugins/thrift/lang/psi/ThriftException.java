@@ -5,7 +5,10 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ThriftException extends ThriftPsiCompositeElement {
+public interface ThriftException extends ThriftDeclaration {
+
+  @Nullable
+  ThriftDefinitionName getDefinitionName();
 
   @NotNull
   List<ThriftField> getFieldList();

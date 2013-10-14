@@ -10,7 +10,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 
-public class ThriftEnumImpl extends ThriftPsiCompositeElementImpl implements ThriftEnum {
+public class ThriftEnumImpl extends AbstractThriftDeclaration implements ThriftEnum {
 
   public ThriftEnumImpl(ASTNode node) {
     super(node);
@@ -22,15 +22,15 @@ public class ThriftEnumImpl extends ThriftPsiCompositeElementImpl implements Thr
   }
 
   @Override
-  @NotNull
-  public List<ThriftIntConstant> getIntConstantList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, ThriftIntConstant.class);
+  @Nullable
+  public ThriftDefinitionName getDefinitionName() {
+    return findChildByClass(ThriftDefinitionName.class);
   }
 
   @Override
   @NotNull
-  public List<ThriftListSeparator> getListSeparatorList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, ThriftListSeparator.class);
+  public List<ThriftEnumField> getEnumFieldList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, ThriftEnumField.class);
   }
 
 }

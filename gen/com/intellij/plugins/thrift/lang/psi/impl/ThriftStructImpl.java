@@ -10,7 +10,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 
-public class ThriftStructImpl extends ThriftPsiCompositeElementImpl implements ThriftStruct {
+public class ThriftStructImpl extends AbstractThriftDeclaration implements ThriftStruct {
 
   public ThriftStructImpl(ASTNode node) {
     super(node);
@@ -19,6 +19,12 @@ public class ThriftStructImpl extends ThriftPsiCompositeElementImpl implements T
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitStruct(this);
     else super.accept(visitor);
+  }
+
+  @Override
+  @Nullable
+  public ThriftDefinitionName getDefinitionName() {
+    return findChildByClass(ThriftDefinitionName.class);
   }
 
   @Override

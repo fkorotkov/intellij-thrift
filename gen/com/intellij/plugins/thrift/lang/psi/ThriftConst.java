@@ -5,10 +5,13 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ThriftConst extends ThriftPsiCompositeElement {
+public interface ThriftConst extends ThriftDeclaration {
 
   @Nullable
   ThriftConstValue getConstValue();
+
+  @Nullable
+  ThriftDefinitionName getDefinitionName();
 
   @Nullable
   ThriftFieldType getFieldType();

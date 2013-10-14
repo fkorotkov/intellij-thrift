@@ -62,16 +62,34 @@ private std_namespace ::= 'namespace' (
 NamespaceScope  ::=  Multiply | 'cpp' | 'java' | 'py' | 'py.twisted' | 'perl' | 'rb' | 'js' | 'st' |
                      'cocoa' | 'csharp' | 'c_glib' | 'go' | 'php' | 'delphi'
 
-Const           ::=  'const' FieldType Identifier '=' ConstValue ListSeparator? {pin=1}
-Typedef         ::=  'typedef' DefinitionType Identifier {pin=1}
-Enum            ::=  'enum' Identifier '{' (Identifier ('=' IntConstant)? ListSeparator?)* '}' {pin=1}
-Senum           ::=  'senum' Identifier '{' (Literal ListSeparator?)* '}' {pin=1}
-Struct          ::=  'struct' Identifier 'xsd_all'? '{' fieldsWithCurlyRecovery '}' {pin=1}
+DefinitionName ::= Identifier
+
+Const           ::=  'const' FieldType DefinitionName '=' ConstValue ListSeparator?
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
+Typedef         ::=  'typedef' DefinitionType DefinitionName
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
+Enum            ::=  'enum' DefinitionName '{' enumFields '}'
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
+private enumFields ::= enumField*
+enumField ::= Identifier ('=' IntConstant)? ListSeparator? {recoverUntil=enumFieldRecovery}
+private enumFieldRecovery ::= !('}' | Identifier)
+
+Senum           ::=  'senum' DefinitionName '{' senumFields '}'
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
+private senumFields ::= semunField*
+semunField ::= Literal ListSeparator? {recoverUntil=semunFieldRecovery}
+private semunFieldRecovery ::= !('}' | Literal)
+
+Struct          ::=  'struct' DefinitionName 'xsd_all'? '{' fieldsWithCurlyRecovery '}'
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
 private fieldsWithCurlyRecovery ::= Field* {recoverUntil=curlyBraceRecovery}
 private curlyBraceRecovery ::= !('}')
-Union           ::=  'union' Identifier 'xsd_all'? '{' fieldsWithCurlyRecovery '}' {pin=1}
-Exception       ::=  'exception' Identifier '{' fieldsWithCurlyRecovery '}' {pin=1}
-Service         ::=  'service' Identifier ( 'extends' Identifier )? '{' functions '}' {pin=1}
+Union           ::=  'union' DefinitionName 'xsd_all'? '{' fieldsWithCurlyRecovery '}'
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
+Exception       ::=  'exception' DefinitionName '{' fieldsWithCurlyRecovery '}'
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
+Service         ::=  'service' DefinitionName ( 'extends' Identifier )? '{' functions '}'
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
 private functions ::= (Function ListSeparator?)* {recoverUntil=functionsRecovery}
 private functionsRecovery ::= !('}')
 

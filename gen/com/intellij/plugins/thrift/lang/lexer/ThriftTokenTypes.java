@@ -15,8 +15,10 @@ public interface ThriftTokenTypes {
   IElementType CONST_VALUE = new ThriftElementType("CONST_VALUE");
   IElementType CPP_INCLUDE = new ThriftElementType("CPP_INCLUDE");
   IElementType CPP_TYPE = new ThriftElementType("CPP_TYPE");
+  IElementType DEFINITION_NAME = new ThriftElementType("DEFINITION_NAME");
   IElementType DOUBLE_CONSTANT = new ThriftElementType("DOUBLE_CONSTANT");
   IElementType ENUM = new ThriftElementType("ENUM");
+  IElementType ENUM_FIELD = new ThriftElementType("ENUM_FIELD");
   IElementType EXCEPTION = new ThriftElementType("EXCEPTION");
   IElementType FIELD = new ThriftElementType("FIELD");
   IElementType FIELD_ID = new ThriftElementType("FIELD_ID");
@@ -31,6 +33,7 @@ public interface ThriftTokenTypes {
   IElementType MAP_TYPE = new ThriftElementType("MAP_TYPE");
   IElementType NAMESPACE = new ThriftElementType("NAMESPACE");
   IElementType NAMESPACE_SCOPE = new ThriftElementType("NAMESPACE_SCOPE");
+  IElementType SEMUN_FIELD = new ThriftElementType("SEMUN_FIELD");
   IElementType SENUM = new ThriftElementType("SENUM");
   IElementType SERVICE = new ThriftElementType("SERVICE");
   IElementType SET_TYPE = new ThriftElementType("SET_TYPE");
@@ -87,11 +90,17 @@ public interface ThriftTokenTypes {
       else if (type == CPP_TYPE) {
         return new ThriftCppTypeImpl(node);
       }
+      else if (type == DEFINITION_NAME) {
+        return new ThriftDefinitionNameImpl(node);
+      }
       else if (type == DOUBLE_CONSTANT) {
         return new ThriftDoubleConstantImpl(node);
       }
       else if (type == ENUM) {
         return new ThriftEnumImpl(node);
+      }
+      else if (type == ENUM_FIELD) {
+        return new ThriftEnumFieldImpl(node);
       }
       else if (type == EXCEPTION) {
         return new ThriftExceptionImpl(node);
@@ -134,6 +143,9 @@ public interface ThriftTokenTypes {
       }
       else if (type == NAMESPACE_SCOPE) {
         return new ThriftNamespaceScopeImpl(node);
+      }
+      else if (type == SEMUN_FIELD) {
+        return new ThriftSemunFieldImpl(node);
       }
       else if (type == SENUM) {
         return new ThriftSenumImpl(node);

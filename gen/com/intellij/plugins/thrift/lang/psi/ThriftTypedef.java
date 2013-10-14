@@ -5,10 +5,13 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ThriftTypedef extends ThriftPsiCompositeElement {
+public interface ThriftTypedef extends ThriftDeclaration {
 
   @Nullable
   ThriftBaseType getBaseType();
+
+  @Nullable
+  ThriftDefinitionName getDefinitionName();
 
   @Nullable
   ThriftListType getListType();

@@ -10,7 +10,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 
-public class ThriftTypedefImpl extends ThriftPsiCompositeElementImpl implements ThriftTypedef {
+public class ThriftTypedefImpl extends AbstractThriftDeclaration implements ThriftTypedef {
 
   public ThriftTypedefImpl(ASTNode node) {
     super(node);
@@ -25,6 +25,12 @@ public class ThriftTypedefImpl extends ThriftPsiCompositeElementImpl implements 
   @Nullable
   public ThriftBaseType getBaseType() {
     return findChildByClass(ThriftBaseType.class);
+  }
+
+  @Override
+  @Nullable
+  public ThriftDefinitionName getDefinitionName() {
+    return findChildByClass(ThriftDefinitionName.class);
   }
 
   @Override

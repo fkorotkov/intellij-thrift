@@ -11,7 +11,7 @@ public class ThriftVisitor extends PsiElementVisitor {
   }
 
   public void visitConst(@NotNull ThriftConst o) {
-    visitPsiCompositeElement(o);
+    visitDeclaration(o);
   }
 
   public void visitConstList(@NotNull ThriftConstList o) {
@@ -34,16 +34,20 @@ public class ThriftVisitor extends PsiElementVisitor {
     visitPsiCompositeElement(o);
   }
 
+  public void visitDefinitionName(@NotNull ThriftDefinitionName o) {
+    visitPsiCompositeElement(o);
+  }
+
   public void visitDoubleConstant(@NotNull ThriftDoubleConstant o) {
     visitPsiCompositeElement(o);
   }
 
   public void visitEnum(@NotNull ThriftEnum o) {
-    visitPsiCompositeElement(o);
+    visitDeclaration(o);
   }
 
   public void visitException(@NotNull ThriftException o) {
-    visitPsiCompositeElement(o);
+    visitDeclaration(o);
   }
 
   public void visitField(@NotNull ThriftField o) {
@@ -99,11 +103,11 @@ public class ThriftVisitor extends PsiElementVisitor {
   }
 
   public void visitSenum(@NotNull ThriftSenum o) {
-    visitPsiCompositeElement(o);
+    visitDeclaration(o);
   }
 
   public void visitService(@NotNull ThriftService o) {
-    visitPsiCompositeElement(o);
+    visitDeclaration(o);
   }
 
   public void visitSetType(@NotNull ThriftSetType o) {
@@ -111,7 +115,7 @@ public class ThriftVisitor extends PsiElementVisitor {
   }
 
   public void visitStruct(@NotNull ThriftStruct o) {
-    visitPsiCompositeElement(o);
+    visitDeclaration(o);
   }
 
   public void visitThrows(@NotNull ThriftThrows o) {
@@ -119,11 +123,11 @@ public class ThriftVisitor extends PsiElementVisitor {
   }
 
   public void visitTypedef(@NotNull ThriftTypedef o) {
-    visitPsiCompositeElement(o);
+    visitDeclaration(o);
   }
 
   public void visitUnion(@NotNull ThriftUnion o) {
-    visitPsiCompositeElement(o);
+    visitDeclaration(o);
   }
 
   public void visitXsdAttrs(@NotNull ThriftXsdAttrs o) {
@@ -131,6 +135,18 @@ public class ThriftVisitor extends PsiElementVisitor {
   }
 
   public void visitXsdFieldOptions(@NotNull ThriftXsdFieldOptions o) {
+    visitPsiCompositeElement(o);
+  }
+
+  public void visitEnumField(@NotNull ThriftEnumField o) {
+    visitPsiCompositeElement(o);
+  }
+
+  public void visitSemunField(@NotNull ThriftSemunField o) {
+    visitPsiCompositeElement(o);
+  }
+
+  public void visitDeclaration(@NotNull ThriftDeclaration o) {
     visitPsiCompositeElement(o);
   }
 

@@ -10,27 +10,15 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 
-public class ThriftUnionImpl extends AbstractThriftDeclaration implements ThriftUnion {
+public class ThriftDefinitionNameImpl extends ThriftPsiCompositeElementImpl implements ThriftDefinitionName {
 
-  public ThriftUnionImpl(ASTNode node) {
+  public ThriftDefinitionNameImpl(ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitUnion(this);
+    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitDefinitionName(this);
     else super.accept(visitor);
-  }
-
-  @Override
-  @Nullable
-  public ThriftDefinitionName getDefinitionName() {
-    return findChildByClass(ThriftDefinitionName.class);
-  }
-
-  @Override
-  @NotNull
-  public List<ThriftField> getFieldList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, ThriftField.class);
   }
 
 }
