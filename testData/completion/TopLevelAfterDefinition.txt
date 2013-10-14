@@ -1,0 +1,14 @@
+BASIC 1 INCLUDES
+const 
+cpp_include
+enum
+exception
+include
+namespace
+php_namespace
+senum
+service
+struct
+typedef
+union
+xsd_namespace

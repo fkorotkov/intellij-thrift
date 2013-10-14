@@ -19,6 +19,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <fileTypeFactory implementation="com.intellij.plugins.thrift.ThriftFileTypeLoader"/>
         <lang.parserDefinition language="thrift" implementationClass="com.intellij.plugins.thrift.lang.parser.ThriftParserDefinition"/>
+        <completion.contributor language="any" implementationClass="com.intellij.plugins.thrift.completion.ThriftKeywordCompletionContributor"/>
 
         <lang.syntaxHighlighterFactory key="thrift" implementationClass="com.intellij.plugins.thrift.highlight.ThriftSyntaxHighlighterFactory"/>
         <annotator language="thrift" implementationClass="com.intellij.plugins.thrift.annotator.ThriftColorAnnotator"/>
@@ -26,7 +27,6 @@
 
         <lang.braceMatcher language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftBraceMatcher"/>
         <lang.commenter language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftCommenter"/>
-        <!--<lang.foldingBuilder/>-->
 
         <!--<colorSettingsPage/>-->
         <!--<codeStyleSettingsProvider/>-->

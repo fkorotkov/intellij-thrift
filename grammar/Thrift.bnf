@@ -40,13 +40,16 @@
     ]
 }
 
-Document ::=  Header* Definition*
-private Header ::=  Include | CppInclude | Namespace {recoverUntil=topLevelRecover}
+Document ::=  topLevelElement*
+private topLevelElement ::=  Include | CppInclude | Namespace |
+                             Const | Typedef | Enum | Senum | Struct | Union | Exception | Service
+                             {recoverUntil=topLevelRecover}
+
 private topLevelRecover ::= !('const' | 'cpp_include' | 'enum' | 'exception' | 'include' | 'namespace' |
                               'php_namespace' | 'senum' | 'service' | 'struct' | 'typedef' | 'union' |
                               'xsd_namespace' )
-Include ::=  'include' Literal
-CppInclude ::=  'cpp_include' Literal
+Include ::=  'include' Literal {pin=1}
+CppInclude ::=  'cpp_include' Literal {pin=1}
 Namespace ::=  std_namespace | php_namespace | xsd_namespace
 private xsd_namespace ::= 'xsd_namespace' Literal {pin=1}
 private php_namespace ::= 'php_namespace' Literal {pin=1}
@@ -58,7 +61,6 @@ private std_namespace ::= 'namespace' (
 
 NamespaceScope  ::=  Multiply | 'cpp' | 'java' | 'py' | 'py.twisted' | 'perl' | 'rb' | 'js' | 'st' |
                      'cocoa' | 'csharp' | 'c_glib' | 'go' | 'php' | 'delphi'
-private Definition ::=  Const | Typedef | Enum | Senum | Struct | Union | Exception | Service  {recoverUntil=topLevelRecover}
 
 Const           ::=  'const' FieldType Identifier '=' ConstValue ListSeparator? {pin=1}
 Typedef         ::=  'typedef' DefinitionType Identifier {pin=1}
