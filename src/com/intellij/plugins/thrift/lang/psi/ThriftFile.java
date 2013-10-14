@@ -17,16 +17,10 @@ package com.intellij.plugins.thrift.lang.psi;
 
 import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.openapi.fileTypes.FileType;
-import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.plugins.thrift.ThriftFileType;
 import com.intellij.plugins.thrift.ThriftLanguage;
 import com.intellij.psi.FileViewProvider;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiReference;
-import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NotNull;
-
-import javax.swing.*;
 
 public class ThriftFile extends PsiFileBase {
     public ThriftFile(@NotNull FileViewProvider viewProvider) {

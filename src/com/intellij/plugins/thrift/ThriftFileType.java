@@ -1,8 +1,6 @@
 package com.intellij.plugins.thrift;
 
 import com.intellij.icons.AllIcons;
-import com.intellij.lang.Language;
-import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.fileTypes.LanguageFileType;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
