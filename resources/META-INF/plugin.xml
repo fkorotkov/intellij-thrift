@@ -27,14 +27,13 @@
         <lang.braceMatcher language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftBraceMatcher"/>
         <lang.commenter language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftCommenter"/>
         <!--<lang.foldingBuilder/>-->
-        <!--<lang.importOptimizer/>-->
 
         <!--<colorSettingsPage/>-->
         <!--<codeStyleSettingsProvider/>-->
 
         <!--<langCodeStyleSettingsProvider/>-->
 
-        <!--<quoteHandler/>-->
+        <quoteHandler fileType="Thrift" className="com.intellij.plugins.thrift.ThriftQuoteHandler"/>
     </extensions>
 
     <actions>
