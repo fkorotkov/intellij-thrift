@@ -24,7 +24,7 @@
         <annotator language="thrift" implementationClass="com.intellij.plugins.thrift.annotator.ThriftColorAnnotator"/>
         <!--<lang.formatter/>-->
 
-        <!--<lang.braceMatcher/>-->
+        <lang.braceMatcher language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftBraceMatcher"/>
         <!--<lang.commenter/>-->
         <!--<lang.foldingBuilder/>-->
         <!--<lang.importOptimizer/>-->
