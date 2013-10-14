@@ -1,5 +1,6 @@
 package com.intellij.plugins.thrift;
 
+import com.intellij.icons.AllIcons;
 import com.intellij.lang.Language;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.fileTypes.LanguageFileType;
@@ -43,6 +44,6 @@ public class ThriftFileType extends LanguageFileType {
     @Nullable
     @Override
     public Icon getIcon() {
-        return null;
+        return AllIcons.FileTypes.Custom;
     }
 }

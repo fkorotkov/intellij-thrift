@@ -1,5 +1,5 @@
 <idea-plugin version="2">
-    <id>com.intellij.plugins.haxe</id>
+    <id>com.intellij.plugins.thrift</id>
     <name>Thrift Support</name>
     <description>Support for Thrift language</description>
     <change-notes>
@@ -18,7 +18,7 @@
     </application-components>
     <extensions defaultExtensionNs="com.intellij">
         <fileTypeFactory implementation="com.intellij.plugins.thrift.ThriftFileTypeLoader"/>
-        <lang.parserDefinition language="thrift" implementationClass="com.intellij.plugins.thrift.lang.parser.HaxeParserDefinition"/>
+        <lang.parserDefinition language="thrift" implementationClass="com.intellij.plugins.thrift.lang.parser.ThriftParserDefinition"/>
 
         <!--<lang.formatter/>-->
         <!--<lang.syntaxHighlighterFactory/>-->
