@@ -6,6 +6,12 @@
         <![CDATA[
       <p>0.1:</p>
       <ul>
+        <li>Syntax error highlighting via parser</li>
+        <li>Simple code highlighting</li>
+        <li>Completion</li>
+        <li>Commenter</li>
+        <li>Brace matching</li>
+        <li>Quote handler</li>
       </ul>
       ]]>
     </change-notes>
