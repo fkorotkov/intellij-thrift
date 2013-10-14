@@ -46,4 +46,11 @@ public class AbstractThriftDeclaration extends ThriftPsiCompositeElementImpl imp
   public ItemPresentation getPresentation() {
     return ItemPresentationProviders.getItemPresentation(this);
   }
+
+  @NotNull
+  @Override
+  public PsiElement getNavigationElement() {
+    ThriftDefinitionName name = getIdentifier();
+    return name != null ? name : super.getNavigationElement();
+  }
 }
