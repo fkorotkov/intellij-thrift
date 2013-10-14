@@ -25,7 +25,7 @@
         <!--<lang.formatter/>-->
 
         <lang.braceMatcher language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftBraceMatcher"/>
-        <!--<lang.commenter/>-->
+        <lang.commenter language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftCommenter"/>
         <!--<lang.foldingBuilder/>-->
         <!--<lang.importOptimizer/>-->
 
