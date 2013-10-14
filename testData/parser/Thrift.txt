@@ -92,39 +92,47 @@ Thrift File
   PsiComment(BlockComment)('/**\n * Docstring!\n */')
   ENUM
     PsiElement(Identifier)('enum')
-    PsiElement(Identifier)('Numberz')
+    DEFINITION_NAME
+      PsiElement(Identifier)('Numberz')
     PsiElement({)('{')
-    PsiElement(Identifier)('ONE')
-    PsiElement(=)('=')
-    INT_CONSTANT
-      PsiElement(Number)('1')
-    LIST_SEPARATOR
-      PsiElement(,)(',')
-    PsiElement(Identifier)('TWO')
-    LIST_SEPARATOR
-      PsiElement(,)(',')
-    PsiElement(Identifier)('THREE')
-    LIST_SEPARATOR
-      PsiElement(,)(',')
-    PsiElement(Identifier)('FIVE')
-    PsiElement(=)('=')
-    INT_CONSTANT
-      PsiElement(Number)('5')
-    LIST_SEPARATOR
-      PsiElement(,)(',')
-    PsiElement(Identifier)('SIX')
-    LIST_SEPARATOR
-      PsiElement(,)(',')
-    PsiElement(Identifier)('EIGHT')
-    PsiElement(=)('=')
-    INT_CONSTANT
-      PsiElement(Number)('8')
+    ENUM_FIELD
+      PsiElement(Identifier)('ONE')
+      PsiElement(=)('=')
+      INT_CONSTANT
+        PsiElement(Number)('1')
+      LIST_SEPARATOR
+        PsiElement(,)(',')
+    ENUM_FIELD
+      PsiElement(Identifier)('TWO')
+      LIST_SEPARATOR
+        PsiElement(,)(',')
+    ENUM_FIELD
+      PsiElement(Identifier)('THREE')
+      LIST_SEPARATOR
+        PsiElement(,)(',')
+    ENUM_FIELD
+      PsiElement(Identifier)('FIVE')
+      PsiElement(=)('=')
+      INT_CONSTANT
+        PsiElement(Number)('5')
+      LIST_SEPARATOR
+        PsiElement(,)(',')
+    ENUM_FIELD
+      PsiElement(Identifier)('SIX')
+      LIST_SEPARATOR
+        PsiElement(,)(',')
+    ENUM_FIELD
+      PsiElement(Identifier)('EIGHT')
+      PsiElement(=)('=')
+      INT_CONSTANT
+        PsiElement(Number)('8')
     PsiElement(})('}')
   CONST
     PsiElement(Identifier)('const')
     FIELD_TYPE
       PsiElement(Identifier)('Numberz')
-    PsiElement(Identifier)('myNumberz')
+    DEFINITION_NAME
+      PsiElement(Identifier)('myNumberz')
     PsiElement(=)('=')
     CONST_VALUE
       PsiElement(Identifier)('Numberz.ONE')
@@ -136,10 +144,12 @@ Thrift File
     PsiElement(Identifier)('typedef')
     BASE_TYPE
       PsiElement(Identifier)('i64')
-    PsiElement(Identifier)('UserId')
+    DEFINITION_NAME
+      PsiElement(Identifier)('UserId')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('Bonk')
+    DEFINITION_NAME
+      PsiElement(Identifier)('Bonk')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -178,10 +188,12 @@ Thrift File
       FIELD_TYPE
         PsiElement(Identifier)('Bonk')
       PsiElement(>)('>')
-    PsiElement(Identifier)('MapType')
+    DEFINITION_NAME
+      PsiElement(Identifier)('MapType')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('Bools')
+    DEFINITION_NAME
+      PsiElement(Identifier)('Bools')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -212,7 +224,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('Xtruct')
+    DEFINITION_NAME
+      PsiElement(Identifier)('Xtruct')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -267,7 +280,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('Xtruct2')
+    DEFINITION_NAME
+      PsiElement(Identifier)('Xtruct2')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -308,7 +322,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('Xtruct3')
+    DEFINITION_NAME
+      PsiElement(Identifier)('Xtruct3')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -363,7 +378,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('Insanity')
+    DEFINITION_NAME
+      PsiElement(Identifier)('Insanity')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -403,7 +419,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('CrazyNesting')
+    DEFINITION_NAME
+      PsiElement(Identifier)('CrazyNesting')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -512,7 +529,8 @@ Thrift File
     PsiElement(})('}')
   EXCEPTION
     PsiElement(Identifier)('exception')
-    PsiElement(Identifier)('Xception')
+    DEFINITION_NAME
+      PsiElement(Identifier)('Xception')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -541,7 +559,8 @@ Thrift File
     PsiElement(})('}')
   EXCEPTION
     PsiElement(Identifier)('exception')
-    PsiElement(Identifier)('Xception2')
+    DEFINITION_NAME
+      PsiElement(Identifier)('Xception2')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -569,12 +588,14 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('EmptyStruct')
+    DEFINITION_NAME
+      PsiElement(Identifier)('EmptyStruct')
     PsiElement({)('{')
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('OneField')
+    DEFINITION_NAME
+      PsiElement(Identifier)('OneField')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -589,7 +610,8 @@ Thrift File
     PsiElement(})('}')
   SERVICE
     PsiElement(Identifier)('service')
-    PsiElement(Identifier)('ThriftTest')
+    DEFINITION_NAME
+      PsiElement(Identifier)('ThriftTest')
     PsiElement({)('{')
     PsiComment(BlockComment)('/**\n   * Prints "testVoid()" and returns nothing.\n   */')
     FUNCTION
@@ -1220,7 +1242,8 @@ Thrift File
     PsiElement(})('}')
   SERVICE
     PsiElement(Identifier)('service')
-    PsiElement(Identifier)('SecondService')
+    DEFINITION_NAME
+      PsiElement(Identifier)('SecondService')
     PsiElement({)('{')
     FUNCTION
       FUNCTION_TYPE
@@ -1254,7 +1277,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('VersioningTestV1')
+    DEFINITION_NAME
+      PsiElement(Identifier)('VersioningTestV1')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -1296,7 +1320,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('VersioningTestV2')
+    DEFINITION_NAME
+      PsiElement(Identifier)('VersioningTestV2')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -1471,7 +1496,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('ListTypeVersioningV1')
+    DEFINITION_NAME
+      PsiElement(Identifier)('ListTypeVersioningV1')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -1507,7 +1533,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('ListTypeVersioningV2')
+    DEFINITION_NAME
+      PsiElement(Identifier)('ListTypeVersioningV2')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -1543,7 +1570,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('GuessProtocolStruct')
+    DEFINITION_NAME
+      PsiElement(Identifier)('GuessProtocolStruct')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -1570,7 +1598,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('LargeDeltas')
+    DEFINITION_NAME
+      PsiElement(Identifier)('LargeDeltas')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -1707,7 +1736,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('NestedListsI32x2')
+    DEFINITION_NAME
+      PsiElement(Identifier)('NestedListsI32x2')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -1733,7 +1763,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('NestedListsI32x3')
+    DEFINITION_NAME
+      PsiElement(Identifier)('NestedListsI32x3')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -1764,7 +1795,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('NestedMixedx2')
+    DEFINITION_NAME
+      PsiElement(Identifier)('NestedMixedx2')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -1845,7 +1877,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('ListBonks')
+    DEFINITION_NAME
+      PsiElement(Identifier)('ListBonks')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -1865,7 +1898,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('NestedListsBonk')
+    DEFINITION_NAME
+      PsiElement(Identifier)('NestedListsBonk')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -1895,7 +1929,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('BoolTest')
+    DEFINITION_NAME
+      PsiElement(Identifier)('BoolTest')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -1936,7 +1971,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('StructA')
+    DEFINITION_NAME
+      PsiElement(Identifier)('StructA')
     PsiElement({)('{')
     FIELD
       FIELD_ID
@@ -1956,7 +1992,8 @@ Thrift File
     PsiElement(})('}')
   STRUCT
     PsiElement(Identifier)('struct')
-    PsiElement(Identifier)('StructB')
+    DEFINITION_NAME
+      PsiElement(Identifier)('StructB')
     PsiElement({)('{')
     FIELD
       FIELD_ID
