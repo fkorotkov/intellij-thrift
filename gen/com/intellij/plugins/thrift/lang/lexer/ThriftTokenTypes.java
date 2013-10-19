@@ -13,7 +13,6 @@ public interface ThriftTokenTypes {
   IElementType CONST_LIST = new ThriftElementType("CONST_LIST");
   IElementType CONST_MAP = new ThriftElementType("CONST_MAP");
   IElementType CONST_VALUE = new ThriftElementType("CONST_VALUE");
-  IElementType CPP_INCLUDE = new ThriftElementType("CPP_INCLUDE");
   IElementType CPP_TYPE = new ThriftElementType("CPP_TYPE");
   IElementType CUSTOM_TYPE = new ThriftElementType("CUSTOM_TYPE");
   IElementType DEFINITION_NAME = new ThriftElementType("DEFINITION_NAME");
@@ -84,9 +83,6 @@ public interface ThriftTokenTypes {
       }
       else if (type == CONST_VALUE) {
         return new ThriftConstValueImpl(node);
-      }
-      else if (type == CPP_INCLUDE) {
-        return new ThriftCppIncludeImpl(node);
       }
       else if (type == CPP_TYPE) {
         return new ThriftCppTypeImpl(node);

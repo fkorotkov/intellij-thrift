@@ -23,8 +23,14 @@ public class ThriftIncludeImpl extends ThriftPsiCompositeElementImpl implements 
     else super.accept(visitor);
   }
 
+  @NotNull
   public PsiReference[] getReferences() {
     return ThriftPsiUtil.getReferences(this);
+  }
+
+  @NotNull
+  public String getPath() {
+    return ThriftPsiUtil.getPath(this);
   }
 
 }

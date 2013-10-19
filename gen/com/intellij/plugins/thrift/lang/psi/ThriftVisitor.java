@@ -26,10 +26,6 @@ public class ThriftVisitor extends PsiElementVisitor {
     visitPsiCompositeElement(o);
   }
 
-  public void visitCppInclude(@NotNull ThriftCppInclude o) {
-    visitPsiCompositeElement(o);
-  }
-
   public void visitCppType(@NotNull ThriftCppType o) {
     visitPsiCompositeElement(o);
   }

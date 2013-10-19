@@ -35,9 +35,6 @@ public class ThriftParser implements PsiParser {
     else if (root_ == CONST_VALUE) {
       result_ = ConstValue(builder_, level_ + 1);
     }
-    else if (root_ == CPP_INCLUDE) {
-      result_ = CppInclude(builder_, level_ + 1);
-    }
     else if (root_ == CPP_TYPE) {
       result_ = CppType(builder_, level_ + 1);
     }
@@ -309,20 +306,6 @@ public class ThriftParser implements PsiParser {
     if (!result_) result_ = ListType(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
-  }
-
-  /* ********************************************************** */
-  // 'cpp_include' Literal
-  public static boolean CppInclude(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "CppInclude")) return false;
-    boolean result_ = false;
-    boolean pinned_ = false;
-    Marker marker_ = enter_section_(builder_, level_, _NONE_, "<cpp include>");
-    result_ = consumeToken(builder_, "cpp_include");
-    pinned_ = result_; // pin = 1
-    result_ = result_ && consumeToken(builder_, LITERAL);
-    exit_section_(builder_, level_, marker_, CPP_INCLUDE, result_, pinned_, null);
-    return result_ || pinned_;
   }
 
   /* ********************************************************** */
@@ -644,17 +627,28 @@ public class ThriftParser implements PsiParser {
   }
 
   /* ********************************************************** */
-  // 'include' Literal
+  // ('include' | 'cpp_include') Literal
   public static boolean Include(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "Include")) return false;
     boolean result_ = false;
     boolean pinned_ = false;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, "<include>");
-    result_ = consumeToken(builder_, "include");
+    result_ = Include_0(builder_, level_ + 1);
     pinned_ = result_; // pin = 1
     result_ = result_ && consumeToken(builder_, LITERAL);
     exit_section_(builder_, level_, marker_, INCLUDE, result_, pinned_, null);
     return result_ || pinned_;
+  }
+
+  // 'include' | 'cpp_include'
+  private static boolean Include_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "Include_0")) return false;
+    boolean result_ = false;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, "include");
+    if (!result_) result_ = consumeToken(builder_, "cpp_include");
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
   }
 
   /* ********************************************************** */
@@ -1432,14 +1426,13 @@ public class ThriftParser implements PsiParser {
   }
 
   /* ********************************************************** */
-  // Include | CppInclude | Namespace |
+  // Include | Namespace |
   //                              Const | Typedef | Enum | Senum | Struct | Union | Exception | Service
   static boolean topLevelElement(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "topLevelElement")) return false;
     boolean result_ = false;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, null);
     result_ = Include(builder_, level_ + 1);
-    if (!result_) result_ = CppInclude(builder_, level_ + 1);
     if (!result_) result_ = Namespace(builder_, level_ + 1);
     if (!result_) result_ = Const(builder_, level_ + 1);
     if (!result_) result_ = Typedef(builder_, level_ + 1);

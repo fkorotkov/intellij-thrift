@@ -10,6 +10,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
+import com.intellij.psi.PsiReference;
 
 public class ThriftCustomTypeImpl extends ThriftPsiCompositeElementImpl implements ThriftCustomType {
 
@@ -20,6 +21,11 @@ public class ThriftCustomTypeImpl extends ThriftPsiCompositeElementImpl implemen
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitCustomType(this);
     else super.accept(visitor);
+  }
+
+  @NotNull
+  public PsiReference[] getReferences() {
+    return ThriftPsiUtil.getReferences(this);
   }
 
 }

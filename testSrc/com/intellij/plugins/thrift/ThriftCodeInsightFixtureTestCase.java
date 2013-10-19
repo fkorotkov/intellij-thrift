@@ -9,6 +9,6 @@ import com.intellij.testFramework.fixtures.LightCodeInsightFixtureTestCase;
 abstract public class ThriftCodeInsightFixtureTestCase extends LightCodeInsightFixtureTestCase {
   @Override
   protected String getTestDataPath() {
-    return ThriftTestUtils.BASE_TEST_DATA_PATH + getBasePath();
+    return ThriftTestUtils.BASE_TEST_DATA_PATH + "/" + getBasePath();
   }
 }

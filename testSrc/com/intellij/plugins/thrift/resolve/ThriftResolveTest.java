@@ -13,6 +13,10 @@ import java.util.Collection;
  * Created by fkorotkov.
  */
 public class ThriftResolveTest extends ThriftCodeInsightFixtureTestCase {
+  @Override
+  protected String getBasePath() {
+    return "resolve";
+  }
 
   protected void doTest(int expectedSize) {
     PsiFile file = myFixture.getFile();
@@ -24,9 +28,30 @@ public class ThriftResolveTest extends ThriftCodeInsightFixtureTestCase {
     assertEquals(expectedSize, elements.size());
   }
 
+  private void configureDefault() {
+    myFixture.configureByFile(getTestName(true) + "." + ThriftFileType.DEFAULT_EXTENSION);
+  }
+
   public void testInclude() {
     myFixture.addFileToProject("foo.thrift", "");
     myFixture.configureByText(ThriftFileType.INSTANCE, "include 'foo<caret>.thrift'");
+    doTest(1);
+  }
+
+  public void testGlobalType1() {
+    myFixture.addFileToProject("data.thrift", "struct Impression {}");
+    configureDefault();
+    doTest(1);
+  }
+
+  public void testGlobalType2() {
+    myFixture.addFileToProject("util/data.thrift", "struct Impression {}");
+    configureDefault();
+    doTest(1);
+  }
+
+  public void testLocalType() {
+    configureDefault();
     doTest(1);
   }
 }

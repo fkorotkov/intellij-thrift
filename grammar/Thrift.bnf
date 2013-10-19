@@ -42,23 +42,18 @@
 }
 
 Document ::=  topLevelElement*
-private topLevelElement ::=  Include | CppInclude | Namespace |
+private topLevelElement ::=  Include | Namespace |
                              Const | Typedef | Enum | Senum | Struct | Union | Exception | Service
                              {recoverUntil=topLevelRecover}
 
 private topLevelRecover ::= !('const' | 'cpp_include' | 'enum' | 'exception' | 'include' | 'namespace' |
                               'php_namespace' | 'senum' | 'service' | 'struct' | 'typedef' | 'union' |
                               'xsd_namespace' )
-Include ::=  'include' Literal {
+Include ::=  ('include' | 'cpp_include') Literal {
   pin=1
   methods=[
     getReferences
-  ]
-}
-CppInclude ::=  'cpp_include' Literal {
-  pin=1
-  methods=[
-    getReferences
+    getPath
   ]
 }
 Namespace ::=  std_namespace | php_namespace | xsd_namespace
@@ -131,7 +126,11 @@ SetType         ::=  'set' CppType? '<' FieldType '>' {pin=1}
 ListType        ::=  'list' '<' FieldType '>' CppType? {pin=1}
 CppType         ::=  'cpp_type' Literal {pin=1}
 
-CustomType ::= Identifier
+CustomType ::= Identifier {
+  methods=[
+    getReferences
+  ]
+}
 
 ConstValue      ::=  IntConstant | DoubleConstant | Literal | Identifier | ConstList | ConstMap
 IntConstant     ::=  ('+' | '-')? Number

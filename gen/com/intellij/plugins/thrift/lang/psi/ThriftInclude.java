@@ -8,6 +8,10 @@ import com.intellij.psi.PsiReference;
 
 public interface ThriftInclude extends ThriftPsiCompositeElement {
 
+  @NotNull
   PsiReference[] getReferences();
+
+  @NotNull
+  String getPath();
 
 }
