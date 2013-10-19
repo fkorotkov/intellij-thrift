@@ -34,6 +34,10 @@ public class ThriftVisitor extends PsiElementVisitor {
     visitPsiCompositeElement(o);
   }
 
+  public void visitCustomType(@NotNull ThriftCustomType o) {
+    visitPsiCompositeElement(o);
+  }
+
   public void visitDefinitionName(@NotNull ThriftDefinitionName o) {
     visitPsiCompositeElement(o);
   }

@@ -1,6 +1,7 @@
 {
     parserClass="com.intellij.plugins.thrift.lang.parser.ThriftParser"
     parserUtilClass="com.intellij.lang.parser.GeneratedParserUtilBase"
+    psiImplUtilClass="com.intellij.plugins.thrift.util.ThriftPsiUtil"
 
     implements="com.intellij.plugins.thrift.lang.psi.ThriftPsiCompositeElement"
     extends="com.intellij.plugins.thrift.lang.psi.impl.ThriftPsiCompositeElementImpl"
@@ -48,8 +49,18 @@ private topLevelElement ::=  Include | CppInclude | Namespace |
 private topLevelRecover ::= !('const' | 'cpp_include' | 'enum' | 'exception' | 'include' | 'namespace' |
                               'php_namespace' | 'senum' | 'service' | 'struct' | 'typedef' | 'union' |
                               'xsd_namespace' )
-Include ::=  'include' Literal {pin=1}
-CppInclude ::=  'cpp_include' Literal {pin=1}
+Include ::=  'include' Literal {
+  pin=1
+  methods=[
+    getReferences
+  ]
+}
+CppInclude ::=  'cpp_include' Literal {
+  pin=1
+  methods=[
+    getReferences
+  ]
+}
 Namespace ::=  std_namespace | php_namespace | xsd_namespace
 private xsd_namespace ::= 'xsd_namespace' Literal {pin=1}
 private php_namespace ::= 'php_namespace' Literal {pin=1}
@@ -111,7 +122,7 @@ private fieldsWithBraceRecovery ::= Field* {recoverUntil=braceRecovery}
 private braceRecovery ::= !(')')
 Throws          ::=  'throws' '(' fieldsWithBraceRecovery ')' {pin=1}
 
-FieldType       ::=  BaseType | ContainerType | Identifier
+FieldType       ::=  BaseType | ContainerType | CustomType
 private DefinitionType  ::=  BaseType | ContainerType
 BaseType        ::=  'bool' | 'byte' | 'i16' | 'i32' | 'i64' | 'double' | 'string' | 'binary' | 'slist'
 private ContainerType   ::=  MapType | SetType | ListType
@@ -119,6 +130,8 @@ MapType         ::=  'map' CppType? '<' FieldType ',' FieldType '>' {pin=1}
 SetType         ::=  'set' CppType? '<' FieldType '>' {pin=1}
 ListType        ::=  'list' '<' FieldType '>' CppType? {pin=1}
 CppType         ::=  'cpp_type' Literal {pin=1}
+
+CustomType ::= Identifier
 
 ConstValue      ::=  IntConstant | DoubleConstant | Literal | Identifier | ConstList | ConstMap
 IntConstant     ::=  ('+' | '-')? Number

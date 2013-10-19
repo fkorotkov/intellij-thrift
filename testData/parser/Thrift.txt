@@ -130,7 +130,8 @@ Thrift File
   CONST
     PsiElement(Identifier)('const')
     FIELD_TYPE
-      PsiElement(Identifier)('Numberz')
+      CUSTOM_TYPE
+        PsiElement(Identifier)('Numberz')
     DEFINITION_NAME
       PsiElement(Identifier)('myNumberz')
     PsiElement(=)('=')
@@ -186,7 +187,8 @@ Thrift File
           PsiElement(Identifier)('string')
       PsiElement(,)(',')
       FIELD_TYPE
-        PsiElement(Identifier)('Bonk')
+        CUSTOM_TYPE
+          PsiElement(Identifier)('Bonk')
       PsiElement(>)('>')
     DEFINITION_NAME
       PsiElement(Identifier)('MapType')
@@ -302,7 +304,8 @@ Thrift File
           PsiElement(Number)('2')
         PsiElement(:)(':')
       FIELD_TYPE
-        PsiElement(Identifier)('Xtruct')
+        CUSTOM_TYPE
+          PsiElement(Identifier)('Xtruct')
       PsiElement(Identifier)('struct_thing')
       XSD_FIELD_OPTIONS
         <empty list>
@@ -391,10 +394,12 @@ Thrift File
           PsiElement(Identifier)('map')
           PsiElement(<)('<')
           FIELD_TYPE
-            PsiElement(Identifier)('Numberz')
+            CUSTOM_TYPE
+              PsiElement(Identifier)('Numberz')
           PsiElement(,)(',')
           FIELD_TYPE
-            PsiElement(Identifier)('UserId')
+            CUSTOM_TYPE
+              PsiElement(Identifier)('UserId')
           PsiElement(>)('>')
       PsiElement(Identifier)('userMap')
       XSD_FIELD_OPTIONS
@@ -411,7 +416,8 @@ Thrift File
           PsiElement(Identifier)('list')
           PsiElement(<)('<')
           FIELD_TYPE
-            PsiElement(Identifier)('Xtruct')
+            CUSTOM_TYPE
+              PsiElement(Identifier)('Xtruct')
           PsiElement(>)('>')
       PsiElement(Identifier)('xtructs')
       XSD_FIELD_OPTIONS
@@ -447,7 +453,8 @@ Thrift File
           PsiElement(Identifier)('set')
           PsiElement(<)('<')
           FIELD_TYPE
-            PsiElement(Identifier)('Insanity')
+            CUSTOM_TYPE
+              PsiElement(Identifier)('Insanity')
           PsiElement(>)('>')
       PsiElement(Identifier)('set_field')
       XSD_FIELD_OPTIONS
@@ -499,7 +506,8 @@ Thrift File
                               PsiElement(Identifier)('map')
                               PsiElement(<)('<')
                               FIELD_TYPE
-                                PsiElement(Identifier)('Insanity')
+                                CUSTOM_TYPE
+                                  PsiElement(Identifier)('Insanity')
                               PsiElement(,)(',')
                               FIELD_TYPE
                                 BASE_TYPE
@@ -581,7 +589,8 @@ Thrift File
           PsiElement(Number)('2')
         PsiElement(:)(':')
       FIELD_TYPE
-        PsiElement(Identifier)('Xtruct')
+        CUSTOM_TYPE
+          PsiElement(Identifier)('Xtruct')
       PsiElement(Identifier)('struct_thing')
       XSD_FIELD_OPTIONS
         <empty list>
@@ -603,7 +612,8 @@ Thrift File
           PsiElement(Number)('1')
         PsiElement(:)(':')
       FIELD_TYPE
-        PsiElement(Identifier)('EmptyStruct')
+        CUSTOM_TYPE
+          PsiElement(Identifier)('EmptyStruct')
       PsiElement(Identifier)('field')
       XSD_FIELD_OPTIONS
         <empty list>
@@ -617,7 +627,8 @@ Thrift File
     FUNCTION
       FUNCTION_TYPE
         FIELD_TYPE
-          PsiElement(Identifier)('void')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('void')
       PsiElement(Identifier)('testVoid')
       PsiElement(()('(')
       PsiElement())(')')
@@ -737,7 +748,8 @@ Thrift File
     FUNCTION
       FUNCTION_TYPE
         FIELD_TYPE
-          PsiElement(Identifier)('Xtruct')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('Xtruct')
       PsiElement(Identifier)('testStruct')
       PsiElement(()('(')
       FIELD
@@ -746,7 +758,8 @@ Thrift File
             PsiElement(Number)('1')
           PsiElement(:)(':')
         FIELD_TYPE
-          PsiElement(Identifier)('Xtruct')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('Xtruct')
         PsiElement(Identifier)('thing')
         XSD_FIELD_OPTIONS
           <empty list>
@@ -757,7 +770,8 @@ Thrift File
     FUNCTION
       FUNCTION_TYPE
         FIELD_TYPE
-          PsiElement(Identifier)('Xtruct2')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('Xtruct2')
       PsiElement(Identifier)('testNest')
       PsiElement(()('(')
       FIELD
@@ -766,7 +780,8 @@ Thrift File
             PsiElement(Number)('1')
           PsiElement(:)(':')
         FIELD_TYPE
-          PsiElement(Identifier)('Xtruct2')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('Xtruct2')
         PsiElement(Identifier)('thing')
         XSD_FIELD_OPTIONS
           <empty list>
@@ -921,7 +936,8 @@ Thrift File
     FUNCTION
       FUNCTION_TYPE
         FIELD_TYPE
-          PsiElement(Identifier)('Numberz')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('Numberz')
       PsiElement(Identifier)('testEnum')
       PsiElement(()('(')
       FIELD
@@ -930,7 +946,8 @@ Thrift File
             PsiElement(Number)('1')
           PsiElement(:)(':')
         FIELD_TYPE
-          PsiElement(Identifier)('Numberz')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('Numberz')
         PsiElement(Identifier)('thing')
         XSD_FIELD_OPTIONS
           <empty list>
@@ -941,7 +958,8 @@ Thrift File
     FUNCTION
       FUNCTION_TYPE
         FIELD_TYPE
-          PsiElement(Identifier)('UserId')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('UserId')
       PsiElement(Identifier)('testTypedef')
       PsiElement(()('(')
       FIELD
@@ -950,7 +968,8 @@ Thrift File
             PsiElement(Number)('1')
           PsiElement(:)(':')
         FIELD_TYPE
-          PsiElement(Identifier)('UserId')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('UserId')
         PsiElement(Identifier)('thing')
         XSD_FIELD_OPTIONS
           <empty list>
@@ -1005,17 +1024,20 @@ Thrift File
             PsiElement(Identifier)('map')
             PsiElement(<)('<')
             FIELD_TYPE
-              PsiElement(Identifier)('UserId')
+              CUSTOM_TYPE
+                PsiElement(Identifier)('UserId')
             PsiElement(,)(',')
             FIELD_TYPE
               MAP_TYPE
                 PsiElement(Identifier)('map')
                 PsiElement(<)('<')
                 FIELD_TYPE
-                  PsiElement(Identifier)('Numberz')
+                  CUSTOM_TYPE
+                    PsiElement(Identifier)('Numberz')
                 PsiElement(,)(',')
                 FIELD_TYPE
-                  PsiElement(Identifier)('Insanity')
+                  CUSTOM_TYPE
+                    PsiElement(Identifier)('Insanity')
                 PsiElement(>)('>')
             PsiElement(>)('>')
       PsiElement(Identifier)('testInsanity')
@@ -1026,7 +1048,8 @@ Thrift File
             PsiElement(Number)('1')
           PsiElement(:)(':')
         FIELD_TYPE
-          PsiElement(Identifier)('Insanity')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('Insanity')
         PsiElement(Identifier)('argument')
         XSD_FIELD_OPTIONS
           <empty list>
@@ -1037,7 +1060,8 @@ Thrift File
     FUNCTION
       FUNCTION_TYPE
         FIELD_TYPE
-          PsiElement(Identifier)('Xtruct')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('Xtruct')
       PsiElement(Identifier)('testMulti')
       PsiElement(()('(')
       FIELD
@@ -1107,7 +1131,8 @@ Thrift File
             PsiElement(Number)('5')
           PsiElement(:)(':')
         FIELD_TYPE
-          PsiElement(Identifier)('Numberz')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('Numberz')
         PsiElement(Identifier)('arg4')
         XSD_FIELD_OPTIONS
           <empty list>
@@ -1119,7 +1144,8 @@ Thrift File
             PsiElement(Number)('6')
           PsiElement(:)(':')
         FIELD_TYPE
-          PsiElement(Identifier)('UserId')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('UserId')
         PsiElement(Identifier)('arg5')
         XSD_FIELD_OPTIONS
           <empty list>
@@ -1130,7 +1156,8 @@ Thrift File
     FUNCTION
       FUNCTION_TYPE
         FIELD_TYPE
-          PsiElement(Identifier)('void')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('void')
       PsiElement(Identifier)('testException')
       PsiElement(()('(')
       FIELD
@@ -1154,7 +1181,8 @@ Thrift File
               PsiElement(Number)('1')
             PsiElement(:)(':')
           FIELD_TYPE
-            PsiElement(Identifier)('Xception')
+            CUSTOM_TYPE
+              PsiElement(Identifier)('Xception')
           PsiElement(Identifier)('err1')
           XSD_FIELD_OPTIONS
             <empty list>
@@ -1165,7 +1193,8 @@ Thrift File
     FUNCTION
       FUNCTION_TYPE
         FIELD_TYPE
-          PsiElement(Identifier)('Xtruct')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('Xtruct')
       PsiElement(Identifier)('testMultiException')
       PsiElement(()('(')
       FIELD
@@ -1202,7 +1231,8 @@ Thrift File
               PsiElement(Number)('1')
             PsiElement(:)(':')
           FIELD_TYPE
-            PsiElement(Identifier)('Xception')
+            CUSTOM_TYPE
+              PsiElement(Identifier)('Xception')
           PsiElement(Identifier)('err1')
           XSD_FIELD_OPTIONS
             <empty list>
@@ -1214,7 +1244,8 @@ Thrift File
               PsiElement(Number)('2')
             PsiElement(:)(':')
           FIELD_TYPE
-            PsiElement(Identifier)('Xception2')
+            CUSTOM_TYPE
+              PsiElement(Identifier)('Xception2')
           PsiElement(Identifier)('err2')
           XSD_FIELD_OPTIONS
             <empty list>
@@ -1224,7 +1255,8 @@ Thrift File
       PsiElement(Identifier)('oneway')
       FUNCTION_TYPE
         FIELD_TYPE
-          PsiElement(Identifier)('void')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('void')
       PsiElement(Identifier)('testOneway')
       PsiElement(()('(')
       FIELD
@@ -1248,7 +1280,8 @@ Thrift File
     FUNCTION
       FUNCTION_TYPE
         FIELD_TYPE
-          PsiElement(Identifier)('void')
+          CUSTOM_TYPE
+            PsiElement(Identifier)('void')
       PsiElement(Identifier)('blahBlah')
       PsiElement(()('(')
       PsiElement())(')')
@@ -1405,7 +1438,8 @@ Thrift File
           PsiElement(Number)('7')
         PsiElement(:)(':')
       FIELD_TYPE
-        PsiElement(Identifier)('Bonk')
+        CUSTOM_TYPE
+          PsiElement(Identifier)('Bonk')
       PsiElement(Identifier)('newstruct')
       XSD_FIELD_OPTIONS
         <empty list>
@@ -1607,7 +1641,8 @@ Thrift File
           PsiElement(Number)('1')
         PsiElement(:)(':')
       FIELD_TYPE
-        PsiElement(Identifier)('Bools')
+        CUSTOM_TYPE
+          PsiElement(Identifier)('Bools')
       PsiElement(Identifier)('b1')
       XSD_FIELD_OPTIONS
         <empty list>
@@ -1619,7 +1654,8 @@ Thrift File
           PsiElement(Number)('10')
         PsiElement(:)(':')
       FIELD_TYPE
-        PsiElement(Identifier)('Bools')
+        CUSTOM_TYPE
+          PsiElement(Identifier)('Bools')
       PsiElement(Identifier)('b10')
       XSD_FIELD_OPTIONS
         <empty list>
@@ -1631,7 +1667,8 @@ Thrift File
           PsiElement(Number)('100')
         PsiElement(:)(':')
       FIELD_TYPE
-        PsiElement(Identifier)('Bools')
+        CUSTOM_TYPE
+          PsiElement(Identifier)('Bools')
       PsiElement(Identifier)('b100')
       XSD_FIELD_OPTIONS
         <empty list>
@@ -1656,7 +1693,8 @@ Thrift File
           PsiElement(Number)('1000')
         PsiElement(:)(':')
       FIELD_TYPE
-        PsiElement(Identifier)('Bools')
+        CUSTOM_TYPE
+          PsiElement(Identifier)('Bools')
       PsiElement(Identifier)('b1000')
       XSD_FIELD_OPTIONS
         <empty list>
@@ -1681,7 +1719,8 @@ Thrift File
           PsiElement(Number)('2000')
         PsiElement(:)(':')
       FIELD_TYPE
-        PsiElement(Identifier)('VersioningTestV2')
+        CUSTOM_TYPE
+          PsiElement(Identifier)('VersioningTestV2')
       PsiElement(Identifier)('vertwo2000')
       XSD_FIELD_OPTIONS
         <empty list>
@@ -1711,7 +1750,8 @@ Thrift File
           PsiElement(Number)('3000')
         PsiElement(:)(':')
       FIELD_TYPE
-        PsiElement(Identifier)('VersioningTestV2')
+        CUSTOM_TYPE
+          PsiElement(Identifier)('VersioningTestV2')
       PsiElement(Identifier)('vertwo3000')
       XSD_FIELD_OPTIONS
         <empty list>
@@ -1890,7 +1930,8 @@ Thrift File
           PsiElement(Identifier)('list')
           PsiElement(<)('<')
           FIELD_TYPE
-            PsiElement(Identifier)('Bonk')
+            CUSTOM_TYPE
+              PsiElement(Identifier)('Bonk')
           PsiElement(>)('>')
       PsiElement(Identifier)('bonk')
       XSD_FIELD_OPTIONS
@@ -1919,7 +1960,8 @@ Thrift File
                   PsiElement(Identifier)('list')
                   PsiElement(<)('<')
                   FIELD_TYPE
-                    PsiElement(Identifier)('Bonk')
+                    CUSTOM_TYPE
+                      PsiElement(Identifier)('Bonk')
                   PsiElement(>)('>')
               PsiElement(>)('>')
           PsiElement(>)('>')
@@ -2003,7 +2045,8 @@ Thrift File
       FIELD_REQ
         PsiElement(Identifier)('optional')
       FIELD_TYPE
-        PsiElement(Identifier)('StructA')
+        CUSTOM_TYPE
+          PsiElement(Identifier)('StructA')
       PsiElement(Identifier)('aa')
       XSD_FIELD_OPTIONS
         <empty list>
@@ -2017,7 +2060,8 @@ Thrift File
       FIELD_REQ
         PsiElement(Identifier)('required')
       FIELD_TYPE
-        PsiElement(Identifier)('StructA')
+        CUSTOM_TYPE
+          PsiElement(Identifier)('StructA')
       PsiElement(Identifier)('ab')
       XSD_FIELD_OPTIONS
         <empty list>

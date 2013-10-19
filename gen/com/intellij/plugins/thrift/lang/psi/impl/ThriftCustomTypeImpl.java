@@ -11,21 +11,15 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftSemunFieldImpl extends ThriftPsiCompositeElementImpl implements ThriftSemunField {
+public class ThriftCustomTypeImpl extends ThriftPsiCompositeElementImpl implements ThriftCustomType {
 
-  public ThriftSemunFieldImpl(ASTNode node) {
+  public ThriftCustomTypeImpl(ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitSemunField(this);
+    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitCustomType(this);
     else super.accept(visitor);
-  }
-
-  @Override
-  @Nullable
-  public ThriftListSeparator getListSeparator() {
-    return findChildByClass(ThriftListSeparator.class);
   }
 
 }

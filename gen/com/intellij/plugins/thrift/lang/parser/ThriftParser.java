@@ -41,6 +41,9 @@ public class ThriftParser implements PsiParser {
     else if (root_ == CPP_TYPE) {
       result_ = CppType(builder_, level_ + 1);
     }
+    else if (root_ == CUSTOM_TYPE) {
+      result_ = CustomType(builder_, level_ + 1);
+    }
     else if (root_ == DEFINITION_NAME) {
       result_ = DefinitionName(builder_, level_ + 1);
     }
@@ -338,6 +341,18 @@ public class ThriftParser implements PsiParser {
 
   /* ********************************************************** */
   // Identifier
+  public static boolean CustomType(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "CustomType")) return false;
+    if (!nextTokenIs(builder_, IDENTIFIER)) return false;
+    boolean result_ = false;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, IDENTIFIER);
+    exit_section_(builder_, marker_, CUSTOM_TYPE, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // Identifier
   public static boolean DefinitionName(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "DefinitionName")) return false;
     if (!nextTokenIs(builder_, IDENTIFIER)) return false;
@@ -571,14 +586,14 @@ public class ThriftParser implements PsiParser {
   }
 
   /* ********************************************************** */
-  // BaseType | ContainerType | Identifier
+  // BaseType | ContainerType | CustomType
   public static boolean FieldType(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "FieldType")) return false;
     boolean result_ = false;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, "<field type>");
     result_ = BaseType(builder_, level_ + 1);
     if (!result_) result_ = ContainerType(builder_, level_ + 1);
-    if (!result_) result_ = consumeToken(builder_, IDENTIFIER);
+    if (!result_) result_ = CustomType(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, FIELD_TYPE, result_, false, null);
     return result_;
   }

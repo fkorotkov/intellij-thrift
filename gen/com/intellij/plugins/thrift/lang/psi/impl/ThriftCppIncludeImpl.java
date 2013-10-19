@@ -9,6 +9,8 @@ import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
+import com.intellij.plugins.thrift.util.ThriftPsiUtil;
+import com.intellij.psi.PsiReference;
 
 public class ThriftCppIncludeImpl extends ThriftPsiCompositeElementImpl implements ThriftCppInclude {
 
@@ -19,6 +21,10 @@ public class ThriftCppIncludeImpl extends ThriftPsiCompositeElementImpl implemen
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitCppInclude(this);
     else super.accept(visitor);
+  }
+
+  public PsiReference[] getReferences() {
+    return ThriftPsiUtil.getReferences(this);
   }
 
 }

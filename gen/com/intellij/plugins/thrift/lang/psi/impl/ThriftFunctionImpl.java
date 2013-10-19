@@ -9,6 +9,7 @@ import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
+import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftFunctionImpl extends ThriftPsiCompositeElementImpl implements ThriftFunction {
 
