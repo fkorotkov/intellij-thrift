@@ -47,18 +47,24 @@ public class ThriftPsiUtil {
 
   @NotNull
   public static PsiReference[] getReferences(ThriftCustomType type) {
-    return new PsiReference[]{new ThriftTypeReference(type)};
-  }
-
-  public static void processDeclarations(@NotNull PsiFile psiFile, @NotNull Processor<ThriftDeclaration> processor) {
-    for (PsiElement child : psiFile.getChildren()) {
-      if (child instanceof ThriftDeclaration && !processor.process((ThriftDeclaration)child)) {
-        break;
-      }
+    String text = type.getText();
+    int index = text.lastIndexOf(".");
+    if (index == -1) {
+      return new PsiReference[]{new ThriftTypeReference(type, 0)};
+    }
+    else {
+      return new PsiReference[]{
+        new ThriftPrefixReference(type, index),
+        new ThriftTypeReference(type, index + 1)
+      };
     }
   }
 
-  public static ThriftDefinitionName findDeclaration(@NotNull final String name, @NotNull PsiFile containingFile) {
+  @Nullable
+  public static ThriftDefinitionName findDeclaration(@NotNull final String name, @Nullable PsiFile containingFile) {
+    if (containingFile == null) {
+      return null;
+    }
     final Ref<ThriftDefinitionName> result = new Ref<ThriftDefinitionName>();
     processDeclarations(containingFile, new Processor<ThriftDeclaration>() {
       @Override
@@ -72,16 +78,39 @@ public class ThriftPsiUtil {
     return result.get();
   }
 
+  public static void processDeclarations(@Nullable PsiFile psiFile, @NotNull Processor<ThriftDeclaration> processor) {
+    processElements(psiFile, processor, ThriftDeclaration.class);
+  }
+
   @Nullable
-  public static ThriftInclude findImportByPrefix(@NotNull PsiFile psiFile, @NotNull String fileName) {
-    for (PsiElement element : psiFile.getChildren()) {
-      if (element instanceof ThriftInclude) {
-        String path = ((ThriftInclude)element).getPath();
+  public static ThriftInclude findImportByPrefix(@NotNull PsiFile psiFile, @NotNull final String fileName) {
+    final Ref<ThriftInclude> result = new Ref<ThriftInclude>();
+    processIncludes(psiFile, new Processor<ThriftInclude>() {
+      @Override
+      public boolean process(ThriftInclude include) {
+        String path = include.getPath();
         if (FileUtil.getNameWithoutExtension(path).endsWith(fileName)) {
-          return (ThriftInclude)element;
+          result.set(include);
+          return false;
         }
+        return true;
+      }
+    });
+    return result.get();
+  }
+
+  public static void processIncludes(@Nullable PsiFile psiFile, @NotNull Processor<ThriftInclude> processor) {
+    processElements(psiFile, processor, ThriftInclude.class);
+  }
+
+  public static <T> void processElements(@Nullable PsiFile psiFile, @NotNull Processor<T> processor, Class<? extends T> clazz) {
+    if (psiFile == null) {
+      return;
+    }
+    for (PsiElement child : psiFile.getChildren()) {
+      if (clazz.isInstance(child) && !processor.process((T)child)) {
+        break;
       }
     }
-    return null;
   }
 }

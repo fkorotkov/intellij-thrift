@@ -17,4 +17,13 @@ public class ThriftReferenceCompletionTest extends ThriftCompletionTestBase {
     myFixture.completeBasic();
     checkCompletion(CheckType.INCLUDES, "bar.thrift", "baz.thrift");
   }
+
+  public void testSameFile() throws Throwable {
+    doTest();
+  }
+
+  public void testIncludedFile() throws Throwable {
+    myFixture.copyFileToProject("sameFile.thrift", "util/included.thrift");
+    doTest();
+  }
 }

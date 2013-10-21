@@ -493,16 +493,18 @@ public class ThriftParser implements PsiParser {
   public static boolean Field(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "Field")) return false;
     boolean result_ = false;
+    boolean pinned_ = false;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, "<field>");
     result_ = Field_0(builder_, level_ + 1);
     result_ = result_ && Field_1(builder_, level_ + 1);
     result_ = result_ && FieldType(builder_, level_ + 1);
-    result_ = result_ && consumeToken(builder_, IDENTIFIER);
-    result_ = result_ && Field_4(builder_, level_ + 1);
-    result_ = result_ && XsdFieldOptions(builder_, level_ + 1);
-    result_ = result_ && Field_6(builder_, level_ + 1);
-    exit_section_(builder_, level_, marker_, FIELD, result_, false, fieldRecovery_parser_);
-    return result_;
+    pinned_ = result_; // pin = 3
+    result_ = result_ && report_error_(builder_, consumeToken(builder_, IDENTIFIER));
+    result_ = pinned_ && report_error_(builder_, Field_4(builder_, level_ + 1)) && result_;
+    result_ = pinned_ && report_error_(builder_, XsdFieldOptions(builder_, level_ + 1)) && result_;
+    result_ = pinned_ && Field_6(builder_, level_ + 1) && result_;
+    exit_section_(builder_, level_, marker_, FIELD, result_, pinned_, fieldRecovery_parser_);
+    return result_ || pinned_;
   }
 
   // FieldID?

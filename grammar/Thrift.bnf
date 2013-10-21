@@ -100,7 +100,7 @@ private functions ::= (Function ListSeparator?)* {recoverUntil=functionsRecovery
 private functionsRecovery ::= !('}')
 
 Field           ::=  FieldID? FieldReq? FieldType Identifier ('=' ConstValue)? XsdFieldOptions ListSeparator?
-{recoverUntil=fieldRecovery}
+{pin=3 recoverUntil=fieldRecovery}
 FieldID         ::=  IntConstant ':'
 FieldReq        ::=  'required' | 'optional'
 private fieldRecovery ::= !(')' | '+' | '-' | 'binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' |

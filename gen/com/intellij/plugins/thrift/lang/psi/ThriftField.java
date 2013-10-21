@@ -22,7 +22,7 @@ public interface ThriftField extends ThriftPsiCompositeElement {
   @Nullable
   ThriftListSeparator getListSeparator();
 
-  @NotNull
+  @Nullable
   ThriftXsdFieldOptions getXsdFieldOptions();
 
 }

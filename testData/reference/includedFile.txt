@@ -1,0 +1,8 @@
+BASIC 1 INCLUDES
+UserId
+MapType
+Xception
+Xception2
+ThriftTest
+StructA
+StructB

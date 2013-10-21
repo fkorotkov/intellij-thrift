@@ -53,9 +53,9 @@ public class ThriftFieldImpl extends ThriftPsiCompositeElementImpl implements Th
   }
 
   @Override
-  @NotNull
+  @Nullable
   public ThriftXsdFieldOptions getXsdFieldOptions() {
-    return findNotNullChildByClass(ThriftXsdFieldOptions.class);
+    return findChildByClass(ThriftXsdFieldOptions.class);
   }
 
 }

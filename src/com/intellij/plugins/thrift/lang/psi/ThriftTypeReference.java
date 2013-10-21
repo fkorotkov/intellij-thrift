@@ -1,41 +1,91 @@
 package com.intellij.plugins.thrift.lang.psi;
 
+import com.intellij.codeInsight.lookup.LookupElementBuilder;
+import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.util.TextRange;
+import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiReferenceBase;
+import com.intellij.util.ArrayUtil;
+import com.intellij.util.Function;
+import com.intellij.util.PathUtil;
+import com.intellij.util.Processor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by fkorotkov.
  */
 public class ThriftTypeReference extends PsiReferenceBase<ThriftCustomType> {
-  public ThriftTypeReference(@NotNull ThriftCustomType element) {
-    super(element, TextRange.from(0, element.getTextLength()));
+  public ThriftTypeReference(@NotNull ThriftCustomType element, int offset) {
+    super(element, TextRange.from(offset, element.getTextLength()));
   }
 
   @Nullable
   @Override
   public PsiElement resolve() {
-    final String name = getElement().getText();
-    int index = name.lastIndexOf(".");
-    if (index != -1) {
-      String fileName = name.substring(0, index);
-      String componentName = name.substring(index + 1);
-      ThriftInclude include = ThriftPsiUtil.findImportByPrefix(getElement().getContainingFile(), fileName);
-      PsiFile includedFile = ThriftPsiUtil.resolveInclude(include);
-      return includedFile != null ? ThriftPsiUtil.findDeclaration(componentName, includedFile) : null;
-    }
-    else {
-      return ThriftPsiUtil.findDeclaration(name, getElement().getContainingFile());
-    }
+    return processComponentAndFile(new Function<Pair<String, PsiFile>, PsiElement>() {
+      @Override
+      public PsiElement fun(@Nullable Pair<String, PsiFile> pair) {
+        return pair != null ? ThriftPsiUtil.findDeclaration(pair.getFirst(), pair.getSecond()) : null;
+      }
+    });
   }
 
   @NotNull
   @Override
   public Object[] getVariants() {
-    return PsiElement.EMPTY_ARRAY;
+    //noinspection ConstantConditions
+    return processComponentAndFile(new Function<Pair<String, PsiFile>, Object[]>() {
+      @Override
+      public Object[] fun(Pair<String, PsiFile> pair) {
+        final List<Object> result = new ArrayList<Object>();
+        PsiFile psiFile = pair.getSecond();
+        ThriftPsiUtil.processDeclarations(psiFile, new Processor<ThriftDeclaration>() {
+          @Override
+          public boolean process(ThriftDeclaration declaration) {
+            result.add(declaration);
+            return true;
+          }
+        });
+        if (isSimple()) {
+          ThriftPsiUtil.processIncludes(getElement().getContainingFile(), new Processor<ThriftInclude>() {
+            @Override
+            public boolean process(ThriftInclude include) {
+              String path = include.getPath();
+              String fileName = PathUtil.getFileName(path);
+              result.add(LookupElementBuilder.create(FileUtil.getNameWithoutExtension(fileName)));
+              return true;
+            }
+          });
+        }
+        return ArrayUtil.toObjectArray(result);
+      }
+    });
+  }
+
+  private boolean isSimple() {
+    return getRangeInElement().getStartOffset() == 0;
+  }
+
+  @Nullable
+  private <T> T processComponentAndFile(@NotNull Function<Pair<String, PsiFile>, T> fun) {
+    final String name = getElement().getText();
+    int index = getRangeInElement().getStartOffset();
+    if (index > 0) {
+      String fileName = name.substring(0, index - 1);
+      String componentName = name.substring(index);
+      ThriftInclude include = ThriftPsiUtil.findImportByPrefix(getElement().getContainingFile(), fileName);
+      PsiFile includedFile = ThriftPsiUtil.resolveInclude(include);
+      return includedFile != null ? fun.fun(Pair.create(componentName, includedFile)) : null;
+    }
+    else {
+      return fun.fun(Pair.create(name, getElement().getContainingFile()));
+    }
   }
 }
