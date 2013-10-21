@@ -7,7 +7,7 @@ import com.intellij.plugins.thrift.ThriftFileType;
  */
 public class ThriftReferenceCompletionTest extends ThriftCompletionTestBase {
   public ThriftReferenceCompletionTest() {
-    super("reference");
+    super("completion/reference");
   }
 
   public void testInclude() throws Throwable {

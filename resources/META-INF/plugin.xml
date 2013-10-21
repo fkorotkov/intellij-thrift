@@ -32,6 +32,7 @@
     <annotator language="thrift" implementationClass="com.intellij.plugins.thrift.annotator.ThriftColorAnnotator"/>
     <!--<lang.formatter/>-->
 
+    <typedHandler implementation="com.intellij.plugins.thrift.completion.ThriftTypeHandler"/>
     <lang.braceMatcher language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftBraceMatcher"/>
     <lang.commenter language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftCommenter"/>
 

@@ -5,7 +5,7 @@ package com.intellij.plugins.thrift.completion;
  */
 public class ThriftKeywordCompletionTest extends ThriftCompletionTestBase {
   public ThriftKeywordCompletionTest() {
-    super("completion");
+    super("completion/keyword");
   }
 
   public void testEmpty() throws Throwable {
