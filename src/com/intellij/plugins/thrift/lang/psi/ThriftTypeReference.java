@@ -40,8 +40,7 @@ public class ThriftTypeReference extends PsiReferenceBase<ThriftCustomType> {
   @NotNull
   @Override
   public Object[] getVariants() {
-    //noinspection ConstantConditions
-    return processComponentAndFile(new Function<Pair<String, PsiFile>, Object[]>() {
+    Object[] result = processComponentAndFile(new Function<Pair<String, PsiFile>, Object[]>() {
       @Override
       public Object[] fun(Pair<String, PsiFile> pair) {
         final List<Object> result = new ArrayList<Object>();
@@ -67,6 +66,7 @@ public class ThriftTypeReference extends PsiReferenceBase<ThriftCustomType> {
         return ArrayUtil.toObjectArray(result);
       }
     });
+    return result != null ? result : PsiElement.EMPTY_ARRAY;
   }
 
   private boolean isSimple() {
