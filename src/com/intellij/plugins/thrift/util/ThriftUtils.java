@@ -15,7 +15,7 @@ public class ThriftUtils {
     "cocoa", "csharp", "c_glib", "go", "php", "delphi", "const", "enum", "exception",
     "senum", "service", "struct", "typedef", "union", "required", "optional", "xsd_optional",
     "xsd_nillable", "oneway", "throws", "bool", "byte", "i16", "i32", "i64", "double",
-    "string", "binary", "slist", "list", "map", "set", "cpp_type", "void"
+    "string", "binary", "slist", "list", "map", "set", "cpp_type", "void", "true", "false"
   );
 
   public static Set<String> getKeywords() {
