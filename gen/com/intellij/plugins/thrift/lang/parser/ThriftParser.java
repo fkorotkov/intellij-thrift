@@ -1066,7 +1066,7 @@ public class ThriftParser implements PsiParser {
 
   /* ********************************************************** */
   // !(')' | '+' | '-' | 'binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' |
-  //                             'map' | 'optional' | 'required' | 'set' | 'slist' | 'string' | '}' | Identifier | Number)
+  //                             'map' | 'optional' | 'required' | 'set' | 'slist' | 'string' | '}'| Integer | Identifier | Number )
   static boolean fieldRecovery(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "fieldRecovery")) return false;
     boolean result_ = false;
@@ -1077,7 +1077,7 @@ public class ThriftParser implements PsiParser {
   }
 
   // ')' | '+' | '-' | 'binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' |
-  //                             'map' | 'optional' | 'required' | 'set' | 'slist' | 'string' | '}' | Identifier | Number
+  //                             'map' | 'optional' | 'required' | 'set' | 'slist' | 'string' | '}'| Integer | Identifier | Number
   private static boolean fieldRecovery_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "fieldRecovery_0")) return false;
     boolean result_ = false;
@@ -1100,6 +1100,7 @@ public class ThriftParser implements PsiParser {
     if (!result_) result_ = consumeToken(builder_, "slist");
     if (!result_) result_ = consumeToken(builder_, "string");
     if (!result_) result_ = consumeToken(builder_, RIGHTCURLYBRACE);
+    if (!result_) result_ = consumeToken(builder_, INTEGER);
     if (!result_) result_ = consumeToken(builder_, IDENTIFIER);
     if (!result_) result_ = consumeToken(builder_, NUMBER);
     exit_section_(builder_, marker_, null, result_);

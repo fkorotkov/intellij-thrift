@@ -165,10 +165,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'2' unexpected
-      PsiElement(Integer)('2')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('2')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('i32')
@@ -209,10 +210,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'2' unexpected
-      PsiElement(Integer)('2')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('2')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('bool')
@@ -238,36 +240,33 @@ Thrift File
       PsiElement(Identifier)('string_thing')
       XSD_FIELD_OPTIONS
         <empty list>
-      LIST_SEPARATOR
-        PsiElement(,)(',')
-    PsiErrorElement:'4' unexpected
-      PsiElement(Integer)('4')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('4')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('byte')
       PsiElement(Identifier)('byte_thing')
       XSD_FIELD_OPTIONS
         <empty list>
-      LIST_SEPARATOR
-        PsiElement(,)(',')
-    PsiErrorElement:'9' unexpected
-      PsiElement(Integer)('9')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('9')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('i32')
       PsiElement(Identifier)('i32_thing')
       XSD_FIELD_OPTIONS
         <empty list>
-      LIST_SEPARATOR
-        PsiElement(,)(',')
-    PsiErrorElement:'11' unexpected
-      PsiElement(Integer)('11')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('11')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('i64')
@@ -293,10 +292,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'2' unexpected
-      PsiElement(Integer)('2')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('2')
+        PsiElement(:)(':')
       FIELD_TYPE
         CUSTOM_TYPE
           PsiElement(Identifier)('Xtruct')
@@ -305,10 +305,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'3' unexpected
-      PsiElement(Integer)('3')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('3')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('i32')
@@ -334,10 +335,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'4' unexpected
-      PsiElement(Integer)('4')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('4')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('i32')
@@ -346,10 +348,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'9' unexpected
-      PsiElement(Integer)('9')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('9')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('i32')
@@ -358,10 +361,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'11' unexpected
-      PsiElement(Integer)('11')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('11')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('i64')
@@ -396,10 +400,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'2' unexpected
-      PsiElement(Integer)('2')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('2')
+        PsiElement(:)(':')
       FIELD_TYPE
         LIST_TYPE
           PsiElement(Identifier)('list')
@@ -430,10 +435,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'2' unexpected
-      PsiElement(Integer)('2')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('2')
+        PsiElement(:)(':')
       FIELD_REQ
         PsiElement(Identifier)('optional')
       FIELD_TYPE
@@ -449,10 +455,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'3' unexpected
-      PsiElement(Integer)('3')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('3')
+        PsiElement(:)(':')
       FIELD_REQ
         PsiElement(Identifier)('required')
       FIELD_TYPE
@@ -510,10 +517,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'4' unexpected
-      PsiElement(Integer)('4')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('4')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('binary')
@@ -539,10 +547,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'2' unexpected
-      PsiElement(Integer)('2')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('2')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('string')
@@ -568,10 +577,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'2' unexpected
-      PsiElement(Integer)('2')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('2')
+        PsiElement(:)(':')
       FIELD_TYPE
         CUSTOM_TYPE
           PsiElement(Identifier)('Xtruct')
@@ -1059,10 +1069,11 @@ Thrift File
           <empty list>
         LIST_SEPARATOR
           PsiElement(,)(',')
-      PsiErrorElement:'2' unexpected
-        PsiElement(Integer)('2')
-      PsiElement(:)(':')
       FIELD
+        FIELD_ID
+          INT_CONSTANT
+            PsiElement(Integer)('2')
+          PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
             PsiElement(Identifier)('i32')
@@ -1071,10 +1082,11 @@ Thrift File
           <empty list>
         LIST_SEPARATOR
           PsiElement(,)(',')
-      PsiErrorElement:'3' unexpected
-        PsiElement(Integer)('3')
-      PsiElement(:)(':')
       FIELD
+        FIELD_ID
+          INT_CONSTANT
+            PsiElement(Integer)('3')
+          PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
             PsiElement(Identifier)('i64')
@@ -1083,10 +1095,11 @@ Thrift File
           <empty list>
         LIST_SEPARATOR
           PsiElement(,)(',')
-      PsiErrorElement:'4' unexpected
-        PsiElement(Integer)('4')
-      PsiElement(:)(':')
       FIELD
+        FIELD_ID
+          INT_CONSTANT
+            PsiElement(Integer)('4')
+          PsiElement(:)(':')
         FIELD_TYPE
           MAP_TYPE
             PsiElement(Identifier)('map')
@@ -1104,10 +1117,11 @@ Thrift File
           <empty list>
         LIST_SEPARATOR
           PsiElement(,)(',')
-      PsiErrorElement:'5' unexpected
-        PsiElement(Integer)('5')
-      PsiElement(:)(':')
       FIELD
+        FIELD_ID
+          INT_CONSTANT
+            PsiElement(Integer)('5')
+          PsiElement(:)(':')
         FIELD_TYPE
           CUSTOM_TYPE
             PsiElement(Identifier)('Numberz')
@@ -1116,10 +1130,11 @@ Thrift File
           <empty list>
         LIST_SEPARATOR
           PsiElement(,)(',')
-      PsiErrorElement:'6' unexpected
-        PsiElement(Integer)('6')
-      PsiElement(:)(':')
       FIELD
+        FIELD_ID
+          INT_CONSTANT
+            PsiElement(Integer)('6')
+          PsiElement(:)(':')
         FIELD_TYPE
           CUSTOM_TYPE
             PsiElement(Identifier)('UserId')
@@ -1185,10 +1200,11 @@ Thrift File
           <empty list>
         LIST_SEPARATOR
           PsiElement(,)(',')
-      PsiErrorElement:'2' unexpected
-        PsiElement(Integer)('2')
-      PsiElement(:)(':')
       FIELD
+        FIELD_ID
+          INT_CONSTANT
+            PsiElement(Integer)('2')
+          PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
             PsiElement(Identifier)('string')
@@ -1212,10 +1228,11 @@ Thrift File
             <empty list>
           LIST_SEPARATOR
             PsiElement(,)(',')
-        PsiErrorElement:'2' unexpected
-          PsiElement(Integer)('2')
-        PsiElement(:)(':')
         FIELD
+          FIELD_ID
+            INT_CONSTANT
+              PsiElement(Integer)('2')
+            PsiElement(:)(':')
           FIELD_TYPE
             CUSTOM_TYPE
               PsiElement(Identifier)('Xception2')
@@ -1295,10 +1312,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'3' unexpected
-      PsiElement(Integer)('3')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('3')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('string')
@@ -1307,10 +1325,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'12' unexpected
-      PsiElement(Integer)('12')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('12')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('i32')
@@ -1336,10 +1355,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'2' unexpected
-      PsiElement(Integer)('2')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('2')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('i32')
@@ -1348,10 +1368,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'3' unexpected
-      PsiElement(Integer)('3')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('3')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('byte')
@@ -1360,10 +1381,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'4' unexpected
-      PsiElement(Integer)('4')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('4')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('i16')
@@ -1372,10 +1394,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'5' unexpected
-      PsiElement(Integer)('5')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('5')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('i64')
@@ -1384,20 +1407,22 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'6' unexpected
-      PsiElement(Integer)('6')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('6')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('double')
       PsiElement(Identifier)('newdouble')
       XSD_FIELD_OPTIONS
         <empty list>
-    PsiErrorElement:<list separator>, '=', xsd_attrs, xsd_nillable or xsd_optional expected, got '7'
-      PsiElement(Integer)('7')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('7')
+        PsiElement(:)(':')
       FIELD_TYPE
         CUSTOM_TYPE
           PsiElement(Identifier)('Bonk')
@@ -1406,10 +1431,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'8' unexpected
-      PsiElement(Integer)('8')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('8')
+        PsiElement(:)(':')
       FIELD_TYPE
         LIST_TYPE
           PsiElement(Identifier)('list')
@@ -1423,10 +1449,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'9' unexpected
-      PsiElement(Integer)('9')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('9')
+        PsiElement(:)(':')
       FIELD_TYPE
         SET_TYPE
           PsiElement(Identifier)('set')
@@ -1440,10 +1467,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'10' unexpected
-      PsiElement(Integer)('10')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('10')
+        PsiElement(:)(':')
       FIELD_TYPE
         MAP_TYPE
           PsiElement(Identifier)('map')
@@ -1461,10 +1489,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'11' unexpected
-      PsiElement(Integer)('11')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('11')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('string')
@@ -1473,10 +1502,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'12' unexpected
-      PsiElement(Integer)('12')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('12')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('i32')
@@ -1507,10 +1537,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(;)(';')
-    PsiErrorElement:'2' unexpected
-      PsiElement(Integer)('2')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('2')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('string')
@@ -1543,10 +1574,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(;)(';')
-    PsiErrorElement:'2' unexpected
-      PsiElement(Integer)('2')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('2')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('string')
@@ -1602,10 +1634,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'10' unexpected
-      PsiElement(Integer)('10')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('10')
+        PsiElement(:)(':')
       FIELD_TYPE
         CUSTOM_TYPE
           PsiElement(Identifier)('Bools')
@@ -1614,10 +1647,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'100' unexpected
-      PsiElement(Integer)('100')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('100')
+        PsiElement(:)(':')
       FIELD_TYPE
         CUSTOM_TYPE
           PsiElement(Identifier)('Bools')
@@ -1626,10 +1660,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'500' unexpected
-      PsiElement(Integer)('500')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('500')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('bool')
@@ -1638,10 +1673,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'1000' unexpected
-      PsiElement(Integer)('1000')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('1000')
+        PsiElement(:)(':')
       FIELD_TYPE
         CUSTOM_TYPE
           PsiElement(Identifier)('Bools')
@@ -1650,10 +1686,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'1500' unexpected
-      PsiElement(Integer)('1500')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('1500')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('bool')
@@ -1662,10 +1699,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'2000' unexpected
-      PsiElement(Integer)('2000')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('2000')
+        PsiElement(:)(':')
       FIELD_TYPE
         CUSTOM_TYPE
           PsiElement(Identifier)('VersioningTestV2')
@@ -1674,10 +1712,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'2500' unexpected
-      PsiElement(Integer)('2500')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('2500')
+        PsiElement(:)(':')
       FIELD_TYPE
         SET_TYPE
           PsiElement(Identifier)('set')
@@ -1691,10 +1730,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'3000' unexpected
-      PsiElement(Integer)('3000')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('3000')
+        PsiElement(:)(':')
       FIELD_TYPE
         CUSTOM_TYPE
           PsiElement(Identifier)('VersioningTestV2')
@@ -1703,10 +1743,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(,)(',')
-    PsiErrorElement:'4000' unexpected
-      PsiElement(Integer)('4000')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('4000')
+        PsiElement(:)(':')
       FIELD_TYPE
         LIST_TYPE
           PsiElement(Identifier)('list')
@@ -1804,10 +1845,11 @@ Thrift File
       PsiElement(Identifier)('int_set_list')
       XSD_FIELD_OPTIONS
         <empty list>
-    PsiErrorElement:<list separator>, '=', xsd_attrs, xsd_nillable or xsd_optional expected, got '2'
-      PsiElement(Integer)('2')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('2')
+        PsiElement(:)(':')
       FIELD_TYPE
         MAP_TYPE
           PsiElement(Identifier)('map')
@@ -1828,10 +1870,11 @@ Thrift File
       PsiElement(Identifier)('map_int_strset')
       XSD_FIELD_OPTIONS
         <empty list>
-    PsiErrorElement:<list separator>, '=', xsd_attrs, xsd_nillable or xsd_optional expected, got '3'
-      PsiElement(Integer)('3')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('3')
+        PsiElement(:)(':')
       FIELD_TYPE
         LIST_TYPE
           PsiElement(Identifier)('list')
@@ -1935,10 +1978,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(;)(';')
-    PsiErrorElement:'2' unexpected
-      PsiElement(Integer)('2')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('2')
+        PsiElement(:)(':')
       FIELD_REQ
         PsiElement(Identifier)('optional')
       FIELD_TYPE
@@ -1994,10 +2038,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(;)(';')
-    PsiErrorElement:'2' unexpected
-      PsiElement(Integer)('2')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('2')
+        PsiElement(:)(':')
       FIELD_REQ
         PsiElement(Identifier)('required')
       FIELD_TYPE
@@ -2008,10 +2053,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(;)(';')
-    PsiErrorElement:'3' unexpected
-      PsiElement(Integer)('3')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('3')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('double')
@@ -2025,10 +2071,11 @@ Thrift File
         <empty list>
       LIST_SEPARATOR
         PsiElement(;)(';')
-    PsiErrorElement:'3' unexpected
-      PsiElement(Integer)('3')
-    PsiElement(:)(':')
     FIELD
+      FIELD_ID
+        INT_CONSTANT
+          PsiElement(Integer)('3')
+        PsiElement(:)(':')
       FIELD_TYPE
         BASE_TYPE
           PsiElement(Identifier)('double')

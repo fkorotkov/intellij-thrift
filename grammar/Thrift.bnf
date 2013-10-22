@@ -105,7 +105,7 @@ Field           ::=  FieldID? FieldReq? FieldType Identifier ('=' ConstValue)? X
 FieldID         ::=  IntConstant ':'
 FieldReq        ::=  'required' | 'optional'
 private fieldRecovery ::= !(')' | '+' | '-' | 'binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' |
-                            'map' | 'optional' | 'required' | 'set' | 'slist' | 'string' | '}' | Identifier | Number)
+                            'map' | 'optional' | 'required' | 'set' | 'slist' | 'string' | '}'| Integer | Identifier | Number )
 
 XsdFieldOptions ::=  'xsd_optional'? 'xsd_nillable'? XsdAttrs?
 XsdAttrs        ::=  'xsd_attrs' '{' fieldsWithCurlyRecovery '}' {pin=1}
