@@ -617,13 +617,13 @@ public class ThriftParser implements PsiParser {
   }
 
   /* ********************************************************** */
-  // FieldType | 'void'
+  // 'void' | FieldType
   public static boolean FunctionType(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "FunctionType")) return false;
     boolean result_ = false;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, "<function type>");
-    result_ = FieldType(builder_, level_ + 1);
-    if (!result_) result_ = consumeToken(builder_, "void");
+    result_ = consumeToken(builder_, "void");
+    if (!result_) result_ = FieldType(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, FUNCTION_TYPE, result_, false, null);
     return result_;
   }

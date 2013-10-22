@@ -1,0 +1,3 @@
+service Foo {
+  <caret>
+}

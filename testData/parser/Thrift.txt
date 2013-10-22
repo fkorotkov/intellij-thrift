@@ -626,9 +626,7 @@ Thrift File
     PsiComment(BlockComment)('/**\n   * Prints "testVoid()" and returns nothing.\n   */')
     FUNCTION
       FUNCTION_TYPE
-        FIELD_TYPE
-          CUSTOM_TYPE
-            PsiElement(Identifier)('void')
+        PsiElement(Identifier)('void')
       PsiElement(Identifier)('testVoid')
       PsiElement(()('(')
       PsiElement())(')')
@@ -1155,9 +1153,7 @@ Thrift File
     PsiComment(BlockComment)('/**\n   * Print 'testException(%s)' with arg as '%s'\n   * @param string arg - a string indication what type of exception to throw\n   * if arg == "Xception" throw Xception with errorCode = 1001 and message = arg\n   * elsen if arg == "TException" throw TException\n   * else do not throw anything\n   */')
     FUNCTION
       FUNCTION_TYPE
-        FIELD_TYPE
-          CUSTOM_TYPE
-            PsiElement(Identifier)('void')
+        PsiElement(Identifier)('void')
       PsiElement(Identifier)('testException')
       PsiElement(()('(')
       FIELD
@@ -1254,9 +1250,7 @@ Thrift File
     FUNCTION
       PsiElement(Identifier)('oneway')
       FUNCTION_TYPE
-        FIELD_TYPE
-          CUSTOM_TYPE
-            PsiElement(Identifier)('void')
+        PsiElement(Identifier)('void')
       PsiElement(Identifier)('testOneway')
       PsiElement(()('(')
       FIELD
@@ -1279,9 +1273,7 @@ Thrift File
     PsiElement({)('{')
     FUNCTION
       FUNCTION_TYPE
-        FIELD_TYPE
-          CUSTOM_TYPE
-            PsiElement(Identifier)('void')
+        PsiElement(Identifier)('void')
       PsiElement(Identifier)('blahBlah')
       PsiElement(()('(')
       PsiElement())(')')

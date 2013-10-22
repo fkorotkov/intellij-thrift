@@ -19,4 +19,8 @@ public class ThriftKeywordCompletionTest extends ThriftCompletionTestBase {
   public void testType() throws Throwable {
     doTest();
   }
+
+  public void testField() throws Throwable {
+    doTest();
+  }
 }

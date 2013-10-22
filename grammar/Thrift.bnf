@@ -112,7 +112,7 @@ XsdAttrs        ::=  'xsd_attrs' '{' fieldsWithCurlyRecovery '}' {pin=1}
 Function        ::=  'oneway'? FunctionType Identifier '(' fieldsWithBraceRecovery ')' Throws? {pin=3 recoverUntil=functionRecovery}
 private functionRecovery ::= !('binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' | 'map' |
                                'oneway' | 'set' | 'slist' | 'string' | 'void' | '}' | Identifier | ListSeparator)
-FunctionType    ::=  FieldType | 'void'
+FunctionType    ::=  'void' | FieldType
 private fieldsWithBraceRecovery ::= Field* {recoverUntil=braceRecovery}
 private braceRecovery ::= !(')')
 Throws          ::=  'throws' '(' fieldsWithBraceRecovery ')' {pin=1}
