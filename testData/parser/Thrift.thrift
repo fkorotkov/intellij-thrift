@@ -382,4 +382,6 @@ struct StructA {
 struct StructB {
   1: optional StructA aa;
   2: required StructA ab;
+  3: double foo = -239.566e3;
+  3: double foo = 0x7fff;
 }

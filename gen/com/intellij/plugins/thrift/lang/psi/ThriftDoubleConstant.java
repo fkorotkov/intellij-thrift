@@ -7,7 +7,4 @@ import com.intellij.psi.PsiElement;
 
 public interface ThriftDoubleConstant extends ThriftPsiCompositeElement {
 
-  @Nullable
-  ThriftIntConstant getIntConstant();
-
 }

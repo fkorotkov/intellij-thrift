@@ -22,6 +22,7 @@
         Identifier='regexp:([:letter:] | \_)(\w | \\.)*'
         STIdentifier='regexp:([:letter:] | \_)(\w | \. | -)*'
         Number='regexp:\d+(\.\d*)?'
+        Integer='regexp:\d+'
         Multiply='regexp:\*'
 
         LeftCurlyBrace='{'
@@ -133,8 +134,8 @@ CustomType ::= Identifier {
 }
 
 ConstValue      ::=  IntConstant | DoubleConstant | Literal | Identifier | ConstList | ConstMap
-IntConstant     ::=  ('+' | '-')? Number
-DoubleConstant  ::=  ('+' | '-')? Number ('.' Number)? ( ('E' | 'e') IntConstant )?
+IntConstant     ::=  ('+' | '-')? Integer
+DoubleConstant  ::=  ('+' | '-')? Number
 ConstList       ::=  '[' (ConstValue ListSeparator?)* ']'
 ConstMap        ::=  '{' (ConstValue ':' ConstValue ListSeparator?)* '}'
 

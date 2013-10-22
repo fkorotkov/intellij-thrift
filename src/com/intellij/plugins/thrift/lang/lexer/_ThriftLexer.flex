@@ -30,8 +30,20 @@ END_OF_LINE_COMMENT=("/""/" | "#")[^\r\n]*
 LITERAL=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
 IDENTIFIER=([:letter:] | \_)([a-zA-Z_0-9] | \.)*
 STIDENTIFIER=([:letter:] | \_)([a-zA-Z_0-9] | \. | \-)*
-NUMBER=[0-9]+(\.[0-9]*)?
 MULTIPLY=\*
+
+DIGIT = [:digit:]
+
+HEX_DIGIT = [0-9A-Fa-f]
+INT_DIGIT = [0-9]
+OCT_DIGIT = [0-7]
+
+NUM_INT = "0" | ([1-9] {INT_DIGIT}*)
+NUM_HEX = ("0x" | "0X") {HEX_DIGIT}+
+NUM_OCT = "0" {OCT_DIGIT}+
+
+FLOAT_EXPONENT = [eE] [+-]? {DIGIT}+
+NUM_FLOAT = ( (({DIGIT}* "." {DIGIT}+) | ({DIGIT}+ "." {DIGIT}*)) {FLOAT_EXPONENT}?) | ({DIGIT}+ {FLOAT_EXPONENT})
 
 %%
 <YYINITIAL> {
@@ -52,13 +64,17 @@ MULTIPLY=\*
   "+"                 { return PLUS; }
   "-"                 { return MINUS; }
 
+  {NUM_INT}                                {  return INTEGER; }
+  {NUM_OCT}                                {  return INTEGER; }
+  {NUM_HEX}                                {  return INTEGER; }
+  {NUM_FLOAT} / [^"."]                     {  return NUMBER; }
+
   {END_OF_LINE_COMMENT}           { return COMMENT; }
   {C_STYLE_COMMENT}      { return BLOCKCOMMENT; }
   {DOC_COMMENT}      { return BLOCKCOMMENT; }
   {LITERAL}           { return LITERAL; }
   {IDENTIFIER}        { return IDENTIFIER; }
   {STIDENTIFIER}      { return STIDENTIFIER; }
-  {NUMBER}            { return NUMBER; }
   {MULTIPLY}          { return MULTIPLY; }
 
   [^] { return com.intellij.psi.TokenType.BAD_CHARACTER; }

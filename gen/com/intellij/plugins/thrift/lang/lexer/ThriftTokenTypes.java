@@ -51,6 +51,7 @@ public interface ThriftTokenTypes {
   IElementType EQUALS = new ThriftElementType("=");
   IElementType GT = new ThriftElementType(">");
   IElementType IDENTIFIER = new ThriftElementType("Identifier");
+  IElementType INTEGER = new ThriftElementType("Integer");
   IElementType LEFTBRACE = new ThriftElementType("(");
   IElementType LEFTBRACKET = new ThriftElementType("[");
   IElementType LEFTCURLYBRACE = new ThriftElementType("{");

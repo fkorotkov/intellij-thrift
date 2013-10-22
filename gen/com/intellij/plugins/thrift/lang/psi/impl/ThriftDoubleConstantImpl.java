@@ -22,10 +22,4 @@ public class ThriftDoubleConstantImpl extends ThriftPsiCompositeElementImpl impl
     else super.accept(visitor);
   }
 
-  @Override
-  @Nullable
-  public ThriftIntConstant getIntConstant() {
-    return findChildByClass(ThriftIntConstant.class);
-  }
-
 }

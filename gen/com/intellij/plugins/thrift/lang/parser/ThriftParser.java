@@ -376,15 +376,13 @@ public class ThriftParser implements PsiParser {
   }
 
   /* ********************************************************** */
-  // ('+' | '-')? Number ('.' Number)? ( ('E' | 'e') IntConstant )?
+  // ('+' | '-')? Number
   public static boolean DoubleConstant(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "DoubleConstant")) return false;
     boolean result_ = false;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, "<double constant>");
     result_ = DoubleConstant_0(builder_, level_ + 1);
     result_ = result_ && consumeToken(builder_, NUMBER);
-    result_ = result_ && DoubleConstant_2(builder_, level_ + 1);
-    result_ = result_ && DoubleConstant_3(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, DOUBLE_CONSTANT, result_, false, null);
     return result_;
   }
@@ -403,53 +401,6 @@ public class ThriftParser implements PsiParser {
     Marker marker_ = enter_section_(builder_);
     result_ = consumeToken(builder_, PLUS);
     if (!result_) result_ = consumeToken(builder_, MINUS);
-    exit_section_(builder_, marker_, null, result_);
-    return result_;
-  }
-
-  // ('.' Number)?
-  private static boolean DoubleConstant_2(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "DoubleConstant_2")) return false;
-    DoubleConstant_2_0(builder_, level_ + 1);
-    return true;
-  }
-
-  // '.' Number
-  private static boolean DoubleConstant_2_0(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "DoubleConstant_2_0")) return false;
-    boolean result_ = false;
-    Marker marker_ = enter_section_(builder_);
-    result_ = consumeToken(builder_, ".");
-    result_ = result_ && consumeToken(builder_, NUMBER);
-    exit_section_(builder_, marker_, null, result_);
-    return result_;
-  }
-
-  // ( ('E' | 'e') IntConstant )?
-  private static boolean DoubleConstant_3(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "DoubleConstant_3")) return false;
-    DoubleConstant_3_0(builder_, level_ + 1);
-    return true;
-  }
-
-  // ('E' | 'e') IntConstant
-  private static boolean DoubleConstant_3_0(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "DoubleConstant_3_0")) return false;
-    boolean result_ = false;
-    Marker marker_ = enter_section_(builder_);
-    result_ = DoubleConstant_3_0_0(builder_, level_ + 1);
-    result_ = result_ && IntConstant(builder_, level_ + 1);
-    exit_section_(builder_, marker_, null, result_);
-    return result_;
-  }
-
-  // 'E' | 'e'
-  private static boolean DoubleConstant_3_0_0(PsiBuilder builder_, int level_) {
-    if (!recursion_guard_(builder_, level_, "DoubleConstant_3_0_0")) return false;
-    boolean result_ = false;
-    Marker marker_ = enter_section_(builder_);
-    result_ = consumeToken(builder_, "E");
-    if (!result_) result_ = consumeToken(builder_, "e");
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
@@ -654,13 +605,13 @@ public class ThriftParser implements PsiParser {
   }
 
   /* ********************************************************** */
-  // ('+' | '-')? Number
+  // ('+' | '-')? Integer
   public static boolean IntConstant(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "IntConstant")) return false;
     boolean result_ = false;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, "<int constant>");
     result_ = IntConstant_0(builder_, level_ + 1);
-    result_ = result_ && consumeToken(builder_, NUMBER);
+    result_ = result_ && consumeToken(builder_, INTEGER);
     exit_section_(builder_, level_, marker_, INT_CONSTANT, result_, false, null);
     return result_;
   }
