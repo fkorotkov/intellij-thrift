@@ -41,6 +41,8 @@
     <typedHandler implementation="com.intellij.plugins.thrift.completion.ThriftTypeHandler"/>
     <lang.braceMatcher language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftBraceMatcher"/>
     <lang.commenter language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftCommenter"/>
+    <lang.implementationTextSelectioner language="thrift"
+                                        implementationClass="com.intellij.plugins.thrift.ThriftImplementationTextSelectioner"/>
 
     <!--<colorSettingsPage/>-->
     <!--<codeStyleSettingsProvider/>-->
