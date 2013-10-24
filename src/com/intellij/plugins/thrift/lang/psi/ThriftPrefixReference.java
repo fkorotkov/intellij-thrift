@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class ThriftPrefixReference extends PsiReferenceBase<ThriftCustomType> {
   public ThriftPrefixReference(@NotNull ThriftCustomType element, int offset) {
-    super(element, TextRange.from(0, offset));
+    super(element, TextRange.create(0, offset));
   }
 
   @Nullable

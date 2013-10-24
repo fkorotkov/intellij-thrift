@@ -53,6 +53,11 @@
 
     <fileBasedIndex implementation="com.intellij.plugins.thrift.index.ThriftDeclarationIndex"/>
     <gotoClassContributor implementation="com.intellij.plugins.thrift.ThriftClassContributor"/>
+
+    <localInspection language="thrift" shortName="ThriftUnresolvedSymbol" bundle="com.intellij.plugins.thrift.ThriftBundle"
+                     key="thrift.inspection.unresolved.symbol"
+                     groupKey="inspections.group.name" enabledByDefault="true"
+                     implementationClass="com.intellij.plugins.thrift.inspections.ThriftUnresolvedSymbolInspection"/>
   </extensions>
 
   <actions>
