@@ -8,12 +8,9 @@ import com.intellij.codeInsight.daemon.LineMarkerProvider;
 import com.intellij.codeInsight.daemon.impl.PsiElementListNavigator;
 import com.intellij.icons.AllIcons;
 import com.intellij.ide.util.DefaultPsiElementCellRenderer;
-import com.intellij.navigation.ChooseByNameContributor;
-import com.intellij.navigation.ChooseByNameRegistry;
-import com.intellij.navigation.NavigationItem;
 import com.intellij.openapi.editor.markup.GutterIconRenderer;
-import com.intellij.plugins.thrift.ThriftClassContributor;
 import com.intellij.plugins.thrift.lang.psi.ThriftDefinitionName;
+import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 import com.intellij.psi.NavigatablePsiElement;
 import com.intellij.psi.PsiElement;
 import com.intellij.util.Function;
@@ -21,7 +18,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -45,7 +41,7 @@ public class ThriftLineMarkerProvider implements LineMarkerProvider {
 
   @Nullable
   private LineMarkerInfo findImplementationsAndCreateMarker(final ThriftDefinitionName definitionName) {
-    final List<NavigatablePsiElement> implementations = findImplementations(definitionName);
+    final List<NavigatablePsiElement> implementations = ThriftPsiUtil.findImplementations(definitionName);
     if (implementations.isEmpty()) {
       return null;
     }
@@ -74,21 +70,5 @@ public class ThriftLineMarkerProvider implements LineMarkerProvider {
       },
       GutterIconRenderer.Alignment.RIGHT
     );
-  }
-
-  @NotNull
-  private List<NavigatablePsiElement> findImplementations(ThriftDefinitionName definitionName) {
-    final List<NavigatablePsiElement> implementations = new ArrayList<NavigatablePsiElement>();
-    String name = definitionName.getText();
-    for (ChooseByNameContributor contributor : ChooseByNameRegistry.getInstance().getClassModelContributors()) {
-      if (!(contributor instanceof ThriftClassContributor)) {
-        for (NavigationItem navigationItem : contributor.getItemsByName(name, name, definitionName.getProject(), false)) {
-          if (navigationItem instanceof NavigatablePsiElement) {
-            implementations.add((NavigatablePsiElement)navigationItem);
-          }
-        }
-      }
-    }
-    return implementations;
   }
 }

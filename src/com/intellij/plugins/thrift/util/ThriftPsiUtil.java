@@ -1,19 +1,23 @@
 package com.intellij.plugins.thrift.util;
 
+import com.intellij.navigation.ChooseByNameContributor;
+import com.intellij.navigation.ChooseByNameRegistry;
+import com.intellij.navigation.NavigationItem;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.util.Ref;
 import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.util.text.StringUtil;
+import com.intellij.plugins.thrift.ThriftClassContributor;
 import com.intellij.plugins.thrift.ThriftFileType;
 import com.intellij.plugins.thrift.lang.psi.*;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiFileSystemItem;
-import com.intellij.psi.PsiReference;
+import com.intellij.psi.*;
 import com.intellij.psi.impl.source.resolve.reference.impl.providers.FileReferenceSet;
 import com.intellij.util.Processor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by fkorotkov.
@@ -110,6 +114,32 @@ public class ThriftPsiUtil {
     for (PsiElement child : psiFile.getChildren()) {
       if (clazz.isInstance(child) && !processor.process((T)child)) {
         break;
+      }
+    }
+  }
+
+  @NotNull
+  public static List<NavigatablePsiElement> findImplementations(ThriftDefinitionName definitionName) {
+    final List<NavigatablePsiElement> implementations = new ArrayList<NavigatablePsiElement>();
+    processImplementations(definitionName, new Processor<NavigatablePsiElement>() {
+      @Override
+      public boolean process(NavigatablePsiElement element) {
+        implementations.add(element);
+        return true;
+      }
+    });
+    return implementations;
+  }
+
+  public static void processImplementations(ThriftDefinitionName definitionName, @NotNull Processor<NavigatablePsiElement> processor) {
+    String name = definitionName.getText();
+    for (ChooseByNameContributor contributor : ChooseByNameRegistry.getInstance().getClassModelContributors()) {
+      if (!(contributor instanceof ThriftClassContributor)) {
+        for (NavigationItem navigationItem : contributor.getItemsByName(name, name, definitionName.getProject(), false)) {
+          if (navigationItem instanceof NavigatablePsiElement && !processor.process((NavigatablePsiElement)navigationItem)) {
+            return;
+          }
+        }
       }
     }
   }
