@@ -1,6 +1,5 @@
 package com.intellij.plugins.thrift.completion;
 
-import a.j.re;
 import com.intellij.codeInsight.editorActions.TypedHandlerDelegate;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
