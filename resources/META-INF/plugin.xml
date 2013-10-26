@@ -33,6 +33,7 @@
     <completion.contributor language="any" implementationClass="com.intellij.plugins.thrift.completion.ThriftKeywordCompletionContributor"/>
     <itemPresentationProvider forClass="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration" implementationClass="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationPresentationProvider"/>
     <codeInsight.lineMarkerProvider language="thrift" implementationClass="com.intellij.plugins.thrift.editor.ThriftLineMarkerProvider"/>
+    <iconProvider implementation="com.intellij.plugins.thrift.ThriftIconProvider"/>
 
     <lang.syntaxHighlighterFactory key="thrift" implementationClass="com.intellij.plugins.thrift.highlight.ThriftSyntaxHighlighterFactory"/>
     <annotator language="thrift" implementationClass="com.intellij.plugins.thrift.annotator.ThriftColorAnnotator"/>

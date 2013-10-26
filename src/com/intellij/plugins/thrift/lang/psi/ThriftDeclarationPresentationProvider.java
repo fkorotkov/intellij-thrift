@@ -2,6 +2,7 @@ package com.intellij.plugins.thrift.lang.psi;
 
 import com.intellij.navigation.ItemPresentation;
 import com.intellij.navigation.ItemPresentationProvider;
+import com.intellij.openapi.util.Iconable;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
@@ -28,7 +29,7 @@ public class ThriftDeclarationPresentationProvider implements ItemPresentationPr
       @Nullable
       @Override
       public Icon getIcon(boolean unused) {
-        return null;
+        return item.getIcon(Iconable.ICON_FLAG_VISIBILITY);
       }
     };
   }
