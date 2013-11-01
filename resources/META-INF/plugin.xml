@@ -4,6 +4,10 @@
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
+      <p>0.3:</p>
+      <ul>
+        <li>Find usages</li>
+      </ul>
       <p>0.2:</p>
       <ul>
         <li>References</li>
@@ -21,7 +25,7 @@
       </ul>
       ]]>
   </change-notes>
-  <version>0.2</version>
+  <version>0.3</version>
   <vendor>Twitter, Inc.</vendor>
   <idea-version since-build="132.1"/>
 
