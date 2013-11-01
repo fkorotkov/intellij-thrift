@@ -1,8 +1,5 @@
 package com.intellij.plugins.thrift.lang.psi;
 
-import com.intellij.navigation.NavigationItem;
-import com.intellij.psi.PsiNamedElement;
-
 import java.util.List;
 
 /**

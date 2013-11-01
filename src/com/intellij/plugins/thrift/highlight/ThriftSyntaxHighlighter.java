@@ -6,7 +6,6 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.plugins.thrift.lang.lexer.ThriftLexer;
 import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
-import org.omg.CORBA.INTERNAL;
 
 import java.util.HashMap;
 import java.util.Map;

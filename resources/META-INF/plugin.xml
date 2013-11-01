@@ -7,6 +7,8 @@
       <p>0.3:</p>
       <ul>
         <li>Find usages</li>
+        <li>Structure View</li>
+        <li>Fields and Functions in Go to by Symbol Name</li>
       </ul>
       <p>0.2:</p>
       <ul>
@@ -40,6 +42,8 @@
     <itemPresentationProvider forClass="com.intellij.plugins.thrift.lang.psi.ThriftSubDeclaration" implementationClass="com.intellij.plugins.thrift.lang.psi.presentation.ThriftSubDeclarationPresentationProvider"/>
     <codeInsight.lineMarkerProvider language="thrift" implementationClass="com.intellij.plugins.thrift.editor.ThriftLineMarkerProvider"/>
     <iconProvider implementation="com.intellij.plugins.thrift.ThriftIconProvider"/>
+    <lang.psiStructureViewFactory language="thrift" implementationClass="com.intellij.plugins.thrift.structure.ThriftStructureViewFactory"/>
+
 
     <lang.findUsagesProvider language="thrift" implementationClass="com.intellij.plugins.thrift.lang.ThriftFindUsagesProvider"/>
 

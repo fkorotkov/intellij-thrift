@@ -155,7 +155,8 @@ public class ThriftPsiUtil {
     return definitionName;
   }
 
-  @Nullable @NonNls
+  @Nullable
+  @NonNls
   public static String getName(@NotNull ThriftDefinitionName definitionName) {
     return definitionName.getText();
   }
