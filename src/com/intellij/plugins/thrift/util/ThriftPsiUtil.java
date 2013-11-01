@@ -12,7 +12,9 @@ import com.intellij.plugins.thrift.ThriftFileType;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.psi.*;
 import com.intellij.psi.impl.source.resolve.reference.impl.providers.FileReferenceSet;
+import com.intellij.psi.impl.source.tree.LeafPsiElement;
 import com.intellij.util.Processor;
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -142,5 +144,24 @@ public class ThriftPsiUtil {
         }
       }
     }
+  }
+
+  @NotNull
+  public static PsiElement setName(@NotNull ThriftDefinitionName definitionName, String name) {
+    PsiElement child = definitionName.getFirstChild();
+    if (child instanceof LeafPsiElement) {
+      ((LeafPsiElement)child).rawReplaceWithText(name);
+    }
+    return definitionName;
+  }
+
+  @Nullable @NonNls
+  public static String getName(@NotNull ThriftDefinitionName definitionName) {
+    return definitionName.getText();
+  }
+
+  @NotNull
+  public static PsiElement getNameIdentifier(@NotNull ThriftDefinitionName definitionName) {
+    return definitionName;
   }
 }

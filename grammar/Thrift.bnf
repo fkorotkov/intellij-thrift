@@ -70,6 +70,11 @@ NamespaceScope  ::=  Multiply | 'cpp' | 'java' | 'py' | 'py.twisted' | 'perl' | 
                      'cocoa' | 'csharp' | 'c_glib' | 'go' | 'php' | 'delphi'
 
 DefinitionName ::= Identifier
+{implements="com.intellij.psi.PsiNamedElement, com.intellij.navigation.NavigationItem, com.intellij.psi.PsiNameIdentifierOwner" methods=[
+  setName
+  getName
+  getNameIdentifier
+]}
 
 Const           ::=  'const' FieldType DefinitionName '=' ConstValue ListSeparator?
 {pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}

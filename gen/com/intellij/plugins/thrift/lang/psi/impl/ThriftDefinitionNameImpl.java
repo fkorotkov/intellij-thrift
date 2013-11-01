@@ -22,4 +22,20 @@ public class ThriftDefinitionNameImpl extends ThriftPsiCompositeElementImpl impl
     else super.accept(visitor);
   }
 
+  @NotNull
+  public PsiElement setName(String name) {
+    return ThriftPsiUtil.setName(this, name);
+  }
+
+  @Nullable
+  @NonNls
+  public String getName() {
+    return ThriftPsiUtil.getName(this);
+  }
+
+  @NotNull
+  public PsiElement getNameIdentifier() {
+    return ThriftPsiUtil.getNameIdentifier(this);
+  }
+
 }
