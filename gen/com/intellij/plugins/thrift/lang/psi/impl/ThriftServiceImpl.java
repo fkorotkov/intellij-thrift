@@ -11,7 +11,7 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftServiceImpl extends AbstractThriftDeclaration implements ThriftService {
+public class ThriftServiceImpl extends ThriftTopLevelDeclarationImpl implements ThriftService {
 
   public ThriftServiceImpl(ASTNode node) {
     super(node);
@@ -29,15 +29,9 @@ public class ThriftServiceImpl extends AbstractThriftDeclaration implements Thri
   }
 
   @Override
-  @NotNull
-  public List<ThriftFunction> getFunctionList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, ThriftFunction.class);
-  }
-
-  @Override
-  @NotNull
-  public List<ThriftListSeparator> getListSeparatorList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, ThriftListSeparator.class);
+  @Nullable
+  public ThriftServiceBody getServiceBody() {
+    return findChildByClass(ThriftServiceBody.class);
   }
 
 }

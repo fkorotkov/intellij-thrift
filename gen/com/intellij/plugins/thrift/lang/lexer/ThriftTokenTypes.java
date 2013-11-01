@@ -19,8 +19,10 @@ public interface ThriftTokenTypes {
   IElementType DOUBLE_CONSTANT = new ThriftElementType("DOUBLE_CONSTANT");
   IElementType ENUM = new ThriftElementType("ENUM");
   IElementType ENUM_FIELD = new ThriftElementType("ENUM_FIELD");
+  IElementType ENUM_FIELDS = new ThriftElementType("ENUM_FIELDS");
   IElementType EXCEPTION = new ThriftElementType("EXCEPTION");
   IElementType FIELD = new ThriftElementType("FIELD");
+  IElementType FIELDS = new ThriftElementType("FIELDS");
   IElementType FIELD_ID = new ThriftElementType("FIELD_ID");
   IElementType FIELD_REQ = new ThriftElementType("FIELD_REQ");
   IElementType FIELD_TYPE = new ThriftElementType("FIELD_TYPE");
@@ -35,7 +37,9 @@ public interface ThriftTokenTypes {
   IElementType NAMESPACE_SCOPE = new ThriftElementType("NAMESPACE_SCOPE");
   IElementType SEMUN_FIELD = new ThriftElementType("SEMUN_FIELD");
   IElementType SENUM = new ThriftElementType("SENUM");
+  IElementType SENUM_BODY = new ThriftElementType("SENUM_BODY");
   IElementType SERVICE = new ThriftElementType("SERVICE");
+  IElementType SERVICE_BODY = new ThriftElementType("SERVICE_BODY");
   IElementType SET_TYPE = new ThriftElementType("SET_TYPE");
   IElementType STRUCT = new ThriftElementType("STRUCT");
   IElementType THROWS = new ThriftElementType("THROWS");
@@ -103,11 +107,17 @@ public interface ThriftTokenTypes {
       else if (type == ENUM_FIELD) {
         return new ThriftEnumFieldImpl(node);
       }
+      else if (type == ENUM_FIELDS) {
+        return new ThriftEnumFieldsImpl(node);
+      }
       else if (type == EXCEPTION) {
         return new ThriftExceptionImpl(node);
       }
       else if (type == FIELD) {
         return new ThriftFieldImpl(node);
+      }
+      else if (type == FIELDS) {
+        return new ThriftFieldsImpl(node);
       }
       else if (type == FIELD_ID) {
         return new ThriftFieldIDImpl(node);
@@ -151,8 +161,14 @@ public interface ThriftTokenTypes {
       else if (type == SENUM) {
         return new ThriftSenumImpl(node);
       }
+      else if (type == SENUM_BODY) {
+        return new ThriftSenumBodyImpl(node);
+      }
       else if (type == SERVICE) {
         return new ThriftServiceImpl(node);
+      }
+      else if (type == SERVICE_BODY) {
+        return new ThriftServiceBodyImpl(node);
       }
       else if (type == SET_TYPE) {
         return new ThriftSetTypeImpl(node);

@@ -5,18 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ThriftFunction extends ThriftSubDeclaration {
-
-  @NotNull
-  ThriftDefinitionName getDefinitionName();
+public interface ThriftFields extends ThriftDeclarationBody {
 
   @NotNull
   List<ThriftField> getFieldList();
-
-  @NotNull
-  ThriftFunctionType getFunctionType();
-
-  @Nullable
-  ThriftThrows getThrows();
 
 }

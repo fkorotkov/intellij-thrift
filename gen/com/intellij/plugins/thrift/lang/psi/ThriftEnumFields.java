@@ -5,9 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ThriftXsdAttrs extends ThriftPsiCompositeElement {
+public interface ThriftEnumFields extends ThriftDeclarationBody {
 
-  @Nullable
-  ThriftFields getFields();
+  @NotNull
+  List<ThriftEnumField> getEnumFieldList();
 
 }

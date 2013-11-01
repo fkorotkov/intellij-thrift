@@ -11,10 +11,12 @@ import com.intellij.psi.PsiManager;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.util.Processor;
 import com.intellij.util.indexing.*;
+import com.intellij.util.io.DataExternalizer;
 import com.intellij.util.io.EnumeratorStringDescriptor;
 import com.intellij.util.io.KeyDescriptor;
 import gnu.trove.THashMap;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,8 +26,8 @@ import java.util.Map;
 /**
  * Created by fkorotkov.
  */
-public class ThriftDeclarationIndex extends ScalarIndexExtension<String> {
-  public static final ID<String, Void> THRIFT_DECLARATION_INDEX = ID.create("ThriftDeclarationIndex");
+public class ThriftSubDeclarationIndex extends FileBasedIndexExtension<String, String> {
+  public static final ID<String, String> THRIFT_DECLARATION_INDEX = ID.create("ThriftSubDeclarationIndex");
   private final EnumeratorStringDescriptor myKeyDescriptor = new EnumeratorStringDescriptor();
   private final FileBasedIndex.InputFilter myFilter = new FileBasedIndex.InputFilter() {
     @Override
@@ -33,22 +35,27 @@ public class ThriftDeclarationIndex extends ScalarIndexExtension<String> {
       return file.getFileType() == ThriftFileType.INSTANCE;
     }
   };
-  private static final ThriftDeclarationIndex.MyIndexer myIndexer = new MyIndexer();
+  private static final ThriftSubDeclarationIndex.MyIndexer myIndexer = new MyIndexer();
 
   @NotNull
   @Override
-  public ID<String, Void> getName() {
+  public ID<String, String> getName() {
     return THRIFT_DECLARATION_INDEX;
   }
 
   @NotNull
   @Override
-  public DataIndexer<String, Void, FileContent> getIndexer() {
+  public DataIndexer<String, String, FileContent> getIndexer() {
     return myIndexer;
   }
 
   @Override
   public KeyDescriptor<String> getKeyDescriptor() {
+    return myKeyDescriptor;
+  }
+
+  @Override
+  public DataExternalizer<String> getValueExternalizer() {
     return myKeyDescriptor;
   }
 
@@ -64,7 +71,7 @@ public class ThriftDeclarationIndex extends ScalarIndexExtension<String> {
 
   @Override
   public int getVersion() {
-    return 2;
+    return 1;
   }
 
   public static List<String> findAllKeys(Project project, GlobalSearchScope scope) {
@@ -84,7 +91,8 @@ public class ThriftDeclarationIndex extends ScalarIndexExtension<String> {
     return result;
   }
 
-  public static List<ThriftDeclaration> findDeclaration(@NotNull final String name,
+  public static List<ThriftDeclaration> findDeclaration(@Nullable final String className,
+                                                        @NotNull final String name,
                                                         @NotNull Project project,
                                                         @NotNull GlobalSearchScope scope) {
     final List<ThriftDeclaration> result = new ArrayList<ThriftDeclaration>();
@@ -98,8 +106,17 @@ public class ThriftDeclarationIndex extends ScalarIndexExtension<String> {
           PsiFile psiFile = manager.findFile(file);
           if (psiFile != null) {
             for (PsiElement child : psiFile.getChildren()) {
-              if (child instanceof ThriftTopLevelDeclaration && name.equals(((ThriftDeclaration)child).getName())) {
-                result.add((ThriftDeclaration)child);
+              if (!(child instanceof ThriftTopLevelDeclaration)) {
+                continue;
+              }
+              if (className != null && !className.equals(((ThriftTopLevelDeclaration)child).getName())) {
+                continue;
+              }
+              for (ThriftDeclaration declaration : ((ThriftTopLevelDeclaration)child).findSubDeclarations()) {
+                String subName = declaration.getName();
+                if (subName != null && name.equals(subName)) {
+                  result.add(declaration);
+                }
               }
             }
           }
@@ -111,16 +128,18 @@ public class ThriftDeclarationIndex extends ScalarIndexExtension<String> {
     return result;
   }
 
-  private static class MyIndexer implements DataIndexer<String, Void, FileContent> {
+  private static class MyIndexer implements DataIndexer<String, String, FileContent> {
     @NotNull
     @Override
-    public Map<String, Void> map(FileContent inputData) {
-      Map<String, Void> result = new THashMap<String, Void>();
+    public Map<String, String> map(FileContent inputData) {
+      Map<String, String> result = new THashMap<String, String>();
       for (PsiElement child : inputData.getPsiFile().getChildren()) {
         if (child instanceof ThriftTopLevelDeclaration) {
-          String name = ((ThriftDeclaration)child).getName();
-          if (name != null) {
-            result.put(name, null);
+          String topLevelName = ((ThriftTopLevelDeclaration)child).getName();
+          if (topLevelName != null) {
+            for (ThriftDeclaration declaration : ((ThriftTopLevelDeclaration)child).findSubDeclarations()) {
+              result.put(declaration.getName(), topLevelName);
+            }
           }
         }
       }

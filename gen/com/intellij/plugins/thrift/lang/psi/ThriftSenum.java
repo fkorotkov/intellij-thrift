@@ -5,12 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ThriftSenum extends ThriftDeclaration {
+public interface ThriftSenum extends ThriftTopLevelDeclaration {
 
   @Nullable
   ThriftDefinitionName getDefinitionName();
 
-  @NotNull
-  List<ThriftSemunField> getSemunFieldList();
+  @Nullable
+  ThriftSenumBody getSenumBody();
 
 }

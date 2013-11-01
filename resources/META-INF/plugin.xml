@@ -36,7 +36,8 @@
     <fileTypeFactory implementation="com.intellij.plugins.thrift.ThriftFileTypeLoader"/>
     <lang.parserDefinition language="thrift" implementationClass="com.intellij.plugins.thrift.lang.parser.ThriftParserDefinition"/>
     <completion.contributor language="any" implementationClass="com.intellij.plugins.thrift.completion.ThriftKeywordCompletionContributor"/>
-    <itemPresentationProvider forClass="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration" implementationClass="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationPresentationProvider"/>
+    <itemPresentationProvider forClass="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration" implementationClass="com.intellij.plugins.thrift.lang.psi.presentation.ThriftTopLevelDeclarationPresentationProvider"/>
+    <itemPresentationProvider forClass="com.intellij.plugins.thrift.lang.psi.ThriftSubDeclaration" implementationClass="com.intellij.plugins.thrift.lang.psi.presentation.ThriftSubDeclarationPresentationProvider"/>
     <codeInsight.lineMarkerProvider language="thrift" implementationClass="com.intellij.plugins.thrift.editor.ThriftLineMarkerProvider"/>
     <iconProvider implementation="com.intellij.plugins.thrift.ThriftIconProvider"/>
 
@@ -60,7 +61,9 @@
     <quoteHandler fileType="Thrift" className="com.intellij.plugins.thrift.ThriftQuoteHandler"/>
 
     <fileBasedIndex implementation="com.intellij.plugins.thrift.index.ThriftDeclarationIndex"/>
+    <fileBasedIndex implementation="com.intellij.plugins.thrift.index.ThriftSubDeclarationIndex"/>
     <gotoClassContributor implementation="com.intellij.plugins.thrift.ThriftClassContributor"/>
+    <gotoSymbolContributor implementation="com.intellij.plugins.thrift.ThriftSymbolContributor"/>
 
     <localInspection language="thrift" shortName="ThriftUnresolvedSymbol" bundle="com.intellij.plugins.thrift.ThriftBundle"
                      key="thrift.inspection.unresolved.symbol"

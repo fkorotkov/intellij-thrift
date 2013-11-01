@@ -11,7 +11,7 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftConstImpl extends AbstractThriftDeclaration implements ThriftConst {
+public class ThriftConstImpl extends ThriftTopLevelDeclarationImpl implements ThriftConst {
 
   public ThriftConstImpl(ASTNode node) {
     super(node);

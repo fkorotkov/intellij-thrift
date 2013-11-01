@@ -11,7 +11,7 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftFieldImpl extends ThriftPsiCompositeElementImpl implements ThriftField {
+public class ThriftFieldImpl extends AbstractThriftDeclaration implements ThriftField {
 
   public ThriftFieldImpl(ASTNode node) {
     super(node);
@@ -26,6 +26,12 @@ public class ThriftFieldImpl extends ThriftPsiCompositeElementImpl implements Th
   @Nullable
   public ThriftConstValue getConstValue() {
     return findChildByClass(ThriftConstValue.class);
+  }
+
+  @Override
+  @Nullable
+  public ThriftDefinitionName getDefinitionName() {
+    return findChildByClass(ThriftDefinitionName.class);
   }
 
   @Override

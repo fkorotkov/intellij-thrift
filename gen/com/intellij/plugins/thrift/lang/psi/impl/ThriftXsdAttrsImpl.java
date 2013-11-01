@@ -23,9 +23,9 @@ public class ThriftXsdAttrsImpl extends ThriftPsiCompositeElementImpl implements
   }
 
   @Override
-  @NotNull
-  public List<ThriftField> getFieldList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, ThriftField.class);
+  @Nullable
+  public ThriftFields getFields() {
+    return findChildByClass(ThriftFields.class);
   }
 
 }

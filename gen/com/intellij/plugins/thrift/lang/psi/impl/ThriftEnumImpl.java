@@ -11,7 +11,7 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftEnumImpl extends AbstractThriftDeclaration implements ThriftEnum {
+public class ThriftEnumImpl extends ThriftTopLevelDeclarationImpl implements ThriftEnum {
 
   public ThriftEnumImpl(ASTNode node) {
     super(node);
@@ -29,9 +29,9 @@ public class ThriftEnumImpl extends AbstractThriftDeclaration implements ThriftE
   }
 
   @Override
-  @NotNull
-  public List<ThriftEnumField> getEnumFieldList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, ThriftEnumField.class);
+  @Nullable
+  public ThriftEnumFields getEnumFields() {
+    return findChildByClass(ThriftEnumFields.class);
   }
 
 }

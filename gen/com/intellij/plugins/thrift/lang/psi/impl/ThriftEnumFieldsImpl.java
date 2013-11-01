@@ -11,27 +11,21 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftSenumImpl extends ThriftTopLevelDeclarationImpl implements ThriftSenum {
+public class ThriftEnumFieldsImpl extends ThriftPsiCompositeElementImpl implements ThriftEnumFields {
 
-  public ThriftSenumImpl(ASTNode node) {
+  public ThriftEnumFieldsImpl(ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitSenum(this);
+    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitEnumFields(this);
     else super.accept(visitor);
   }
 
   @Override
-  @Nullable
-  public ThriftDefinitionName getDefinitionName() {
-    return findChildByClass(ThriftDefinitionName.class);
-  }
-
-  @Override
-  @Nullable
-  public ThriftSenumBody getSenumBody() {
-    return findChildByClass(ThriftSenumBody.class);
+  @NotNull
+  public List<ThriftEnumField> getEnumFieldList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, ThriftEnumField.class);
   }
 
 }

@@ -11,7 +11,7 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftTypedefImpl extends AbstractThriftDeclaration implements ThriftTypedef {
+public class ThriftTypedefImpl extends ThriftTopLevelDeclarationImpl implements ThriftTypedef {
 
   public ThriftTypedefImpl(ASTNode node) {
     super(node);

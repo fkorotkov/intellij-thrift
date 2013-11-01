@@ -5,12 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ThriftUnion extends ThriftDeclaration {
+public interface ThriftUnion extends ThriftTopLevelDeclaration {
 
   @Nullable
   ThriftDefinitionName getDefinitionName();
 
-  @NotNull
-  List<ThriftField> getFieldList();
+  @Nullable
+  ThriftFields getFields();
 
 }

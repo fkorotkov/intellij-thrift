@@ -11,7 +11,7 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftFunctionImpl extends ThriftPsiCompositeElementImpl implements ThriftFunction {
+public class ThriftFunctionImpl extends AbstractThriftDeclaration implements ThriftFunction {
 
   public ThriftFunctionImpl(ASTNode node) {
     super(node);
@@ -20,6 +20,12 @@ public class ThriftFunctionImpl extends ThriftPsiCompositeElementImpl implements
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitFunction(this);
     else super.accept(visitor);
+  }
+
+  @Override
+  @NotNull
+  public ThriftDefinitionName getDefinitionName() {
+    return findNotNullChildByClass(ThriftDefinitionName.class);
   }
 
   @Override

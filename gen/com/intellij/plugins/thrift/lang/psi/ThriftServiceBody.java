@@ -5,9 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ThriftXsdAttrs extends ThriftPsiCompositeElement {
+public interface ThriftServiceBody extends ThriftDeclarationBody {
 
-  @Nullable
-  ThriftFields getFields();
+  @NotNull
+  List<ThriftFunction> getFunctionList();
+
+  @NotNull
+  List<ThriftListSeparator> getListSeparatorList();
 
 }

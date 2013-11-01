@@ -77,45 +77,56 @@ DefinitionName ::= Identifier
 ]}
 
 Const           ::=  'const' FieldType DefinitionName '=' ConstValue ListSeparator?
-{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
 Typedef         ::=  'typedef' DefinitionType DefinitionName
-{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
 Enum            ::=  'enum' DefinitionName '{' enumFields '}'
-{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
-private enumFields ::= enumField*
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
+enumFields ::= enumField*
+{implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationBody"}
 enumField ::= Identifier ('=' IntConstant)? ListSeparator? {recoverUntil=enumFieldRecovery}
 private enumFieldRecovery ::= !('}' | Identifier)
 
-Senum           ::=  'senum' DefinitionName '{' senumFields '}'
-{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
-private senumFields ::= semunField*
+Senum           ::=  'senum' DefinitionName '{' senumBody '}'
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
+senumBody ::= semunField*
+{implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationBody"}
 semunField ::= Literal ListSeparator? {recoverUntil=semunFieldRecovery}
 private semunFieldRecovery ::= !('}' | Literal)
 
-Struct          ::=  'struct' DefinitionName 'xsd_all'? '{' fieldsWithCurlyRecovery '}'
-{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
-private fieldsWithCurlyRecovery ::= Field* {recoverUntil=curlyBraceRecovery}
+Struct          ::=  'struct' DefinitionName 'xsd_all'? '{' fields '}'
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
+fields ::= Field*
+{recoverUntil=curlyBraceRecovery implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationBody"}
 private curlyBraceRecovery ::= !('}')
-Union           ::=  'union' DefinitionName 'xsd_all'? '{' fieldsWithCurlyRecovery '}'
-{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
-Exception       ::=  'exception' DefinitionName '{' fieldsWithCurlyRecovery '}'
-{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
-Service         ::=  'service' DefinitionName ( 'extends' Identifier )? '{' functions '}'
-{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclaration"}
-private functions ::= (Function ListSeparator?)* {recoverUntil=functionsRecovery}
+Union           ::=  'union' DefinitionName 'xsd_all'? '{' fields '}'
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
+Exception       ::=  'exception' DefinitionName '{' fields '}'
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
+Service         ::=  'service' DefinitionName ( 'extends' Identifier )? '{' serviceBody '}'
+{pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
+serviceBody ::= (Function ListSeparator?)*
+{recoverUntil=functionsRecovery implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationBody"}
 private functionsRecovery ::= !('}')
 
-Field           ::=  FieldID? FieldReq? FieldType Identifier ('=' ConstValue)? XsdFieldOptions ListSeparator?
-{pin=3 recoverUntil=fieldRecovery}
+Field           ::=  FieldID? FieldReq? FieldType DefinitionName ('=' ConstValue)? XsdFieldOptions ListSeparator?
+{
+  pin=3 recoverUntil=fieldRecovery
+  mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftSubDeclaration"
+}
 FieldID         ::=  IntConstant ':'
 FieldReq        ::=  'required' | 'optional'
 private fieldRecovery ::= !(')' | '+' | '-' | 'binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' |
                             'map' | 'optional' | 'required' | 'set' | 'slist' | 'string' | '}'| Integer | Identifier | Number )
 
 XsdFieldOptions ::=  'xsd_optional'? 'xsd_nillable'? XsdAttrs?
-XsdAttrs        ::=  'xsd_attrs' '{' fieldsWithCurlyRecovery '}' {pin=1}
+XsdAttrs        ::=  'xsd_attrs' '{' fields '}' {pin=1}
 
-Function        ::=  'oneway'? FunctionType Identifier '(' fieldsWithBraceRecovery ')' Throws? {pin=3 recoverUntil=functionRecovery}
+Function        ::=  'oneway'? FunctionType DefinitionName '(' fieldsWithBraceRecovery ')' Throws?
+{
+  pin=3 recoverUntil=functionRecovery
+  mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftSubDeclaration"
+}
 private functionRecovery ::= !('binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' | 'map' |
                                'oneway' | 'set' | 'slist' | 'string' | 'void' | '}' | Identifier | ListSeparator)
 FunctionType    ::=  'void' | FieldType

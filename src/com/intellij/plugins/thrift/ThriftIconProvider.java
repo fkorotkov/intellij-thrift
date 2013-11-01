@@ -1,5 +1,6 @@
 package com.intellij.plugins.thrift;
 
+import com.intellij.icons.AllIcons;
 import com.intellij.ide.IconProvider;
 import com.intellij.openapi.util.Iconable;
 import com.intellij.plugins.thrift.lang.psi.*;
@@ -34,6 +35,12 @@ public class ThriftIconProvider extends IconProvider {
     }
     if (element instanceof ThriftUnion) {
       return ThriftIcons.UNION;
+    }
+    if (element instanceof ThriftField) {
+      return AllIcons.Nodes.Field;
+    }
+    if (element instanceof ThriftFunction) {
+      return AllIcons.Nodes.Method;
     }
     return null;
   }

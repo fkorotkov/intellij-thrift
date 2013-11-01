@@ -14,7 +14,7 @@ public class ThriftVisitor extends PsiElementVisitor {
   }
 
   public void visitConst(@NotNull ThriftConst o) {
-    visitDeclaration(o);
+    visitTopLevelDeclaration(o);
   }
 
   public void visitConstList(@NotNull ThriftConstList o) {
@@ -46,15 +46,15 @@ public class ThriftVisitor extends PsiElementVisitor {
   }
 
   public void visitEnum(@NotNull ThriftEnum o) {
-    visitDeclaration(o);
+    visitTopLevelDeclaration(o);
   }
 
   public void visitException(@NotNull ThriftException o) {
-    visitDeclaration(o);
+    visitTopLevelDeclaration(o);
   }
 
   public void visitField(@NotNull ThriftField o) {
-    visitPsiCompositeElement(o);
+    visitSubDeclaration(o);
   }
 
   public void visitFieldID(@NotNull ThriftFieldID o) {
@@ -70,7 +70,7 @@ public class ThriftVisitor extends PsiElementVisitor {
   }
 
   public void visitFunction(@NotNull ThriftFunction o) {
-    visitPsiCompositeElement(o);
+    visitSubDeclaration(o);
   }
 
   public void visitFunctionType(@NotNull ThriftFunctionType o) {
@@ -106,11 +106,11 @@ public class ThriftVisitor extends PsiElementVisitor {
   }
 
   public void visitSenum(@NotNull ThriftSenum o) {
-    visitDeclaration(o);
+    visitTopLevelDeclaration(o);
   }
 
   public void visitService(@NotNull ThriftService o) {
-    visitDeclaration(o);
+    visitTopLevelDeclaration(o);
   }
 
   public void visitSetType(@NotNull ThriftSetType o) {
@@ -118,7 +118,7 @@ public class ThriftVisitor extends PsiElementVisitor {
   }
 
   public void visitStruct(@NotNull ThriftStruct o) {
-    visitDeclaration(o);
+    visitTopLevelDeclaration(o);
   }
 
   public void visitThrows(@NotNull ThriftThrows o) {
@@ -126,11 +126,11 @@ public class ThriftVisitor extends PsiElementVisitor {
   }
 
   public void visitTypedef(@NotNull ThriftTypedef o) {
-    visitDeclaration(o);
+    visitTopLevelDeclaration(o);
   }
 
   public void visitUnion(@NotNull ThriftUnion o) {
-    visitDeclaration(o);
+    visitTopLevelDeclaration(o);
   }
 
   public void visitXsdAttrs(@NotNull ThriftXsdAttrs o) {
@@ -145,15 +145,39 @@ public class ThriftVisitor extends PsiElementVisitor {
     visitPsiCompositeElement(o);
   }
 
+  public void visitEnumFields(@NotNull ThriftEnumFields o) {
+    visitDeclarationBody(o);
+  }
+
+  public void visitFields(@NotNull ThriftFields o) {
+    visitDeclarationBody(o);
+  }
+
   public void visitSemunField(@NotNull ThriftSemunField o) {
     visitPsiCompositeElement(o);
+  }
+
+  public void visitSenumBody(@NotNull ThriftSenumBody o) {
+    visitDeclarationBody(o);
+  }
+
+  public void visitServiceBody(@NotNull ThriftServiceBody o) {
+    visitDeclarationBody(o);
   }
 
   public void visitPsiNameIdentifierOwner(@NotNull PsiNameIdentifierOwner o) {
     visitElement(o);
   }
 
-  public void visitDeclaration(@NotNull ThriftDeclaration o) {
+  public void visitDeclarationBody(@NotNull ThriftDeclarationBody o) {
+    visitPsiCompositeElement(o);
+  }
+
+  public void visitSubDeclaration(@NotNull ThriftSubDeclaration o) {
+    visitPsiCompositeElement(o);
+  }
+
+  public void visitTopLevelDeclaration(@NotNull ThriftTopLevelDeclaration o) {
     visitPsiCompositeElement(o);
   }
 

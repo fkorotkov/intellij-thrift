@@ -11,7 +11,7 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftExceptionImpl extends AbstractThriftDeclaration implements ThriftException {
+public class ThriftExceptionImpl extends ThriftTopLevelDeclarationImpl implements ThriftException {
 
   public ThriftExceptionImpl(ASTNode node) {
     super(node);
@@ -29,9 +29,9 @@ public class ThriftExceptionImpl extends AbstractThriftDeclaration implements Th
   }
 
   @Override
-  @NotNull
-  public List<ThriftField> getFieldList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, ThriftField.class);
+  @Nullable
+  public ThriftFields getFields() {
+    return findChildByClass(ThriftFields.class);
   }
 
 }

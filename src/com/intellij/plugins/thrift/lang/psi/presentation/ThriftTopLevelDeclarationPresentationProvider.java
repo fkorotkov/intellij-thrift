@@ -1,8 +1,9 @@
-package com.intellij.plugins.thrift.lang.psi;
+package com.intellij.plugins.thrift.lang.psi.presentation;
 
 import com.intellij.navigation.ItemPresentation;
 import com.intellij.navigation.ItemPresentationProvider;
 import com.intellij.openapi.util.Iconable;
+import com.intellij.plugins.thrift.lang.psi.ThriftDeclaration;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
@@ -10,7 +11,7 @@ import javax.swing.*;
 /**
  * Created by fkorotkov.
  */
-public class ThriftDeclarationPresentationProvider implements ItemPresentationProvider<ThriftDeclaration> {
+public class ThriftTopLevelDeclarationPresentationProvider implements ItemPresentationProvider<ThriftDeclaration> {
   @Override
   public ItemPresentation getPresentation(final ThriftDeclaration item) {
     return new ItemPresentation() {
