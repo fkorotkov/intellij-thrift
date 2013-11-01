@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class ThriftTypeReference extends PsiReferenceBase<ThriftCustomType> {
   public ThriftTypeReference(@NotNull ThriftCustomType element, int offset) {
-    super(element, TextRange.create(offset, element.getTextRange().getEndOffset()));
+    super(element, TextRange.create(offset, element.getTextLength() - offset));
   }
 
   @Nullable
