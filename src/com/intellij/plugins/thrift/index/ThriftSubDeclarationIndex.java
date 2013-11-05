@@ -71,7 +71,7 @@ public class ThriftSubDeclarationIndex extends FileBasedIndexExtension<String, S
 
   @Override
   public int getVersion() {
-    return 1;
+    return 2;
   }
 
   public static List<String> findAllKeys(Project project, GlobalSearchScope scope) {
@@ -138,7 +138,10 @@ public class ThriftSubDeclarationIndex extends FileBasedIndexExtension<String, S
           String topLevelName = ((ThriftTopLevelDeclaration)child).getName();
           if (topLevelName != null) {
             for (ThriftDeclaration declaration : ((ThriftTopLevelDeclaration)child).findSubDeclarations()) {
-              result.put(declaration.getName(), topLevelName);
+              String subName = declaration.getName();
+              if (subName != null) {
+                result.put(subName, topLevelName);
+              }
             }
           }
         }
