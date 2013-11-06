@@ -15,7 +15,7 @@ public class ThriftCustomTypeManipulator extends AbstractElementManipulator<Thri
     String newText = oldText.substring(0, range.getStartOffset()) + newContent + oldText.substring(range.getEndOffset());
     PsiElement child = element.getFirstChild();
     if (child instanceof LeafPsiElement) {
-      ((LeafPsiElement)child).rawReplaceWithText(newText);
+      ((LeafPsiElement)child).replaceWithText(newText);
       return element;
     }
     throw new IncorrectOperationException("bad PSI");

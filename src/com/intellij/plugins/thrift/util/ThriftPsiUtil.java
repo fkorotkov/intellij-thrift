@@ -150,7 +150,7 @@ public class ThriftPsiUtil {
   public static PsiElement setName(@NotNull ThriftDefinitionName definitionName, String name) {
     PsiElement child = definitionName.getFirstChild();
     if (child instanceof LeafPsiElement) {
-      ((LeafPsiElement)child).rawReplaceWithText(name);
+      ((LeafPsiElement)child).replaceWithText(name);
     }
     return definitionName;
   }
