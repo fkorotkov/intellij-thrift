@@ -4,6 +4,10 @@
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
+      <p>0.5:</p>
+      <ul>
+        <li>Rename Refactoring fixes</li>
+      </ul>
       <p>0.4:</p>
       <ul>
         <li>Bug fixes</li>
@@ -31,7 +35,7 @@
       </ul>
       ]]>
   </change-notes>
-  <version>0.4</version>
+  <version>0.5</version>
   <vendor>Twitter, Inc.</vendor>
   <idea-version since-build="132.1"/>
 
@@ -47,9 +51,8 @@
     <codeInsight.lineMarkerProvider language="thrift" implementationClass="com.intellij.plugins.thrift.editor.ThriftLineMarkerProvider"/>
     <iconProvider implementation="com.intellij.plugins.thrift.ThriftIconProvider"/>
     <lang.psiStructureViewFactory language="thrift" implementationClass="com.intellij.plugins.thrift.structure.ThriftStructureViewFactory"/>
-
-
     <lang.findUsagesProvider language="thrift" implementationClass="com.intellij.plugins.thrift.lang.ThriftFindUsagesProvider"/>
+    <lang.elementManipulator forClass="com.intellij.plugins.thrift.lang.psi.ThriftCustomType" implementationClass="com.intellij.plugins.thrift.lang.psi.manipulator.ThriftCustomTypeManipulator"/>
 
     <lang.syntaxHighlighterFactory key="thrift" implementationClass="com.intellij.plugins.thrift.highlight.ThriftSyntaxHighlighterFactory"/>
     <annotator language="thrift" implementationClass="com.intellij.plugins.thrift.annotator.ThriftColorAnnotator"/>
