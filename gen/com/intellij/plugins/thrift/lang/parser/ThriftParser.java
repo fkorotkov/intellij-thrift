@@ -17,131 +17,139 @@ public class ThriftParser implements PsiParser {
   public static final Logger LOG_ = Logger.getInstance("com.intellij.plugins.thrift.lang.parser.ThriftParser");
 
   public ASTNode parse(IElementType root_, PsiBuilder builder_) {
-    int level_ = 0;
     boolean result_;
     builder_ = adapt_builder_(root_, builder_, this, null);
+    Marker marker_ = enter_section_(builder_, 0, _COLLAPSE_, null);
     if (root_ == BASE_TYPE) {
-      result_ = BaseType(builder_, level_ + 1);
+      result_ = BaseType(builder_, 0);
     }
     else if (root_ == CONST) {
-      result_ = Const(builder_, level_ + 1);
+      result_ = Const(builder_, 0);
     }
     else if (root_ == CONST_LIST) {
-      result_ = ConstList(builder_, level_ + 1);
+      result_ = ConstList(builder_, 0);
     }
     else if (root_ == CONST_MAP) {
-      result_ = ConstMap(builder_, level_ + 1);
+      result_ = ConstMap(builder_, 0);
     }
     else if (root_ == CONST_VALUE) {
-      result_ = ConstValue(builder_, level_ + 1);
+      result_ = ConstValue(builder_, 0);
     }
     else if (root_ == CPP_TYPE) {
-      result_ = CppType(builder_, level_ + 1);
+      result_ = CppType(builder_, 0);
     }
     else if (root_ == CUSTOM_TYPE) {
-      result_ = CustomType(builder_, level_ + 1);
+      result_ = CustomType(builder_, 0);
     }
     else if (root_ == DEFINITION_NAME) {
-      result_ = DefinitionName(builder_, level_ + 1);
+      result_ = DefinitionName(builder_, 0);
     }
     else if (root_ == DOUBLE_CONSTANT) {
-      result_ = DoubleConstant(builder_, level_ + 1);
+      result_ = DoubleConstant(builder_, 0);
     }
     else if (root_ == ENUM) {
-      result_ = Enum(builder_, level_ + 1);
+      result_ = Enum(builder_, 0);
     }
     else if (root_ == EXCEPTION) {
-      result_ = Exception(builder_, level_ + 1);
+      result_ = Exception(builder_, 0);
     }
     else if (root_ == FIELD) {
-      result_ = Field(builder_, level_ + 1);
+      result_ = Field(builder_, 0);
     }
     else if (root_ == FIELD_ID) {
-      result_ = FieldID(builder_, level_ + 1);
+      result_ = FieldID(builder_, 0);
     }
     else if (root_ == FIELD_REQ) {
-      result_ = FieldReq(builder_, level_ + 1);
+      result_ = FieldReq(builder_, 0);
     }
     else if (root_ == FIELD_TYPE) {
-      result_ = FieldType(builder_, level_ + 1);
+      result_ = FieldType(builder_, 0);
     }
     else if (root_ == FUNCTION) {
-      result_ = Function(builder_, level_ + 1);
+      result_ = Function(builder_, 0);
     }
     else if (root_ == FUNCTION_TYPE) {
-      result_ = FunctionType(builder_, level_ + 1);
+      result_ = FunctionType(builder_, 0);
     }
     else if (root_ == INCLUDE) {
-      result_ = Include(builder_, level_ + 1);
+      result_ = Include(builder_, 0);
     }
     else if (root_ == INT_CONSTANT) {
-      result_ = IntConstant(builder_, level_ + 1);
+      result_ = IntConstant(builder_, 0);
     }
     else if (root_ == LIST_SEPARATOR) {
-      result_ = ListSeparator(builder_, level_ + 1);
+      result_ = ListSeparator(builder_, 0);
     }
     else if (root_ == LIST_TYPE) {
-      result_ = ListType(builder_, level_ + 1);
+      result_ = ListType(builder_, 0);
     }
     else if (root_ == MAP_TYPE) {
-      result_ = MapType(builder_, level_ + 1);
+      result_ = MapType(builder_, 0);
     }
     else if (root_ == NAMESPACE) {
-      result_ = Namespace(builder_, level_ + 1);
+      result_ = Namespace(builder_, 0);
     }
     else if (root_ == NAMESPACE_SCOPE) {
-      result_ = NamespaceScope(builder_, level_ + 1);
+      result_ = NamespaceScope(builder_, 0);
     }
     else if (root_ == SENUM) {
-      result_ = Senum(builder_, level_ + 1);
+      result_ = Senum(builder_, 0);
     }
     else if (root_ == SERVICE) {
-      result_ = Service(builder_, level_ + 1);
+      result_ = Service(builder_, 0);
     }
     else if (root_ == SET_TYPE) {
-      result_ = SetType(builder_, level_ + 1);
+      result_ = SetType(builder_, 0);
     }
     else if (root_ == STRUCT) {
-      result_ = Struct(builder_, level_ + 1);
+      result_ = Struct(builder_, 0);
     }
     else if (root_ == THROWS) {
-      result_ = Throws(builder_, level_ + 1);
+      result_ = Throws(builder_, 0);
+    }
+    else if (root_ == TYPE_ANNOTATION) {
+      result_ = TypeAnnotation(builder_, 0);
+    }
+    else if (root_ == TYPE_ANNOTATION_LIST) {
+      result_ = TypeAnnotationList(builder_, 0);
+    }
+    else if (root_ == TYPE_ANNOTATIONS) {
+      result_ = TypeAnnotations(builder_, 0);
     }
     else if (root_ == TYPEDEF) {
-      result_ = Typedef(builder_, level_ + 1);
+      result_ = Typedef(builder_, 0);
     }
     else if (root_ == UNION) {
-      result_ = Union(builder_, level_ + 1);
+      result_ = Union(builder_, 0);
     }
     else if (root_ == XSD_ATTRS) {
-      result_ = XsdAttrs(builder_, level_ + 1);
+      result_ = XsdAttrs(builder_, 0);
     }
     else if (root_ == XSD_FIELD_OPTIONS) {
-      result_ = XsdFieldOptions(builder_, level_ + 1);
+      result_ = XsdFieldOptions(builder_, 0);
     }
     else if (root_ == ENUM_FIELD) {
-      result_ = enumField(builder_, level_ + 1);
+      result_ = enumField(builder_, 0);
     }
     else if (root_ == ENUM_FIELDS) {
-      result_ = enumFields(builder_, level_ + 1);
+      result_ = enumFields(builder_, 0);
     }
     else if (root_ == FIELDS) {
-      result_ = fields(builder_, level_ + 1);
+      result_ = fields(builder_, 0);
     }
     else if (root_ == SEMUN_FIELD) {
-      result_ = semunField(builder_, level_ + 1);
+      result_ = semunField(builder_, 0);
     }
     else if (root_ == SENUM_BODY) {
-      result_ = senumBody(builder_, level_ + 1);
+      result_ = senumBody(builder_, 0);
     }
     else if (root_ == SERVICE_BODY) {
-      result_ = serviceBody(builder_, level_ + 1);
+      result_ = serviceBody(builder_, 0);
     }
     else {
-      Marker marker_ = enter_section_(builder_, level_, _NONE_, null);
-      result_ = parse_root_(root_, builder_, level_);
-      exit_section_(builder_, level_, marker_, root_, result_, true, TOKEN_ADVANCER);
+      result_ = parse_root_(root_, builder_, 0);
     }
+    exit_section_(builder_, 0, marker_, root_, result_, true, TRUE_CONDITION);
     return builder_.getTreeBuilt();
   }
 
@@ -210,15 +218,11 @@ public class ThriftParser implements PsiParser {
   // (ConstValue ListSeparator?)*
   private static boolean ConstList_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "ConstList_1")) return false;
-    int offset_ = builder_.getCurrentOffset();
+    int pos_ = current_position_(builder_);
     while (true) {
       if (!ConstList_1_0(builder_, level_ + 1)) break;
-      int next_offset_ = builder_.getCurrentOffset();
-      if (offset_ == next_offset_) {
-        empty_element_parsed_guard_(builder_, offset_, "ConstList_1");
-        break;
-      }
-      offset_ = next_offset_;
+      if (!empty_element_parsed_guard_(builder_, "ConstList_1", pos_)) break;
+      pos_ = current_position_(builder_);
     }
     return true;
   }
@@ -258,15 +262,11 @@ public class ThriftParser implements PsiParser {
   // (ConstValue ':' ConstValue ListSeparator?)*
   private static boolean ConstMap_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "ConstMap_1")) return false;
-    int offset_ = builder_.getCurrentOffset();
+    int pos_ = current_position_(builder_);
     while (true) {
       if (!ConstMap_1_0(builder_, level_ + 1)) break;
-      int next_offset_ = builder_.getCurrentOffset();
-      if (offset_ == next_offset_) {
-        empty_element_parsed_guard_(builder_, offset_, "ConstMap_1");
-        break;
-      }
-      offset_ = next_offset_;
+      if (!empty_element_parsed_guard_(builder_, "ConstMap_1", pos_)) break;
+      pos_ = current_position_(builder_);
     }
     return true;
   }
@@ -374,15 +374,11 @@ public class ThriftParser implements PsiParser {
   // topLevelElement*
   static boolean Document(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "Document")) return false;
-    int offset_ = builder_.getCurrentOffset();
+    int pos_ = current_position_(builder_);
     while (true) {
       if (!topLevelElement(builder_, level_ + 1)) break;
-      int next_offset_ = builder_.getCurrentOffset();
-      if (offset_ == next_offset_) {
-        empty_element_parsed_guard_(builder_, offset_, "Document");
-        break;
-      }
-      offset_ = next_offset_;
+      if (!empty_element_parsed_guard_(builder_, "Document", pos_)) break;
+      pos_ = current_position_(builder_);
     }
     return true;
   }
@@ -452,7 +448,7 @@ public class ThriftParser implements PsiParser {
   }
 
   /* ********************************************************** */
-  // FieldID? FieldReq? FieldType DefinitionName ('=' ConstValue)? XsdFieldOptions ListSeparator?
+  // FieldID? FieldReq? FieldType DefinitionName ('=' ConstValue)? XsdFieldOptions TypeAnnotations? ListSeparator?
   public static boolean Field(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "Field")) return false;
     boolean result_ = false;
@@ -465,7 +461,8 @@ public class ThriftParser implements PsiParser {
     result_ = result_ && report_error_(builder_, DefinitionName(builder_, level_ + 1));
     result_ = pinned_ && report_error_(builder_, Field_4(builder_, level_ + 1)) && result_;
     result_ = pinned_ && report_error_(builder_, XsdFieldOptions(builder_, level_ + 1)) && result_;
-    result_ = pinned_ && Field_6(builder_, level_ + 1) && result_;
+    result_ = pinned_ && report_error_(builder_, Field_6(builder_, level_ + 1)) && result_;
+    result_ = pinned_ && Field_7(builder_, level_ + 1) && result_;
     exit_section_(builder_, level_, marker_, FIELD, result_, pinned_, fieldRecovery_parser_);
     return result_ || pinned_;
   }
@@ -502,9 +499,16 @@ public class ThriftParser implements PsiParser {
     return result_;
   }
 
-  // ListSeparator?
+  // TypeAnnotations?
   private static boolean Field_6(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "Field_6")) return false;
+    TypeAnnotations(builder_, level_ + 1);
+    return true;
+  }
+
+  // ListSeparator?
+  private static boolean Field_7(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "Field_7")) return false;
     ListSeparator(builder_, level_ + 1);
     return true;
   }
@@ -650,8 +654,7 @@ public class ThriftParser implements PsiParser {
   // ',' | ';'
   public static boolean ListSeparator(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "ListSeparator")) return false;
-    if (!nextTokenIs(builder_, COMMA) && !nextTokenIs(builder_, SEMICOLON)
-        && replaceVariants(builder_, 2, "<list separator>")) return false;
+    if (!nextTokenIs(builder_, "<list separator>", COMMA, SEMICOLON)) return false;
     boolean result_ = false;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, "<list separator>");
     result_ = consumeToken(builder_, COMMA);
@@ -827,7 +830,7 @@ public class ThriftParser implements PsiParser {
   }
 
   /* ********************************************************** */
-  // 'struct' DefinitionName 'xsd_all'? '{' fields '}'
+  // 'struct' DefinitionName 'xsd_all'? '{' fields '}' TypeAnnotations?
   public static boolean Struct(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "Struct")) return false;
     boolean result_ = false;
@@ -839,7 +842,8 @@ public class ThriftParser implements PsiParser {
     result_ = pinned_ && report_error_(builder_, Struct_2(builder_, level_ + 1)) && result_;
     result_ = pinned_ && report_error_(builder_, consumeToken(builder_, LEFTCURLYBRACE)) && result_;
     result_ = pinned_ && report_error_(builder_, fields(builder_, level_ + 1)) && result_;
-    result_ = pinned_ && consumeToken(builder_, RIGHTCURLYBRACE) && result_;
+    result_ = pinned_ && report_error_(builder_, consumeToken(builder_, RIGHTCURLYBRACE)) && result_;
+    result_ = pinned_ && Struct_6(builder_, level_ + 1) && result_;
     exit_section_(builder_, level_, marker_, STRUCT, result_, pinned_, null);
     return result_ || pinned_;
   }
@@ -848,6 +852,13 @@ public class ThriftParser implements PsiParser {
   private static boolean Struct_2(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "Struct_2")) return false;
     consumeToken(builder_, "xsd_all");
+    return true;
+  }
+
+  // TypeAnnotations?
+  private static boolean Struct_6(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "Struct_6")) return false;
+    TypeAnnotations(builder_, level_ + 1);
     return true;
   }
 
@@ -868,7 +879,58 @@ public class ThriftParser implements PsiParser {
   }
 
   /* ********************************************************** */
-  // 'typedef' DefinitionType DefinitionName
+  // Identifier '=' Literal ListSeparator?
+  public static boolean TypeAnnotation(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "TypeAnnotation")) return false;
+    if (!nextTokenIs(builder_, IDENTIFIER)) return false;
+    boolean result_ = false;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, IDENTIFIER);
+    result_ = result_ && consumeToken(builder_, EQUALS);
+    result_ = result_ && consumeToken(builder_, LITERAL);
+    result_ = result_ && TypeAnnotation_3(builder_, level_ + 1);
+    exit_section_(builder_, marker_, TYPE_ANNOTATION, result_);
+    return result_;
+  }
+
+  // ListSeparator?
+  private static boolean TypeAnnotation_3(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "TypeAnnotation_3")) return false;
+    ListSeparator(builder_, level_ + 1);
+    return true;
+  }
+
+  /* ********************************************************** */
+  // TypeAnnotation*
+  public static boolean TypeAnnotationList(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "TypeAnnotationList")) return false;
+    Marker marker_ = enter_section_(builder_, level_, _NONE_, "<type annotation list>");
+    int pos_ = current_position_(builder_);
+    while (true) {
+      if (!TypeAnnotation(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "TypeAnnotationList", pos_)) break;
+      pos_ = current_position_(builder_);
+    }
+    exit_section_(builder_, level_, marker_, TYPE_ANNOTATION_LIST, true, false, null);
+    return true;
+  }
+
+  /* ********************************************************** */
+  // '(' TypeAnnotationList ')'
+  public static boolean TypeAnnotations(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "TypeAnnotations")) return false;
+    if (!nextTokenIs(builder_, LEFTBRACE)) return false;
+    boolean result_ = false;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, LEFTBRACE);
+    result_ = result_ && TypeAnnotationList(builder_, level_ + 1);
+    result_ = result_ && consumeToken(builder_, RIGHTBRACE);
+    exit_section_(builder_, marker_, TYPE_ANNOTATIONS, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // 'typedef' FieldType DefinitionName
   public static boolean Typedef(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "Typedef")) return false;
     boolean result_ = false;
@@ -876,7 +938,7 @@ public class ThriftParser implements PsiParser {
     Marker marker_ = enter_section_(builder_, level_, _NONE_, "<typedef>");
     result_ = consumeToken(builder_, "typedef");
     pinned_ = result_; // pin = 1
-    result_ = result_ && report_error_(builder_, DefinitionType(builder_, level_ + 1));
+    result_ = result_ && report_error_(builder_, FieldType(builder_, level_ + 1));
     result_ = pinned_ && DefinitionName(builder_, level_ + 1) && result_;
     exit_section_(builder_, level_, marker_, TYPEDEF, result_, pinned_, null);
     return result_ || pinned_;
@@ -1064,15 +1126,11 @@ public class ThriftParser implements PsiParser {
   public static boolean enumFields(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "enumFields")) return false;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, "<enum fields>");
-    int offset_ = builder_.getCurrentOffset();
+    int pos_ = current_position_(builder_);
     while (true) {
       if (!enumField(builder_, level_ + 1)) break;
-      int next_offset_ = builder_.getCurrentOffset();
-      if (offset_ == next_offset_) {
-        empty_element_parsed_guard_(builder_, offset_, "enumFields");
-        break;
-      }
-      offset_ = next_offset_;
+      if (!empty_element_parsed_guard_(builder_, "enumFields", pos_)) break;
+      pos_ = current_position_(builder_);
     }
     exit_section_(builder_, level_, marker_, ENUM_FIELDS, true, false, null);
     return true;
@@ -1126,15 +1184,11 @@ public class ThriftParser implements PsiParser {
   public static boolean fields(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "fields")) return false;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, "<fields>");
-    int offset_ = builder_.getCurrentOffset();
+    int pos_ = current_position_(builder_);
     while (true) {
       if (!Field(builder_, level_ + 1)) break;
-      int next_offset_ = builder_.getCurrentOffset();
-      if (offset_ == next_offset_) {
-        empty_element_parsed_guard_(builder_, offset_, "fields");
-        break;
-      }
-      offset_ = next_offset_;
+      if (!empty_element_parsed_guard_(builder_, "fields", pos_)) break;
+      pos_ = current_position_(builder_);
     }
     exit_section_(builder_, level_, marker_, FIELDS, true, false, curlyBraceRecovery_parser_);
     return true;
@@ -1145,15 +1199,11 @@ public class ThriftParser implements PsiParser {
   static boolean fieldsWithBraceRecovery(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "fieldsWithBraceRecovery")) return false;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, null);
-    int offset_ = builder_.getCurrentOffset();
+    int pos_ = current_position_(builder_);
     while (true) {
       if (!Field(builder_, level_ + 1)) break;
-      int next_offset_ = builder_.getCurrentOffset();
-      if (offset_ == next_offset_) {
-        empty_element_parsed_guard_(builder_, offset_, "fieldsWithBraceRecovery");
-        break;
-      }
-      offset_ = next_offset_;
+      if (!empty_element_parsed_guard_(builder_, "fieldsWithBraceRecovery", pos_)) break;
+      pos_ = current_position_(builder_);
     }
     exit_section_(builder_, level_, marker_, null, true, false, braceRecovery_parser_);
     return true;
@@ -1279,15 +1329,11 @@ public class ThriftParser implements PsiParser {
   public static boolean senumBody(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "senumBody")) return false;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, "<senum body>");
-    int offset_ = builder_.getCurrentOffset();
+    int pos_ = current_position_(builder_);
     while (true) {
       if (!semunField(builder_, level_ + 1)) break;
-      int next_offset_ = builder_.getCurrentOffset();
-      if (offset_ == next_offset_) {
-        empty_element_parsed_guard_(builder_, offset_, "senumBody");
-        break;
-      }
-      offset_ = next_offset_;
+      if (!empty_element_parsed_guard_(builder_, "senumBody", pos_)) break;
+      pos_ = current_position_(builder_);
     }
     exit_section_(builder_, level_, marker_, SENUM_BODY, true, false, null);
     return true;
@@ -1298,15 +1344,11 @@ public class ThriftParser implements PsiParser {
   public static boolean serviceBody(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "serviceBody")) return false;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, "<service body>");
-    int offset_ = builder_.getCurrentOffset();
+    int pos_ = current_position_(builder_);
     while (true) {
       if (!serviceBody_0(builder_, level_ + 1)) break;
-      int next_offset_ = builder_.getCurrentOffset();
-      if (offset_ == next_offset_) {
-        empty_element_parsed_guard_(builder_, offset_, "serviceBody");
-        break;
-      }
-      offset_ = next_offset_;
+      if (!empty_element_parsed_guard_(builder_, "serviceBody", pos_)) break;
+      pos_ = current_position_(builder_);
     }
     exit_section_(builder_, level_, marker_, SERVICE_BODY, true, false, functionsRecovery_parser_);
     return true;

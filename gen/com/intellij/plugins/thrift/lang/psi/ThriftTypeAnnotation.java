@@ -5,15 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ThriftStruct extends ThriftTopLevelDeclaration {
+public interface ThriftTypeAnnotation extends ThriftPsiCompositeElement {
 
   @Nullable
-  ThriftDefinitionName getDefinitionName();
-
-  @Nullable
-  ThriftTypeAnnotations getTypeAnnotations();
-
-  @Nullable
-  ThriftFields getFields();
+  ThriftListSeparator getListSeparator();
 
 }

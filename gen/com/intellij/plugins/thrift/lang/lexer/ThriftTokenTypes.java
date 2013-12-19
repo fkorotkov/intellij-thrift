@@ -44,6 +44,9 @@ public interface ThriftTokenTypes {
   IElementType STRUCT = new ThriftElementType("STRUCT");
   IElementType THROWS = new ThriftElementType("THROWS");
   IElementType TYPEDEF = new ThriftElementType("TYPEDEF");
+  IElementType TYPE_ANNOTATION = new ThriftElementType("TYPE_ANNOTATION");
+  IElementType TYPE_ANNOTATIONS = new ThriftElementType("TYPE_ANNOTATIONS");
+  IElementType TYPE_ANNOTATION_LIST = new ThriftElementType("TYPE_ANNOTATION_LIST");
   IElementType UNION = new ThriftElementType("UNION");
   IElementType XSD_ATTRS = new ThriftElementType("XSD_ATTRS");
   IElementType XSD_FIELD_OPTIONS = new ThriftElementType("XSD_FIELD_OPTIONS");
@@ -181,6 +184,15 @@ public interface ThriftTokenTypes {
       }
       else if (type == TYPEDEF) {
         return new ThriftTypedefImpl(node);
+      }
+      else if (type == TYPE_ANNOTATION) {
+        return new ThriftTypeAnnotationImpl(node);
+      }
+      else if (type == TYPE_ANNOTATIONS) {
+        return new ThriftTypeAnnotationsImpl(node);
+      }
+      else if (type == TYPE_ANNOTATION_LIST) {
+        return new ThriftTypeAnnotationListImpl(node);
       }
       else if (type == UNION) {
         return new ThriftUnionImpl(node);

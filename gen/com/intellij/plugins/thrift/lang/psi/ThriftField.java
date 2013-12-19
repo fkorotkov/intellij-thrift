@@ -26,6 +26,9 @@ public interface ThriftField extends ThriftSubDeclaration {
   ThriftListSeparator getListSeparator();
 
   @Nullable
+  ThriftTypeAnnotations getTypeAnnotations();
+
+  @Nullable
   ThriftXsdFieldOptions getXsdFieldOptions();
 
 }
