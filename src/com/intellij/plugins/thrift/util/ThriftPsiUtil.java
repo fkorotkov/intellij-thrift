@@ -13,6 +13,7 @@ import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.psi.*;
 import com.intellij.psi.impl.source.resolve.reference.impl.providers.FileReferenceSet;
 import com.intellij.psi.impl.source.tree.LeafPsiElement;
+import com.intellij.util.PathUtil;
 import com.intellij.util.Processor;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
@@ -28,7 +29,13 @@ public class ThriftPsiUtil {
   @Nullable
   public static PsiFile resolveInclude(@Nullable ThriftInclude include) {
     final PsiFileSystemItem target = include != null ? getReferenceSet(include).resolve() : null;
-    return target instanceof PsiFile ? (PsiFile)target : null;
+    if(target instanceof PsiFile) {
+      return (PsiFile)target;
+    }
+    // check current dir
+    PsiFile psiFile = include != null ? include.getContainingFile() : null;
+    PsiDirectory directory = psiFile != null ? psiFile.getContainingDirectory() : null;
+    return directory != null ? directory.findFile(PathUtil.getFileName(include.getPath())) : null;
   }
 
   @NotNull

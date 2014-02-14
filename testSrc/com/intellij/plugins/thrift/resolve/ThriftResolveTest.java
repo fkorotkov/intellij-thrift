@@ -18,7 +18,7 @@ public class ThriftResolveTest extends ThriftCodeInsightFixtureTestCase {
     return "resolve";
   }
 
-  protected void doTest(int expectedSize) {
+  protected Collection<PsiElement> doTest(int expectedSize) {
     PsiFile file = myFixture.getFile();
     assertNotNull(file);
     PsiReference reference = file.findReferenceAt(myFixture.getCaretOffset());
@@ -26,6 +26,7 @@ public class ThriftResolveTest extends ThriftCodeInsightFixtureTestCase {
     final Collection<PsiElement> elements = TargetElementUtilBase.getInstance().getTargetCandidates(reference);
     assertNotNull(elements);
     assertEquals(expectedSize, elements.size());
+    return elements;
   }
 
   private void configureDefault() {
@@ -46,6 +47,19 @@ public class ThriftResolveTest extends ThriftCodeInsightFixtureTestCase {
 
   public void testGlobalType2() {
     myFixture.addFileToProject("util/data.thrift", "struct Impression {}");
+    configureDefault();
+    doTest(1);
+  }
+
+  public void testGlobalType3() {
+    myFixture.addFileToProject("util/data.thrift", "struct Impression {}");
+    configureDefault();
+    Collection<PsiElement> elements = doTest(1);
+    assertInstanceOf(elements.iterator().next(), PsiFile.class);
+  }
+
+  public void testGlobalType4() {
+    myFixture.addFileToProject("data.thrift", "struct Impression {}");
     configureDefault();
     doTest(1);
   }

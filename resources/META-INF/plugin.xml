@@ -4,6 +4,10 @@
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
+      <p>0.6:</p>
+      <ul>
+        <li>Bug fixes</li>
+      </ul>
       <p>0.5:</p>
       <ul>
         <li>Rename Refactoring fixes</li>
@@ -35,7 +39,7 @@
       </ul>
       ]]>
   </change-notes>
-  <version>0.5</version>
+  <version>0.6</version>
   <vendor>Twitter, Inc.</vendor>
   <idea-version since-build="132.1"/>
 
