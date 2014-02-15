@@ -4,6 +4,11 @@
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
+      <p>0.7:</p>
+      <ul>
+        <li>Improved include resolver</li>
+        <li>Unresolved include inspection</li>
+      </ul>
       <p>0.6:</p>
       <ul>
         <li>Bug fixes</li>
@@ -39,7 +44,7 @@
       </ul>
       ]]>
   </change-notes>
-  <version>0.6</version>
+  <version>0.7</version>
   <vendor>Twitter, Inc.</vendor>
   <idea-version since-build="132.1"/>
 
@@ -84,6 +89,10 @@
                      key="thrift.inspection.unresolved.symbol"
                      groupKey="inspections.group.name" enabledByDefault="true"
                      implementationClass="com.intellij.plugins.thrift.inspections.ThriftUnresolvedSymbolInspection"/>
+    <localInspection language="thrift" shortName="ThriftUnresolvedInclude" bundle="com.intellij.plugins.thrift.ThriftBundle"
+                     key="thrift.inspection.unresolved.include"
+                     groupKey="inspections.group.name" enabledByDefault="true"
+                     implementationClass="com.intellij.plugins.thrift.inspections.ThriftUnresolvedIncludeInspection"/>
   </extensions>
 
   <actions>
