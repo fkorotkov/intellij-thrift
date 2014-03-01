@@ -11,33 +11,21 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftStructImpl extends ThriftTopLevelDeclarationImpl implements ThriftStruct {
+public class ThriftTypeAnnotationImpl extends ThriftPsiCompositeElementImpl implements ThriftTypeAnnotation {
 
-  public ThriftStructImpl(ASTNode node) {
+  public ThriftTypeAnnotationImpl(ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitStruct(this);
+    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitTypeAnnotation(this);
     else super.accept(visitor);
   }
 
   @Override
   @Nullable
-  public ThriftDefinitionName getDefinitionName() {
-    return findChildByClass(ThriftDefinitionName.class);
-  }
-
-  @Override
-  @Nullable
-  public ThriftTypeAnnotations getTypeAnnotations() {
-    return findChildByClass(ThriftTypeAnnotations.class);
-  }
-
-  @Override
-  @Nullable
-  public ThriftFields getFields() {
-    return findChildByClass(ThriftFields.class);
+  public ThriftListSeparator getListSeparator() {
+    return findChildByClass(ThriftListSeparator.class);
   }
 
 }

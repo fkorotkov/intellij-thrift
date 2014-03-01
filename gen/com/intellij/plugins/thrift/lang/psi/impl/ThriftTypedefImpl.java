@@ -24,32 +24,14 @@ public class ThriftTypedefImpl extends ThriftTopLevelDeclarationImpl implements 
 
   @Override
   @Nullable
-  public ThriftBaseType getBaseType() {
-    return findChildByClass(ThriftBaseType.class);
-  }
-
-  @Override
-  @Nullable
   public ThriftDefinitionName getDefinitionName() {
     return findChildByClass(ThriftDefinitionName.class);
   }
 
   @Override
   @Nullable
-  public ThriftListType getListType() {
-    return findChildByClass(ThriftListType.class);
-  }
-
-  @Override
-  @Nullable
-  public ThriftMapType getMapType() {
-    return findChildByClass(ThriftMapType.class);
-  }
-
-  @Override
-  @Nullable
-  public ThriftSetType getSetType() {
-    return findChildByClass(ThriftSetType.class);
+  public ThriftFieldType getFieldType() {
+    return findChildByClass(ThriftFieldType.class);
   }
 
 }

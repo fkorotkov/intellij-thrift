@@ -60,6 +60,12 @@ public class ThriftFieldImpl extends AbstractThriftDeclaration implements Thrift
 
   @Override
   @Nullable
+  public ThriftTypeAnnotations getTypeAnnotations() {
+    return findChildByClass(ThriftTypeAnnotations.class);
+  }
+
+  @Override
+  @Nullable
   public ThriftXsdFieldOptions getXsdFieldOptions() {
     return findChildByClass(ThriftXsdFieldOptions.class);
   }

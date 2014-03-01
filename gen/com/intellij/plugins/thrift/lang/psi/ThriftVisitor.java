@@ -125,6 +125,18 @@ public class ThriftVisitor extends PsiElementVisitor {
     visitPsiCompositeElement(o);
   }
 
+  public void visitTypeAnnotation(@NotNull ThriftTypeAnnotation o) {
+    visitPsiCompositeElement(o);
+  }
+
+  public void visitTypeAnnotationList(@NotNull ThriftTypeAnnotationList o) {
+    visitPsiCompositeElement(o);
+  }
+
+  public void visitTypeAnnotations(@NotNull ThriftTypeAnnotations o) {
+    visitPsiCompositeElement(o);
+  }
+
   public void visitTypedef(@NotNull ThriftTypedef o) {
     visitTopLevelDeclaration(o);
   }

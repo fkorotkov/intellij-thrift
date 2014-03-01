@@ -11,33 +11,21 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftStructImpl extends ThriftTopLevelDeclarationImpl implements ThriftStruct {
+public class ThriftTypeAnnotationListImpl extends ThriftPsiCompositeElementImpl implements ThriftTypeAnnotationList {
 
-  public ThriftStructImpl(ASTNode node) {
+  public ThriftTypeAnnotationListImpl(ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitStruct(this);
+    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitTypeAnnotationList(this);
     else super.accept(visitor);
   }
 
   @Override
-  @Nullable
-  public ThriftDefinitionName getDefinitionName() {
-    return findChildByClass(ThriftDefinitionName.class);
-  }
-
-  @Override
-  @Nullable
-  public ThriftTypeAnnotations getTypeAnnotations() {
-    return findChildByClass(ThriftTypeAnnotations.class);
-  }
-
-  @Override
-  @Nullable
-  public ThriftFields getFields() {
-    return findChildByClass(ThriftFields.class);
+  @NotNull
+  public List<ThriftTypeAnnotation> getTypeAnnotationList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, ThriftTypeAnnotation.class);
   }
 
 }
