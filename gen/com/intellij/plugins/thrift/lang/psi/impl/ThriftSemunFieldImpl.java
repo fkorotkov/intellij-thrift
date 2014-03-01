@@ -28,4 +28,10 @@ public class ThriftSemunFieldImpl extends ThriftPsiCompositeElementImpl implemen
     return findChildByClass(ThriftListSeparator.class);
   }
 
+  @Override
+  @NotNull
+  public PsiElement getLiteral() {
+    return findNotNullChildByType(LITERAL);
+  }
+
 }

@@ -30,6 +30,18 @@ public class ThriftServiceImpl extends ThriftTopLevelDeclarationImpl implements 
 
   @Override
   @Nullable
+  public ThriftServiceSuperName getServiceSuperName() {
+    return findChildByClass(ThriftServiceSuperName.class);
+  }
+
+  @Override
+  @Nullable
+  public ThriftTypeAnnotations getTypeAnnotations() {
+    return findChildByClass(ThriftTypeAnnotations.class);
+  }
+
+  @Override
+  @Nullable
   public ThriftServiceBody getServiceBody() {
     return findChildByClass(ThriftServiceBody.class);
   }

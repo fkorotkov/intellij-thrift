@@ -40,6 +40,7 @@ public interface ThriftTokenTypes {
   IElementType SENUM_BODY = new ThriftElementType("SENUM_BODY");
   IElementType SERVICE = new ThriftElementType("SERVICE");
   IElementType SERVICE_BODY = new ThriftElementType("SERVICE_BODY");
+  IElementType SERVICE_SUPER_NAME = new ThriftElementType("SERVICE_SUPER_NAME");
   IElementType SET_TYPE = new ThriftElementType("SET_TYPE");
   IElementType STRUCT = new ThriftElementType("STRUCT");
   IElementType THROWS = new ThriftElementType("THROWS");
@@ -172,6 +173,9 @@ public interface ThriftTokenTypes {
       }
       else if (type == SERVICE_BODY) {
         return new ThriftServiceBodyImpl(node);
+      }
+      else if (type == SERVICE_SUPER_NAME) {
+        return new ThriftServiceSuperNameImpl(node);
       }
       else if (type == SET_TYPE) {
         return new ThriftSetTypeImpl(node);

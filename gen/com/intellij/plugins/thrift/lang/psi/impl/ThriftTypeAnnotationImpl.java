@@ -28,4 +28,16 @@ public class ThriftTypeAnnotationImpl extends ThriftPsiCompositeElementImpl impl
     return findChildByClass(ThriftListSeparator.class);
   }
 
+  @Override
+  @NotNull
+  public PsiElement getIdentifier() {
+    return findNotNullChildByType(IDENTIFIER);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getLiteral() {
+    return findNotNullChildByType(LITERAL);
+  }
+
 }

@@ -28,4 +28,22 @@ public class ThriftNamespaceImpl extends ThriftPsiCompositeElementImpl implement
     return findChildByClass(ThriftNamespaceScope.class);
   }
 
+  @Override
+  @Nullable
+  public PsiElement getIdentifier() {
+    return findChildByType(IDENTIFIER);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getLiteral() {
+    return findChildByType(LITERAL);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getSTIdentifier() {
+    return findChildByType(STIDENTIFIER);
+  }
+
 }

@@ -45,7 +45,7 @@
 Document ::=  topLevelElement*
 private topLevelElement ::=  Include | Namespace |
                              Const | Typedef | Enum | Senum | Struct | Union | Exception | Service
-                             {recoverUntil=topLevelRecover}
+                             {recoverWhile=topLevelRecover}
 
 private topLevelRecover ::= !('const' | 'cpp_include' | 'enum' | 'exception' | 'include' | 'namespace' |
                               'php_namespace' | 'senum' | 'service' | 'struct' | 'typedef' | 'union' |
@@ -84,34 +84,35 @@ Enum            ::=  'enum' DefinitionName '{' enumFields '}' TypeAnnotations?
 {pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
 enumFields ::= enumField*
 {implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationBody"}
-enumField ::= Identifier ('=' IntConstant)? TypeAnnotations? ListSeparator? {recoverUntil=enumFieldRecovery}
+enumField ::= Identifier ('=' IntConstant)? TypeAnnotations? ListSeparator? {recoverWhile=enumFieldRecovery}
 private enumFieldRecovery ::= !('}' | Identifier)
 
 Senum           ::=  'senum' DefinitionName '{' senumBody '}' TypeAnnotations?
 {pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
 senumBody ::= semunField*
 {implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationBody"}
-semunField ::= Literal ListSeparator? {recoverUntil=semunFieldRecovery}
+semunField ::= Literal ListSeparator? {recoverWhile=semunFieldRecovery}
 private semunFieldRecovery ::= !('}' | Literal)
 
 Struct          ::=  'struct' DefinitionName 'xsd_all'? '{' fields '}' TypeAnnotations?
 {pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
 fields ::= Field*
-{recoverUntil=curlyBraceRecovery implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationBody"}
+{recoverWhile=curlyBraceRecovery implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationBody"}
 private curlyBraceRecovery ::= !('}')
 Union           ::=  'union' DefinitionName 'xsd_all'? '{' fields '}'
 {pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
 Exception       ::=  'exception' DefinitionName '{' fields '}' TypeAnnotations?
 {pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
-Service         ::=  'service' DefinitionName ( 'extends' Identifier )? '{' serviceBody '}' TypeAnnotations?
+Service         ::=  'service' DefinitionName ( 'extends' ServiceSuperName )? '{' serviceBody '}' TypeAnnotations?
 {pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
+ServiceSuperName ::= Identifier
 serviceBody ::= (Function ListSeparator?)*
-{recoverUntil=functionsRecovery implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationBody"}
+{recoverWhile=functionsRecovery implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationBody"}
 private functionsRecovery ::= !('}')
 
 Field           ::=  FieldID? FieldReq? FieldType DefinitionName ('=' ConstValue)? XsdFieldOptions TypeAnnotations? ListSeparator?
 {
-  pin=3 recoverUntil=fieldRecovery
+  pin=3 recoverWhile=fieldRecovery
   mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftSubDeclaration"
 }
 FieldID         ::=  IntConstant ':'
@@ -124,18 +125,16 @@ XsdAttrs        ::=  'xsd_attrs' '{' fields '}' {pin=1}
 
 Function        ::=  'oneway'? FunctionType DefinitionName '(' fieldsWithBraceRecovery ')' Throws? TypeAnnotations?
 {
-  pin=3 recoverUntil=functionRecovery
+  pin=3 recoverWhile=functionRecovery
   mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftSubDeclaration"
 }
 private functionRecovery ::= !('binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' | 'map' |
                                'oneway' | 'set' | 'slist' | 'string' | 'void' | '}' | Identifier | ListSeparator)
 FunctionType    ::=  'void' | FieldType
-private fieldsWithBraceRecovery ::= Field* {recoverUntil=braceRecovery}
-private braceRecovery ::= !(')')
+private fieldsWithBraceRecovery ::= Field* {recoverWhile=braceRecovery}
 Throws          ::=  'throws' '(' fieldsWithBraceRecovery ')' {pin=1}
 
 FieldType       ::=  BaseType | ContainerType | CustomType
-private DefinitionType  ::=  BaseType | ContainerType
 BaseType        ::=  'bool' | 'byte' | 'i16' | 'i32' | 'i64' | 'double' | 'string' | 'binary' | 'slist'
 private ContainerType   ::=  MapType | SetType | ListType
 MapType         ::=  'map' CppType? '<' FieldType ',' FieldType '>' {pin=1}
@@ -158,5 +157,7 @@ ConstMap        ::=  '{' (ConstValue ':' ConstValue ListSeparator?)* '}'
 ListSeparator   ::=  ',' | ';'
 
 TypeAnnotations ::= '(' TypeAnnotationList ')'
-TypeAnnotationList ::= TypeAnnotation*
+TypeAnnotationList ::= TypeAnnotation* {recoverWhile=braceRecovery}
 TypeAnnotation ::= Identifier '=' Literal ListSeparator?
+
+private braceRecovery ::= !(')')

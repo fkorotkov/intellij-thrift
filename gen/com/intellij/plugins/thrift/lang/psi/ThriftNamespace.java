@@ -10,4 +10,13 @@ public interface ThriftNamespace extends ThriftPsiCompositeElement {
   @Nullable
   ThriftNamespaceScope getNamespaceScope();
 
+  @Nullable
+  PsiElement getIdentifier();
+
+  @Nullable
+  PsiElement getLiteral();
+
+  @Nullable
+  PsiElement getSTIdentifier();
+
 }

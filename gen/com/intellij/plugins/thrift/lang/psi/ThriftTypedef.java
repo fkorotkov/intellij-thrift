@@ -13,4 +13,7 @@ public interface ThriftTypedef extends ThriftTopLevelDeclaration {
   @Nullable
   ThriftFieldType getFieldType();
 
+  @Nullable
+  ThriftTypeAnnotations getTypeAnnotations();
+
 }

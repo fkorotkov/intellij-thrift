@@ -11,6 +11,12 @@ public interface ThriftService extends ThriftTopLevelDeclaration {
   ThriftDefinitionName getDefinitionName();
 
   @Nullable
+  ThriftServiceSuperName getServiceSuperName();
+
+  @Nullable
+  ThriftTypeAnnotations getTypeAnnotations();
+
+  @Nullable
   ThriftServiceBody getServiceBody();
 
 }

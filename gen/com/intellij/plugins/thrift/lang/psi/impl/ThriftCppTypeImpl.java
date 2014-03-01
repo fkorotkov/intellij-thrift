@@ -22,4 +22,10 @@ public class ThriftCppTypeImpl extends ThriftPsiCompositeElementImpl implements 
     else super.accept(visitor);
   }
 
+  @Override
+  @Nullable
+  public PsiElement getLiteral() {
+    return findChildByType(LITERAL);
+  }
+
 }

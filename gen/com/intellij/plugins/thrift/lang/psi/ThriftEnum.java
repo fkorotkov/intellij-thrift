@@ -11,6 +11,9 @@ public interface ThriftEnum extends ThriftTopLevelDeclaration {
   ThriftDefinitionName getDefinitionName();
 
   @Nullable
+  ThriftTypeAnnotations getTypeAnnotations();
+
+  @Nullable
   ThriftEnumFields getEnumFields();
 
 }

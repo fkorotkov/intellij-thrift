@@ -10,4 +10,10 @@ public interface ThriftTypeAnnotation extends ThriftPsiCompositeElement {
   @Nullable
   ThriftListSeparator getListSeparator();
 
+  @NotNull
+  PsiElement getIdentifier();
+
+  @NotNull
+  PsiElement getLiteral();
+
 }

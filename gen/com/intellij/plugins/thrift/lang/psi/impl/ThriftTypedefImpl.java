@@ -34,4 +34,10 @@ public class ThriftTypedefImpl extends ThriftTopLevelDeclarationImpl implements 
     return findChildByClass(ThriftFieldType.class);
   }
 
+  @Override
+  @Nullable
+  public ThriftTypeAnnotations getTypeAnnotations() {
+    return findChildByClass(ThriftTypeAnnotations.class);
+  }
+
 }

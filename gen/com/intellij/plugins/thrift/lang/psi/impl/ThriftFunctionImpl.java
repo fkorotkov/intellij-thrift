@@ -46,4 +46,10 @@ public class ThriftFunctionImpl extends AbstractThriftDeclaration implements Thr
     return findChildByClass(ThriftThrows.class);
   }
 
+  @Override
+  @Nullable
+  public ThriftTypeAnnotations getTypeAnnotations() {
+    return findChildByClass(ThriftTypeAnnotations.class);
+  }
+
 }

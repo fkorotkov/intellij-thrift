@@ -30,6 +30,12 @@ public class ThriftEnumImpl extends ThriftTopLevelDeclarationImpl implements Thr
 
   @Override
   @Nullable
+  public ThriftTypeAnnotations getTypeAnnotations() {
+    return findChildByClass(ThriftTypeAnnotations.class);
+  }
+
+  @Override
+  @Nullable
   public ThriftEnumFields getEnumFields() {
     return findChildByClass(ThriftEnumFields.class);
   }

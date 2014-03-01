@@ -5,9 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ThriftDoubleConstant extends ThriftPsiCompositeElement {
+public interface ThriftServiceSuperName extends ThriftPsiCompositeElement {
 
   @NotNull
-  PsiElement getNumber();
+  PsiElement getIdentifier();
 
 }

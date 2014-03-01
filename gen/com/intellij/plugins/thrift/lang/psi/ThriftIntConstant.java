@@ -7,4 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface ThriftIntConstant extends ThriftPsiCompositeElement {
 
+  @NotNull
+  PsiElement getInteger();
+
 }

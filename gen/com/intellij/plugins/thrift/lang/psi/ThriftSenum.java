@@ -11,6 +11,9 @@ public interface ThriftSenum extends ThriftTopLevelDeclaration {
   ThriftDefinitionName getDefinitionName();
 
   @Nullable
+  ThriftTypeAnnotations getTypeAnnotations();
+
+  @Nullable
   ThriftSenumBody getSenumBody();
 
 }

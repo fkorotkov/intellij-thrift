@@ -46,4 +46,16 @@ public class ThriftConstValueImpl extends ThriftPsiCompositeElementImpl implemen
     return findChildByClass(ThriftIntConstant.class);
   }
 
+  @Override
+  @Nullable
+  public PsiElement getIdentifier() {
+    return findChildByType(IDENTIFIER);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getLiteral() {
+    return findChildByType(LITERAL);
+  }
+
 }

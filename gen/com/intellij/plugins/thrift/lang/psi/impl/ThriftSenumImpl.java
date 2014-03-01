@@ -30,6 +30,12 @@ public class ThriftSenumImpl extends ThriftTopLevelDeclarationImpl implements Th
 
   @Override
   @Nullable
+  public ThriftTypeAnnotations getTypeAnnotations() {
+    return findChildByClass(ThriftTypeAnnotations.class);
+  }
+
+  @Override
+  @Nullable
   public ThriftSenumBody getSenumBody() {
     return findChildByClass(ThriftSenumBody.class);
   }

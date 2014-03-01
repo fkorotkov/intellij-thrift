@@ -11,6 +11,9 @@ public interface ThriftException extends ThriftTopLevelDeclaration {
   ThriftDefinitionName getDefinitionName();
 
   @Nullable
+  ThriftTypeAnnotations getTypeAnnotations();
+
+  @Nullable
   ThriftFields getFields();
 
 }

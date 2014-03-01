@@ -11,21 +11,21 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftNamespaceScopeImpl extends ThriftPsiCompositeElementImpl implements ThriftNamespaceScope {
+public class ThriftServiceSuperNameImpl extends ThriftPsiCompositeElementImpl implements ThriftServiceSuperName {
 
-  public ThriftNamespaceScopeImpl(ASTNode node) {
+  public ThriftServiceSuperNameImpl(ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitNamespaceScope(this);
+    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitServiceSuperName(this);
     else super.accept(visitor);
   }
 
   @Override
-  @Nullable
-  public PsiElement getMultiply() {
-    return findChildByType(MULTIPLY);
+  @NotNull
+  public PsiElement getIdentifier() {
+    return findNotNullChildByType(IDENTIFIER);
   }
 
 }

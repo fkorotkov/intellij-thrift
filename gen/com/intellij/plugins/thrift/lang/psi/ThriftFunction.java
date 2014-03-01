@@ -19,4 +19,7 @@ public interface ThriftFunction extends ThriftSubDeclaration {
   @Nullable
   ThriftThrows getThrows();
 
+  @Nullable
+  ThriftTypeAnnotations getTypeAnnotations();
+
 }
