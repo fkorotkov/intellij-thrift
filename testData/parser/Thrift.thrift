@@ -389,3 +389,9 @@ struct StructB {
 struct TypeAnnotaionExample {
   1: optional i32 a (foo="bar")
 } (hello="world")
+
+struct StructA {
+  1: i32 x = 0
+}
+
+typedef StructA StructB

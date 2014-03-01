@@ -2278,3 +2278,33 @@ Thrift File
           PsiElement(=)('=')
           PsiElement(Literal)('"world"')
       PsiElement())(')')
+  STRUCT
+    PsiElement(Identifier)('struct')
+    DEFINITION_NAME
+      PsiElement(Identifier)('StructA')
+    PsiElement({)('{')
+    FIELDS
+      FIELD
+        FIELD_ID
+          INT_CONSTANT
+            PsiElement(Integer)('1')
+          PsiElement(:)(':')
+        FIELD_TYPE
+          BASE_TYPE
+            PsiElement(Identifier)('i32')
+        DEFINITION_NAME
+          PsiElement(Identifier)('x')
+        PsiElement(=)('=')
+        CONST_VALUE
+          INT_CONSTANT
+            PsiElement(Integer)('0')
+        XSD_FIELD_OPTIONS
+          <empty list>
+    PsiElement(})('}')
+  TYPEDEF
+    PsiElement(Identifier)('typedef')
+    FIELD_TYPE
+      CUSTOM_TYPE
+        PsiElement(Identifier)('StructA')
+    DEFINITION_NAME
+      PsiElement(Identifier)('StructB')
