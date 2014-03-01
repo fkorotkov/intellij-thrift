@@ -144,8 +144,9 @@ Thrift File
   PsiComment(Comment)('// const Numberz urNumberz = ONE;')
   TYPEDEF
     PsiElement(Identifier)('typedef')
-    BASE_TYPE
-      PsiElement(Identifier)('i64')
+    FIELD_TYPE
+      BASE_TYPE
+        PsiElement(Identifier)('i64')
     DEFINITION_NAME
       PsiElement(Identifier)('UserId')
   STRUCT
@@ -183,17 +184,18 @@ Thrift File
     PsiElement(})('}')
   TYPEDEF
     PsiElement(Identifier)('typedef')
-    MAP_TYPE
-      PsiElement(Identifier)('map')
-      PsiElement(<)('<')
-      FIELD_TYPE
-        BASE_TYPE
-          PsiElement(Identifier)('string')
-      PsiElement(,)(',')
-      FIELD_TYPE
-        CUSTOM_TYPE
-          PsiElement(Identifier)('Bonk')
-      PsiElement(>)('>')
+    FIELD_TYPE
+      MAP_TYPE
+        PsiElement(Identifier)('map')
+        PsiElement(<)('<')
+        FIELD_TYPE
+          BASE_TYPE
+            PsiElement(Identifier)('string')
+        PsiElement(,)(',')
+        FIELD_TYPE
+          CUSTOM_TYPE
+            PsiElement(Identifier)('Bonk')
+        PsiElement(>)('>')
     DEFINITION_NAME
       PsiElement(Identifier)('MapType')
   STRUCT
@@ -2239,3 +2241,40 @@ Thrift File
         LIST_SEPARATOR
           PsiElement(;)(';')
     PsiElement(})('}')
+  STRUCT
+    PsiElement(Identifier)('struct')
+    DEFINITION_NAME
+      PsiElement(Identifier)('TypeAnnotaionExample')
+    PsiElement({)('{')
+    FIELDS
+      FIELD
+        FIELD_ID
+          INT_CONSTANT
+            PsiElement(Integer)('1')
+          PsiElement(:)(':')
+        FIELD_REQ
+          PsiElement(Identifier)('optional')
+        FIELD_TYPE
+          BASE_TYPE
+            PsiElement(Identifier)('i32')
+        DEFINITION_NAME
+          PsiElement(Identifier)('a')
+        XSD_FIELD_OPTIONS
+          <empty list>
+        TYPE_ANNOTATIONS
+          PsiElement(()('(')
+          TYPE_ANNOTATION_LIST
+            TYPE_ANNOTATION
+              PsiElement(Identifier)('foo')
+              PsiElement(=)('=')
+              PsiElement(Literal)('"bar"')
+          PsiElement())(')')
+    PsiElement(})('}')
+    TYPE_ANNOTATIONS
+      PsiElement(()('(')
+      TYPE_ANNOTATION_LIST
+        TYPE_ANNOTATION
+          PsiElement(Identifier)('hello')
+          PsiElement(=)('=')
+          PsiElement(Literal)('"world"')
+      PsiElement())(')')

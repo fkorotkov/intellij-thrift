@@ -385,3 +385,7 @@ struct StructB {
   3: double foo = -239.566e3;
   3: double foo = 0x7fff;
 }
+
+struct TypeAnnotaionExample {
+  1: optional i32 a (foo="bar")
+} (hello="world")
