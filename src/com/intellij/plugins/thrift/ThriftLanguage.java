@@ -9,6 +9,6 @@ public class ThriftLanguage extends Language {
   public static ThriftLanguage INSTANCE = new ThriftLanguage();
 
   protected ThriftLanguage() {
-    super(ThriftBundle.message("thrift.language.id"));
+    super("thrift");
   }
 }
