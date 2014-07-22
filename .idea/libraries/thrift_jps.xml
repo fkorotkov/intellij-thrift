@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="thrift-jps">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/thrift_jps/thrift-jps.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/plugin-jps/src" />
+    </SOURCES>
+  </library>
+</component>

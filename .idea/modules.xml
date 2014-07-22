@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/intellij-thrift.iml" filepath="$PROJECT_DIR$/intellij-thrift.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugin-jps/plugin-jps.iml" filepath="$PROJECT_DIR$/plugin-jps/plugin-jps.iml" />
     </modules>
   </component>
 </project>

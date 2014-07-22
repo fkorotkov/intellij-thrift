@@ -12,6 +12,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="plugin-jps" />
+    <orderEntry type="library" scope="RUNTIME" name="thrift-jps" level="project" />
   </component>
 </module>
 

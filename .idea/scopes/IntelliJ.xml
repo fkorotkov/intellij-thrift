@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="IntelliJ" pattern="lib:com.intellij..*" />
+</component>

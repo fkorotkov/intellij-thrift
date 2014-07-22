@@ -12,4 +12,5 @@ public class ThriftIcons {
   public static final Icon STRUCT = IconLoader.getIcon("/icons/struct.png");
   public static final Icon TYPEDEF = IconLoader.getIcon("/icons/typedef.png");
   public static final Icon UNION = IconLoader.getIcon("/icons/union.png");
+  public static final Icon FACET = IconLoader.getIcon("/icons/faceticon.png");
 }

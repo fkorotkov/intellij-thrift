@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/thrift</output-path>
     <root id="root">
       <element id="directory" name="lib">
+        <element id="artifact" artifact-name="thrift-jps" />
         <element id="archive" name="intellij-thrift.jar">
           <element id="module-output" name="intellij-thrift" />
         </element>
