@@ -1,5 +1,6 @@
 package com.intellij.plugins.thrift.config.facet.options;
 
+import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.plugins.thrift.config.target.Javascript;
 
 import javax.swing.*;
@@ -16,8 +17,8 @@ class JavaScriptOptionPane extends AOptionPane<Javascript> {
 
   public JavaScriptOptionPane() {
     super(new GridLayout(0, 1));
-    myJquery = new JCheckBox("jquery");
-    myNode = new JCheckBox("node");
+    myJquery = new JCheckBox(ThriftBundle.message("thrift.gen.option.jquery"));
+    myNode = new JCheckBox(ThriftBundle.message("thrift.gen.option.node"));
 
     add(myJquery);
     add(myNode);

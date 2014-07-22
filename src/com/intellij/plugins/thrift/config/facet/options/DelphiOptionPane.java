@@ -1,5 +1,6 @@
 package com.intellij.plugins.thrift.config.facet.options;
 
+import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.plugins.thrift.config.target.Delphi;
 
 import javax.swing.*;
@@ -18,8 +19,8 @@ class DelphiOptionPane extends AOptionPane<Delphi> {
   public DelphiOptionPane() {
     super(new GridLayout(0, 1));
 
-    myAnsistrBinary = new JCheckBox("ansistr_binary");
-    myRegisterTypes = new JCheckBox("register_types");
+    myAnsistrBinary = new JCheckBox(ThriftBundle.message("thrift.gen.option.ansistr_binary"));
+    myRegisterTypes = new JCheckBox(ThriftBundle.message("thrift.gen.option.register_types"));
 
     add(myAnsistrBinary);
     add(myRegisterTypes);

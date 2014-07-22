@@ -1,5 +1,6 @@
 package com.intellij.plugins.thrift.config.facet.options;
 
+import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.plugins.thrift.config.target.Python;
 import org.apache.commons.lang.StringUtils;
 
@@ -24,46 +25,35 @@ class PythonOptionPane extends AOptionPane<Python> {
   private final JTextField myDynimport;
 
   public PythonOptionPane() {
-    super(new BorderLayout());
+    super(new GridLayout(0, 1));
 
-    final JPanel bools = new JPanel(new GridLayout(0, 1));
-    myNewStyle = new JCheckBox("new_style");
-    myTwisted = new JCheckBox("twisted");
-    myTornado = new JCheckBox("tornado");
-    myUtf8strings = new JCheckBox("utf8strings");
-    mySlots = new JCheckBox("slots");
-    myDynamic = new JCheckBox("dynamic");
+    myNewStyle = new JCheckBox(ThriftBundle.message("thrift.gen.option.new_style"));
+    myTwisted = new JCheckBox(ThriftBundle.message("thrift.gen.option.twisted"));
+    myTornado = new JCheckBox(ThriftBundle.message("thrift.gen.option.tornado"));
+    myUtf8strings = new JCheckBox(ThriftBundle.message("thrift.gen.option.utf8strings"));
+    mySlots = new JCheckBox(ThriftBundle.message("thrift.gen.option.slots"));
+    myDynamic = new JCheckBox(ThriftBundle.message("thrift.gen.option.dynamic"));
 
-    bools.add(myNewStyle);
-    bools.add(myTwisted);
-    bools.add(myTornado);
-    bools.add(myUtf8strings);
-    bools.add(mySlots);
-    bools.add(myDynamic);
+    add(myNewStyle);
+    add(myTwisted);
+    add(myTornado);
+    add(myUtf8strings);
+    add(mySlots);
+    add(myDynamic);
 
-    add(bools, BorderLayout.NORTH);
-
-    final JLabel dynbase = new JLabel("dynbase");
-    final JLabel dynexc = new JLabel("dynexc");
-    final JLabel dynimport = new JLabel("dynimport");
-
-    final JPanel labels = new JPanel(new GridLayout(0, 1));
-    labels.add(dynbase);
-    labels.add(dynexc);
-    labels.add(dynimport);
-
-    add(labels, BorderLayout.WEST);
-
+    final JLabel dynbase = new JLabel(ThriftBundle.message("thrift.gen.option.dynbase"));
+    final JLabel dynexc = new JLabel(ThriftBundle.message("thrift.gen.option.dynexc"));
+    final JLabel dynimport = new JLabel(ThriftBundle.message("thrift.gen.option.dynimport"));
     myDynbase = new JTextField("dynbase");
     myDynexc = new JTextField("dynexc");
     myDynimport = new JTextField("dynimport");
 
-    final JPanel fields = new JPanel(new GridLayout(0, 1));
-    fields.add(myDynbase);
-    fields.add(myDynexc);
-    fields.add(myDynimport);
-
-    add(fields, BorderLayout.CENTER);
+    add(dynbase);
+    add(myDynbase);
+    add(dynexc);
+    add(myDynexc);
+    add(dynimport);
+    add(myDynimport);
   }
 
   @Override

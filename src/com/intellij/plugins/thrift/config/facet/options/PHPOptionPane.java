@@ -1,5 +1,6 @@
 package com.intellij.plugins.thrift.config.facet.options;
 
+import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.plugins.thrift.config.target.PHP;
 
 import javax.swing.*;
@@ -20,10 +21,10 @@ class PHPOptionPane extends AOptionPane<PHP> {
   public PHPOptionPane() {
     super(new GridLayout(0, 1));
 
-    myInlined = new JCheckBox("inlined");
-    myServer = new JCheckBox("server");
-    myOop = new JCheckBox("oop");
-    myRest = new JCheckBox("rest");
+    myInlined = new JCheckBox(ThriftBundle.message("thrift.gen.option.inlined"));
+    myServer = new JCheckBox(ThriftBundle.message("thrift.gen.option.server"));
+    myOop = new JCheckBox(ThriftBundle.message("thrift.gen.option.oop"));
+    myRest = new JCheckBox(ThriftBundle.message("thrift.gen.option.rest"));
 
     add(myInlined);
     add(myServer);

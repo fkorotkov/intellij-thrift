@@ -1,5 +1,6 @@
 package com.intellij.plugins.thrift.config.facet.options;
 
+import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.plugins.thrift.config.target.HTML;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ class HTMLOptionPane extends AOptionPane<HTML> {
   public HTMLOptionPane() {
     super(new GridLayout(0, 1));
 
-    myStandalone = new JCheckBox("standalone");
+    myStandalone = new JCheckBox(ThriftBundle.message("thrift.gen.option.standalone"));
 
     add(myStandalone);
   }

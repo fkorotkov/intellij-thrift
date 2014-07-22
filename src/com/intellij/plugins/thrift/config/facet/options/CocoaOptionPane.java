@@ -1,5 +1,6 @@
 package com.intellij.plugins.thrift.config.facet.options;
 
+import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.plugins.thrift.config.target.Cocoa;
 
 import javax.swing.*;
@@ -17,8 +18,8 @@ class CocoaOptionPane extends AOptionPane<Cocoa> {
   public CocoaOptionPane() {
     super(new GridLayout(0, 1));
 
-    myLogUnexpected = new JCheckBox("log_unexpected");
-    myValidateRequired = new JCheckBox("validate_required");
+    myLogUnexpected = new JCheckBox(ThriftBundle.message("thrift.gen.option.log_unexpected"));
+    myValidateRequired = new JCheckBox(ThriftBundle.message("thrift.gen.option.validate_required"));
 
     add(myLogUnexpected);
     add(myValidateRequired);

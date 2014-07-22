@@ -1,5 +1,6 @@
 package com.intellij.plugins.thrift.config.facet.options;
 
+import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.plugins.thrift.config.target.Go;
 import org.apache.commons.lang.StringUtils;
 
@@ -17,24 +18,17 @@ class GoOptionPane extends AOptionPane<Go> {
   private final JTextField myThriftImport;
 
   public GoOptionPane() {
-    super(new BorderLayout());
+    super(new GridLayout(0, 1));
 
-    final JLabel packagePrefixLabel = new JLabel("package_prefix");
-    final JLabel thriftImportLabel = new JLabel("thrift_import");
+    final JLabel packagePrefixLabel = new JLabel(ThriftBundle.message("thrift.gen.option.package_prefix"));
+    final JLabel thriftImportLabel = new JLabel(ThriftBundle.message("thrift.gen.option.thrift_import"));
     myPackagePrefix = new JTextField();
     myThriftImport = new JTextField();
 
-    final JPanel labels = new JPanel(new GridLayout(0, 1));
-    labels.add(packagePrefixLabel);
-    labels.add(thriftImportLabel);
-
-    add(labels, BorderLayout.WEST);
-
-    final JPanel fields = new JPanel(new GridLayout(0, 1));
-    fields.add(myPackagePrefix);
-    fields.add(myThriftImport);
-
-    add(fields, BorderLayout.CENTER);
+    add(packagePrefixLabel);
+    add(myPackagePrefix);
+    add(thriftImportLabel);
+    add(myThriftImport);
   }
 
   @Override

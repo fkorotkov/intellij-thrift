@@ -1,5 +1,6 @@
 package com.intellij.plugins.thrift.config.facet.options;
 
+import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.plugins.thrift.config.target.Java;
 
 import javax.swing.*;
@@ -23,13 +24,13 @@ class JavaOptionPane extends AOptionPane<Java> {
   public JavaOptionPane() {
     super(new GridLayout(0, 1));
 
-    myBeans = new JCheckBox("beans");
-    myPrivateMembers = new JCheckBox("private-members");
-    myNocamel = new JCheckBox("nocamel");
-    myHashcode = new JCheckBox("hashcode");
-    myAndroidLegacy = new JCheckBox("android_legacy");
-    myJava5 = new JCheckBox("java5");
-    mySortedContainers = new JCheckBox("sorted_containers");
+    myBeans = new JCheckBox(ThriftBundle.message("thrift.gen.option.beans"));
+    myPrivateMembers = new JCheckBox(ThriftBundle.message("thrift.gen.option.private-members"));
+    myNocamel = new JCheckBox(ThriftBundle.message("thrift.gen.option.nocamel"));
+    myHashcode = new JCheckBox(ThriftBundle.message("thrift.gen.option.java-hashcode"));
+    myAndroidLegacy = new JCheckBox(ThriftBundle.message("thrift.gen.option.android_legacy"));
+    myJava5 = new JCheckBox(ThriftBundle.message("thrift.gen.option.java5"));
+    mySortedContainers = new JCheckBox(ThriftBundle.message("thrift.gen.option.sorted_containers"));
 
     add(myBeans);
     add(myPrivateMembers);

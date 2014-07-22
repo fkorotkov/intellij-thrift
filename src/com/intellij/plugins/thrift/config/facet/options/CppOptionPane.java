@@ -1,5 +1,6 @@
 package com.intellij.plugins.thrift.config.facet.options;
 
+import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.plugins.thrift.config.target.Cpp;
 
 import javax.swing.*;
@@ -21,12 +22,12 @@ class CppOptionPane extends AOptionPane<Cpp> {
   public CppOptionPane() {
     super(new GridLayout(0, 1));
 
-    myCobStyle = new JCheckBox("cob_style");
-    myNoClientCompletion = new JCheckBox("no_client_completion");
-    myTemplates = new JCheckBox("templates");
-    myPureEnums = new JCheckBox("pure_enums");
-    myDense = new JCheckBox("dense");
-    myIncludePrefix = new JCheckBox("include_prefix");
+    myCobStyle = new JCheckBox(ThriftBundle.message("thrift.gen.option.cob_style"));
+    myNoClientCompletion = new JCheckBox(ThriftBundle.message("thrift.gen.option.no_client_completion"));
+    myTemplates = new JCheckBox(ThriftBundle.message("thrift.gen.option.templates"));
+    myPureEnums = new JCheckBox(ThriftBundle.message("thrift.gen.option.pure_enums"));
+    myDense = new JCheckBox(ThriftBundle.message("thrift.gen.option.dense"));
+    myIncludePrefix = new JCheckBox(ThriftBundle.message("thrift.gen.option.include_prefix"));
 
     add(myCobStyle);
     add(myNoClientCompletion);

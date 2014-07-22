@@ -1,5 +1,6 @@
 package com.intellij.plugins.thrift.config.facet.options;
 
+import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.plugins.thrift.config.target.Graphviz;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ class GraphvizOptionPane extends AOptionPane<Graphviz> {
   public GraphvizOptionPane() {
     super(new GridLayout(0, 1));
 
-    myExceptions = new JCheckBox("exceptions");
+    myExceptions = new JCheckBox(ThriftBundle.message("thrift.gen.option.exceptions"));
 
     add(myExceptions);
   }

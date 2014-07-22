@@ -1,5 +1,6 @@
 package com.intellij.plugins.thrift.config.facet.options;
 
+import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.plugins.thrift.config.target.Ruby;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ class RubyOptionPane extends AOptionPane<Ruby> {
   public RubyOptionPane() {
     super(new GridLayout(0, 1));
 
-    myRubygems = new JCheckBox("rubygems");
+    myRubygems = new JCheckBox(ThriftBundle.message("thrift.gen.option.rubygems"));
 
     add(myRubygems);
   }

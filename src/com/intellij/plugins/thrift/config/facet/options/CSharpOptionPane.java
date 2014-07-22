@@ -1,5 +1,6 @@
 package com.intellij.plugins.thrift.config.facet.options;
 
+import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.plugins.thrift.config.target.CSharp;
 
 import javax.swing.*;
@@ -23,13 +24,13 @@ class CSharpOptionPane extends AOptionPane<CSharp> {
   public CSharpOptionPane() {
     super(new GridLayout(0, 1));
 
-    myAsync = new JCheckBox("async");
-    myAsyncctp = new JCheckBox("asyncctp");
-    myWcf = new JCheckBox("wcf");
-    mySerial = new JCheckBox("serial");
-    myNullable = new JCheckBox("nullable");
-    myHashcode = new JCheckBox("hashcode");
-    myUnion = new JCheckBox("union");
+    myAsync = new JCheckBox(ThriftBundle.message("thrift.gen.option.async"));
+    myAsyncctp = new JCheckBox(ThriftBundle.message("thrift.gen.option.asyncctp"));
+    myWcf = new JCheckBox(ThriftBundle.message("thrift.gen.option.wcf"));
+    mySerial = new JCheckBox(ThriftBundle.message("thrift.gen.option.serial"));
+    myNullable = new JCheckBox(ThriftBundle.message("thrift.gen.option.nullable"));
+    myHashcode = new JCheckBox(ThriftBundle.message("thrift.gen.option.cs-hashcode"));
+    myUnion = new JCheckBox(ThriftBundle.message("thrift.gen.option.union"));
 
     add(myAsync);
     add(myAsyncctp);
