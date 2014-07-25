@@ -15,6 +15,7 @@ import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.ui.IdeBorderFactory;
 import com.intellij.ui.components.JBLabel;
 import com.intellij.ui.components.JBTextField;
@@ -103,14 +104,13 @@ public class ThriftCompilerConfigurable extends BaseConfigurable implements Sear
     private final ThriftPlugin plugin;
 
     private final TextFieldWithBrowseButton tfThriftCompiler;
-    private final JCheckBox cbNoWarn = new JCheckBox("Suppress all compiler warnings");
-    private final JCheckBox cbStrict = new JCheckBox("Strict compiler warnings on");
-    private final JCheckBox cbVerbose = new JCheckBox("Verbose mode");
-    private final JCheckBox cbRecurse = new JCheckBox("Also generate included files");
-    private final JCheckBox cbDebug = new JCheckBox("Parse debug trace to stdout");
-    private final JCheckBox cbAllowNegKeys =
-      new JCheckBox("Allow negative field keys (Used to preserve protocol compatibility with older .thrift files)");
-    private final JCheckBox cbAllow64bitConsts = new JCheckBox("Do not print warnings about using 64-bit constants");
+    private final JCheckBox cbNoWarn = new JCheckBox(ThriftBundle.message("thrift.compiler.option.nowarn"));
+    private final JCheckBox cbStrict = new JCheckBox(ThriftBundle.message("thrift.compiler.option.strict"));
+    private final JCheckBox cbVerbose = new JCheckBox(ThriftBundle.message("thrift.compiler.option.verbose"));
+    private final JCheckBox cbRecurse = new JCheckBox(ThriftBundle.message("thrift.compiler.option.recurse"));
+    private final JCheckBox cbDebug = new JCheckBox(ThriftBundle.message("thrift.compiler.option.debug"));
+    private final JCheckBox cbAllowNegKeys = new JCheckBox(ThriftBundle.message("thrift.compiler.option.allow-neg-keys"));
+    private final JCheckBox cbAllow64bitConsts = new JCheckBox(ThriftBundle.message("thrift.compiler.option.allow-64bit-consts"));
 
     private final JButton bCheckVersion = new JButton();
     private VirtualFile lastSelectedFile;
