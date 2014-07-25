@@ -9,7 +9,6 @@ import java.util.Collections;
  * @author xBlackCat
  */ //Graphviz
 public class Graphviz extends Generator {
-  private static final Arg[] ARGS = new Arg[]{Arg.bool("exceptions")};
   /**
    * Whether to draw arrows from functions to exception.
    */

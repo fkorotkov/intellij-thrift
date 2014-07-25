@@ -9,7 +9,6 @@ import java.util.Collection;
  * @author xBlackCat
  */ //delphi
 public class Delphi extends Generator {
-  private static final Arg[] ARGS = new Arg[]{Arg.bool("ansistr_binary"), Arg.bool("register_types")};
   /**
    * Use AnsiString for binary datatype (default is TBytes).
    */

@@ -9,9 +9,6 @@ import java.util.Collection;
  * @author xBlackCat
  */ //C++
 public class Cpp extends Generator {
-  private static final Arg[] ARGS =
-    new Arg[]{Arg.bool("cob_style"), Arg.bool("no_client_completion"), Arg.bool("templates"), Arg.bool("pure_enums"), Arg.bool("dense"),
-      Arg.bool("include_prefix")};
   /**
    * Generate "Continuation OBject"-style classes.
    */

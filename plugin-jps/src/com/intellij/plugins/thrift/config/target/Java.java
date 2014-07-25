@@ -9,13 +9,6 @@ import java.util.Collection;
  * @author xBlackCat
  */ //Java
 public class Java extends Generator {
-  private static final Arg[] ARGS = new Arg[]{Arg.bool("beans"),
-    Arg.bool("private-members"),
-    Arg.bool("nocamel"),
-    Arg.bool("hashcode"),
-    Arg.bool("android_legacy"),
-    Arg.bool("java5"),
-    Arg.bool("sorted_containers")};
   /**
    * Members will be private, and setter methods will return void.
    */

@@ -9,7 +9,6 @@ import java.util.Collection;
  * @author xBlackCat
  */ //JavaScript
 public class Javascript extends Generator {
-  private static final Arg[] ARGS = new Arg[]{Arg.bool("jquery"), Arg.bool("node")};
   /**
    * Generate jQuery compatible code.
    */

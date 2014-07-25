@@ -9,7 +9,6 @@ import java.util.Collections;
  * @author xBlackCat
  */ //HTML
 public class HTML extends Generator {
-  private static final Arg[] ARGS = new Arg[]{Arg.bool("standalone")};
   /**
    * Self-contained mode, includes all CSS in the HTML files. Generates no style.css file, but HTML files will be larger.
    */

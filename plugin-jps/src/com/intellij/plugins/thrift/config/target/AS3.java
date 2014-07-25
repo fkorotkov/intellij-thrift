@@ -9,7 +9,6 @@ import java.util.Collections;
  * @author xBlackCat
  */ //AS3
 public class AS3 extends Generator {
-  private static final Arg[] ARGS = new Arg[]{Arg.bool("bindable")};
   /**
    * Add [bindable] metadata to all the struct classes.
    */

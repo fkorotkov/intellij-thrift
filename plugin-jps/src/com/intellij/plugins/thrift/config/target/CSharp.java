@@ -9,9 +9,6 @@ import java.util.Collection;
  * @author xBlackCat
  */ //C#
 public class CSharp extends Generator {
-  private static final Arg[] ARGS =
-    new Arg[]{Arg.bool("async"), Arg.bool("asyncctp"), Arg.bool("wcf"), Arg.bool("serial"), Arg.bool("nullable"),
-      Arg.bool("hashcode"), Arg.bool("union")};
   /**
    * Adds Async support using Task.Run.
    */

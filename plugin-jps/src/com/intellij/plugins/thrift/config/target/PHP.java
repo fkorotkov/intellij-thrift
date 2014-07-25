@@ -10,7 +10,6 @@ import java.util.List;
  * @author xBlackCat
  */ //PHP
 public class PHP extends Generator {
-  private static final Arg[] ARGS = new Arg[]{Arg.bool("inlined"), Arg.bool("server"), Arg.bool("oop"), Arg.bool("rest")};
   /**
    * Generate PHP inlined files
    */

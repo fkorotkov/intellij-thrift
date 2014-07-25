@@ -9,9 +9,6 @@ import java.util.Collection;
  * @author xBlackCat
  */ //Python
 public class Python extends Generator {
-  private static final Arg[] ARGS =
-    new Arg[]{Arg.bool("new_style"), Arg.bool("twisted"), Arg.bool("tornado"), Arg.bool("utf8strings"), Arg.bool("slots"),
-      Arg.bool("dynamic"), Arg.string("dynbase"), Arg.string("dynexc"), Arg.string("dynimport")};
   /**
    * Generate new-style classes.
    */

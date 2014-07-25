@@ -9,7 +9,6 @@ import java.util.Collections;
  * @author xBlackCat
  */ //Ruby
 public class Ruby extends Generator {
-  private static final Arg[] ARGS = new Arg[]{Arg.bool("rubygems")};
   /**
    * Add a "require 'rubygems'" line to the top of each generated file.
    */

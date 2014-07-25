@@ -9,7 +9,6 @@ import java.util.Collection;
  * @author xBlackCat
  */ //Cocoa
 public class Cocoa extends Generator {
-  private static final Arg[] ARGS = new Arg[]{Arg.bool("log_unexpected"), Arg.bool("validate_required")};
   /**
    * Log every time an unexpected field ID or type is encountered.
    */

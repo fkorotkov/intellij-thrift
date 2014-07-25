@@ -9,7 +9,6 @@ import java.util.Collection;
  * @author xBlackCat
  */ //Go
 public class Go extends Generator {
-  private static final Arg[] ARGS = new Arg[]{Arg.string("package_prefix"), Arg.string("thrift_import")};
   /**
    * Package prefix for generated files.
    */
