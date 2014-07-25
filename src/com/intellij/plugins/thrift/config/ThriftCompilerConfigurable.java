@@ -62,7 +62,7 @@ public class ThriftCompilerConfigurable extends BaseConfigurable implements Sear
   @Nls
   @Override
   public String getDisplayName() {
-    return "Thrift compiler";
+    return ThriftBundle.message("thrift.compiler.page.title");
   }
 
   @Nullable
@@ -156,7 +156,7 @@ public class ThriftCompilerConfigurable extends BaseConfigurable implements Sear
       });
 
       final JPanel topPane = new JPanel(new BorderLayout(5, 0));
-      topPane.add(new JBLabel("Thrift executable:"), BorderLayout.WEST);
+      topPane.add(new JBLabel(ThriftBundle.message("thrift.compiler.page.exec.label")), BorderLayout.WEST);
       topPane.add(tfThriftCompiler, BorderLayout.CENTER);
       topPane.add(bCheckVersion, BorderLayout.EAST);
 
@@ -164,7 +164,7 @@ public class ThriftCompilerConfigurable extends BaseConfigurable implements Sear
 
       final JPanel optionsCover = new JPanel(new BorderLayout());
       final JPanel options = new JPanel(new GridLayout(-1, 1));
-      optionsCover.setBorder(IdeBorderFactory.createTitledBorder("Compiler options", true));
+      optionsCover.setBorder(IdeBorderFactory.createTitledBorder(ThriftBundle.message("thrift.compiler.page.options.title"), true));
 
       options.add(cbNoWarn);
       options.add(cbStrict);
@@ -238,7 +238,7 @@ public class ThriftCompilerConfigurable extends BaseConfigurable implements Sear
       private String version;
 
       public ThriftVersionChecker(String folder) {
-        super(project, "Checking apache thrift compiler", true);
+        super(project, ThriftBundle.message("thrift.compiler.check.progress.title"), true);
         thriftCmd = folder;
       }
 
@@ -288,8 +288,8 @@ public class ThriftCompilerConfigurable extends BaseConfigurable implements Sear
           if (version != null) {
             Messages.showInfoMessage(
               project,
-              "Found Apache Thrift compiler. Version: " + version,
-              "Apache Thrift compiler is found"
+              ThriftBundle.message("thrift.compiler.check.success", version),
+              ThriftBundle.message("thrift.compiler.check.success.title")
             );
           }
 
@@ -298,8 +298,8 @@ public class ThriftCompilerConfigurable extends BaseConfigurable implements Sear
         else {
           Messages.showWarningDialog(
             project,
-            "Selected path is not valid Apache Thrift compiler path",
-            "Apache Thrift compiler is not found"
+            ThriftBundle.message("thrift.compiler.check.not-found"),
+            ThriftBundle.message("thrift.compiler.check.not-found.title")
           );
         }
       }

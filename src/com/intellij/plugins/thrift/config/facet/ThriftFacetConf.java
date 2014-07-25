@@ -19,6 +19,7 @@ import com.intellij.openapi.util.InvalidDataException;
 import com.intellij.openapi.util.WriteExternalException;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.plugins.thrift.config.ThriftCompilerOptions;
 import com.intellij.plugins.thrift.config.facet.options.OptionsDialogWrapper;
 import com.intellij.plugins.thrift.config.target.Generator;
@@ -103,7 +104,7 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
       myContext = context;
       myManager = manager;
 
-      cleanOnBuildCheckBox.setText("Clean output folder before build");
+      cleanOnBuildCheckBox.setText(ThriftBundle.message("thrift.facet.options.clean-output"));
       cleanOnBuildCheckBox.addChangeListener(new ChangeListener() {
         @Override
         public void stateChanged(ChangeEvent e) {
@@ -112,7 +113,7 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
       });
 
       pane = new JPanel(new BorderLayout());
-      pane.setBorder(IdeBorderFactory.createTitledBorder("Translator options", false));
+      pane.setBorder(IdeBorderFactory.createTitledBorder(ThriftBundle.message("thrift.facet.options.border-title"), false));
 
       pane.add(cleanOnBuildCheckBox, BorderLayout.NORTH);
 
@@ -190,7 +191,7 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
 
     private class IncludesPanel extends AddEditRemovePanel<String> {
       public IncludesPanel() {
-        super(new IncludesTableModel(), new ArrayList<String>(), "Includes list");
+        super(new IncludesTableModel(), new ArrayList<String>(), ThriftBundle.message("thrift.facet.options.generators.inc-list.title"));
       }
 
       @Nullable
@@ -223,7 +224,8 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
 
     private class GeneratorListPanel extends AddEditRemovePanel<Generator> {
       public GeneratorListPanel() {
-        super(new GeneratorTableModel(), new ArrayList<Generator>(), "Generators");
+        super(new GeneratorTableModel(), new ArrayList<Generator>(),
+              ThriftBundle.message("thrift.facet.options.generators.gen-list.title"));
 
         setRenderer(0, new ColoredTableCellRenderer() {
           @Override
@@ -250,27 +252,25 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
         setLayout(new BorderLayout());
 
         final JPanel panel = ToolbarDecorator.createDecorator(getTable())
-          .setAddAction(new AnActionButtonRunnable() {
-            @Override
-            public void run(AnActionButton button) {
-              final ListPopup popup = PopupFactoryImpl.getInstance().createActionGroupPopup("Generator", new ActionGroup() {
-                @NotNull
-                @Override
-                public AnAction[] getChildren(@Nullable AnActionEvent e) {
-                  final GeneratorType[] types = GeneratorType.values();
-                  AnAction[] actions = new AnAction[types.length];
-                  int i = 0;
-                  while (i < types.length) {
-                    actions[i] = new CreateGeneratorAction(types[i]);
-                    i++;
-                  }
-                  return actions;
-                }
-              }, button.getDataContext(), JBPopupFactory.ActionSelectionAid.SPEEDSEARCH, true);
+          .setAddAction(
+            new AnActionButtonRunnable() {
 
-              popup.show(button.getPreferredPopupPoint());
+              private final ActionGroup myGeneratorListGroup = new GeneratorListGroup();
+
+              @Override
+              public void run(AnActionButton button) {
+                final ListPopup popup = PopupFactoryImpl.getInstance().createActionGroupPopup(
+                  ThriftBundle.message("thrift.facet.options.generators.popup.title"),
+                  myGeneratorListGroup,
+                  button.getDataContext(),
+                  JBPopupFactory.ActionSelectionAid.SPEEDSEARCH,
+                  true
+                );
+
+                popup.show(button.getPreferredPopupPoint());
+              }
             }
-          })
+          )
           .setRemoveAction(new AnActionButtonRunnable() {
             @Override
             public void run(AnActionButton button) {
@@ -347,6 +347,26 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
           int index = getData().size() - 1;
           ((AbstractTableModel)getTable().getModel()).fireTableRowsInserted(index, index);
           getTable().setRowSelectionInterval(index, index);
+        }
+      }
+
+      private class GeneratorListGroup extends ActionGroup {
+        private final AnAction[] actions;
+
+        {
+          final GeneratorType[] types = GeneratorType.values();
+          actions = new AnAction[types.length];
+          int i = 0;
+          while (i < types.length) {
+            actions[i] = new CreateGeneratorAction(types[i]);
+            i++;
+          }
+        }
+
+        @NotNull
+        @Override
+        public AnAction[] getChildren(@Nullable AnActionEvent e) {
+          return actions;
         }
       }
     }
