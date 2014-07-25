@@ -4,18 +4,18 @@ import com.intellij.execution.process.ProcessAdapter;
 import com.intellij.execution.process.ProcessEvent;
 import com.intellij.execution.process.ProcessOutputTypes;
 import com.intellij.openapi.util.Key;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.jetbrains.jps.incremental.CompileContext;
 import org.jetbrains.jps.incremental.messages.BuildMessage;
 import org.jetbrains.jps.incremental.messages.CompilerMessage;
 import org.jetbrains.jps.incremental.messages.FileGeneratedEvent;
 import org.jetbrains.jps.model.module.JpsModule;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
+import java.net.URI;
+import java.util.Collection;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -30,9 +30,9 @@ class ThriftOutputConsumer extends ProcessAdapter {
   private final CompileContext myContext;
   private final AtomicBoolean myHasErrors;
   private final JpsModule myModule;
-  private final Path myTargetDir;
+  private final File myTargetDir;
 
-  public ThriftOutputConsumer(String fileName, CompileContext context, AtomicBoolean hasErrors, JpsModule module, Path targetDir) {
+  public ThriftOutputConsumer(String fileName, CompileContext context, AtomicBoolean hasErrors, JpsModule module, File targetDir) {
     this.fileName = fileName;
     myContext = context;
     myHasErrors = hasErrors;
@@ -115,13 +115,7 @@ class ThriftOutputConsumer extends ProcessAdapter {
       try {
         final FileGeneratedEvent msg = new FileGeneratedEvent();
 
-        Files.walkFileTree(myTargetDir, new SimpleFileVisitor<Path>() {
-          @Override
-          public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-            msg.add(myTargetDir.toString(), myTargetDir.relativize(file).toString());
-            return FileVisitResult.CONTINUE;
-          }
-        });
+        collectNewFiles(msg);
 
         myContext.processMessage(msg);
       }
@@ -145,6 +139,14 @@ class ThriftOutputConsumer extends ProcessAdapter {
         )
       );
       myHasErrors.set(true);
+    }
+  }
+
+  private void collectNewFiles(final FileGeneratedEvent msg) throws IOException {
+    final Collection<File> files = FileUtils.listFiles(myTargetDir, FileFilterUtils.trueFileFilter(), FileFilterUtils.trueFileFilter());
+    final URI baseUri = myTargetDir.toURI();
+    for (File f : files) {
+      msg.add(myTargetDir.toString(), baseUri.relativize(f.toURI()).getPath());
     }
   }
 }

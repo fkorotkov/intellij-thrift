@@ -107,7 +107,7 @@ public class Java extends Generator {
 
   @Override
   protected Collection<String> getOptions() {
-    ArrayList<String> line = new ArrayList<>();
+    ArrayList<String> line = new ArrayList<String>();
     if (beans) {
       line.add("beans");
     }

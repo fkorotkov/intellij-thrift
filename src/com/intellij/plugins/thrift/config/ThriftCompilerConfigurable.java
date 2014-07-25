@@ -262,11 +262,15 @@ public class ThriftCompilerConfigurable extends BaseConfigurable implements Sear
           process.waitFor();
 
           byte[] stdOut;
-          try (InputStream stdOutIS = process.getInputStream()) {
+          InputStream stdOutIS = process.getInputStream();
+          try {
             stdOut = IOUtils.getInputStreamBytes(stdOutIS);
             if (stdOut == null || stdOut.length == 0) {
               return null;
             }
+          }
+          finally {
+            stdOutIS.close();
           }
 
           return new String(stdOut);

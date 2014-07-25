@@ -12,7 +12,7 @@ import com.intellij.openapi.module.Module;
 public class ThriftFacet extends Facet<ThriftFacetConf> {
   public static final String NAME = "thrift";
   public static final String DISPLAY_NAME = "Thrift";
-  public static final FacetTypeId<ThriftFacet> ID = new FacetTypeId<>(NAME);
+  public static final FacetTypeId<ThriftFacet> ID = new FacetTypeId<ThriftFacet>(NAME);
   public static final ThriftFacetType TYPE = new ThriftFacetType();
 
   public ThriftFacet(Module module,

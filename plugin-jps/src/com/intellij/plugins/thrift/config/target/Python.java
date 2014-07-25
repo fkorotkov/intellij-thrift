@@ -129,7 +129,7 @@ public class Python extends Generator {
 
   @Override
   protected Collection<String> getOptions() {
-    ArrayList<String> line = new ArrayList<>();
+    ArrayList<String> line = new ArrayList<String>();
     if (newStyle) {
       line.add("new_style");
     }

@@ -103,7 +103,7 @@ public class CSharp extends Generator {
 
   @Override
   protected Collection<String> getOptions() {
-    ArrayList<String> line = new ArrayList<>();
+    ArrayList<String> line = new ArrayList<String>();
     if (async) {
       line.add("async");
     }

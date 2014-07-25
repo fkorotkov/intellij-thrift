@@ -91,7 +91,7 @@ public class Cpp extends Generator {
 
   @Override
   protected Collection<String> getOptions() {
-    Collection<String> line = new ArrayList<>();
+    Collection<String> line = new ArrayList<String>();
     if (cobStyle) {
       line.add("cob_style");
     }

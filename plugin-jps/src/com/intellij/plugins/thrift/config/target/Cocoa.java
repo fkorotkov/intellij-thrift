@@ -41,7 +41,7 @@ public class Cocoa extends Generator {
 
   @Override
   protected Collection<String> getOptions() {
-    ArrayList<String> list = new ArrayList<>();
+    ArrayList<String> list = new ArrayList<String>();
 
     if (logUnexpected) {
       list.add("log_unexpected");

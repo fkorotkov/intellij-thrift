@@ -66,7 +66,7 @@ public class PHP extends Generator {
 
   @Override
   protected Collection<String> getOptions() {
-    List<String> line = new ArrayList<>();
+    List<String> line = new ArrayList<String>();
     if (inlined) {
       line.add("inlined");
     }

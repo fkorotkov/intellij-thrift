@@ -8,6 +8,7 @@ import com.intellij.plugins.thrift.config.ThriftCompilerOptions;
 import com.intellij.plugins.thrift.config.ThriftConfig;
 import com.intellij.plugins.thrift.config.target.Generator;
 import com.intellij.plugins.thrift.config.target.IGenerator;
+import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.jps.ModuleChunk;
 import org.jetbrains.jps.builders.DirtyFilesHolder;
@@ -20,8 +21,6 @@ import org.jetbrains.jps.model.module.JpsModule;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,9 +48,9 @@ public class ThriftBuilder extends ModuleLevelBuilder {
 
     final String compiler = VfsUtil.urlToPath(thriftConfig.getCompilerPath());
 
-    final Map<ModuleBuildTarget, List<File>> toCompile = collectChangedFiles(context, dirtyFilesHolder);
+    final Map<ModuleBuildTarget, List<File>> toCompile = collectChangedFiles(dirtyFilesHolder);
 
-    List<String> cmdLine = new ArrayList<>();
+    List<String> cmdLine = new ArrayList<String>();
     cmdLine.add(compiler);
 
     if (thriftConfig.isNoWarn()) {
@@ -95,39 +94,25 @@ public class ThriftBuilder extends ModuleLevelBuilder {
         continue;
       }
 
-      List<String> moduleCmdLine = new ArrayList<>(cmdLine);
+      List<String> moduleCmdLine = new ArrayList<String>(cmdLine);
       for (String include : options.getIncludes()) {
         moduleCmdLine.add("-I");
         moduleCmdLine.add(include);
       }
 
       for (IGenerator g : generators) {
-        List<String> genCmdLine = new ArrayList<>(moduleCmdLine);
+        List<String> genCmdLine = new ArrayList<String>(moduleCmdLine);
         genCmdLine.add("--gen");
         genCmdLine.add(g.getOptionsString());
         genCmdLine.add("-out");
 
         final String path = VfsUtil.urlToPath(g.getOutputDir());
         genCmdLine.add(path);
-        final Path targetDir = Paths.get(path);
+        final File targetDir = new File(path);
 
         if (options.isCleanOutput()) {
           try {
-            Files.walkFileTree(targetDir, new SimpleFileVisitor<Path>() {
-              @Override
-              public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                Files.deleteIfExists(file);
-                return FileVisitResult.CONTINUE;
-              }
-
-              @Override
-              public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-                if (!targetDir.equals(dir)) {
-                  Files.deleteIfExists(dir);
-                }
-                return FileVisitResult.CONTINUE;
-              }
-            });
+            FileUtils.cleanDirectory(targetDir);
           }
           catch (IOException ex) {
             context.processMessage(
@@ -139,7 +124,7 @@ public class ThriftBuilder extends ModuleLevelBuilder {
         }
 
         for (File source : sourceFiles) {
-          compileFile(context, target, genCmdLine, source, targetDir.toAbsolutePath());
+          compileFile(context, target, genCmdLine, source, targetDir);
         }
       }
     }
@@ -147,10 +132,10 @@ public class ThriftBuilder extends ModuleLevelBuilder {
     return ExitCode.OK;
   }
 
-  private void compileFile(final CompileContext context, ModuleBuildTarget target, List<String> line, File source, Path dir)
+  private void compileFile(final CompileContext context, ModuleBuildTarget target, List<String> line, File source, File dir)
     throws StopBuildException {
     final JpsModule module = target.getModule();
-    List<String> cmdLine = new ArrayList<>(line);
+    List<String> cmdLine = new ArrayList<String>(line);
     cmdLine.add(source.getAbsolutePath());
 
     try {
@@ -184,10 +169,9 @@ public class ThriftBuilder extends ModuleLevelBuilder {
   }
 
   private Map<ModuleBuildTarget, List<File>> collectChangedFiles(
-    CompileContext context,
     DirtyFilesHolder<JavaSourceRootDescriptor, ModuleBuildTarget> dirtyFilesHolder
   ) throws IOException {
-    final Map<ModuleBuildTarget, List<File>> toCompile = new HashMap<>();
+    final Map<ModuleBuildTarget, List<File>> toCompile = new HashMap<ModuleBuildTarget, List<File>>();
     dirtyFilesHolder.processDirtyFiles(
       new ThriftFilter(toCompile)
     );
@@ -209,7 +193,7 @@ public class ThriftBuilder extends ModuleLevelBuilder {
       if (file.getName().endsWith(".thrift")) {
         List<File> files = myToCompile.get(target);
         if (files == null) {
-          files = new ArrayList<>();
+          files = new ArrayList<File>();
           myToCompile.put(target, files);
         }
         files.add(file);

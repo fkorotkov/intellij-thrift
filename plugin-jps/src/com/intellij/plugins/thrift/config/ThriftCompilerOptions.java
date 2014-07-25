@@ -19,8 +19,8 @@ import java.util.List;
 public class ThriftCompilerOptions extends JpsElementBase<ThriftCompilerOptions> {
   public static final JpsElementChildRole<ThriftCompilerOptions> ROLE = JpsElementChildRoleBase.create("Thrift compiler options");
 
-  private List<Generator> generators = new ArrayList<>();
-  private List<String> includes = new ArrayList<>();
+  private List<Generator> generators = new ArrayList<Generator>();
+  private List<String> includes = new ArrayList<String>();
   private boolean cleanOutput;
 
   public static ThriftCompilerOptions getSettings(JpsModule module) {
