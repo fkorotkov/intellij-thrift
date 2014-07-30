@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="thrift-jps">
+    <output-path>$PROJECT_DIR$/out/artifacts/thrift_jps</output-path>
+    <root id="root">
+      <element id="archive" name="thrift-jps.jar">
+        <element id="module-output" name="plugin-jps" />
+        <element id="directory" name="META-INF">
+          <element id="dir-copy" path="$PROJECT_DIR$/plugin-jps/resources/META-INF" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

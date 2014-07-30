@@ -4,6 +4,10 @@
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
+      <p>0.9.1:</p>
+      <ul>
+        <li>Compile thrift files within Idea</li>
+      </ul>
       <p>0.9:</p>
       <ul>
         <li>Type Annotations</li>
@@ -49,7 +53,7 @@
       </ul>
       ]]>
   </change-notes>
-  <version>0.9</version>
+  <version>0.9.1</version>
   <vendor>Twitter, Inc.</vendor>
   <idea-version since-build="132.1"/>
 
@@ -60,13 +64,16 @@
     <fileTypeFactory implementation="com.intellij.plugins.thrift.ThriftFileTypeLoader"/>
     <lang.parserDefinition language="thrift" implementationClass="com.intellij.plugins.thrift.lang.parser.ThriftParserDefinition"/>
     <completion.contributor language="any" implementationClass="com.intellij.plugins.thrift.completion.ThriftKeywordCompletionContributor"/>
-    <itemPresentationProvider forClass="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration" implementationClass="com.intellij.plugins.thrift.lang.psi.presentation.ThriftTopLevelDeclarationPresentationProvider"/>
-    <itemPresentationProvider forClass="com.intellij.plugins.thrift.lang.psi.ThriftSubDeclaration" implementationClass="com.intellij.plugins.thrift.lang.psi.presentation.ThriftSubDeclarationPresentationProvider"/>
+    <itemPresentationProvider forClass="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"
+                              implementationClass="com.intellij.plugins.thrift.lang.psi.presentation.ThriftTopLevelDeclarationPresentationProvider"/>
+    <itemPresentationProvider forClass="com.intellij.plugins.thrift.lang.psi.ThriftSubDeclaration"
+                              implementationClass="com.intellij.plugins.thrift.lang.psi.presentation.ThriftSubDeclarationPresentationProvider"/>
     <codeInsight.lineMarkerProvider language="thrift" implementationClass="com.intellij.plugins.thrift.editor.ThriftLineMarkerProvider"/>
     <iconProvider implementation="com.intellij.plugins.thrift.ThriftIconProvider"/>
     <lang.psiStructureViewFactory language="thrift" implementationClass="com.intellij.plugins.thrift.structure.ThriftStructureViewFactory"/>
     <lang.findUsagesProvider language="thrift" implementationClass="com.intellij.plugins.thrift.lang.ThriftFindUsagesProvider"/>
-    <lang.elementManipulator forClass="com.intellij.plugins.thrift.lang.psi.ThriftCustomType" implementationClass="com.intellij.plugins.thrift.lang.psi.manipulator.ThriftCustomTypeManipulator"/>
+    <lang.elementManipulator forClass="com.intellij.plugins.thrift.lang.psi.ThriftCustomType"
+                             implementationClass="com.intellij.plugins.thrift.lang.psi.manipulator.ThriftCustomTypeManipulator"/>
 
     <lang.syntaxHighlighterFactory key="thrift" implementationClass="com.intellij.plugins.thrift.highlight.ThriftSyntaxHighlighterFactory"/>
     <annotator language="thrift" implementationClass="com.intellij.plugins.thrift.annotator.ThriftColorAnnotator"/>
@@ -98,8 +105,22 @@
                      key="thrift.inspection.unresolved.include"
                      groupKey="inspections.group.name" enabledByDefault="true"
                      implementationClass="com.intellij.plugins.thrift.inspections.ThriftUnresolvedIncludeInspection"/>
+
+    <projectConfigurable instance="com.intellij.plugins.thrift.config.ThriftCompilerConfigurable" id="intellij-thrift"
+                         displayName="Thrift compiler" parentId="project.propCompiler"/>
+
+    <frameworkSupport implementation="com.intellij.plugins.thrift.config.facet.ThriftFacetSupportProvider"/>
+    <facetType implementation="com.intellij.plugins.thrift.config.facet.ThriftFacetType"/>
+    <compileServer.plugin classpath="thrift-jps.jar"/>
+
   </extensions>
 
   <actions>
   </actions>
+  <project-components>
+    <component>
+      <loadForDefaultProject>true</loadForDefaultProject>
+      <implementation-class>com.intellij.plugins.thrift.config.ThriftPlugin</implementation-class>
+    </component>
+  </project-components>
 </idea-plugin>
