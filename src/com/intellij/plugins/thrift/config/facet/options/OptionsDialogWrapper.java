@@ -8,6 +8,7 @@ import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.openapi.ui.ValidationInfo;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.vfs.VirtualFileManager;
 import com.intellij.plugins.thrift.config.target.Generator;
 import com.intellij.ui.IdeBorderFactory;
 import com.intellij.ui.components.JBLabel;
@@ -94,7 +95,9 @@ public class OptionsDialogWrapper extends DialogWrapper {
       options.setBorder(null);
     }
 
-    myOutputFolderChooser.setText(VfsUtil.urlToPath(myGenerator.getOutputDir()));
+    final String url = myGenerator.getOutputDir();
+    final VirtualFile file = url == null ? null : VirtualFileManager.getInstance().findFileByUrl(url);
+    myOutputFolderChooser.setText(file == null ? VfsUtil.urlToPath(url) : file.getPath());
 
     return content;
   }
@@ -118,7 +121,9 @@ public class OptionsDialogWrapper extends DialogWrapper {
       assert dir != null;
 
       final String url = VfsUtil.pathToUrl(dir);
-      myGenerator.setOutputDir(url);
+      final VirtualFile file = VirtualFileManager.getInstance().findFileByUrl(url);
+
+      myGenerator.setOutputDir(file == null ? url : file.getUrl());
       return myGenerator;
     }
     else {
