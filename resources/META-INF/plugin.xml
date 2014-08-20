@@ -4,6 +4,10 @@
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
+      <p>0.9.2:</p>
+      <ul>
+        <li>Store relative to module folder paths for output folder</li>
+      </ul>
       <p>0.9.1:</p>
       <ul>
         <li>Compile thrift files within Idea</li>
@@ -53,7 +57,7 @@
       </ul>
       ]]>
   </change-notes>
-  <version>0.9.1</version>
+  <version>0.9.2</version>
   <vendor>Twitter, Inc.</vendor>
   <idea-version since-build="132.1"/>
 

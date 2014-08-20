@@ -70,6 +70,7 @@ public class ThriftCompilerOptions extends JpsElementBase<ThriftCompilerOptions>
     catch (CloneNotSupportedException e) {
       throw new RuntimeException("Failed to clone generator settings");
     }
+    s.includes.clear();
     s.includes.addAll(includes);
     s.cleanOutput = cleanOutput;
     return s;

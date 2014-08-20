@@ -19,6 +19,7 @@ import com.intellij.openapi.util.InvalidDataException;
 import com.intellij.openapi.util.WriteExternalException;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.vfs.VirtualFileManager;
 import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.plugins.thrift.config.ThriftCompilerOptions;
 import com.intellij.plugins.thrift.config.facet.options.OptionsDialogWrapper;
@@ -32,7 +33,6 @@ import org.jdom.Element;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.jetbrains.io.LocalFileFinder;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -95,7 +95,7 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
 
     private final JCheckBox cleanOnBuildCheckBox = new JCheckBox();
     private final AddEditRemovePanel<Generator> translators;
-    private final AddEditRemovePanel<String> includesList;
+    private final AddEditRemovePanel<VirtualFile> includesList;
     private boolean modified = false;
 
 
@@ -158,8 +158,11 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
         throw new RuntimeException("Failed to clone generator settings");
       }
 
-      includesList.getData().clear();
-      includesList.getData().addAll(config.getIncludes());
+      final List<VirtualFile> includes = includesList.getData();
+      includes.clear();
+      for (String inc : config.getIncludes()) {
+        includes.add(VirtualFileManager.getInstance().findFileByUrl(inc));
+      }
 
       cleanOnBuildCheckBox.setSelected(config.isCleanOutput());
       modified = false;
@@ -172,7 +175,10 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
     private ThriftCompilerOptions getConfig() {
       final ThriftCompilerOptions options = new ThriftCompilerOptions();
       options.getGenerators().addAll(translators.getData());
-      options.getIncludes().addAll(includesList.getData());
+      final List<String> includes = options.getIncludes();
+      for (VirtualFile vf : includesList.getData()) {
+        includes.add(vf.getUrl());
+      }
       options.setCleanOutput(cleanOnBuildCheckBox.isSelected());
 
       return options;
@@ -189,27 +195,27 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
 
     }
 
-    private class IncludesPanel extends AddEditRemovePanel<String> {
+    private class IncludesPanel extends AddEditRemovePanel<VirtualFile> {
       public IncludesPanel() {
-        super(new IncludesTableModel(), new ArrayList<String>(), ThriftBundle.message("thrift.facet.options.generators.inc-list.title"));
+        super(new IncludesTableModel(), new ArrayList<VirtualFile>(),
+              ThriftBundle.message("thrift.facet.options.generators.inc-list.title"));
       }
 
       @Nullable
       @Override
-      protected String addItem() {
+      protected VirtualFile addItem() {
         return editItem(null);
       }
 
       @Override
-      protected boolean removeItem(String o) {
+      protected boolean removeItem(VirtualFile o) {
         setModified();
         return true;
       }
 
       @Nullable
       @Override
-      protected String editItem(String o) {
-        VirtualFile selected = o == null ? null : LocalFileFinder.findFile(o);
+      protected VirtualFile editItem(VirtualFile selected) {
         VirtualFile file = FileChooser.chooseFile(FileChooserDescriptorFactory.createSingleFolderDescriptor(), this,
                                                   myContext.getProject(), selected);
         if (file == null) {
@@ -217,7 +223,7 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
         }
         else {
           setModified();
-          return file.getPath();
+          return file;
         }
       }
     }

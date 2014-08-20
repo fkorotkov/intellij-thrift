@@ -1,5 +1,6 @@
 package com.intellij.plugins.thrift.config.facet;
 
+import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.ui.AddEditRemovePanel;
 import org.jetbrains.annotations.Nullable;
 
@@ -8,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 *
 * @author xBlackCat
 */
-class IncludesTableModel extends AddEditRemovePanel.TableModel<String> {
+class IncludesTableModel extends AddEditRemovePanel.TableModel<VirtualFile> {
   @Override
   public int getColumnCount() {
     return 1;
@@ -21,7 +22,7 @@ class IncludesTableModel extends AddEditRemovePanel.TableModel<String> {
   }
 
   @Override
-  public Object getField(String o, int columnIndex) {
+  public Object getField(VirtualFile o, int columnIndex) {
     return o;
   }
 }
