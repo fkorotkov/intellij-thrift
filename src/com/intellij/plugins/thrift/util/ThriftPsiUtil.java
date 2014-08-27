@@ -4,25 +4,22 @@ import com.intellij.navigation.ChooseByNameContributor;
 import com.intellij.navigation.ChooseByNameRegistry;
 import com.intellij.navigation.NavigationItem;
 import com.intellij.openapi.fileTypes.FileType;
-import com.intellij.openapi.module.Module;
-import com.intellij.openapi.module.ModuleUtilCore;
-import com.intellij.openapi.roots.ModuleRootManager;
-import com.intellij.openapi.roots.ProjectRootManager;
+import com.intellij.openapi.util.Condition;
 import com.intellij.openapi.util.Ref;
 import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.util.text.StringUtil;
-import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.openapi.vfs.VirtualFileManager;
 import com.intellij.plugins.thrift.ThriftClassContributor;
 import com.intellij.plugins.thrift.ThriftFileType;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.psi.*;
-import com.intellij.psi.impl.file.impl.FileManager;
 import com.intellij.psi.impl.source.resolve.reference.impl.providers.FileReferenceSet;
 import com.intellij.psi.impl.source.tree.LeafPsiElement;
+import com.intellij.psi.search.FilenameIndex;
+import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.util.PathUtil;
 import com.intellij.util.Processor;
+import com.intellij.util.containers.ContainerUtil;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -49,22 +46,28 @@ public class ThriftPsiUtil {
       return null;
     }
     PsiDirectory directory = psiFile.getContainingDirectory();
-    String includePath = include.getPath();
+    final String includePath = include.getPath();
     PsiFile fileInDir = directory != null ? directory.findFile(PathUtil.getFileName(includePath)) : null;
     if (fileInDir != null) {
       return fileInDir;
     }
 
-    ProjectRootManager rootManager = ProjectRootManager.getInstance(include.getProject());
-    VirtualFile[] contentRoots = rootManager.getContentSourceRoots();
-    for (VirtualFile contentRoot : contentRoots) {
-      VirtualFile includedVirtualFile = contentRoot.findFileByRelativePath(includePath);
-      if (includedVirtualFile != null) {
-        return include.getManager().findFile(includedVirtualFile);
-      }
-    }
 
-    return null;
+    final VirtualFile includedVirtualFile = ContainerUtil.find(
+      FilenameIndex.getVirtualFilesByName(
+        include.getProject(),
+        PathUtil.getFileName(includePath),
+        GlobalSearchScope.allScope(include.getProject())
+      ),
+      new Condition<VirtualFile>() {
+        @Override
+        public boolean value(VirtualFile file) {
+          return file.getPath().endsWith(includePath);
+        }
+      }
+    );
+
+    return includedVirtualFile != null ? include.getManager().findFile(includedVirtualFile) : null;
   }
 
   @NotNull
