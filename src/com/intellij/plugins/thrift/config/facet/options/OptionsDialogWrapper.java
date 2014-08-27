@@ -70,7 +70,7 @@ public class OptionsDialogWrapper extends DialogWrapper {
         }
 
         @Override
-        protected void onFileChosen(@NotNull VirtualFile chosenFile) {
+        protected void onFileChoosen(@NotNull VirtualFile chosenFile) {
           final String absolutePath = VfsUtil.virtualToIoFile(chosenFile).getAbsolutePath();
           myOutputFolderChooser.setText(absolutePath);
         }
