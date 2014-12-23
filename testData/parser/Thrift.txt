@@ -668,6 +668,10 @@ Thrift File
     PsiElement(Identifier)('service')
     DEFINITION_NAME
       PsiElement(Identifier)('ThriftTest')
+    PsiElement(Identifier)('extends')
+    SERVICE_SUPER_NAME
+      CUSTOM_TYPE
+        PsiElement(Identifier)('ServiceBase')
     PsiElement({)('{')
     PsiComment(BlockComment)('/**\n   * Prints "testVoid()" and returns nothing.\n   */')
     SERVICE_BODY

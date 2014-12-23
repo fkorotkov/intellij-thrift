@@ -24,8 +24,8 @@ public class ThriftServiceSuperNameImpl extends ThriftPsiCompositeElementImpl im
 
   @Override
   @NotNull
-  public PsiElement getIdentifier() {
-    return findNotNullChildByType(IDENTIFIER);
+  public ThriftCustomType getCustomType() {
+    return findNotNullChildByClass(ThriftCustomType.class);
   }
 
 }

@@ -105,7 +105,7 @@ Exception       ::=  'exception' DefinitionName '{' fields '}' TypeAnnotations?
 {pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
 Service         ::=  'service' DefinitionName ( 'extends' ServiceSuperName )? '{' serviceBody '}' TypeAnnotations?
 {pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
-ServiceSuperName ::= Identifier
+ServiceSuperName ::= CustomType
 serviceBody ::= (Function ListSeparator?)*
 {recoverWhile=functionsRecovery implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationBody"}
 private functionsRecovery ::= !('}')

@@ -128,7 +128,7 @@ struct OneField {
   1: EmptyStruct field
 }
 
-service ThriftTest
+service ThriftTest extends ServiceBase
 {
   /**
    * Prints "testVoid()" and returns nothing.

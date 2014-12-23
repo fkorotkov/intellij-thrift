@@ -40,7 +40,7 @@ public class ThriftTypeReference extends PsiReferenceBase<ThriftCustomType> {
   @NotNull
   @Override
   public Object[] getVariants() {
-    Object[] result = processComponentAndFile(new Function<Pair<String, PsiFile>, Object[]>() {
+    final Object[] result = processComponentAndFile(new Function<Pair<String, PsiFile>, Object[]>() {
       @Override
       public Object[] fun(Pair<String, PsiFile> pair) {
         final List<Object> result = new ArrayList<Object>();

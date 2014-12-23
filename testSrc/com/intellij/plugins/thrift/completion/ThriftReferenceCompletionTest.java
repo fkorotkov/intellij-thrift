@@ -18,6 +18,10 @@ public class ThriftReferenceCompletionTest extends ThriftCompletionTestBase {
     checkCompletion(CheckType.INCLUDES, "bar.thrift", "baz.thrift");
   }
 
+  public void testExtends() throws Throwable {
+    doTest();
+  }
+
   public void testSameFile() throws Throwable {
     doTest();
   }
