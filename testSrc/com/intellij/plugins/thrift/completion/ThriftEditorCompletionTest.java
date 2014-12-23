@@ -13,8 +13,26 @@ public class ThriftEditorCompletionTest extends ThriftCodeInsightFixtureTestCase
   }
 
   public void testTypeParam(){
-    myFixture.configureByText(ThriftFileType.INSTANCE, "service Foo {1: list<caret>}");
+    myFixture.configureByText(ThriftFileType.INSTANCE, "struct Foo {1: list<caret>}");
     myFixture.type('<');
-    myFixture.checkResult("service Foo {1: list<<caret>>}");
+    myFixture.checkResult("struct Foo {1: list<<caret>>}");
+  }
+
+  public void testExistingClosingBrace1(){
+    myFixture.configureByText(ThriftFileType.INSTANCE, "struct Foo {1: list<Foo<caret>>}");
+    myFixture.type('>');
+    myFixture.checkResult("struct Foo {1: list<Foo><caret>}");
+  }
+
+  public void testExistingClosingBrace2(){
+    myFixture.configureByText(ThriftFileType.INSTANCE, "struct Foo {1: list<Foo<caret>> list}");
+    myFixture.type('>');
+    myFixture.checkResult("struct Foo {1: list<Foo><caret> list}");
+  }
+
+  public void testExistingCurlyBrace(){
+    myFixture.configureByText(ThriftFileType.INSTANCE, "service Foo {<caret>}");
+    myFixture.type('}');
+    myFixture.checkResult("service Foo {}<caret>");
   }
 }

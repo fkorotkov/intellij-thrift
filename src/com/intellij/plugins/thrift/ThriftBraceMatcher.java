@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class ThriftBraceMatcher implements PairedBraceMatcher {
 
-  private static final BracePair[] PAIRS = new BracePair[]{
+  private static final BracePair[] PAIRS = new BracePair[] {
     new BracePair(ThriftTokenTypes.LEFTCURLYBRACE, ThriftTokenTypes.RIGHTCURLYBRACE, false),
     new BracePair(ThriftTokenTypes.LEFTBRACE, ThriftTokenTypes.RIGHTBRACE, false),
     new BracePair(ThriftTokenTypes.LEFTBRACKET, ThriftTokenTypes.RIGHTBRACKET, false),

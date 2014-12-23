@@ -11,27 +11,21 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftMapTypeImpl extends ThriftPsiCompositeElementImpl implements ThriftMapType {
+public class ThriftGenericTypeImpl extends ThriftPsiCompositeElementImpl implements ThriftGenericType {
 
-  public ThriftMapTypeImpl(ASTNode node) {
+  public ThriftGenericTypeImpl(ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitMapType(this);
+    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitGenericType(this);
     else super.accept(visitor);
   }
 
   @Override
-  @Nullable
-  public ThriftCppType getCppType() {
-    return findChildByClass(ThriftCppType.class);
-  }
-
-  @Override
-  @Nullable
-  public ThriftGenericType getGenericType() {
-    return findChildByClass(ThriftGenericType.class);
+  @NotNull
+  public List<ThriftFieldType> getFieldTypeList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, ThriftFieldType.class);
   }
 
 }

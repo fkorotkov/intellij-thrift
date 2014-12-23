@@ -30,8 +30,8 @@ public class ThriftListTypeImpl extends ThriftPsiCompositeElementImpl implements
 
   @Override
   @Nullable
-  public ThriftFieldType getFieldType() {
-    return findChildByClass(ThriftFieldType.class);
+  public ThriftGenericType getGenericType() {
+    return findChildByClass(ThriftGenericType.class);
   }
 
 }

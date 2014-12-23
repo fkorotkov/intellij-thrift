@@ -5,12 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ThriftListType extends ThriftPsiCompositeElement {
+public interface ThriftGenericType extends ThriftPsiCompositeElement {
 
-  @Nullable
-  ThriftCppType getCppType();
-
-  @Nullable
-  ThriftGenericType getGenericType();
+  @NotNull
+  List<ThriftFieldType> getFieldTypeList();
 
 }

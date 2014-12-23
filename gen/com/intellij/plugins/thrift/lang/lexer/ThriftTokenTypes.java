@@ -28,6 +28,7 @@ public interface ThriftTokenTypes {
   IElementType FIELD_TYPE = new ThriftElementType("FIELD_TYPE");
   IElementType FUNCTION = new ThriftElementType("FUNCTION");
   IElementType FUNCTION_TYPE = new ThriftElementType("FUNCTION_TYPE");
+  IElementType GENERIC_TYPE = new ThriftElementType("GENERIC_TYPE");
   IElementType INCLUDE = new ThriftElementType("INCLUDE");
   IElementType INT_CONSTANT = new ThriftElementType("INT_CONSTANT");
   IElementType LIST_SEPARATOR = new ThriftElementType("LIST_SEPARATOR");
@@ -137,6 +138,9 @@ public interface ThriftTokenTypes {
       }
       else if (type == FUNCTION_TYPE) {
         return new ThriftFunctionTypeImpl(node);
+      }
+      else if (type == GENERIC_TYPE) {
+        return new ThriftGenericTypeImpl(node);
       }
       else if (type == INCLUDE) {
         return new ThriftIncludeImpl(node);

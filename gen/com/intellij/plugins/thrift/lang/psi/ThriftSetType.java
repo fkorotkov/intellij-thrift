@@ -11,6 +11,6 @@ public interface ThriftSetType extends ThriftPsiCompositeElement {
   ThriftCppType getCppType();
 
   @Nullable
-  ThriftFieldType getFieldType();
+  ThriftGenericType getGenericType();
 
 }

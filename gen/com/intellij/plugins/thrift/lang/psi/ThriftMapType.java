@@ -10,7 +10,7 @@ public interface ThriftMapType extends ThriftPsiCompositeElement {
   @Nullable
   ThriftCppType getCppType();
 
-  @NotNull
-  List<ThriftFieldType> getFieldTypeList();
+  @Nullable
+  ThriftGenericType getGenericType();
 
 }
