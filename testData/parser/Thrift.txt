@@ -2308,3 +2308,46 @@ Thrift File
         PsiElement(Identifier)('StructA')
     DEFINITION_NAME
       PsiElement(Identifier)('StructB')
+  CONST
+    PsiElement(Identifier)('const')
+    FIELD_TYPE
+      MAP_TYPE
+        PsiElement(Identifier)('map')
+        PsiElement(<)('<')
+        FIELD_TYPE
+          BASE_TYPE
+            PsiElement(Identifier)('string')
+        PsiElement(,)(',')
+        FIELD_TYPE
+          BASE_TYPE
+            PsiElement(Identifier)('i32')
+        PsiElement(>)('>')
+    DEFINITION_NAME
+      PsiElement(Identifier)('GEN_MAP2')
+    PsiElement(=)('=')
+    CONST_VALUE
+      CONST_MAP
+        PsiElement({)('{')
+        CONST_VALUE
+          PsiElement(Literal)('"hello"')
+        PsiElement(:)(':')
+        CONST_VALUE
+          INT_CONSTANT
+            PsiElement(Integer)('233')
+        LIST_SEPARATOR
+          PsiElement(,)(',')
+        CONST_VALUE
+          PsiElement(Literal)('"lkj98d"')
+        PsiElement(:)(':')
+        CONST_VALUE
+          INT_CONSTANT
+            PsiElement(Integer)('853')
+        LIST_SEPARATOR
+          PsiElement(,)(',')
+        CONST_VALUE
+          PsiElement(Literal)(''lkjsdf'')
+        PsiElement(:)(':')
+        CONST_VALUE
+          INT_CONSTANT
+            PsiElement(Integer)('098325')
+        PsiElement(})('}')
