@@ -11,33 +11,15 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftFieldTypeImpl extends ThriftPsiCompositeElementImpl implements ThriftFieldType {
+public class ThriftSimpleBaseTypeImpl extends ThriftPsiCompositeElementImpl implements ThriftSimpleBaseType {
 
-  public ThriftFieldTypeImpl(ASTNode node) {
+  public ThriftSimpleBaseTypeImpl(ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitFieldType(this);
+    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitSimpleBaseType(this);
     else super.accept(visitor);
-  }
-
-  @Override
-  @Nullable
-  public ThriftBaseType getBaseType() {
-    return findChildByClass(ThriftBaseType.class);
-  }
-
-  @Override
-  @Nullable
-  public ThriftContainerType getContainerType() {
-    return findChildByClass(ThriftContainerType.class);
-  }
-
-  @Override
-  @Nullable
-  public ThriftCustomType getCustomType() {
-    return findChildByClass(ThriftCustomType.class);
   }
 
 }

@@ -5,12 +5,6 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ThriftBaseType extends ThriftPsiCompositeElement {
-
-  @NotNull
-  ThriftSimpleBaseType getSimpleBaseType();
-
-  @Nullable
-  ThriftTypeAnnotations getTypeAnnotations();
+public interface ThriftSimpleBaseType extends ThriftPsiCompositeElement {
 
 }
