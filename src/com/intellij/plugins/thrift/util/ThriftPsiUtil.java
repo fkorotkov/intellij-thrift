@@ -24,6 +24,7 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -134,7 +135,7 @@ public class ThriftPsiUtil {
       @Override
       public boolean process(ThriftInclude include) {
         String path = include.getPath();
-        if (FileUtil.getNameWithoutExtension(path).endsWith(fileName)) {
+        if (FileUtil.getNameWithoutExtension(new File(path)).equals(fileName)) {
           result.set(include);
           return false;
         }
