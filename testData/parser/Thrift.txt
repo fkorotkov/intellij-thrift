@@ -146,7 +146,8 @@ Thrift File
     PsiElement(Identifier)('typedef')
     FIELD_TYPE
       BASE_TYPE
-        PsiElement(Identifier)('i64')
+        SIMPLE_BASE_TYPE
+          PsiElement(Identifier)('i64')
     DEFINITION_NAME
       PsiElement(Identifier)('UserId')
   STRUCT
@@ -162,7 +163,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('string')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('string')
         DEFINITION_NAME
           PsiElement(Identifier)('message')
         XSD_FIELD_OPTIONS
@@ -176,7 +178,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i32')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i32')
         DEFINITION_NAME
           PsiElement(Identifier)('type')
         XSD_FIELD_OPTIONS
@@ -185,18 +188,20 @@ Thrift File
   TYPEDEF
     PsiElement(Identifier)('typedef')
     FIELD_TYPE
-      MAP_TYPE
-        PsiElement(Identifier)('map')
-        GENERIC_TYPE
-          PsiElement(<)('<')
-          FIELD_TYPE
-            BASE_TYPE
-              PsiElement(Identifier)('string')
-          PsiElement(,)(',')
-          FIELD_TYPE
-            CUSTOM_TYPE
-              PsiElement(Identifier)('Bonk')
-          PsiElement(>)('>')
+      CONTAINER_TYPE
+        MAP_TYPE
+          PsiElement(Identifier)('map')
+          GENERIC_TYPE
+            PsiElement(<)('<')
+            FIELD_TYPE
+              BASE_TYPE
+                SIMPLE_BASE_TYPE
+                  PsiElement(Identifier)('string')
+            PsiElement(,)(',')
+            FIELD_TYPE
+              CUSTOM_TYPE
+                PsiElement(Identifier)('Bonk')
+            PsiElement(>)('>')
     DEFINITION_NAME
       PsiElement(Identifier)('MapType')
   STRUCT
@@ -212,7 +217,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('bool')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('bool')
         DEFINITION_NAME
           PsiElement(Identifier)('im_true')
         XSD_FIELD_OPTIONS
@@ -226,7 +232,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('bool')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('bool')
         DEFINITION_NAME
           PsiElement(Identifier)('im_false')
         XSD_FIELD_OPTIONS
@@ -247,7 +254,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('string')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('string')
         DEFINITION_NAME
           PsiElement(Identifier)('string_thing')
         XSD_FIELD_OPTIONS
@@ -259,7 +267,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('byte')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('byte')
         DEFINITION_NAME
           PsiElement(Identifier)('byte_thing')
         XSD_FIELD_OPTIONS
@@ -271,7 +280,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i32')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i32')
         DEFINITION_NAME
           PsiElement(Identifier)('i32_thing')
         XSD_FIELD_OPTIONS
@@ -283,7 +293,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i64')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i64')
         DEFINITION_NAME
           PsiElement(Identifier)('i64_thing')
         XSD_FIELD_OPTIONS
@@ -302,7 +313,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('byte')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('byte')
         DEFINITION_NAME
           PsiElement(Identifier)('byte_thing')
         XSD_FIELD_OPTIONS
@@ -330,7 +342,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i32')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i32')
         DEFINITION_NAME
           PsiElement(Identifier)('i32_thing')
         XSD_FIELD_OPTIONS
@@ -349,7 +362,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('string')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('string')
         DEFINITION_NAME
           PsiElement(Identifier)('string_thing')
         XSD_FIELD_OPTIONS
@@ -363,7 +377,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i32')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i32')
         DEFINITION_NAME
           PsiElement(Identifier)('changed')
         XSD_FIELD_OPTIONS
@@ -377,7 +392,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i32')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i32')
         DEFINITION_NAME
           PsiElement(Identifier)('i32_thing')
         XSD_FIELD_OPTIONS
@@ -391,7 +407,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i64')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i64')
         DEFINITION_NAME
           PsiElement(Identifier)('i64_thing')
         XSD_FIELD_OPTIONS
@@ -409,18 +426,19 @@ Thrift File
             PsiElement(Integer)('1')
           PsiElement(:)(':')
         FIELD_TYPE
-          MAP_TYPE
-            PsiElement(Identifier)('map')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                CUSTOM_TYPE
-                  PsiElement(Identifier)('Numberz')
-              PsiElement(,)(',')
-              FIELD_TYPE
-                CUSTOM_TYPE
-                  PsiElement(Identifier)('UserId')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            MAP_TYPE
+              PsiElement(Identifier)('map')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  CUSTOM_TYPE
+                    PsiElement(Identifier)('Numberz')
+                PsiElement(,)(',')
+                FIELD_TYPE
+                  CUSTOM_TYPE
+                    PsiElement(Identifier)('UserId')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('userMap')
         XSD_FIELD_OPTIONS
@@ -433,14 +451,15 @@ Thrift File
             PsiElement(Integer)('2')
           PsiElement(:)(':')
         FIELD_TYPE
-          LIST_TYPE
-            PsiElement(Identifier)('list')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                CUSTOM_TYPE
-                  PsiElement(Identifier)('Xtruct')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            LIST_TYPE
+              PsiElement(Identifier)('list')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  CUSTOM_TYPE
+                    PsiElement(Identifier)('Xtruct')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('xtructs')
         XSD_FIELD_OPTIONS
@@ -459,7 +478,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('string')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('string')
         DEFINITION_NAME
           PsiElement(Identifier)('string_field')
         XSD_FIELD_OPTIONS
@@ -474,14 +494,15 @@ Thrift File
         FIELD_REQ
           PsiElement(Identifier)('optional')
         FIELD_TYPE
-          SET_TYPE
-            PsiElement(Identifier)('set')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                CUSTOM_TYPE
-                  PsiElement(Identifier)('Insanity')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            SET_TYPE
+              PsiElement(Identifier)('set')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  CUSTOM_TYPE
+                    PsiElement(Identifier)('Insanity')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('set_field')
         XSD_FIELD_OPTIONS
@@ -496,62 +517,72 @@ Thrift File
         FIELD_REQ
           PsiElement(Identifier)('required')
         FIELD_TYPE
-          LIST_TYPE
-            PsiElement(Identifier)('list')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                MAP_TYPE
-                  PsiElement(Identifier)('map')
-                  GENERIC_TYPE
-                    PsiElement(<)('<')
-                    FIELD_TYPE
-                      SET_TYPE
-                        PsiElement(Identifier)('set')
-                        GENERIC_TYPE
-                          PsiElement(<)('<')
-                          FIELD_TYPE
-                            BASE_TYPE
-                              PsiElement(Identifier)('i32')
-                          PsiElement(>)('>')
-                    PsiElement(,)(',')
-                    FIELD_TYPE
-                      MAP_TYPE
-                        PsiElement(Identifier)('map')
-                        GENERIC_TYPE
-                          PsiElement(<)('<')
-                          FIELD_TYPE
-                            BASE_TYPE
-                              PsiElement(Identifier)('i32')
-                          PsiElement(,)(',')
-                          FIELD_TYPE
+          CONTAINER_TYPE
+            LIST_TYPE
+              PsiElement(Identifier)('list')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  CONTAINER_TYPE
+                    MAP_TYPE
+                      PsiElement(Identifier)('map')
+                      GENERIC_TYPE
+                        PsiElement(<)('<')
+                        FIELD_TYPE
+                          CONTAINER_TYPE
                             SET_TYPE
                               PsiElement(Identifier)('set')
                               GENERIC_TYPE
                                 PsiElement(<)('<')
                                 FIELD_TYPE
-                                  LIST_TYPE
-                                    PsiElement(Identifier)('list')
-                                    GENERIC_TYPE
-                                      PsiElement(<)('<')
-                                      FIELD_TYPE
-                                        MAP_TYPE
-                                          PsiElement(Identifier)('map')
-                                          GENERIC_TYPE
-                                            PsiElement(<)('<')
-                                            FIELD_TYPE
-                                              CUSTOM_TYPE
-                                                PsiElement(Identifier)('Insanity')
-                                            PsiElement(,)(',')
-                                            FIELD_TYPE
-                                              BASE_TYPE
-                                                PsiElement(Identifier)('string')
-                                            PsiElement(>)('>')
-                                      PsiElement(>)('>')
+                                  BASE_TYPE
+                                    SIMPLE_BASE_TYPE
+                                      PsiElement(Identifier)('i32')
                                 PsiElement(>)('>')
-                          PsiElement(>)('>')
-                    PsiElement(>)('>')
-              PsiElement(>)('>')
+                        PsiElement(,)(',')
+                        FIELD_TYPE
+                          CONTAINER_TYPE
+                            MAP_TYPE
+                              PsiElement(Identifier)('map')
+                              GENERIC_TYPE
+                                PsiElement(<)('<')
+                                FIELD_TYPE
+                                  BASE_TYPE
+                                    SIMPLE_BASE_TYPE
+                                      PsiElement(Identifier)('i32')
+                                PsiElement(,)(',')
+                                FIELD_TYPE
+                                  CONTAINER_TYPE
+                                    SET_TYPE
+                                      PsiElement(Identifier)('set')
+                                      GENERIC_TYPE
+                                        PsiElement(<)('<')
+                                        FIELD_TYPE
+                                          CONTAINER_TYPE
+                                            LIST_TYPE
+                                              PsiElement(Identifier)('list')
+                                              GENERIC_TYPE
+                                                PsiElement(<)('<')
+                                                FIELD_TYPE
+                                                  CONTAINER_TYPE
+                                                    MAP_TYPE
+                                                      PsiElement(Identifier)('map')
+                                                      GENERIC_TYPE
+                                                        PsiElement(<)('<')
+                                                        FIELD_TYPE
+                                                          CUSTOM_TYPE
+                                                            PsiElement(Identifier)('Insanity')
+                                                        PsiElement(,)(',')
+                                                        FIELD_TYPE
+                                                          BASE_TYPE
+                                                            SIMPLE_BASE_TYPE
+                                                              PsiElement(Identifier)('string')
+                                                        PsiElement(>)('>')
+                                                PsiElement(>)('>')
+                                        PsiElement(>)('>')
+                                PsiElement(>)('>')
+                        PsiElement(>)('>')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('list_field')
         XSD_FIELD_OPTIONS
@@ -565,7 +596,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('binary')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('binary')
         DEFINITION_NAME
           PsiElement(Identifier)('binary_field')
         XSD_FIELD_OPTIONS
@@ -584,7 +616,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i32')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i32')
         DEFINITION_NAME
           PsiElement(Identifier)('errorCode')
         XSD_FIELD_OPTIONS
@@ -598,7 +631,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('string')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('string')
         DEFINITION_NAME
           PsiElement(Identifier)('message')
         XSD_FIELD_OPTIONS
@@ -617,7 +651,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i32')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i32')
         DEFINITION_NAME
           PsiElement(Identifier)('errorCode')
         XSD_FIELD_OPTIONS
@@ -689,7 +724,8 @@ Thrift File
         FUNCTION_TYPE
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('string')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('string')
         DEFINITION_NAME
           PsiElement(Identifier)('testString')
         PsiElement(()('(')
@@ -700,7 +736,8 @@ Thrift File
             PsiElement(:)(':')
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('string')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('string')
           DEFINITION_NAME
             PsiElement(Identifier)('thing')
           XSD_FIELD_OPTIONS
@@ -713,7 +750,8 @@ Thrift File
         FUNCTION_TYPE
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('byte')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('byte')
         DEFINITION_NAME
           PsiElement(Identifier)('testByte')
         PsiElement(()('(')
@@ -724,7 +762,8 @@ Thrift File
             PsiElement(:)(':')
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('byte')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('byte')
           DEFINITION_NAME
             PsiElement(Identifier)('thing')
           XSD_FIELD_OPTIONS
@@ -737,7 +776,8 @@ Thrift File
         FUNCTION_TYPE
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('i32')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('i32')
         DEFINITION_NAME
           PsiElement(Identifier)('testI32')
         PsiElement(()('(')
@@ -748,7 +788,8 @@ Thrift File
             PsiElement(:)(':')
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('i32')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('i32')
           DEFINITION_NAME
             PsiElement(Identifier)('thing')
           XSD_FIELD_OPTIONS
@@ -761,7 +802,8 @@ Thrift File
         FUNCTION_TYPE
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('i64')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('i64')
         DEFINITION_NAME
           PsiElement(Identifier)('testI64')
         PsiElement(()('(')
@@ -772,7 +814,8 @@ Thrift File
             PsiElement(:)(':')
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('i64')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('i64')
           DEFINITION_NAME
             PsiElement(Identifier)('thing')
           XSD_FIELD_OPTIONS
@@ -785,7 +828,8 @@ Thrift File
         FUNCTION_TYPE
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('double')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('double')
         DEFINITION_NAME
           PsiElement(Identifier)('testDouble')
         PsiElement(()('(')
@@ -796,7 +840,8 @@ Thrift File
             PsiElement(:)(':')
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('double')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('double')
           DEFINITION_NAME
             PsiElement(Identifier)('thing')
           XSD_FIELD_OPTIONS
@@ -856,18 +901,21 @@ Thrift File
       FUNCTION
         FUNCTION_TYPE
           FIELD_TYPE
-            MAP_TYPE
-              PsiElement(Identifier)('map')
-              GENERIC_TYPE
-                PsiElement(<)('<')
-                FIELD_TYPE
-                  BASE_TYPE
-                    PsiElement(Identifier)('i32')
-                PsiElement(,)(',')
-                FIELD_TYPE
-                  BASE_TYPE
-                    PsiElement(Identifier)('i32')
-                PsiElement(>)('>')
+            CONTAINER_TYPE
+              MAP_TYPE
+                PsiElement(Identifier)('map')
+                GENERIC_TYPE
+                  PsiElement(<)('<')
+                  FIELD_TYPE
+                    BASE_TYPE
+                      SIMPLE_BASE_TYPE
+                        PsiElement(Identifier)('i32')
+                  PsiElement(,)(',')
+                  FIELD_TYPE
+                    BASE_TYPE
+                      SIMPLE_BASE_TYPE
+                        PsiElement(Identifier)('i32')
+                  PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('testMap')
         PsiElement(()('(')
@@ -877,18 +925,21 @@ Thrift File
               PsiElement(Integer)('1')
             PsiElement(:)(':')
           FIELD_TYPE
-            MAP_TYPE
-              PsiElement(Identifier)('map')
-              GENERIC_TYPE
-                PsiElement(<)('<')
-                FIELD_TYPE
-                  BASE_TYPE
-                    PsiElement(Identifier)('i32')
-                PsiElement(,)(',')
-                FIELD_TYPE
-                  BASE_TYPE
-                    PsiElement(Identifier)('i32')
-                PsiElement(>)('>')
+            CONTAINER_TYPE
+              MAP_TYPE
+                PsiElement(Identifier)('map')
+                GENERIC_TYPE
+                  PsiElement(<)('<')
+                  FIELD_TYPE
+                    BASE_TYPE
+                      SIMPLE_BASE_TYPE
+                        PsiElement(Identifier)('i32')
+                  PsiElement(,)(',')
+                  FIELD_TYPE
+                    BASE_TYPE
+                      SIMPLE_BASE_TYPE
+                        PsiElement(Identifier)('i32')
+                  PsiElement(>)('>')
           DEFINITION_NAME
             PsiElement(Identifier)('thing')
           XSD_FIELD_OPTIONS
@@ -900,18 +951,21 @@ Thrift File
       FUNCTION
         FUNCTION_TYPE
           FIELD_TYPE
-            MAP_TYPE
-              PsiElement(Identifier)('map')
-              GENERIC_TYPE
-                PsiElement(<)('<')
-                FIELD_TYPE
-                  BASE_TYPE
-                    PsiElement(Identifier)('string')
-                PsiElement(,)(',')
-                FIELD_TYPE
-                  BASE_TYPE
-                    PsiElement(Identifier)('string')
-                PsiElement(>)('>')
+            CONTAINER_TYPE
+              MAP_TYPE
+                PsiElement(Identifier)('map')
+                GENERIC_TYPE
+                  PsiElement(<)('<')
+                  FIELD_TYPE
+                    BASE_TYPE
+                      SIMPLE_BASE_TYPE
+                        PsiElement(Identifier)('string')
+                  PsiElement(,)(',')
+                  FIELD_TYPE
+                    BASE_TYPE
+                      SIMPLE_BASE_TYPE
+                        PsiElement(Identifier)('string')
+                  PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('testStringMap')
         PsiElement(()('(')
@@ -921,18 +975,21 @@ Thrift File
               PsiElement(Integer)('1')
             PsiElement(:)(':')
           FIELD_TYPE
-            MAP_TYPE
-              PsiElement(Identifier)('map')
-              GENERIC_TYPE
-                PsiElement(<)('<')
-                FIELD_TYPE
-                  BASE_TYPE
-                    PsiElement(Identifier)('string')
-                PsiElement(,)(',')
-                FIELD_TYPE
-                  BASE_TYPE
-                    PsiElement(Identifier)('string')
-                PsiElement(>)('>')
+            CONTAINER_TYPE
+              MAP_TYPE
+                PsiElement(Identifier)('map')
+                GENERIC_TYPE
+                  PsiElement(<)('<')
+                  FIELD_TYPE
+                    BASE_TYPE
+                      SIMPLE_BASE_TYPE
+                        PsiElement(Identifier)('string')
+                  PsiElement(,)(',')
+                  FIELD_TYPE
+                    BASE_TYPE
+                      SIMPLE_BASE_TYPE
+                        PsiElement(Identifier)('string')
+                  PsiElement(>)('>')
           DEFINITION_NAME
             PsiElement(Identifier)('thing')
           XSD_FIELD_OPTIONS
@@ -944,14 +1001,16 @@ Thrift File
       FUNCTION
         FUNCTION_TYPE
           FIELD_TYPE
-            SET_TYPE
-              PsiElement(Identifier)('set')
-              GENERIC_TYPE
-                PsiElement(<)('<')
-                FIELD_TYPE
-                  BASE_TYPE
-                    PsiElement(Identifier)('i32')
-                PsiElement(>)('>')
+            CONTAINER_TYPE
+              SET_TYPE
+                PsiElement(Identifier)('set')
+                GENERIC_TYPE
+                  PsiElement(<)('<')
+                  FIELD_TYPE
+                    BASE_TYPE
+                      SIMPLE_BASE_TYPE
+                        PsiElement(Identifier)('i32')
+                  PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('testSet')
         PsiElement(()('(')
@@ -961,14 +1020,16 @@ Thrift File
               PsiElement(Integer)('1')
             PsiElement(:)(':')
           FIELD_TYPE
-            SET_TYPE
-              PsiElement(Identifier)('set')
-              GENERIC_TYPE
-                PsiElement(<)('<')
-                FIELD_TYPE
-                  BASE_TYPE
-                    PsiElement(Identifier)('i32')
-                PsiElement(>)('>')
+            CONTAINER_TYPE
+              SET_TYPE
+                PsiElement(Identifier)('set')
+                GENERIC_TYPE
+                  PsiElement(<)('<')
+                  FIELD_TYPE
+                    BASE_TYPE
+                      SIMPLE_BASE_TYPE
+                        PsiElement(Identifier)('i32')
+                  PsiElement(>)('>')
           DEFINITION_NAME
             PsiElement(Identifier)('thing')
           XSD_FIELD_OPTIONS
@@ -980,14 +1041,16 @@ Thrift File
       FUNCTION
         FUNCTION_TYPE
           FIELD_TYPE
-            LIST_TYPE
-              PsiElement(Identifier)('list')
-              GENERIC_TYPE
-                PsiElement(<)('<')
-                FIELD_TYPE
-                  BASE_TYPE
-                    PsiElement(Identifier)('i32')
-                PsiElement(>)('>')
+            CONTAINER_TYPE
+              LIST_TYPE
+                PsiElement(Identifier)('list')
+                GENERIC_TYPE
+                  PsiElement(<)('<')
+                  FIELD_TYPE
+                    BASE_TYPE
+                      SIMPLE_BASE_TYPE
+                        PsiElement(Identifier)('i32')
+                  PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('testList')
         PsiElement(()('(')
@@ -997,14 +1060,16 @@ Thrift File
               PsiElement(Integer)('1')
             PsiElement(:)(':')
           FIELD_TYPE
-            LIST_TYPE
-              PsiElement(Identifier)('list')
-              GENERIC_TYPE
-                PsiElement(<)('<')
-                FIELD_TYPE
-                  BASE_TYPE
-                    PsiElement(Identifier)('i32')
-                PsiElement(>)('>')
+            CONTAINER_TYPE
+              LIST_TYPE
+                PsiElement(Identifier)('list')
+                GENERIC_TYPE
+                  PsiElement(<)('<')
+                  FIELD_TYPE
+                    BASE_TYPE
+                      SIMPLE_BASE_TYPE
+                        PsiElement(Identifier)('i32')
+                  PsiElement(>)('>')
           DEFINITION_NAME
             PsiElement(Identifier)('thing')
           XSD_FIELD_OPTIONS
@@ -1064,28 +1129,33 @@ Thrift File
       FUNCTION
         FUNCTION_TYPE
           FIELD_TYPE
-            MAP_TYPE
-              PsiElement(Identifier)('map')
-              GENERIC_TYPE
-                PsiElement(<)('<')
-                FIELD_TYPE
-                  BASE_TYPE
-                    PsiElement(Identifier)('i32')
-                PsiElement(,)(',')
-                FIELD_TYPE
-                  MAP_TYPE
-                    PsiElement(Identifier)('map')
-                    GENERIC_TYPE
-                      PsiElement(<)('<')
-                      FIELD_TYPE
-                        BASE_TYPE
-                          PsiElement(Identifier)('i32')
-                      PsiElement(,)(',')
-                      FIELD_TYPE
-                        BASE_TYPE
-                          PsiElement(Identifier)('i32')
-                      PsiElement(>)('>')
-                PsiElement(>)('>')
+            CONTAINER_TYPE
+              MAP_TYPE
+                PsiElement(Identifier)('map')
+                GENERIC_TYPE
+                  PsiElement(<)('<')
+                  FIELD_TYPE
+                    BASE_TYPE
+                      SIMPLE_BASE_TYPE
+                        PsiElement(Identifier)('i32')
+                  PsiElement(,)(',')
+                  FIELD_TYPE
+                    CONTAINER_TYPE
+                      MAP_TYPE
+                        PsiElement(Identifier)('map')
+                        GENERIC_TYPE
+                          PsiElement(<)('<')
+                          FIELD_TYPE
+                            BASE_TYPE
+                              SIMPLE_BASE_TYPE
+                                PsiElement(Identifier)('i32')
+                          PsiElement(,)(',')
+                          FIELD_TYPE
+                            BASE_TYPE
+                              SIMPLE_BASE_TYPE
+                                PsiElement(Identifier)('i32')
+                          PsiElement(>)('>')
+                  PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('testMapMap')
         PsiElement(()('(')
@@ -1096,7 +1166,8 @@ Thrift File
             PsiElement(:)(':')
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('i32')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('i32')
           DEFINITION_NAME
             PsiElement(Identifier)('hello')
           XSD_FIELD_OPTIONS
@@ -1108,28 +1179,30 @@ Thrift File
       FUNCTION
         FUNCTION_TYPE
           FIELD_TYPE
-            MAP_TYPE
-              PsiElement(Identifier)('map')
-              GENERIC_TYPE
-                PsiElement(<)('<')
-                FIELD_TYPE
-                  CUSTOM_TYPE
-                    PsiElement(Identifier)('UserId')
-                PsiElement(,)(',')
-                FIELD_TYPE
-                  MAP_TYPE
-                    PsiElement(Identifier)('map')
-                    GENERIC_TYPE
-                      PsiElement(<)('<')
-                      FIELD_TYPE
-                        CUSTOM_TYPE
-                          PsiElement(Identifier)('Numberz')
-                      PsiElement(,)(',')
-                      FIELD_TYPE
-                        CUSTOM_TYPE
-                          PsiElement(Identifier)('Insanity')
-                      PsiElement(>)('>')
-                PsiElement(>)('>')
+            CONTAINER_TYPE
+              MAP_TYPE
+                PsiElement(Identifier)('map')
+                GENERIC_TYPE
+                  PsiElement(<)('<')
+                  FIELD_TYPE
+                    CUSTOM_TYPE
+                      PsiElement(Identifier)('UserId')
+                  PsiElement(,)(',')
+                  FIELD_TYPE
+                    CONTAINER_TYPE
+                      MAP_TYPE
+                        PsiElement(Identifier)('map')
+                        GENERIC_TYPE
+                          PsiElement(<)('<')
+                          FIELD_TYPE
+                            CUSTOM_TYPE
+                              PsiElement(Identifier)('Numberz')
+                          PsiElement(,)(',')
+                          FIELD_TYPE
+                            CUSTOM_TYPE
+                              PsiElement(Identifier)('Insanity')
+                          PsiElement(>)('>')
+                  PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('testInsanity')
         PsiElement(()('(')
@@ -1164,7 +1237,8 @@ Thrift File
             PsiElement(:)(':')
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('byte')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('byte')
           DEFINITION_NAME
             PsiElement(Identifier)('arg0')
           XSD_FIELD_OPTIONS
@@ -1178,7 +1252,8 @@ Thrift File
             PsiElement(:)(':')
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('i32')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('i32')
           DEFINITION_NAME
             PsiElement(Identifier)('arg1')
           XSD_FIELD_OPTIONS
@@ -1192,7 +1267,8 @@ Thrift File
             PsiElement(:)(':')
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('i64')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('i64')
           DEFINITION_NAME
             PsiElement(Identifier)('arg2')
           XSD_FIELD_OPTIONS
@@ -1205,18 +1281,21 @@ Thrift File
               PsiElement(Integer)('4')
             PsiElement(:)(':')
           FIELD_TYPE
-            MAP_TYPE
-              PsiElement(Identifier)('map')
-              GENERIC_TYPE
-                PsiElement(<)('<')
-                FIELD_TYPE
-                  BASE_TYPE
-                    PsiElement(Identifier)('i16')
-                PsiElement(,)(',')
-                FIELD_TYPE
-                  BASE_TYPE
-                    PsiElement(Identifier)('string')
-                PsiElement(>)('>')
+            CONTAINER_TYPE
+              MAP_TYPE
+                PsiElement(Identifier)('map')
+                GENERIC_TYPE
+                  PsiElement(<)('<')
+                  FIELD_TYPE
+                    BASE_TYPE
+                      SIMPLE_BASE_TYPE
+                        PsiElement(Identifier)('i16')
+                  PsiElement(,)(',')
+                  FIELD_TYPE
+                    BASE_TYPE
+                      SIMPLE_BASE_TYPE
+                        PsiElement(Identifier)('string')
+                  PsiElement(>)('>')
           DEFINITION_NAME
             PsiElement(Identifier)('arg3')
           XSD_FIELD_OPTIONS
@@ -1266,7 +1345,8 @@ Thrift File
             PsiElement(:)(':')
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('string')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('string')
           DEFINITION_NAME
             PsiElement(Identifier)('arg')
           XSD_FIELD_OPTIONS
@@ -1306,7 +1386,8 @@ Thrift File
             PsiElement(:)(':')
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('string')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('string')
           DEFINITION_NAME
             PsiElement(Identifier)('arg0')
           XSD_FIELD_OPTIONS
@@ -1320,7 +1401,8 @@ Thrift File
             PsiElement(:)(':')
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('string')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('string')
           DEFINITION_NAME
             PsiElement(Identifier)('arg1')
           XSD_FIELD_OPTIONS
@@ -1371,7 +1453,8 @@ Thrift File
             PsiElement(:)(':')
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('i32')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('i32')
           DEFINITION_NAME
             PsiElement(Identifier)('secondsToSleep')
           XSD_FIELD_OPTIONS
@@ -1396,7 +1479,8 @@ Thrift File
         FUNCTION_TYPE
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('string')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('string')
         DEFINITION_NAME
           PsiElement(Identifier)('secondtestString')
         PsiElement(()('(')
@@ -1407,7 +1491,8 @@ Thrift File
             PsiElement(:)(':')
           FIELD_TYPE
             BASE_TYPE
-              PsiElement(Identifier)('string')
+              SIMPLE_BASE_TYPE
+                PsiElement(Identifier)('string')
           DEFINITION_NAME
             PsiElement(Identifier)('thing')
           XSD_FIELD_OPTIONS
@@ -1429,7 +1514,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i32')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i32')
         DEFINITION_NAME
           PsiElement(Identifier)('begin_in_both')
         XSD_FIELD_OPTIONS
@@ -1443,7 +1529,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('string')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('string')
         DEFINITION_NAME
           PsiElement(Identifier)('old_string')
         XSD_FIELD_OPTIONS
@@ -1457,7 +1544,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i32')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i32')
         DEFINITION_NAME
           PsiElement(Identifier)('end_in_both')
         XSD_FIELD_OPTIONS
@@ -1476,7 +1564,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i32')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i32')
         DEFINITION_NAME
           PsiElement(Identifier)('begin_in_both')
         XSD_FIELD_OPTIONS
@@ -1490,7 +1579,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i32')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i32')
         DEFINITION_NAME
           PsiElement(Identifier)('newint')
         XSD_FIELD_OPTIONS
@@ -1504,7 +1594,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('byte')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('byte')
         DEFINITION_NAME
           PsiElement(Identifier)('newbyte')
         XSD_FIELD_OPTIONS
@@ -1518,7 +1609,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i16')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i16')
         DEFINITION_NAME
           PsiElement(Identifier)('newshort')
         XSD_FIELD_OPTIONS
@@ -1532,7 +1624,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i64')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i64')
         DEFINITION_NAME
           PsiElement(Identifier)('newlong')
         XSD_FIELD_OPTIONS
@@ -1546,7 +1639,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('double')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('double')
         DEFINITION_NAME
           PsiElement(Identifier)('newdouble')
         XSD_FIELD_OPTIONS
@@ -1571,14 +1665,16 @@ Thrift File
             PsiElement(Integer)('8')
           PsiElement(:)(':')
         FIELD_TYPE
-          LIST_TYPE
-            PsiElement(Identifier)('list')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                BASE_TYPE
-                  PsiElement(Identifier)('i32')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            LIST_TYPE
+              PsiElement(Identifier)('list')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  BASE_TYPE
+                    SIMPLE_BASE_TYPE
+                      PsiElement(Identifier)('i32')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('newlist')
         XSD_FIELD_OPTIONS
@@ -1591,14 +1687,16 @@ Thrift File
             PsiElement(Integer)('9')
           PsiElement(:)(':')
         FIELD_TYPE
-          SET_TYPE
-            PsiElement(Identifier)('set')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                BASE_TYPE
-                  PsiElement(Identifier)('i32')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            SET_TYPE
+              PsiElement(Identifier)('set')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  BASE_TYPE
+                    SIMPLE_BASE_TYPE
+                      PsiElement(Identifier)('i32')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('newset')
         XSD_FIELD_OPTIONS
@@ -1611,18 +1709,21 @@ Thrift File
             PsiElement(Integer)('10')
           PsiElement(:)(':')
         FIELD_TYPE
-          MAP_TYPE
-            PsiElement(Identifier)('map')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                BASE_TYPE
-                  PsiElement(Identifier)('i32')
-              PsiElement(,)(',')
-              FIELD_TYPE
-                BASE_TYPE
-                  PsiElement(Identifier)('i32')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            MAP_TYPE
+              PsiElement(Identifier)('map')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  BASE_TYPE
+                    SIMPLE_BASE_TYPE
+                      PsiElement(Identifier)('i32')
+                PsiElement(,)(',')
+                FIELD_TYPE
+                  BASE_TYPE
+                    SIMPLE_BASE_TYPE
+                      PsiElement(Identifier)('i32')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('newmap')
         XSD_FIELD_OPTIONS
@@ -1636,7 +1737,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('string')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('string')
         DEFINITION_NAME
           PsiElement(Identifier)('newstring')
         XSD_FIELD_OPTIONS
@@ -1650,7 +1752,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i32')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i32')
         DEFINITION_NAME
           PsiElement(Identifier)('end_in_both')
         XSD_FIELD_OPTIONS
@@ -1668,14 +1771,16 @@ Thrift File
             PsiElement(Integer)('1')
           PsiElement(:)(':')
         FIELD_TYPE
-          LIST_TYPE
-            PsiElement(Identifier)('list')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                BASE_TYPE
-                  PsiElement(Identifier)('i32')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            LIST_TYPE
+              PsiElement(Identifier)('list')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  BASE_TYPE
+                    SIMPLE_BASE_TYPE
+                      PsiElement(Identifier)('i32')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('myints')
         XSD_FIELD_OPTIONS
@@ -1689,7 +1794,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('string')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('string')
         DEFINITION_NAME
           PsiElement(Identifier)('hello')
         XSD_FIELD_OPTIONS
@@ -1709,14 +1815,16 @@ Thrift File
             PsiElement(Integer)('1')
           PsiElement(:)(':')
         FIELD_TYPE
-          LIST_TYPE
-            PsiElement(Identifier)('list')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                BASE_TYPE
-                  PsiElement(Identifier)('string')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            LIST_TYPE
+              PsiElement(Identifier)('list')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  BASE_TYPE
+                    SIMPLE_BASE_TYPE
+                      PsiElement(Identifier)('string')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('strings')
         XSD_FIELD_OPTIONS
@@ -1730,7 +1838,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('string')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('string')
         DEFINITION_NAME
           PsiElement(Identifier)('hello')
         XSD_FIELD_OPTIONS
@@ -1750,18 +1859,21 @@ Thrift File
             PsiElement(Integer)('7')
           PsiElement(:)(':')
         FIELD_TYPE
-          MAP_TYPE
-            PsiElement(Identifier)('map')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                BASE_TYPE
-                  PsiElement(Identifier)('string')
-              PsiElement(,)(',')
-              FIELD_TYPE
-                BASE_TYPE
-                  PsiElement(Identifier)('string')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            MAP_TYPE
+              PsiElement(Identifier)('map')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  BASE_TYPE
+                    SIMPLE_BASE_TYPE
+                      PsiElement(Identifier)('string')
+                PsiElement(,)(',')
+                FIELD_TYPE
+                  BASE_TYPE
+                    SIMPLE_BASE_TYPE
+                      PsiElement(Identifier)('string')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('map_field')
         XSD_FIELD_OPTIONS
@@ -1824,7 +1936,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('bool')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('bool')
         DEFINITION_NAME
           PsiElement(Identifier)('check_true')
         XSD_FIELD_OPTIONS
@@ -1852,7 +1965,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('bool')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('bool')
         DEFINITION_NAME
           PsiElement(Identifier)('check_false')
         XSD_FIELD_OPTIONS
@@ -1879,14 +1993,16 @@ Thrift File
             PsiElement(Integer)('2500')
           PsiElement(:)(':')
         FIELD_TYPE
-          SET_TYPE
-            PsiElement(Identifier)('set')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                BASE_TYPE
-                  PsiElement(Identifier)('string')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            SET_TYPE
+              PsiElement(Identifier)('set')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  BASE_TYPE
+                    SIMPLE_BASE_TYPE
+                      PsiElement(Identifier)('string')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('a_set2500')
         XSD_FIELD_OPTIONS
@@ -1913,14 +2029,16 @@ Thrift File
             PsiElement(Integer)('4000')
           PsiElement(:)(':')
         FIELD_TYPE
-          LIST_TYPE
-            PsiElement(Identifier)('list')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                BASE_TYPE
-                  PsiElement(Identifier)('i32')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            LIST_TYPE
+              PsiElement(Identifier)('list')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  BASE_TYPE
+                    SIMPLE_BASE_TYPE
+                      PsiElement(Identifier)('i32')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('big_numbers')
         XSD_FIELD_OPTIONS
@@ -1938,20 +2056,23 @@ Thrift File
             PsiElement(Integer)('1')
           PsiElement(:)(':')
         FIELD_TYPE
-          LIST_TYPE
-            PsiElement(Identifier)('list')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                LIST_TYPE
-                  PsiElement(Identifier)('list')
-                  GENERIC_TYPE
-                    PsiElement(<)('<')
-                    FIELD_TYPE
-                      BASE_TYPE
-                        PsiElement(Identifier)('i32')
-                    PsiElement(>)('>')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            LIST_TYPE
+              PsiElement(Identifier)('list')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  CONTAINER_TYPE
+                    LIST_TYPE
+                      PsiElement(Identifier)('list')
+                      GENERIC_TYPE
+                        PsiElement(<)('<')
+                        FIELD_TYPE
+                          BASE_TYPE
+                            SIMPLE_BASE_TYPE
+                              PsiElement(Identifier)('i32')
+                        PsiElement(>)('>')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('integerlist')
         XSD_FIELD_OPTIONS
@@ -1969,26 +2090,30 @@ Thrift File
             PsiElement(Integer)('1')
           PsiElement(:)(':')
         FIELD_TYPE
-          LIST_TYPE
-            PsiElement(Identifier)('list')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                LIST_TYPE
-                  PsiElement(Identifier)('list')
-                  GENERIC_TYPE
-                    PsiElement(<)('<')
-                    FIELD_TYPE
-                      LIST_TYPE
-                        PsiElement(Identifier)('list')
-                        GENERIC_TYPE
-                          PsiElement(<)('<')
-                          FIELD_TYPE
-                            BASE_TYPE
-                              PsiElement(Identifier)('i32')
-                          PsiElement(>)('>')
-                    PsiElement(>)('>')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            LIST_TYPE
+              PsiElement(Identifier)('list')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  CONTAINER_TYPE
+                    LIST_TYPE
+                      PsiElement(Identifier)('list')
+                      GENERIC_TYPE
+                        PsiElement(<)('<')
+                        FIELD_TYPE
+                          CONTAINER_TYPE
+                            LIST_TYPE
+                              PsiElement(Identifier)('list')
+                              GENERIC_TYPE
+                                PsiElement(<)('<')
+                                FIELD_TYPE
+                                  BASE_TYPE
+                                    SIMPLE_BASE_TYPE
+                                      PsiElement(Identifier)('i32')
+                                PsiElement(>)('>')
+                        PsiElement(>)('>')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('integerlist')
         XSD_FIELD_OPTIONS
@@ -2006,20 +2131,23 @@ Thrift File
             PsiElement(Integer)('1')
           PsiElement(:)(':')
         FIELD_TYPE
-          LIST_TYPE
-            PsiElement(Identifier)('list')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                SET_TYPE
-                  PsiElement(Identifier)('set')
-                  GENERIC_TYPE
-                    PsiElement(<)('<')
-                    FIELD_TYPE
-                      BASE_TYPE
-                        PsiElement(Identifier)('i32')
-                    PsiElement(>)('>')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            LIST_TYPE
+              PsiElement(Identifier)('list')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  CONTAINER_TYPE
+                    SET_TYPE
+                      PsiElement(Identifier)('set')
+                      GENERIC_TYPE
+                        PsiElement(<)('<')
+                        FIELD_TYPE
+                          BASE_TYPE
+                            SIMPLE_BASE_TYPE
+                              PsiElement(Identifier)('i32')
+                        PsiElement(>)('>')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('int_set_list')
         XSD_FIELD_OPTIONS
@@ -2030,24 +2158,28 @@ Thrift File
             PsiElement(Integer)('2')
           PsiElement(:)(':')
         FIELD_TYPE
-          MAP_TYPE
-            PsiElement(Identifier)('map')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                BASE_TYPE
-                  PsiElement(Identifier)('i32')
-              PsiElement(,)(',')
-              FIELD_TYPE
-                SET_TYPE
-                  PsiElement(Identifier)('set')
-                  GENERIC_TYPE
-                    PsiElement(<)('<')
-                    FIELD_TYPE
-                      BASE_TYPE
-                        PsiElement(Identifier)('string')
-                    PsiElement(>)('>')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            MAP_TYPE
+              PsiElement(Identifier)('map')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  BASE_TYPE
+                    SIMPLE_BASE_TYPE
+                      PsiElement(Identifier)('i32')
+                PsiElement(,)(',')
+                FIELD_TYPE
+                  CONTAINER_TYPE
+                    SET_TYPE
+                      PsiElement(Identifier)('set')
+                      GENERIC_TYPE
+                        PsiElement(<)('<')
+                        FIELD_TYPE
+                          BASE_TYPE
+                            SIMPLE_BASE_TYPE
+                              PsiElement(Identifier)('string')
+                        PsiElement(>)('>')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('map_int_strset')
         XSD_FIELD_OPTIONS
@@ -2058,30 +2190,35 @@ Thrift File
             PsiElement(Integer)('3')
           PsiElement(:)(':')
         FIELD_TYPE
-          LIST_TYPE
-            PsiElement(Identifier)('list')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                MAP_TYPE
-                  PsiElement(Identifier)('map')
-                  GENERIC_TYPE
-                    PsiElement(<)('<')
-                    FIELD_TYPE
-                      BASE_TYPE
-                        PsiElement(Identifier)('i32')
-                    PsiElement(,)(',')
-                    FIELD_TYPE
-                      SET_TYPE
-                        PsiElement(Identifier)('set')
-                        GENERIC_TYPE
-                          PsiElement(<)('<')
-                          FIELD_TYPE
-                            BASE_TYPE
-                              PsiElement(Identifier)('string')
-                          PsiElement(>)('>')
-                    PsiElement(>)('>')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            LIST_TYPE
+              PsiElement(Identifier)('list')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  CONTAINER_TYPE
+                    MAP_TYPE
+                      PsiElement(Identifier)('map')
+                      GENERIC_TYPE
+                        PsiElement(<)('<')
+                        FIELD_TYPE
+                          BASE_TYPE
+                            SIMPLE_BASE_TYPE
+                              PsiElement(Identifier)('i32')
+                        PsiElement(,)(',')
+                        FIELD_TYPE
+                          CONTAINER_TYPE
+                            SET_TYPE
+                              PsiElement(Identifier)('set')
+                              GENERIC_TYPE
+                                PsiElement(<)('<')
+                                FIELD_TYPE
+                                  BASE_TYPE
+                                    SIMPLE_BASE_TYPE
+                                      PsiElement(Identifier)('string')
+                                PsiElement(>)('>')
+                        PsiElement(>)('>')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('map_int_strset_list')
         XSD_FIELD_OPTIONS
@@ -2099,14 +2236,15 @@ Thrift File
             PsiElement(Integer)('1')
           PsiElement(:)(':')
         FIELD_TYPE
-          LIST_TYPE
-            PsiElement(Identifier)('list')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                CUSTOM_TYPE
-                  PsiElement(Identifier)('Bonk')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            LIST_TYPE
+              PsiElement(Identifier)('list')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  CUSTOM_TYPE
+                    PsiElement(Identifier)('Bonk')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('bonk')
         XSD_FIELD_OPTIONS
@@ -2124,26 +2262,29 @@ Thrift File
             PsiElement(Integer)('1')
           PsiElement(:)(':')
         FIELD_TYPE
-          LIST_TYPE
-            PsiElement(Identifier)('list')
-            GENERIC_TYPE
-              PsiElement(<)('<')
-              FIELD_TYPE
-                LIST_TYPE
-                  PsiElement(Identifier)('list')
-                  GENERIC_TYPE
-                    PsiElement(<)('<')
-                    FIELD_TYPE
-                      LIST_TYPE
-                        PsiElement(Identifier)('list')
-                        GENERIC_TYPE
-                          PsiElement(<)('<')
-                          FIELD_TYPE
-                            CUSTOM_TYPE
-                              PsiElement(Identifier)('Bonk')
-                          PsiElement(>)('>')
-                    PsiElement(>)('>')
-              PsiElement(>)('>')
+          CONTAINER_TYPE
+            LIST_TYPE
+              PsiElement(Identifier)('list')
+              GENERIC_TYPE
+                PsiElement(<)('<')
+                FIELD_TYPE
+                  CONTAINER_TYPE
+                    LIST_TYPE
+                      PsiElement(Identifier)('list')
+                      GENERIC_TYPE
+                        PsiElement(<)('<')
+                        FIELD_TYPE
+                          CONTAINER_TYPE
+                            LIST_TYPE
+                              PsiElement(Identifier)('list')
+                              GENERIC_TYPE
+                                PsiElement(<)('<')
+                                FIELD_TYPE
+                                  CUSTOM_TYPE
+                                    PsiElement(Identifier)('Bonk')
+                                PsiElement(>)('>')
+                        PsiElement(>)('>')
+                PsiElement(>)('>')
         DEFINITION_NAME
           PsiElement(Identifier)('bonk')
         XSD_FIELD_OPTIONS
@@ -2164,7 +2305,8 @@ Thrift File
           PsiElement(Identifier)('optional')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('bool')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('bool')
         DEFINITION_NAME
           PsiElement(Identifier)('b')
         PsiElement(=)('=')
@@ -2183,7 +2325,8 @@ Thrift File
           PsiElement(Identifier)('optional')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('string')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('string')
         DEFINITION_NAME
           PsiElement(Identifier)('s')
         PsiElement(=)('=')
@@ -2209,7 +2352,8 @@ Thrift File
           PsiElement(Identifier)('required')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('string')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('string')
         DEFINITION_NAME
           PsiElement(Identifier)('s')
         XSD_FIELD_OPTIONS
@@ -2262,7 +2406,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('double')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('double')
         DEFINITION_NAME
           PsiElement(Identifier)('foo')
         PsiElement(=)('=')
@@ -2281,7 +2426,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('double')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('double')
         DEFINITION_NAME
           PsiElement(Identifier)('foo')
         PsiElement(=)('=')
@@ -2308,7 +2454,8 @@ Thrift File
           PsiElement(Identifier)('optional')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i32')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i32')
         DEFINITION_NAME
           PsiElement(Identifier)('a')
         XSD_FIELD_OPTIONS
@@ -2343,7 +2490,8 @@ Thrift File
           PsiElement(:)(':')
         FIELD_TYPE
           BASE_TYPE
-            PsiElement(Identifier)('i32')
+            SIMPLE_BASE_TYPE
+              PsiElement(Identifier)('i32')
         DEFINITION_NAME
           PsiElement(Identifier)('x')
         PsiElement(=)('=')
@@ -2363,18 +2511,21 @@ Thrift File
   CONST
     PsiElement(Identifier)('const')
     FIELD_TYPE
-      MAP_TYPE
-        PsiElement(Identifier)('map')
-        GENERIC_TYPE
-          PsiElement(<)('<')
-          FIELD_TYPE
-            BASE_TYPE
-              PsiElement(Identifier)('string')
-          PsiElement(,)(',')
-          FIELD_TYPE
-            BASE_TYPE
-              PsiElement(Identifier)('i32')
-          PsiElement(>)('>')
+      CONTAINER_TYPE
+        MAP_TYPE
+          PsiElement(Identifier)('map')
+          GENERIC_TYPE
+            PsiElement(<)('<')
+            FIELD_TYPE
+              BASE_TYPE
+                SIMPLE_BASE_TYPE
+                  PsiElement(Identifier)('string')
+            PsiElement(,)(',')
+            FIELD_TYPE
+              BASE_TYPE
+                SIMPLE_BASE_TYPE
+                  PsiElement(Identifier)('i32')
+            PsiElement(>)('>')
     DEFINITION_NAME
       PsiElement(Identifier)('GEN_MAP2')
     PsiElement(=)('=')
@@ -2404,3 +2555,19 @@ Thrift File
           INT_CONSTANT
             PsiElement(Integer)('098325')
         PsiElement(})('}')
+  TYPEDEF
+    PsiElement(Identifier)('typedef')
+    FIELD_TYPE
+      BASE_TYPE
+        SIMPLE_BASE_TYPE
+          PsiElement(Identifier)('i32')
+        TYPE_ANNOTATIONS
+          PsiElement(()('(')
+          TYPE_ANNOTATION_LIST
+            TYPE_ANNOTATION
+              PsiElement(Identifier)('annotation_before')
+              PsiElement(=)('=')
+              PsiElement(Literal)('"true"')
+          PsiElement())(')')
+    DEFINITION_NAME
+      PsiElement(Identifier)('demo')
