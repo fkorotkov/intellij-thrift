@@ -11,33 +11,39 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftFieldTypeImpl extends ThriftPsiCompositeElementImpl implements ThriftFieldType {
+public class ThriftContainerTypeImpl extends ThriftPsiCompositeElementImpl implements ThriftContainerType {
 
-  public ThriftFieldTypeImpl(ASTNode node) {
+  public ThriftContainerTypeImpl(ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitFieldType(this);
+    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitContainerType(this);
     else super.accept(visitor);
   }
 
   @Override
   @Nullable
-  public ThriftBaseType getBaseType() {
-    return findChildByClass(ThriftBaseType.class);
+  public ThriftListType getListType() {
+    return findChildByClass(ThriftListType.class);
   }
 
   @Override
   @Nullable
-  public ThriftContainerType getContainerType() {
-    return findChildByClass(ThriftContainerType.class);
+  public ThriftMapType getMapType() {
+    return findChildByClass(ThriftMapType.class);
   }
 
   @Override
   @Nullable
-  public ThriftCustomType getCustomType() {
-    return findChildByClass(ThriftCustomType.class);
+  public ThriftSetType getSetType() {
+    return findChildByClass(ThriftSetType.class);
+  }
+
+  @Override
+  @Nullable
+  public ThriftTypeAnnotations getTypeAnnotations() {
+    return findChildByClass(ThriftTypeAnnotations.class);
   }
 
 }

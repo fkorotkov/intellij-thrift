@@ -11,15 +11,9 @@ public interface ThriftFieldType extends ThriftPsiCompositeElement {
   ThriftBaseType getBaseType();
 
   @Nullable
+  ThriftContainerType getContainerType();
+
+  @Nullable
   ThriftCustomType getCustomType();
-
-  @Nullable
-  ThriftListType getListType();
-
-  @Nullable
-  ThriftMapType getMapType();
-
-  @Nullable
-  ThriftSetType getSetType();
 
 }

@@ -397,3 +397,5 @@ struct StructA {
 typedef StructA StructB
 
 const map<string,i32> GEN_MAP2 = { "hello" : 233, "lkj98d" : 853, 'lkjsdf' : 098325 }
+
+typedef i32 (annotation_before = "true") demo

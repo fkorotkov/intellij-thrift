@@ -13,6 +13,7 @@ public interface ThriftTokenTypes {
   IElementType CONST_LIST = new ThriftElementType("CONST_LIST");
   IElementType CONST_MAP = new ThriftElementType("CONST_MAP");
   IElementType CONST_VALUE = new ThriftElementType("CONST_VALUE");
+  IElementType CONTAINER_TYPE = new ThriftElementType("CONTAINER_TYPE");
   IElementType CPP_TYPE = new ThriftElementType("CPP_TYPE");
   IElementType CUSTOM_TYPE = new ThriftElementType("CUSTOM_TYPE");
   IElementType DEFINITION_NAME = new ThriftElementType("DEFINITION_NAME");
@@ -43,6 +44,7 @@ public interface ThriftTokenTypes {
   IElementType SERVICE_BODY = new ThriftElementType("SERVICE_BODY");
   IElementType SERVICE_SUPER_NAME = new ThriftElementType("SERVICE_SUPER_NAME");
   IElementType SET_TYPE = new ThriftElementType("SET_TYPE");
+  IElementType SIMPLE_BASE_TYPE = new ThriftElementType("SIMPLE_BASE_TYPE");
   IElementType STRUCT = new ThriftElementType("STRUCT");
   IElementType THROWS = new ThriftElementType("THROWS");
   IElementType TYPEDEF = new ThriftElementType("TYPEDEF");
@@ -93,6 +95,9 @@ public interface ThriftTokenTypes {
       }
       else if (type == CONST_VALUE) {
         return new ThriftConstValueImpl(node);
+      }
+      else if (type == CONTAINER_TYPE) {
+        return new ThriftContainerTypeImpl(node);
       }
       else if (type == CPP_TYPE) {
         return new ThriftCppTypeImpl(node);
@@ -183,6 +188,9 @@ public interface ThriftTokenTypes {
       }
       else if (type == SET_TYPE) {
         return new ThriftSetTypeImpl(node);
+      }
+      else if (type == SIMPLE_BASE_TYPE) {
+        return new ThriftSimpleBaseTypeImpl(node);
       }
       else if (type == STRUCT) {
         return new ThriftStructImpl(node);

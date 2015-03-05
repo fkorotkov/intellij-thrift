@@ -37,6 +37,9 @@ public class ThriftParser implements PsiParser {
     else if (t == CONST_VALUE) {
       r = ConstValue(b, 0);
     }
+    else if (t == CONTAINER_TYPE) {
+      r = ContainerType(b, 0);
+    }
     else if (t == CPP_TYPE) {
       r = CppType(b, 0);
     }
@@ -109,6 +112,9 @@ public class ThriftParser implements PsiParser {
     else if (t == SET_TYPE) {
       r = SetType(b, 0);
     }
+    else if (t == SIMPLE_BASE_TYPE) {
+      r = SimpleBaseType(b, 0);
+    }
     else if (t == STRUCT) {
       r = Struct(b, 0);
     }
@@ -165,22 +171,22 @@ public class ThriftParser implements PsiParser {
   }
 
   /* ********************************************************** */
-  // 'bool' | 'byte' | 'i16' | 'i32' | 'i64' | 'double' | 'string' | 'binary' | 'slist'
+  // SimpleBaseType TypeAnnotations?
   public static boolean BaseType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "BaseType")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, "<base type>");
-    r = consumeToken(b, "bool");
-    if (!r) r = consumeToken(b, "byte");
-    if (!r) r = consumeToken(b, "i16");
-    if (!r) r = consumeToken(b, "i32");
-    if (!r) r = consumeToken(b, "i64");
-    if (!r) r = consumeToken(b, "double");
-    if (!r) r = consumeToken(b, "string");
-    if (!r) r = consumeToken(b, "binary");
-    if (!r) r = consumeToken(b, "slist");
+    r = SimpleBaseType(b, l + 1);
+    r = r && BaseType_1(b, l + 1);
     exit_section_(b, l, m, BASE_TYPE, r, false, null);
     return r;
+  }
+
+  // TypeAnnotations?
+  private static boolean BaseType_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "BaseType_1")) return false;
+    TypeAnnotations(b, l + 1);
+    return true;
   }
 
   /* ********************************************************** */
@@ -314,16 +320,22 @@ public class ThriftParser implements PsiParser {
   }
 
   /* ********************************************************** */
-  // MapType | SetType | ListType
-  static boolean ContainerType(PsiBuilder b, int l) {
+  // SimpleContainerType TypeAnnotations?
+  public static boolean ContainerType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ContainerType")) return false;
     boolean r;
-    Marker m = enter_section_(b);
-    r = MapType(b, l + 1);
-    if (!r) r = SetType(b, l + 1);
-    if (!r) r = ListType(b, l + 1);
-    exit_section_(b, m, null, r);
+    Marker m = enter_section_(b, l, _NONE_, "<container type>");
+    r = SimpleContainerType(b, l + 1);
+    r = r && ContainerType_1(b, l + 1);
+    exit_section_(b, l, m, CONTAINER_TYPE, r, false, null);
     return r;
+  }
+
+  // TypeAnnotations?
+  private static boolean ContainerType_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ContainerType_1")) return false;
+    TypeAnnotations(b, l + 1);
+    return true;
   }
 
   /* ********************************************************** */
@@ -893,6 +905,38 @@ public class ThriftParser implements PsiParser {
     if (!recursion_guard_(b, l, "SetType_1")) return false;
     CppType(b, l + 1);
     return true;
+  }
+
+  /* ********************************************************** */
+  // 'bool' | 'byte' | 'i16' | 'i32' | 'i64' | 'double' | 'string' | 'binary' | 'slist'
+  public static boolean SimpleBaseType(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "SimpleBaseType")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, "<simple base type>");
+    r = consumeToken(b, "bool");
+    if (!r) r = consumeToken(b, "byte");
+    if (!r) r = consumeToken(b, "i16");
+    if (!r) r = consumeToken(b, "i32");
+    if (!r) r = consumeToken(b, "i64");
+    if (!r) r = consumeToken(b, "double");
+    if (!r) r = consumeToken(b, "string");
+    if (!r) r = consumeToken(b, "binary");
+    if (!r) r = consumeToken(b, "slist");
+    exit_section_(b, l, m, SIMPLE_BASE_TYPE, r, false, null);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // MapType | SetType | ListType
+  static boolean SimpleContainerType(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "SimpleContainerType")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = MapType(b, l + 1);
+    if (!r) r = SetType(b, l + 1);
+    if (!r) r = ListType(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
   }
 
   /* ********************************************************** */

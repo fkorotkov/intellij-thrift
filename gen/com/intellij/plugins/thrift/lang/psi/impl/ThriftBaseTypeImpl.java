@@ -22,4 +22,16 @@ public class ThriftBaseTypeImpl extends ThriftPsiCompositeElementImpl implements
     else super.accept(visitor);
   }
 
+  @Override
+  @NotNull
+  public ThriftSimpleBaseType getSimpleBaseType() {
+    return findNotNullChildByClass(ThriftSimpleBaseType.class);
+  }
+
+  @Override
+  @Nullable
+  public ThriftTypeAnnotations getTypeAnnotations() {
+    return findChildByClass(ThriftTypeAnnotations.class);
+  }
+
 }
