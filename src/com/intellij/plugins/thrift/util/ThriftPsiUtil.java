@@ -26,6 +26,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -73,7 +74,10 @@ public class ThriftPsiUtil {
 
   @NotNull
   public static PsiReference[] getReferences(@NotNull ThriftInclude include) {
-    return getReferenceSet(include).getAllReferences();
+    final List<PsiReference> refs = new ArrayList<PsiReference>();
+    refs.addAll(Arrays.asList(getReferenceSet(include).getAllReferences()));
+    refs.add(new ThriftIncludeReference(include));
+    return refs.toArray(new PsiReference[]{});
   }
 
   @NotNull
