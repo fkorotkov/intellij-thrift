@@ -4,6 +4,10 @@
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
+      <p>0.9.4:</p>
+      <ul>
+        <li>Always absolute from source roots paths in includes</li>
+      </ul>
       <p>0.9.3:</p>
       <ul>
         <li>Bug fixed and performance improvements</li>
@@ -62,7 +66,7 @@
       </ul>
       ]]>
   </change-notes>
-  <version>0.9.3</version>
+  <version>0.9.4</version>
   <vendor>Twitter, Inc.</vendor>
   <idea-version since-build="132.1"/>
 
