@@ -49,16 +49,19 @@ public class ThriftSubDeclarationIndex extends FileBasedIndexExtension<String, S
     return myIndexer;
   }
 
+  @NotNull
   @Override
   public KeyDescriptor<String> getKeyDescriptor() {
     return myKeyDescriptor;
   }
 
+  @NotNull
   @Override
   public DataExternalizer<String> getValueExternalizer() {
     return myKeyDescriptor;
   }
 
+  @NotNull
   @Override
   public FileBasedIndex.InputFilter getInputFilter() {
     return myFilter;
