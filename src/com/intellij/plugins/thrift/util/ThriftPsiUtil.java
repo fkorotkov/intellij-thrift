@@ -82,7 +82,12 @@ public class ThriftPsiUtil {
     final String path = getPath(include);
     return new FileReferenceSet(
       path, include, element.getStartOffsetInParent() + 1, null, true, true, new FileType[]{ThriftFileType.INSTANCE}
-    );
+    ) {
+      @Override
+      public boolean isAbsolutePathReference() {
+        return true;
+      }
+    };
   }
 
   @NotNull

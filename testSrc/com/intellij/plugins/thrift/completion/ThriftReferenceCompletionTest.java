@@ -10,10 +10,26 @@ public class ThriftReferenceCompletionTest extends ThriftCompletionTestBase {
     super("completion/reference");
   }
 
-  public void testInclude() throws Throwable {
+  public void testInclude1() throws Throwable {
     myFixture.addFileToProject("bar.thrift", "");
     myFixture.addFileToProject("baz.thrift", "");
     myFixture.configureByText(ThriftFileType.INSTANCE, "include 'b<caret>'");
+    myFixture.completeBasic();
+    checkCompletion(CheckType.INCLUDES, "bar.thrift", "baz.thrift");
+  }
+
+  public void testInclude2() throws Throwable {
+    myFixture.addFileToProject("foo/bar.thrift", "");
+    myFixture.addFileToProject("foo/baz.thrift", "");
+    myFixture.configureByText(ThriftFileType.INSTANCE, "include 'foo/b<caret>'");
+    myFixture.completeBasic();
+    checkCompletion(CheckType.INCLUDES, "bar.thrift", "baz.thrift");
+  }
+
+  public void testInclude3() throws Throwable {
+    myFixture.addFileToProject("foo/bar.thrift", "");
+    myFixture.addFileToProject("foo/baz.thrift", "");
+    myFixture.configureByFile("include/include.thrift");
     myFixture.completeBasic();
     checkCompletion(CheckType.INCLUDES, "bar.thrift", "baz.thrift");
   }
