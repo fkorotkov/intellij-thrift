@@ -17,6 +17,10 @@ public class Go extends Generator {
    * Override thrift package import path (default:git.apache.org/thrift.git/lib/go/thrift)
    */
   private String thriftImport;
+  /**
+   * Package name (default: inferred from thrift file name)
+   */
+  private String packageName;
 
   protected Go() {
     super(GeneratorType.Go);
@@ -30,12 +34,20 @@ public class Go extends Generator {
     this.thriftImport = thriftImport;
   }
 
+  public void setPackage(String packageName) {
+    this.packageName = packageName;
+  }
+
   public String getPackagePrefix() {
     return packagePrefix;
   }
 
   public String getThriftImport() {
     return thriftImport;
+  }
+
+  public String getPackageName() {
+    return packageName;
   }
 
   @Override
@@ -46,6 +58,9 @@ public class Go extends Generator {
     }
     if (thriftImport != null) {
       line.add("thrift_import=" + thriftImport);
+    }
+    if (packageName != null) {
+      line.add("package=" + packageName);
     }
     return line;
   }

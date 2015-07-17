@@ -17,6 +17,18 @@ public class Delphi extends Generator {
    * Enable TypeRegistry, allows for creation of struct, union and container instances by interface or TypeInfo()
    */
   private boolean registerTypes;
+  /**
+   * Name TConstants classes after IDL to reduce ambiguities
+   */
+  private boolean constprefix;
+  /**
+   * Enable and use processing events in the generated code.
+   */
+  private boolean events;
+  /**
+   * Enable XMLDoc comments for Help Insight etc.
+   */
+  private boolean xmldoc;
 
   protected Delphi() {
     super(GeneratorType.Delphi);
@@ -30,12 +42,36 @@ public class Delphi extends Generator {
     return registerTypes;
   }
 
+  public boolean isConstprefix() {
+    return constprefix;
+  }
+
+  public boolean isEvents() {
+    return events;
+  }
+
+  public boolean isXmldoc() {
+    return xmldoc;
+  }
+
   public void setAnsiStrBinary(boolean ansiStrBinary) {
     this.ansiStrBinary = ansiStrBinary;
   }
 
   public void setRegisterTypes(boolean registerTypes) {
     this.registerTypes = registerTypes;
+  }
+
+  public void setConstprefix(boolean constprefix) {
+    this.constprefix = constprefix;
+  }
+
+  public void setEvents(boolean events) {
+    this.events = events;
+  }
+
+  public void setXmldoc(boolean xmldoc) {
+    this.xmldoc = xmldoc;
   }
 
   @Override
@@ -46,6 +82,15 @@ public class Delphi extends Generator {
     }
     if (registerTypes) {
       line.add("register_types");
+    }
+    if (constprefix) {
+      line.add("constprefix");
+    }
+    if (events) {
+      line.add("events");
+    }
+    if (xmldoc) {
+      line.add("xmldoc");
     }
     return line;
   }

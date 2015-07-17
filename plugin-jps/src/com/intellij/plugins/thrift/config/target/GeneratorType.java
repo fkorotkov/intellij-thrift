@@ -42,7 +42,12 @@ public enum GeneratorType {
       return new Delphi();
     }
   },
-  Erlang("erl", "/icons/types/erlang.png"),
+  Erlang("erl", "/icons/types/erlang.png") {
+    @Override
+    public Generator create() {
+      return new Erlang();
+    }
+  },
   Go("go", "/icons/types/go.png") {
     @Override
     public Go create() {
@@ -75,6 +80,8 @@ public enum GeneratorType {
       return new Javascript();
     }
   },
+  JSON("json", "/fileTypes/json.png"),
+  LUA("lua", "/icons/types/lua.png"),
   OCaml("ocaml", "/icons/types/ocaml.png"),
   Perl("perl", "/icons/types/perl.png"),
   PHP("php", "/icons/types/php-icon.png") {

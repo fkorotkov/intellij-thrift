@@ -33,9 +33,17 @@ public class Cpp extends Generator {
    * Use full include paths in generated files.
    */
   private boolean includePrefix;
+  /**
+   * Omits generation of default operators ==, != and <
+   */
+  private boolean noDefaultOperators;
 
   protected Cpp() {
     super(GeneratorType.Cpp);
+  }
+
+  public void setNoDefaultOperators(boolean noDefaultOperators) {
+    this.noDefaultOperators = noDefaultOperators;
   }
 
   public void setCobStyle(boolean cobStyle) {
@@ -86,6 +94,10 @@ public class Cpp extends Generator {
     return includePrefix;
   }
 
+  public boolean isNoDefaultOperators() {
+    return noDefaultOperators;
+  }
+
   @Override
   protected Collection<String> getOptions() {
     Collection<String> line = new ArrayList<String>();
@@ -106,6 +118,9 @@ public class Cpp extends Generator {
     }
     if (includePrefix) {
       line.add("include_prefix");
+    }
+    if (noDefaultOperators) {
+      line.add("no_default_operators");
     }
     return line;
   }

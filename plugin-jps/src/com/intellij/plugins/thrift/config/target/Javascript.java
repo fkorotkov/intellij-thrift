@@ -17,6 +17,10 @@ public class Javascript extends Generator {
    * Generate node.js compatible code.
    */
   private boolean node;
+  /**
+   * Generate TypeScript definition files
+   */
+  private boolean ts;
 
   protected Javascript() {
     super(GeneratorType.JavaScript);
@@ -30,12 +34,20 @@ public class Javascript extends Generator {
     this.node = node;
   }
 
+  public void setTs(boolean ts) {
+    this.ts = ts;
+  }
+
   public boolean isJquery() {
     return jquery;
   }
 
   public boolean isNode() {
     return node;
+  }
+
+  public boolean isTs() {
+    return ts;
   }
 
   @Override
@@ -47,6 +59,9 @@ public class Javascript extends Generator {
     }
     if (node) {
       line.add("node");
+    }
+    if (ts) {
+      line.add("ts");
     }
 
     return line;

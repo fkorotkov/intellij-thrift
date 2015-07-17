@@ -18,6 +18,7 @@ class CppOptionPane extends AOptionPane<Cpp> {
   private final JCheckBox myPureEnums;
   private final JCheckBox myDense;
   private final JCheckBox myIncludePrefix;
+  private final JCheckBox myNoDefaultOperators;
 
   public CppOptionPane() {
     super(new GridLayout(0, 1));
@@ -28,6 +29,7 @@ class CppOptionPane extends AOptionPane<Cpp> {
     myPureEnums = new JCheckBox(ThriftBundle.message("thrift.gen.option.pure_enums"));
     myDense = new JCheckBox(ThriftBundle.message("thrift.gen.option.dense"));
     myIncludePrefix = new JCheckBox(ThriftBundle.message("thrift.gen.option.include_prefix"));
+    myNoDefaultOperators = new JCheckBox(ThriftBundle.message("thrift.gen.option.no_default_operators"));
 
     add(myCobStyle);
     add(myNoClientCompletion);
@@ -35,6 +37,7 @@ class CppOptionPane extends AOptionPane<Cpp> {
     add(myPureEnums);
     add(myDense);
     add(myIncludePrefix);
+    add(myNoDefaultOperators);
   }
 
   @Override
@@ -45,6 +48,7 @@ class CppOptionPane extends AOptionPane<Cpp> {
     myPureEnums.setSelected(cpp.isPureEnums());
     myDense.setSelected(cpp.isDense());
     myIncludePrefix.setSelected(cpp.isIncludePrefix());
+    myNoDefaultOperators.setSelected(cpp.isNoDefaultOperators());
   }
 
   @Override
@@ -55,5 +59,6 @@ class CppOptionPane extends AOptionPane<Cpp> {
     cpp.setPureEnums(myPureEnums.isSelected());
     cpp.setDense(myDense.isSelected());
     cpp.setIncludePrefix(myIncludePrefix.isSelected());
+    cpp.setNoDefaultOperators(myNoDefaultOperators.isSelected());
   }
 }

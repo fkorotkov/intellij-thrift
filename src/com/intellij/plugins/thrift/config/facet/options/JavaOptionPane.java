@@ -20,6 +20,9 @@ class JavaOptionPane extends AOptionPane<Java> {
   private final JCheckBox myAndroidLegacy;
   private final JCheckBox myJava5;
   private final JCheckBox mySortedContainers;
+  private final JCheckBox myFullcamel;
+  private final JCheckBox myAndroid;
+  private final JCheckBox myReuseObjects;
 
   public JavaOptionPane() {
     super(new GridLayout(0, 1));
@@ -31,6 +34,9 @@ class JavaOptionPane extends AOptionPane<Java> {
     myAndroidLegacy = new JCheckBox(ThriftBundle.message("thrift.gen.option.android_legacy"));
     myJava5 = new JCheckBox(ThriftBundle.message("thrift.gen.option.java5"));
     mySortedContainers = new JCheckBox(ThriftBundle.message("thrift.gen.option.sorted_containers"));
+    myFullcamel = new JCheckBox(ThriftBundle.message("thrift.gen.option.fullcamel"));
+    myAndroid = new JCheckBox(ThriftBundle.message("thrift.gen.option.android"));
+    myReuseObjects = new JCheckBox(ThriftBundle.message("thrift.gen.option.reuse-objects"));
 
     add(myBeans);
     add(myPrivateMembers);
@@ -39,6 +45,9 @@ class JavaOptionPane extends AOptionPane<Java> {
     add(myAndroidLegacy);
     add(myJava5);
     add(mySortedContainers);
+    add(myFullcamel);
+    add(myAndroid);
+    add(myReuseObjects);
   }
 
   @Override
@@ -50,6 +59,9 @@ class JavaOptionPane extends AOptionPane<Java> {
     myAndroidLegacy.setSelected(java.isAndroidLegacy());
     myJava5.setSelected(java.isJava5());
     mySortedContainers.setSelected(java.isSortedContainers());
+    myFullcamel.setSelected(java.isFullcamel());
+    myAndroid.setSelected(java.isAndroid());
+    myReuseObjects.setSelected(java.isReuseObjects());
   }
 
   @Override
@@ -61,5 +73,8 @@ class JavaOptionPane extends AOptionPane<Java> {
     java.setAndroidLegacy(myAndroidLegacy.isSelected());
     java.setJava5(myJava5.isSelected());
     java.setSortedContainers(mySortedContainers.isSelected());
+    java.setFullcamel(myFullcamel.isSelected());
+    java.setAndroid(myAndroid.isSelected());
+    java.setReuseObjects(myReuseObjects.isSelected());
   }
 }
