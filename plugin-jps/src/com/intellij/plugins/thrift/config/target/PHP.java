@@ -26,6 +26,18 @@ public class PHP extends Generator {
    * Generate PHP REST processors
    */
   private boolean rest;
+  /**
+   * Set global namespace
+   */
+  private String nsglobal;
+  /**
+   * Generate PHP validator methods
+   */
+  private boolean validate;
+  /**
+   * Generate JsonSerializable classes (requires PHP >= 5.4)
+   */
+  private boolean json;
 
   protected PHP() {
     super(GeneratorType.PHP);
@@ -47,6 +59,18 @@ public class PHP extends Generator {
     this.rest = rest;
   }
 
+  public void setNsglobal(String nsglobal) {
+    this.nsglobal = nsglobal;
+  }
+
+  public void setValidate(boolean validate) {
+    this.validate = validate;
+  }
+
+  public void setJson(boolean json) {
+    this.json = json;
+  }
+
   public boolean isInlined() {
     return inlined;
   }
@@ -63,6 +87,18 @@ public class PHP extends Generator {
     return rest;
   }
 
+  public String getNsglobal() {
+    return nsglobal;
+  }
+
+  public boolean isValidate() {
+    return validate;
+  }
+
+  public boolean isJson() {
+    return json;
+  }
+
   @Override
   protected Collection<String> getOptions() {
     List<String> line = new ArrayList<String>();
@@ -77,6 +113,15 @@ public class PHP extends Generator {
     }
     if (rest) {
       line.add("rest");
+    }
+    if (nsglobal != null) {
+      line.add("nsglobal=" + nsglobal);
+    }
+    if (validate) {
+      line.add("validate");
+    }
+    if (json) {
+      line.add("json");
     }
     return line;
   }

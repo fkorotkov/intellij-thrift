@@ -25,7 +25,7 @@ class GraphvizOptionPane extends AOptionPane<Graphviz> {
 
   @Override
   public void setValues(Graphviz graphviz) {
-    myExceptions.setSelected(myExceptions.isSelected());
+    myExceptions.setSelected(graphviz.isExceptions());
   }
 
   @Override

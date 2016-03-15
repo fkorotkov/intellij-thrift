@@ -133,7 +133,7 @@ public class ThriftCompilerConfigurable extends BaseConfigurable implements Sear
           }
 
           @Override
-          protected void onFileChoosen(@NotNull VirtualFile chosenFile) {
+          protected void onFileChosen(@NotNull VirtualFile chosenFile) {
             lastSelectedFile = chosenFile;
             final String absolutePath = VfsUtil.virtualToIoFile(lastSelectedFile).getAbsolutePath();
             tfThriftCompiler.setText(absolutePath);

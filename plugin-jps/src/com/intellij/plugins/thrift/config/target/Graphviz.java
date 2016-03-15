@@ -22,6 +22,10 @@ public class Graphviz extends Generator {
     this.exceptions = exceptions;
   }
 
+  public boolean isExceptions() {
+    return exceptions;
+  }
+
   @Override
   protected Collection<String> getOptions() {
     if (exceptions) {

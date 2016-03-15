@@ -23,6 +23,7 @@ abstract class AOptionPane<G extends Generator> extends JPanel {
     PANES.put(GeneratorType.Cpp, new CppOptionPane());
     PANES.put(GeneratorType.CSharp, new CSharpOptionPane());
     PANES.put(GeneratorType.Delphi, new DelphiOptionPane());
+    PANES.put(GeneratorType.Erlang, new ErlangOptionPane());
     PANES.put(GeneratorType.Go, new GoOptionPane());
     PANES.put(GeneratorType.Graphviz, new GraphvizOptionPane());
     PANES.put(GeneratorType.HTML, new HTMLOptionPane());

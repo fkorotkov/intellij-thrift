@@ -37,6 +37,18 @@ public class Java extends Generator {
    * Use TreeSet/TreeMap instead of HashSet/HashMap as a implementation of set/map.
    */
   private boolean sortedContainers;
+  /**
+   * Convert underscored_accessor_or_service_names to camelCase.
+   */
+  private boolean fullcamel;
+  /**
+   * Generated structures are Parcelable.
+   */
+  private boolean android;
+  /**
+   * Data objects will not be allocated, but existing instances will be used (read and write).
+   */
+  private boolean reuseObjects;
 
   protected Java() {
     super(GeneratorType.Java);
@@ -70,6 +82,18 @@ public class Java extends Generator {
     this.sortedContainers = sortedContainers;
   }
 
+  public void setFullcamel(boolean fullcamel) {
+    this.fullcamel = fullcamel;
+  }
+
+  public void setAndroid(boolean android) {
+    this.android = android;
+  }
+
+  public void setReuseObjects(boolean reuseObjects) {
+    this.reuseObjects = reuseObjects;
+  }
+
   public boolean isBeans() {
     return beans;
   }
@@ -98,6 +122,18 @@ public class Java extends Generator {
     return sortedContainers;
   }
 
+  public boolean isFullcamel() {
+    return fullcamel;
+  }
+
+  public boolean isAndroid() {
+    return android;
+  }
+
+  public boolean isReuseObjects() {
+    return reuseObjects;
+  }
+
   @Override
   protected Collection<String> getOptions() {
     ArrayList<String> line = new ArrayList<String>();
@@ -121,6 +157,15 @@ public class Java extends Generator {
     }
     if (sortedContainers) {
       line.add("sorted_containers");
+    }
+    if (fullcamel) {
+      line.add("fullcamel");
+    }
+    if (android) {
+      line.add("android");
+    }
+    if (reuseObjects) {
+      line.add("reuse-objects");
     }
     return line;
   }
