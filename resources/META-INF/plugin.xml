@@ -118,6 +118,10 @@
                      key="thrift.inspection.unresolved.include"
                      groupKey="inspections.group.name" enabledByDefault="true"
                      implementationClass="com.intellij.plugins.thrift.inspections.ThriftUnresolvedIncludeInspection"/>
+    <localInspection language="thrift" shortName="ThriftDuplicates" bundle="com.intellij.plugins.thrift.ThriftBundle"
+                     key="thrift.inspection.unresolved.include"
+                     groupKey="inspections.group.name" enabledByDefault="true"
+                     implementationClass="com.intellij.plugins.thrift.inspections.ThriftDuplicatesInspection"/>
 
     <projectConfigurable instance="com.intellij.plugins.thrift.config.ThriftCompilerConfigurable" id="intellij-thrift"
                          displayName="Thrift compiler" parentId="project.propCompiler"/>
