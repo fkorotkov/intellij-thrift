@@ -50,6 +50,11 @@ public class Java extends Generator {
    */
   private boolean reuseObjects;
 
+  /**
+   * Generated annotations will be undated to avoid unnecessary changes in source tree
+   */
+  private boolean undatedAnnotations;
+
   protected Java() {
     super(GeneratorType.Java);
   }
@@ -94,6 +99,10 @@ public class Java extends Generator {
     this.reuseObjects = reuseObjects;
   }
 
+  public void setUndatedAnnotations(boolean undatedAnnotations) {
+    this.undatedAnnotations = undatedAnnotations;
+  }
+
   public boolean isBeans() {
     return beans;
   }
@@ -134,6 +143,10 @@ public class Java extends Generator {
     return reuseObjects;
   }
 
+  public boolean isUndatedAnnotations() {
+    return undatedAnnotations;
+  }
+
   @Override
   protected Collection<String> getOptions() {
     ArrayList<String> line = new ArrayList<String>();
@@ -166,6 +179,9 @@ public class Java extends Generator {
     }
     if (reuseObjects) {
       line.add("reuse-objects");
+    }
+    if (undatedAnnotations) {
+      line.add("generated_annotations=undated");
     }
     return line;
   }

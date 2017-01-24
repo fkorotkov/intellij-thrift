@@ -23,6 +23,7 @@ class JavaOptionPane extends AOptionPane<Java> {
   private final JCheckBox myFullcamel;
   private final JCheckBox myAndroid;
   private final JCheckBox myReuseObjects;
+  private final JCheckBox myUndatedAnnotations;
 
   public JavaOptionPane() {
     super(new GridLayout(0, 1));
@@ -37,6 +38,7 @@ class JavaOptionPane extends AOptionPane<Java> {
     myFullcamel = new JCheckBox(ThriftBundle.message("thrift.gen.option.fullcamel"));
     myAndroid = new JCheckBox(ThriftBundle.message("thrift.gen.option.android"));
     myReuseObjects = new JCheckBox(ThriftBundle.message("thrift.gen.option.reuse-objects"));
+    myUndatedAnnotations = new JCheckBox(ThriftBundle.message("thrift.gen.option.undated-annotations"));
 
     add(myBeans);
     add(myPrivateMembers);
@@ -48,6 +50,7 @@ class JavaOptionPane extends AOptionPane<Java> {
     add(myFullcamel);
     add(myAndroid);
     add(myReuseObjects);
+    add(myUndatedAnnotations);
   }
 
   @Override
@@ -62,6 +65,7 @@ class JavaOptionPane extends AOptionPane<Java> {
     myFullcamel.setSelected(java.isFullcamel());
     myAndroid.setSelected(java.isAndroid());
     myReuseObjects.setSelected(java.isReuseObjects());
+    myUndatedAnnotations.setSelected(java.isUndatedAnnotations());
   }
 
   @Override
@@ -76,5 +80,6 @@ class JavaOptionPane extends AOptionPane<Java> {
     java.setFullcamel(myFullcamel.isSelected());
     java.setAndroid(myAndroid.isSelected());
     java.setReuseObjects(myReuseObjects.isSelected());
+    java.setUndatedAnnotations(myUndatedAnnotations.isSelected());
   }
 }
