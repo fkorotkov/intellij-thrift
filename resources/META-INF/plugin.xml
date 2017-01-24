@@ -4,6 +4,11 @@
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
+      <p>0.9.6:</p>
+      <ul>
+        <li>Support for generated_annotations=undated</li>
+        <li>Java 6 bytecode level</li>
+      </ul>
       <p>0.9.5:</p>
       <ul>
         <li>Add Thrift v0.9.2 compiler options</li>
@@ -71,8 +76,7 @@
       </ul>
       ]]>
   </change-notes>
-  <version>0.9.5</version>
-  <vendor>Twitter, Inc.</vendor>
+  <version>0.9.6</version>
   <idea-version since-build="145.1"/>
 
   <application-components>
