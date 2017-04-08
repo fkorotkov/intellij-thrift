@@ -112,23 +112,23 @@ class ThriftOutputConsumer extends ProcessAdapter {
 
     int exitCode = event.getExitCode();
     if (exitCode == 0) {
-      try {
-        final FileGeneratedEvent msg = new FileGeneratedEvent();
-
-        collectNewFiles(msg);
-
-        myContext.processMessage(msg);
-      }
-      catch (IOException e) {
-        myContext.processMessage(
-          new CompilerMessage(
-            ThriftBuilder.BUILDER_NAME,
-            BuildMessage.Kind.ERROR,
-            "Failed to collect generated files: " + stdOutput
-          )
-        );
-        myHasErrors.set(true);
-      }
+      // TODO: (abel) commenting out to get working
+      //try {
+      //
+      //  final FileGeneratedEvent msg = new FileGeneratedEvent();
+      //  collectNewFiles(msg);
+      //  myContext.processMessage(msg);
+      //}
+      //catch (IOException e) {
+      //  myContext.processMessage(
+      //    new CompilerMessage(
+      //      ThriftBuilder.BUILDER_NAME,
+      //      BuildMessage.Kind.ERROR,
+      //      "Failed to collect generated files: " + stdOutput
+      //    )
+      //  );
+      //  myHasErrors.set(true);
+      //}
     }
     else {
       myContext.processMessage(
