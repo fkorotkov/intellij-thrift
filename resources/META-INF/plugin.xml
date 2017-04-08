@@ -1,4 +1,4 @@
-<idea-plugin version="2">
+<idea-plugin>
   <id>com.intellij.plugins.thrift</id>
   <name>Thrift Support</name>
   <description>Support for Thrift language</description>
