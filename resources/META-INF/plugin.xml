@@ -1,4 +1,4 @@
-<idea-plugin version="2">
+<idea-plugin>
   <id>com.intellij.plugins.thrift</id>
   <name>Thrift Support</name>
   <description>Support for Thrift language</description>
@@ -80,6 +80,12 @@
   <vendor>Twitter, Inc.</vendor>
   <idea-version since-build="145.1"/>
 
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.lang</depends>
+  <depends>com.intellij.modules.vcs</depends>
+  <depends>com.intellij.modules.xml</depends>
+  <depends>com.intellij.modules.xdebugger</depends>
+
   <application-components>
     <!-- Add your application components here -->
   </application-components>
@@ -142,9 +148,9 @@
     <compileServer.plugin classpath="thrift-jps.jar"/>
 
   </extensions>
-
   <actions>
   </actions>
+
   <project-components>
     <component>
       <loadForDefaultProject>true</loadForDefaultProject>

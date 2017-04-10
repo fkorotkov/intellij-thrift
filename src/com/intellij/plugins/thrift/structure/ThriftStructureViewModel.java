@@ -19,7 +19,6 @@ import com.intellij.ide.IdeBundle;
 import com.intellij.ide.structureView.StructureViewModel;
 import com.intellij.ide.structureView.StructureViewModelBase;
 import com.intellij.ide.structureView.StructureViewTreeElement;
-import com.intellij.ide.structureView.impl.java.VisibilitySorter;
 import com.intellij.ide.util.treeView.smartTree.*;
 import com.intellij.plugins.thrift.lang.psi.ThriftDeclaration;
 import com.intellij.plugins.thrift.lang.psi.ThriftSubDeclaration;
@@ -36,7 +35,6 @@ import org.jetbrains.annotations.NotNull;
 public class ThriftStructureViewModel extends StructureViewModelBase implements StructureViewModel.ElementInfoProvider {
   public ThriftStructureViewModel(@NotNull PsiFile psiFile) {
     super(psiFile, new ThriftStructureViewElement(psiFile));
-    withSorters(Sorter.ALPHA_SORTER, VisibilitySorter.INSTANCE);
     withSuitableClasses(ThriftDeclaration.class);
   }
 
