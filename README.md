@@ -1,4 +1,4 @@
-Plugin to support Thrift language in IntelliJ
+Plugin to support the Apache Thrift language in JetBrains IDE's
 
 Fork Notes
 ==========
