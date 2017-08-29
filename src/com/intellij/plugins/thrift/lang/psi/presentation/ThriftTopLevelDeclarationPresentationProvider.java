@@ -4,6 +4,7 @@ import com.intellij.navigation.ItemPresentation;
 import com.intellij.navigation.ItemPresentationProvider;
 import com.intellij.openapi.util.Iconable;
 import com.intellij.plugins.thrift.lang.psi.ThriftDeclaration;
+import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
@@ -24,7 +25,8 @@ public class ThriftTopLevelDeclarationPresentationProvider implements ItemPresen
       @Nullable
       @Override
       public String getLocationString() {
-        return item.getContainingFile().getName();
+        PsiFile containingFile = item.getContainingFile();
+        return containingFile == null ? null : containingFile.getName();
       }
 
       @Nullable
