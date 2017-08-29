@@ -177,7 +177,7 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
       options.getGenerators().addAll(translators.getData());
       final List<String> includes = options.getIncludes();
       for (VirtualFile vf : includesList.getData()) {
-        includes.add(vf.getUrl());
+        includes.add(vf.getPath());
       }
       options.setCleanOutput(cleanOnBuildCheckBox.isSelected());
 
