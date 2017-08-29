@@ -1,9 +1,15 @@
-<idea-plugin version="2">
+<idea-plugin>
   <id>com.intellij.plugins.thrift</id>
   <name>Thrift Support</name>
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
+      <p>0.9.7:</p>
+      <ul>
+        <li>Erlang support</li>
+        <li>Bug fixes</li>
+        <li>Support all IntelliJ-based IDEs</li>
+      </ul>
       <p>0.9.6:</p>
       <ul>
         <li>Support for generated_annotations=undated</li>
@@ -76,9 +82,15 @@
       </ul>
       ]]>
   </change-notes>
-  <version>0.9.6</version>
-  <vendor>Twitter, Inc.</vendor>
+  <version>0.9.7</version>
+  <vendor>@fedor</vendor>
   <idea-version since-build="145.1"/>
+
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.lang</depends>
+  <depends>com.intellij.modules.vcs</depends>
+  <depends>com.intellij.modules.xml</depends>
+  <depends>com.intellij.modules.xdebugger</depends>
 
   <application-components>
     <!-- Add your application components here -->
