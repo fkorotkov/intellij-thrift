@@ -29,9 +29,11 @@ public class ThriftCompilerOptions extends JpsElementBase<ThriftCompilerOptions>
     return config == null ? new ThriftCompilerOptions() : config;
   }
 
-  @AbstractCollection(surroundWithTag = false,
-                      elementTypes = {AS3.class, Cocoa.class, Cpp.class, CSharp.class, Delphi.class, Generator.class, Go.class,
-                        Graphviz.class, HTML.class, IGenerator.class, Java.class, Javascript.class, PHP.class, Python.class, Ruby.class})
+  @AbstractCollection(
+    surroundWithTag = false,
+    elementTypes = {AS3.class, Cocoa.class, Cpp.class, CSharp.class, Delphi.class, Erlang.class, Generator.class, Go.class, Graphviz.class,
+      HTML.class, IGenerator.class, Java.class, Javascript.class, PHP.class, Python.class, Ruby.class}
+  )
   public List<Generator> getGenerators() {
     return generators;
   }

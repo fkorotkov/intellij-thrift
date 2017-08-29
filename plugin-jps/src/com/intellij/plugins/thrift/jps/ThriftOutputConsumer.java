@@ -6,7 +6,9 @@ import com.intellij.execution.process.ProcessOutputTypes;
 import com.intellij.openapi.util.Key;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.FileFilterUtils;
+import org.jetbrains.jps.builders.java.JavaModuleBuildTargetType;
 import org.jetbrains.jps.incremental.CompileContext;
+import org.jetbrains.jps.incremental.ModuleBuildTarget;
 import org.jetbrains.jps.incremental.messages.BuildMessage;
 import org.jetbrains.jps.incremental.messages.CompilerMessage;
 import org.jetbrains.jps.incremental.messages.FileGeneratedEvent;
@@ -113,7 +115,7 @@ class ThriftOutputConsumer extends ProcessAdapter {
     int exitCode = event.getExitCode();
     if (exitCode == 0) {
       try {
-        final FileGeneratedEvent msg = new FileGeneratedEvent();
+        final FileGeneratedEvent msg = new FileGeneratedEvent(new ModuleBuildTarget(myModule, JavaModuleBuildTargetType.PRODUCTION));
 
         collectNewFiles(msg);
 
