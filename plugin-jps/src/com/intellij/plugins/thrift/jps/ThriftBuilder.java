@@ -138,6 +138,15 @@ public class ThriftBuilder extends ModuleLevelBuilder {
     List<String> cmdLine = new ArrayList<String>(line);
     cmdLine.add(source.getAbsolutePath());
 
+    StringBuilder cmdMessage = new StringBuilder();
+    for (String cmdPart : cmdLine) {
+      cmdMessage.append(cmdPart).append(' ');
+    }
+
+    context.processMessage(
+      new CompilerMessage(getPresentableName(), BuildMessage.Kind.INFO, cmdMessage.toString())
+    );
+
     try {
       Process process = new ProcessBuilder()
         .command(cmdLine)
