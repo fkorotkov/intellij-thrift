@@ -17,8 +17,12 @@ public class ThriftFieldsImpl extends ThriftPsiCompositeElementImpl implements T
     super(node);
   }
 
+  public void accept(@NotNull ThriftVisitor visitor) {
+    visitor.visitFields(this);
+  }
+
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitFields(this);
+    if (visitor instanceof ThriftVisitor) accept((ThriftVisitor)visitor);
     else super.accept(visitor);
   }
 

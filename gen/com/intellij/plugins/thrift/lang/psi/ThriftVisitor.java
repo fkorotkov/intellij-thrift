@@ -42,7 +42,7 @@ public class ThriftVisitor extends PsiElementVisitor {
   }
 
   public void visitDefinitionName(@NotNull ThriftDefinitionName o) {
-    visitPsiNameIdentifierOwner(o);
+    visitPsiNamedElement(o);
   }
 
   public void visitDoubleConstant(@NotNull ThriftDoubleConstant o) {
@@ -193,7 +193,7 @@ public class ThriftVisitor extends PsiElementVisitor {
     visitDeclarationBody(o);
   }
 
-  public void visitPsiNameIdentifierOwner(@NotNull PsiNameIdentifierOwner o) {
+  public void visitPsiNamedElement(@NotNull PsiNamedElement o) {
     visitElement(o);
   }
 

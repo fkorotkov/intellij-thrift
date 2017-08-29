@@ -17,8 +17,12 @@ public class ThriftServiceSuperNameImpl extends ThriftPsiCompositeElementImpl im
     super(node);
   }
 
+  public void accept(@NotNull ThriftVisitor visitor) {
+    visitor.visitServiceSuperName(this);
+  }
+
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitServiceSuperName(this);
+    if (visitor instanceof ThriftVisitor) accept((ThriftVisitor)visitor);
     else super.accept(visitor);
   }
 

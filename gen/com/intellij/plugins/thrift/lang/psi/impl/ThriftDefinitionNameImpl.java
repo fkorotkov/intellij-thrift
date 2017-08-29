@@ -17,8 +17,12 @@ public class ThriftDefinitionNameImpl extends ThriftPsiCompositeElementImpl impl
     super(node);
   }
 
+  public void accept(@NotNull ThriftVisitor visitor) {
+    visitor.visitDefinitionName(this);
+  }
+
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitDefinitionName(this);
+    if (visitor instanceof ThriftVisitor) accept((ThriftVisitor)visitor);
     else super.accept(visitor);
   }
 

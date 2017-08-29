@@ -17,8 +17,12 @@ public class ThriftServiceImpl extends ThriftTopLevelDeclarationImpl implements 
     super(node);
   }
 
+  public void accept(@NotNull ThriftVisitor visitor) {
+    visitor.visitService(this);
+  }
+
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitService(this);
+    if (visitor instanceof ThriftVisitor) accept((ThriftVisitor)visitor);
     else super.accept(visitor);
   }
 

@@ -17,8 +17,12 @@ public class ThriftUnionImpl extends ThriftTopLevelDeclarationImpl implements Th
     super(node);
   }
 
+  public void accept(@NotNull ThriftVisitor visitor) {
+    visitor.visitUnion(this);
+  }
+
   public void accept(@NotNull PsiElementVisitor visitor) {
-    if (visitor instanceof ThriftVisitor) ((ThriftVisitor)visitor).visitUnion(this);
+    if (visitor instanceof ThriftVisitor) accept((ThriftVisitor)visitor);
     else super.accept(visitor);
   }
 

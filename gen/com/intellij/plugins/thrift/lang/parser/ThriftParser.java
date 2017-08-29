@@ -9,9 +9,10 @@ import com.intellij.psi.tree.IElementType;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.tree.TokenSet;
 import com.intellij.lang.PsiParser;
+import com.intellij.lang.LightPsiParser;
 
 @SuppressWarnings({"SimplifiableIfStatement", "UnusedAssignment"})
-public class ThriftParser implements PsiParser {
+public class ThriftParser implements PsiParser, LightPsiParser {
 
   public ASTNode parse(IElementType t, PsiBuilder b) {
     parseLight(t, b);
@@ -175,10 +176,10 @@ public class ThriftParser implements PsiParser {
   public static boolean BaseType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "BaseType")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<base type>");
+    Marker m = enter_section_(b, l, _NONE_, BASE_TYPE, "<base type>");
     r = SimpleBaseType(b, l + 1);
     r = r && BaseType_1(b, l + 1);
-    exit_section_(b, l, m, BASE_TYPE, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -194,7 +195,7 @@ public class ThriftParser implements PsiParser {
   public static boolean Const(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Const")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<const>");
+    Marker m = enter_section_(b, l, _NONE_, CONST, "<const>");
     r = consumeToken(b, "const");
     p = r; // pin = 1
     r = r && report_error_(b, FieldType(b, l + 1));
@@ -202,7 +203,7 @@ public class ThriftParser implements PsiParser {
     r = p && report_error_(b, consumeToken(b, EQUALS)) && r;
     r = p && report_error_(b, ConstValue(b, l + 1)) && r;
     r = p && Const_5(b, l + 1) && r;
-    exit_section_(b, l, m, CONST, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -308,14 +309,14 @@ public class ThriftParser implements PsiParser {
   public static boolean ConstValue(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ConstValue")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<const value>");
+    Marker m = enter_section_(b, l, _NONE_, CONST_VALUE, "<const value>");
     r = IntConstant(b, l + 1);
     if (!r) r = DoubleConstant(b, l + 1);
     if (!r) r = consumeToken(b, LITERAL);
     if (!r) r = consumeToken(b, IDENTIFIER);
     if (!r) r = ConstList(b, l + 1);
     if (!r) r = ConstMap(b, l + 1);
-    exit_section_(b, l, m, CONST_VALUE, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -324,10 +325,10 @@ public class ThriftParser implements PsiParser {
   public static boolean ContainerType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ContainerType")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<container type>");
+    Marker m = enter_section_(b, l, _NONE_, CONTAINER_TYPE, "<container type>");
     r = SimpleContainerType(b, l + 1);
     r = r && ContainerType_1(b, l + 1);
-    exit_section_(b, l, m, CONTAINER_TYPE, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -343,11 +344,11 @@ public class ThriftParser implements PsiParser {
   public static boolean CppType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "CppType")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<cpp type>");
+    Marker m = enter_section_(b, l, _NONE_, CPP_TYPE, "<cpp type>");
     r = consumeToken(b, "cpp_type");
     p = r; // pin = 1
     r = r && consumeToken(b, LITERAL);
-    exit_section_(b, l, m, CPP_TYPE, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -393,10 +394,10 @@ public class ThriftParser implements PsiParser {
   public static boolean DoubleConstant(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "DoubleConstant")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<double constant>");
+    Marker m = enter_section_(b, l, _NONE_, DOUBLE_CONSTANT, "<double constant>");
     r = DoubleConstant_0(b, l + 1);
     r = r && consumeToken(b, NUMBER);
-    exit_section_(b, l, m, DOUBLE_CONSTANT, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -423,7 +424,7 @@ public class ThriftParser implements PsiParser {
   public static boolean Enum(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Enum")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<enum>");
+    Marker m = enter_section_(b, l, _NONE_, ENUM, "<enum>");
     r = consumeToken(b, "enum");
     p = r; // pin = 1
     r = r && report_error_(b, DefinitionName(b, l + 1));
@@ -431,7 +432,7 @@ public class ThriftParser implements PsiParser {
     r = p && report_error_(b, enumFields(b, l + 1)) && r;
     r = p && report_error_(b, consumeToken(b, RIGHTCURLYBRACE)) && r;
     r = p && Enum_5(b, l + 1) && r;
-    exit_section_(b, l, m, ENUM, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -447,7 +448,7 @@ public class ThriftParser implements PsiParser {
   public static boolean Exception(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Exception")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<exception>");
+    Marker m = enter_section_(b, l, _NONE_, EXCEPTION, "<exception>");
     r = consumeToken(b, "exception");
     p = r; // pin = 1
     r = r && report_error_(b, DefinitionName(b, l + 1));
@@ -455,7 +456,7 @@ public class ThriftParser implements PsiParser {
     r = p && report_error_(b, fields(b, l + 1)) && r;
     r = p && report_error_(b, consumeToken(b, RIGHTCURLYBRACE)) && r;
     r = p && Exception_5(b, l + 1) && r;
-    exit_section_(b, l, m, EXCEPTION, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -471,7 +472,7 @@ public class ThriftParser implements PsiParser {
   public static boolean Field(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Field")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<field>");
+    Marker m = enter_section_(b, l, _NONE_, FIELD, "<field>");
     r = Field_0(b, l + 1);
     r = r && Field_1(b, l + 1);
     r = r && FieldType(b, l + 1);
@@ -481,7 +482,7 @@ public class ThriftParser implements PsiParser {
     r = p && report_error_(b, XsdFieldOptions(b, l + 1)) && r;
     r = p && report_error_(b, Field_6(b, l + 1)) && r;
     r = p && Field_7(b, l + 1) && r;
-    exit_section_(b, l, m, FIELD, r, p, fieldRecovery_parser_);
+    exit_section_(b, l, m, r, p, fieldRecovery_parser_);
     return r || p;
   }
 
@@ -536,10 +537,10 @@ public class ThriftParser implements PsiParser {
   public static boolean FieldID(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "FieldID")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<field id>");
+    Marker m = enter_section_(b, l, _NONE_, FIELD_ID, "<field id>");
     r = IntConstant(b, l + 1);
     r = r && consumeToken(b, COLON);
-    exit_section_(b, l, m, FIELD_ID, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -548,10 +549,10 @@ public class ThriftParser implements PsiParser {
   public static boolean FieldReq(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "FieldReq")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<field req>");
+    Marker m = enter_section_(b, l, _NONE_, FIELD_REQ, "<field req>");
     r = consumeToken(b, "required");
     if (!r) r = consumeToken(b, "optional");
-    exit_section_(b, l, m, FIELD_REQ, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -560,11 +561,11 @@ public class ThriftParser implements PsiParser {
   public static boolean FieldType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "FieldType")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<field type>");
+    Marker m = enter_section_(b, l, _NONE_, FIELD_TYPE, "<field type>");
     r = BaseType(b, l + 1);
     if (!r) r = ContainerType(b, l + 1);
     if (!r) r = CustomType(b, l + 1);
-    exit_section_(b, l, m, FIELD_TYPE, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -573,7 +574,7 @@ public class ThriftParser implements PsiParser {
   public static boolean Function(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Function")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<function>");
+    Marker m = enter_section_(b, l, _NONE_, FUNCTION, "<function>");
     r = Function_0(b, l + 1);
     r = r && FunctionType(b, l + 1);
     r = r && DefinitionName(b, l + 1);
@@ -583,7 +584,7 @@ public class ThriftParser implements PsiParser {
     r = p && report_error_(b, consumeToken(b, RIGHTBRACE)) && r;
     r = p && report_error_(b, Function_6(b, l + 1)) && r;
     r = p && Function_7(b, l + 1) && r;
-    exit_section_(b, l, m, FUNCTION, r, p, functionRecovery_parser_);
+    exit_section_(b, l, m, r, p, functionRecovery_parser_);
     return r || p;
   }
 
@@ -613,10 +614,10 @@ public class ThriftParser implements PsiParser {
   public static boolean FunctionType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "FunctionType")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<function type>");
+    Marker m = enter_section_(b, l, _NONE_, FUNCTION_TYPE, "<function type>");
     r = consumeToken(b, "void");
     if (!r) r = FieldType(b, l + 1);
-    exit_section_(b, l, m, FUNCTION_TYPE, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -626,13 +627,13 @@ public class ThriftParser implements PsiParser {
     if (!recursion_guard_(b, l, "GenericType")) return false;
     if (!nextTokenIs(b, LT)) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, null);
+    Marker m = enter_section_(b, l, _NONE_, GENERIC_TYPE, null);
     r = consumeToken(b, LT);
     p = r; // pin = 1
     r = r && report_error_(b, FieldType(b, l + 1));
     r = p && report_error_(b, GenericType_2(b, l + 1)) && r;
     r = p && consumeToken(b, GT) && r;
-    exit_section_(b, l, m, GENERIC_TYPE, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -664,11 +665,11 @@ public class ThriftParser implements PsiParser {
   public static boolean Include(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Include")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<include>");
+    Marker m = enter_section_(b, l, _NONE_, INCLUDE, "<include>");
     r = Include_0(b, l + 1);
     p = r; // pin = 1
     r = r && consumeToken(b, LITERAL);
-    exit_section_(b, l, m, INCLUDE, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -688,10 +689,10 @@ public class ThriftParser implements PsiParser {
   public static boolean IntConstant(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "IntConstant")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<int constant>");
+    Marker m = enter_section_(b, l, _NONE_, INT_CONSTANT, "<int constant>");
     r = IntConstant_0(b, l + 1);
     r = r && consumeToken(b, INTEGER);
-    exit_section_(b, l, m, INT_CONSTANT, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -719,10 +720,10 @@ public class ThriftParser implements PsiParser {
     if (!recursion_guard_(b, l, "ListSeparator")) return false;
     if (!nextTokenIs(b, "<list separator>", COMMA, SEMICOLON)) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<list separator>");
+    Marker m = enter_section_(b, l, _NONE_, LIST_SEPARATOR, "<list separator>");
     r = consumeToken(b, COMMA);
     if (!r) r = consumeToken(b, SEMICOLON);
-    exit_section_(b, l, m, LIST_SEPARATOR, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -731,12 +732,12 @@ public class ThriftParser implements PsiParser {
   public static boolean ListType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ListType")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<list type>");
+    Marker m = enter_section_(b, l, _NONE_, LIST_TYPE, "<list type>");
     r = consumeToken(b, "list");
     p = r; // pin = 1
     r = r && report_error_(b, GenericType(b, l + 1));
     r = p && ListType_2(b, l + 1) && r;
-    exit_section_(b, l, m, LIST_TYPE, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -752,12 +753,12 @@ public class ThriftParser implements PsiParser {
   public static boolean MapType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MapType")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<map type>");
+    Marker m = enter_section_(b, l, _NONE_, MAP_TYPE, "<map type>");
     r = consumeToken(b, "map");
     p = r; // pin = 1
     r = r && report_error_(b, MapType_1(b, l + 1));
     r = p && GenericType(b, l + 1) && r;
-    exit_section_(b, l, m, MAP_TYPE, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -773,11 +774,11 @@ public class ThriftParser implements PsiParser {
   public static boolean Namespace(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Namespace")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<namespace>");
+    Marker m = enter_section_(b, l, _NONE_, NAMESPACE, "<namespace>");
     r = std_namespace(b, l + 1);
     if (!r) r = php_namespace(b, l + 1);
     if (!r) r = xsd_namespace(b, l + 1);
-    exit_section_(b, l, m, NAMESPACE, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -787,7 +788,7 @@ public class ThriftParser implements PsiParser {
   public static boolean NamespaceScope(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "NamespaceScope")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<namespace scope>");
+    Marker m = enter_section_(b, l, _NONE_, NAMESPACE_SCOPE, "<namespace scope>");
     r = consumeToken(b, MULTIPLY);
     if (!r) r = consumeToken(b, "cpp");
     if (!r) r = consumeToken(b, "java");
@@ -803,7 +804,7 @@ public class ThriftParser implements PsiParser {
     if (!r) r = consumeToken(b, "go");
     if (!r) r = consumeToken(b, "php");
     if (!r) r = consumeToken(b, "delphi");
-    exit_section_(b, l, m, NAMESPACE_SCOPE, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -812,7 +813,7 @@ public class ThriftParser implements PsiParser {
   public static boolean Senum(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Senum")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<senum>");
+    Marker m = enter_section_(b, l, _NONE_, SENUM, "<senum>");
     r = consumeToken(b, "senum");
     p = r; // pin = 1
     r = r && report_error_(b, DefinitionName(b, l + 1));
@@ -820,7 +821,7 @@ public class ThriftParser implements PsiParser {
     r = p && report_error_(b, senumBody(b, l + 1)) && r;
     r = p && report_error_(b, consumeToken(b, RIGHTCURLYBRACE)) && r;
     r = p && Senum_5(b, l + 1) && r;
-    exit_section_(b, l, m, SENUM, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -836,7 +837,7 @@ public class ThriftParser implements PsiParser {
   public static boolean Service(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Service")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<service>");
+    Marker m = enter_section_(b, l, _NONE_, SERVICE, "<service>");
     r = consumeToken(b, "service");
     p = r; // pin = 1
     r = r && report_error_(b, DefinitionName(b, l + 1));
@@ -845,7 +846,7 @@ public class ThriftParser implements PsiParser {
     r = p && report_error_(b, serviceBody(b, l + 1)) && r;
     r = p && report_error_(b, consumeToken(b, RIGHTCURLYBRACE)) && r;
     r = p && Service_6(b, l + 1) && r;
-    exit_section_(b, l, m, SERVICE, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -891,12 +892,12 @@ public class ThriftParser implements PsiParser {
   public static boolean SetType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SetType")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<set type>");
+    Marker m = enter_section_(b, l, _NONE_, SET_TYPE, "<set type>");
     r = consumeToken(b, "set");
     p = r; // pin = 1
     r = r && report_error_(b, SetType_1(b, l + 1));
     r = p && GenericType(b, l + 1) && r;
-    exit_section_(b, l, m, SET_TYPE, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -912,7 +913,7 @@ public class ThriftParser implements PsiParser {
   public static boolean SimpleBaseType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SimpleBaseType")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<simple base type>");
+    Marker m = enter_section_(b, l, _NONE_, SIMPLE_BASE_TYPE, "<simple base type>");
     r = consumeToken(b, "bool");
     if (!r) r = consumeToken(b, "byte");
     if (!r) r = consumeToken(b, "i16");
@@ -922,7 +923,7 @@ public class ThriftParser implements PsiParser {
     if (!r) r = consumeToken(b, "string");
     if (!r) r = consumeToken(b, "binary");
     if (!r) r = consumeToken(b, "slist");
-    exit_section_(b, l, m, SIMPLE_BASE_TYPE, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -944,7 +945,7 @@ public class ThriftParser implements PsiParser {
   public static boolean Struct(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Struct")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<struct>");
+    Marker m = enter_section_(b, l, _NONE_, STRUCT, "<struct>");
     r = consumeToken(b, "struct");
     p = r; // pin = 1
     r = r && report_error_(b, DefinitionName(b, l + 1));
@@ -953,7 +954,7 @@ public class ThriftParser implements PsiParser {
     r = p && report_error_(b, fields(b, l + 1)) && r;
     r = p && report_error_(b, consumeToken(b, RIGHTCURLYBRACE)) && r;
     r = p && Struct_6(b, l + 1) && r;
-    exit_section_(b, l, m, STRUCT, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -976,13 +977,13 @@ public class ThriftParser implements PsiParser {
   public static boolean Throws(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Throws")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<throws>");
+    Marker m = enter_section_(b, l, _NONE_, THROWS, "<throws>");
     r = consumeToken(b, "throws");
     p = r; // pin = 1
     r = r && report_error_(b, consumeToken(b, LEFTBRACE));
     r = p && report_error_(b, fieldsWithBraceRecovery(b, l + 1)) && r;
     r = p && consumeToken(b, RIGHTBRACE) && r;
-    exit_section_(b, l, m, THROWS, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -993,9 +994,7 @@ public class ThriftParser implements PsiParser {
     if (!nextTokenIs(b, IDENTIFIER)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, IDENTIFIER);
-    r = r && consumeToken(b, EQUALS);
-    r = r && consumeToken(b, LITERAL);
+    r = consumeTokens(b, 0, IDENTIFIER, EQUALS, LITERAL);
     r = r && TypeAnnotation_3(b, l + 1);
     exit_section_(b, m, TYPE_ANNOTATION, r);
     return r;
@@ -1012,14 +1011,14 @@ public class ThriftParser implements PsiParser {
   // TypeAnnotation*
   public static boolean TypeAnnotationList(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "TypeAnnotationList")) return false;
-    Marker m = enter_section_(b, l, _NONE_, "<type annotation list>");
+    Marker m = enter_section_(b, l, _NONE_, TYPE_ANNOTATION_LIST, "<type annotation list>");
     int c = current_position_(b);
     while (true) {
       if (!TypeAnnotation(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "TypeAnnotationList", c)) break;
       c = current_position_(b);
     }
-    exit_section_(b, l, m, TYPE_ANNOTATION_LIST, true, false, braceRecovery_parser_);
+    exit_section_(b, l, m, true, false, braceRecovery_parser_);
     return true;
   }
 
@@ -1042,13 +1041,13 @@ public class ThriftParser implements PsiParser {
   public static boolean Typedef(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Typedef")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<typedef>");
+    Marker m = enter_section_(b, l, _NONE_, TYPEDEF, "<typedef>");
     r = consumeToken(b, "typedef");
     p = r; // pin = 1
     r = r && report_error_(b, FieldType(b, l + 1));
     r = p && report_error_(b, DefinitionName(b, l + 1)) && r;
     r = p && Typedef_3(b, l + 1) && r;
-    exit_section_(b, l, m, TYPEDEF, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -1064,7 +1063,7 @@ public class ThriftParser implements PsiParser {
   public static boolean Union(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Union")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<union>");
+    Marker m = enter_section_(b, l, _NONE_, UNION, "<union>");
     r = consumeToken(b, "union");
     p = r; // pin = 1
     r = r && report_error_(b, DefinitionName(b, l + 1));
@@ -1072,7 +1071,7 @@ public class ThriftParser implements PsiParser {
     r = p && report_error_(b, consumeToken(b, LEFTCURLYBRACE)) && r;
     r = p && report_error_(b, fields(b, l + 1)) && r;
     r = p && consumeToken(b, RIGHTCURLYBRACE) && r;
-    exit_section_(b, l, m, UNION, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -1088,13 +1087,13 @@ public class ThriftParser implements PsiParser {
   public static boolean XsdAttrs(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "XsdAttrs")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, "<xsd attrs>");
+    Marker m = enter_section_(b, l, _NONE_, XSD_ATTRS, "<xsd attrs>");
     r = consumeToken(b, "xsd_attrs");
     p = r; // pin = 1
     r = r && report_error_(b, consumeToken(b, LEFTCURLYBRACE));
     r = p && report_error_(b, fields(b, l + 1)) && r;
     r = p && consumeToken(b, RIGHTCURLYBRACE) && r;
-    exit_section_(b, l, m, XSD_ATTRS, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -1103,11 +1102,11 @@ public class ThriftParser implements PsiParser {
   public static boolean XsdFieldOptions(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "XsdFieldOptions")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<xsd field options>");
+    Marker m = enter_section_(b, l, _NONE_, XSD_FIELD_OPTIONS, "<xsd field options>");
     r = XsdFieldOptions_0(b, l + 1);
     r = r && XsdFieldOptions_1(b, l + 1);
     r = r && XsdFieldOptions_2(b, l + 1);
-    exit_section_(b, l, m, XSD_FIELD_OPTIONS, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -1137,19 +1136,9 @@ public class ThriftParser implements PsiParser {
   static boolean braceRecovery(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "braceRecovery")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NOT_, null);
-    r = !braceRecovery_0(b, l + 1);
-    exit_section_(b, l, m, null, r, false, null);
-    return r;
-  }
-
-  // (')')
-  private static boolean braceRecovery_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "braceRecovery_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, RIGHTBRACE);
-    exit_section_(b, m, null, r);
+    Marker m = enter_section_(b, l, _NOT_);
+    r = !consumeToken(b, RIGHTBRACE);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -1158,19 +1147,9 @@ public class ThriftParser implements PsiParser {
   static boolean curlyBraceRecovery(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "curlyBraceRecovery")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NOT_, null);
-    r = !curlyBraceRecovery_0(b, l + 1);
-    exit_section_(b, l, m, null, r, false, null);
-    return r;
-  }
-
-  // ('}')
-  private static boolean curlyBraceRecovery_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "curlyBraceRecovery_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, RIGHTCURLYBRACE);
-    exit_section_(b, m, null, r);
+    Marker m = enter_section_(b, l, _NOT_);
+    r = !consumeToken(b, RIGHTCURLYBRACE);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -1179,12 +1158,12 @@ public class ThriftParser implements PsiParser {
   public static boolean enumField(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "enumField")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<enum field>");
+    Marker m = enter_section_(b, l, _NONE_, ENUM_FIELD, "<enum field>");
     r = consumeToken(b, IDENTIFIER);
     r = r && enumField_1(b, l + 1);
     r = r && enumField_2(b, l + 1);
     r = r && enumField_3(b, l + 1);
-    exit_section_(b, l, m, ENUM_FIELD, r, false, enumFieldRecovery_parser_);
+    exit_section_(b, l, m, r, false, enumFieldRecovery_parser_);
     return r;
   }
 
@@ -1225,9 +1204,9 @@ public class ThriftParser implements PsiParser {
   static boolean enumFieldRecovery(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "enumFieldRecovery")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NOT_, null);
+    Marker m = enter_section_(b, l, _NOT_);
     r = !enumFieldRecovery_0(b, l + 1);
-    exit_section_(b, l, m, null, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -1246,14 +1225,14 @@ public class ThriftParser implements PsiParser {
   // enumField*
   public static boolean enumFields(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "enumFields")) return false;
-    Marker m = enter_section_(b, l, _NONE_, "<enum fields>");
+    Marker m = enter_section_(b, l, _NONE_, ENUM_FIELDS, "<enum fields>");
     int c = current_position_(b);
     while (true) {
       if (!enumField(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "enumFields", c)) break;
       c = current_position_(b);
     }
-    exit_section_(b, l, m, ENUM_FIELDS, true, false, null);
+    exit_section_(b, l, m, true, false, null);
     return true;
   }
 
@@ -1263,9 +1242,9 @@ public class ThriftParser implements PsiParser {
   static boolean fieldRecovery(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fieldRecovery")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NOT_, null);
+    Marker m = enter_section_(b, l, _NOT_);
     r = !fieldRecovery_0(b, l + 1);
-    exit_section_(b, l, m, null, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -1304,14 +1283,14 @@ public class ThriftParser implements PsiParser {
   // Field*
   public static boolean fields(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fields")) return false;
-    Marker m = enter_section_(b, l, _NONE_, "<fields>");
+    Marker m = enter_section_(b, l, _NONE_, FIELDS, "<fields>");
     int c = current_position_(b);
     while (true) {
       if (!Field(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "fields", c)) break;
       c = current_position_(b);
     }
-    exit_section_(b, l, m, FIELDS, true, false, curlyBraceRecovery_parser_);
+    exit_section_(b, l, m, true, false, curlyBraceRecovery_parser_);
     return true;
   }
 
@@ -1319,14 +1298,14 @@ public class ThriftParser implements PsiParser {
   // Field*
   static boolean fieldsWithBraceRecovery(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fieldsWithBraceRecovery")) return false;
-    Marker m = enter_section_(b, l, _NONE_, null);
+    Marker m = enter_section_(b, l, _NONE_);
     int c = current_position_(b);
     while (true) {
       if (!Field(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "fieldsWithBraceRecovery", c)) break;
       c = current_position_(b);
     }
-    exit_section_(b, l, m, null, true, false, braceRecovery_parser_);
+    exit_section_(b, l, m, true, false, braceRecovery_parser_);
     return true;
   }
 
@@ -1336,9 +1315,9 @@ public class ThriftParser implements PsiParser {
   static boolean functionRecovery(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "functionRecovery")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NOT_, null);
+    Marker m = enter_section_(b, l, _NOT_);
     r = !functionRecovery_0(b, l + 1);
-    exit_section_(b, l, m, null, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -1374,19 +1353,9 @@ public class ThriftParser implements PsiParser {
   static boolean functionsRecovery(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "functionsRecovery")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NOT_, null);
-    r = !functionsRecovery_0(b, l + 1);
-    exit_section_(b, l, m, null, r, false, null);
-    return r;
-  }
-
-  // ('}')
-  private static boolean functionsRecovery_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "functionsRecovery_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, RIGHTCURLYBRACE);
-    exit_section_(b, m, null, r);
+    Marker m = enter_section_(b, l, _NOT_);
+    r = !consumeToken(b, RIGHTCURLYBRACE);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -1395,11 +1364,11 @@ public class ThriftParser implements PsiParser {
   static boolean php_namespace(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "php_namespace")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, null);
+    Marker m = enter_section_(b, l, _NONE_);
     r = consumeToken(b, "php_namespace");
     p = r; // pin = 1
     r = r && consumeToken(b, LITERAL);
-    exit_section_(b, l, m, null, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -1408,10 +1377,10 @@ public class ThriftParser implements PsiParser {
   public static boolean semunField(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "semunField")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, "<semun field>");
+    Marker m = enter_section_(b, l, _NONE_, SEMUN_FIELD, "<semun field>");
     r = consumeToken(b, LITERAL);
     r = r && semunField_1(b, l + 1);
-    exit_section_(b, l, m, SEMUN_FIELD, r, false, semunFieldRecovery_parser_);
+    exit_section_(b, l, m, r, false, semunFieldRecovery_parser_);
     return r;
   }
 
@@ -1427,9 +1396,9 @@ public class ThriftParser implements PsiParser {
   static boolean semunFieldRecovery(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "semunFieldRecovery")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NOT_, null);
+    Marker m = enter_section_(b, l, _NOT_);
     r = !semunFieldRecovery_0(b, l + 1);
-    exit_section_(b, l, m, null, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -1448,14 +1417,14 @@ public class ThriftParser implements PsiParser {
   // semunField*
   public static boolean senumBody(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "senumBody")) return false;
-    Marker m = enter_section_(b, l, _NONE_, "<senum body>");
+    Marker m = enter_section_(b, l, _NONE_, SENUM_BODY, "<senum body>");
     int c = current_position_(b);
     while (true) {
       if (!semunField(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "senumBody", c)) break;
       c = current_position_(b);
     }
-    exit_section_(b, l, m, SENUM_BODY, true, false, null);
+    exit_section_(b, l, m, true, false, null);
     return true;
   }
 
@@ -1463,14 +1432,14 @@ public class ThriftParser implements PsiParser {
   // (Function ListSeparator?)*
   public static boolean serviceBody(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "serviceBody")) return false;
-    Marker m = enter_section_(b, l, _NONE_, "<service body>");
+    Marker m = enter_section_(b, l, _NONE_, SERVICE_BODY, "<service body>");
     int c = current_position_(b);
     while (true) {
       if (!serviceBody_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "serviceBody", c)) break;
       c = current_position_(b);
     }
-    exit_section_(b, l, m, SERVICE_BODY, true, false, functionsRecovery_parser_);
+    exit_section_(b, l, m, true, false, functionsRecovery_parser_);
     return true;
   }
 
@@ -1501,11 +1470,11 @@ public class ThriftParser implements PsiParser {
   static boolean std_namespace(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "std_namespace")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, null);
+    Marker m = enter_section_(b, l, _NONE_);
     r = consumeToken(b, "namespace");
     p = r; // pin = 1
     r = r && std_namespace_1(b, l + 1);
-    exit_section_(b, l, m, null, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
@@ -1562,7 +1531,7 @@ public class ThriftParser implements PsiParser {
   static boolean topLevelElement(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "topLevelElement")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, null);
+    Marker m = enter_section_(b, l, _NONE_);
     r = Include(b, l + 1);
     if (!r) r = Namespace(b, l + 1);
     if (!r) r = Const(b, l + 1);
@@ -1573,7 +1542,7 @@ public class ThriftParser implements PsiParser {
     if (!r) r = Union(b, l + 1);
     if (!r) r = Exception(b, l + 1);
     if (!r) r = Service(b, l + 1);
-    exit_section_(b, l, m, null, r, false, topLevelRecover_parser_);
+    exit_section_(b, l, m, r, false, topLevelRecover_parser_);
     return r;
   }
 
@@ -1584,9 +1553,9 @@ public class ThriftParser implements PsiParser {
   static boolean topLevelRecover(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "topLevelRecover")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NOT_, null);
+    Marker m = enter_section_(b, l, _NOT_);
     r = !topLevelRecover_0(b, l + 1);
-    exit_section_(b, l, m, null, r, false, null);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -1619,11 +1588,11 @@ public class ThriftParser implements PsiParser {
   static boolean xsd_namespace(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "xsd_namespace")) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, null);
+    Marker m = enter_section_(b, l, _NONE_);
     r = consumeToken(b, "xsd_namespace");
     p = r; // pin = 1
     r = r && consumeToken(b, LITERAL);
-    exit_section_(b, l, m, null, r, p, null);
+    exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
