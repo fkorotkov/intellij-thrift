@@ -1,6 +1,10 @@
 package com.intellij.plugins.thrift.lang.lexer;
-import com.intellij.lexer.*;
+
+import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
+
+import static com.intellij.psi.TokenType.BAD_CHARACTER;
+import static com.intellij.psi.TokenType.WHITE_SPACE;
 import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 
 %%
@@ -18,35 +22,21 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 %type IElementType
 %unicode
 
-EOL="\r"|"\n"|"\r\n"
-LINE_WS=[\ \t\f]
-WHITE_SPACE=({LINE_WS}|{EOL})+
+EOL=\R
+WHITE_SPACE=\s+
 
-C_STYLE_COMMENT=("/*"[^"*"]{COMMENT_TAIL})|"/*"
-DOC_COMMENT="/*""*"+("/"|([^"/""*"]{COMMENT_TAIL}))?
-COMMENT_TAIL=([^"*"]*("*"+[^"*""/"])?)*("*"+"/")?
-END_OF_LINE_COMMENT=("/""/" | "#")[^\r\n]*
-
+COMMENT=#[^\r\n]*
+BLOCKCOMMENT=\"/"\* .* \*\"/"
 LITERAL=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
-IDENTIFIER=([:letter:] | \_)([a-zA-Z_0-9] | \.)*
-STIDENTIFIER=([:letter:] | \_)([a-zA-Z_0-9] | \. | \-)*
+IDENTIFIER=([:letter:] | \_)([a-zA-Z_0-9] | \\.)*
+STIDENTIFIER=([:letter:] | \_)([a-zA-Z_0-9] | \. | -)*
+NUMBER=[0-9]+(\.[0-9]*)?
+INTEGER=[0-9]+
 MULTIPLY=\*
-
-DIGIT = [:digit:]
-
-HEX_DIGIT = [0-9A-Fa-f]
-INT_DIGIT = [0-9]
-OCT_DIGIT = [0-7]
-
-NUM_INT = {INT_DIGIT}+
-NUM_HEX = ("0x" | "0X") {HEX_DIGIT}+
-
-FLOAT_EXPONENT = [eE] [+-]? {DIGIT}+
-NUM_FLOAT = ( (({DIGIT}* "." {DIGIT}+) | ({DIGIT}+ "." {DIGIT}*)) {FLOAT_EXPONENT}?) | ({DIGIT}+ {FLOAT_EXPONENT})
 
 %%
 <YYINITIAL> {
-  {WHITE_SPACE}       { return com.intellij.psi.TokenType.WHITE_SPACE; }
+  {WHITE_SPACE}       { return WHITE_SPACE; }
 
   "{"                 { return LEFTCURLYBRACE; }
   "}"                 { return RIGHTCURLYBRACE; }
@@ -63,17 +53,15 @@ NUM_FLOAT = ( (({DIGIT}* "." {DIGIT}+) | ({DIGIT}+ "." {DIGIT}*)) {FLOAT_EXPONEN
   "+"                 { return PLUS; }
   "-"                 { return MINUS; }
 
-  {NUM_INT}                                {  return INTEGER; }
-  {NUM_HEX}                                {  return INTEGER; }
-  {NUM_FLOAT} / [^"."]                     {  return NUMBER; }
-
-  {END_OF_LINE_COMMENT}           { return COMMENT; }
-  {C_STYLE_COMMENT}      { return BLOCKCOMMENT; }
-  {DOC_COMMENT}      { return BLOCKCOMMENT; }
+  {COMMENT}           { return COMMENT; }
+  {BLOCKCOMMENT}      { return BLOCKCOMMENT; }
   {LITERAL}           { return LITERAL; }
   {IDENTIFIER}        { return IDENTIFIER; }
   {STIDENTIFIER}      { return STIDENTIFIER; }
+  {NUMBER}            { return NUMBER; }
+  {INTEGER}           { return INTEGER; }
   {MULTIPLY}          { return MULTIPLY; }
 
-  [^] { return com.intellij.psi.TokenType.BAD_CHARACTER; }
 }
+
+[^] { return BAD_CHARACTER; }
