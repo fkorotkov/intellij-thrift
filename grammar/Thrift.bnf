@@ -67,7 +67,7 @@ private std_namespace ::= 'namespace' (
 ) {pin=1}
 
 NamespaceScope  ::=  Multiply | 'cpp' | 'java' | 'py' | 'py.twisted' | 'perl' | 'rb' | 'js' | 'st' |
-                     'cocoa' | 'csharp' | 'c_glib' | 'go' | 'php' | 'delphi'
+                     'cocoa' | 'csharp' | 'c_glib' | 'go' | 'php' |  'd' | 'delphi'
 
 DefinitionName ::= Identifier
 {implements="com.intellij.psi.PsiNamedElement, com.intellij.navigation.NavigationItem, com.intellij.psi.PsiNameIdentifierOwner" methods=[
