@@ -117,7 +117,7 @@ Field           ::=  FieldID? FieldReq? FieldType DefinitionName ('=' ConstValue
 }
 FieldID         ::=  IntConstant ':'
 FieldReq        ::=  'required' | 'optional'
-private fieldRecovery ::= !(')' | '+' | '-' | 'binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' |
+private fieldRecovery ::= !(')' | '+' | '-' | 'binary' | 'bool' | 'byte' | 'double' | 'i8' | 'i16' | 'i32' | 'i64' | 'list' |
                             'map' | 'optional' | 'required' | 'set' | 'slist' | 'string' | '}'| Integer | Identifier | Number )
 
 XsdFieldOptions ::=  'xsd_optional'? 'xsd_nillable'? XsdAttrs?
@@ -128,7 +128,7 @@ Function        ::=  'oneway'? FunctionType DefinitionName '(' fieldsWithBraceRe
   pin=3 recoverWhile=functionRecovery
   mixin="com.intellij.plugins.thrift.lang.psi.impl.AbstractThriftDeclaration" implements="com.intellij.plugins.thrift.lang.psi.ThriftSubDeclaration"
 }
-private functionRecovery ::= !('binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' | 'map' |
+private functionRecovery ::= !('binary' | 'bool' | 'byte' | 'double' |'i8' | 'i16' | 'i32' | 'i64' | 'list' | 'map' |
                                'oneway' | 'set' | 'slist' | 'string' | 'void' | '}' | Identifier | ListSeparator)
 FunctionType    ::=  'void' | FieldType
 private fieldsWithBraceRecovery ::= Field* {recoverWhile=braceRecovery}
@@ -136,7 +136,7 @@ Throws          ::=  'throws' '(' fieldsWithBraceRecovery ')' {pin=1}
 
 FieldType       ::=  BaseType | ContainerType | CustomType
 BaseType        ::=  SimpleBaseType TypeAnnotations?
-SimpleBaseType  ::=  'bool' | 'byte' | 'i16' | 'i32' | 'i64' | 'double' | 'string' | 'binary' | 'slist'
+SimpleBaseType  ::=  'bool' | 'byte' | 'i8' | 'i16' | 'i32' | 'i64' | 'double' | 'string' | 'binary' | 'slist'
 ContainerType   ::=  SimpleContainerType TypeAnnotations?
 private SimpleContainerType   ::=  MapType | SetType | ListType
 MapType         ::=  'map' CppType? GenericType {pin=1}
