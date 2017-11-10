@@ -910,13 +910,14 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // 'bool' | 'byte' | 'i16' | 'i32' | 'i64' | 'double' | 'string' | 'binary' | 'slist'
+  // 'bool' | 'byte' | 'i8' | 'i16' | 'i32' | 'i64' | 'double' | 'string' | 'binary' | 'slist'
   public static boolean SimpleBaseType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SimpleBaseType")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, SIMPLE_BASE_TYPE, "<simple base type>");
     r = consumeToken(b, "bool");
     if (!r) r = consumeToken(b, "byte");
+    if (!r) r = consumeToken(b, "i8");
     if (!r) r = consumeToken(b, "i16");
     if (!r) r = consumeToken(b, "i32");
     if (!r) r = consumeToken(b, "i64");
@@ -1238,7 +1239,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // !(')' | '+' | '-' | 'binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' |
+  // !(')' | '+' | '-' | 'binary' | 'bool' | 'byte' | 'double' | 'i8' | 'i16' | 'i32' | 'i64' | 'list' |
   //                             'map' | 'optional' | 'required' | 'set' | 'slist' | 'string' | '}'| Integer | Identifier | Number )
   static boolean fieldRecovery(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fieldRecovery")) return false;
@@ -1249,7 +1250,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ')' | '+' | '-' | 'binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' |
+  // ')' | '+' | '-' | 'binary' | 'bool' | 'byte' | 'double' | 'i8' | 'i16' | 'i32' | 'i64' | 'list' |
   //                             'map' | 'optional' | 'required' | 'set' | 'slist' | 'string' | '}'| Integer | Identifier | Number
   private static boolean fieldRecovery_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fieldRecovery_0")) return false;
@@ -1262,6 +1263,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, "bool");
     if (!r) r = consumeToken(b, "byte");
     if (!r) r = consumeToken(b, "double");
+    if (!r) r = consumeToken(b, "i8");
     if (!r) r = consumeToken(b, "i16");
     if (!r) r = consumeToken(b, "i32");
     if (!r) r = consumeToken(b, "i64");
@@ -1311,7 +1313,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // !('binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' | 'map' |
+  // !('binary' | 'bool' | 'byte' | 'double' |'i8' | 'i16' | 'i32' | 'i64' | 'list' | 'map' |
   //                                'oneway' | 'set' | 'slist' | 'string' | 'void' | '}' | Identifier | ListSeparator)
   static boolean functionRecovery(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "functionRecovery")) return false;
@@ -1322,7 +1324,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // 'binary' | 'bool' | 'byte' | 'double' | 'i16' | 'i32' | 'i64' | 'list' | 'map' |
+  // 'binary' | 'bool' | 'byte' | 'double' |'i8' | 'i16' | 'i32' | 'i64' | 'list' | 'map' |
   //                                'oneway' | 'set' | 'slist' | 'string' | 'void' | '}' | Identifier | ListSeparator
   private static boolean functionRecovery_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "functionRecovery_0")) return false;
@@ -1332,6 +1334,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, "bool");
     if (!r) r = consumeToken(b, "byte");
     if (!r) r = consumeToken(b, "double");
+    if (!r) r = consumeToken(b, "i8");
     if (!r) r = consumeToken(b, "i16");
     if (!r) r = consumeToken(b, "i32");
     if (!r) r = consumeToken(b, "i64");
