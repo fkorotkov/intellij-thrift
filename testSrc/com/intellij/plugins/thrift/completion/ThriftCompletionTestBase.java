@@ -6,6 +6,7 @@ import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.plugins.thrift.ThriftCodeInsightFixtureTestCase;
 import com.intellij.testFramework.UsefulTestCase;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.*;
 
@@ -36,14 +37,14 @@ abstract public class ThriftCompletionTestBase extends ThriftCodeInsightFixtureT
   }
 
   protected void doTest() throws Throwable {
-    myFixture.configureByFile(getTestName(false) + ".thrift");
-    doTestVariantsInner(getTestName(false) + ".txt");
+    myFixture.configureByFile(getTestName(true) + ".thrift");
+    doTestVariantsInner(getTestName(true) + ".txt");
   }
 
   protected void doTest(char charToType) {
-    myFixture.configureByFile(getTestName(false) + ".thrift");
+    myFixture.configureByFile(getTestName(true) + ".thrift");
     myFixture.type(charToType);
-    myFixture.checkResultByFile(getTestName(false) + ".txt");
+    myFixture.checkResultByFile(getTestName(true) + ".txt");
   }
 
   protected void doTestVariantsInner(String fileName) throws Throwable {
