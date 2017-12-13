@@ -29,7 +29,15 @@ public class ThriftReferenceCompletionTest extends ThriftCompletionTestBase {
   public void testInclude3() throws Throwable {
     myFixture.addFileToProject("foo/bar.thrift", "");
     myFixture.addFileToProject("foo/baz.thrift", "");
-    myFixture.configureByFile("include/include.thrift");
+    myFixture.configureByFile("include/includeRelative1.thrift");
+    myFixture.completeBasic();
+    checkCompletion(CheckType.INCLUDES, "bar.thrift", "baz.thrift");
+  }
+
+  public void testInclude4() throws Throwable {
+    myFixture.addFileToProject("include/bar.thrift", "");
+    myFixture.addFileToProject("include/baz.thrift", "");
+    myFixture.configureByFile("include/includeRelative2.thrift");
     myFixture.completeBasic();
     checkCompletion(CheckType.INCLUDES, "bar.thrift", "baz.thrift");
   }
