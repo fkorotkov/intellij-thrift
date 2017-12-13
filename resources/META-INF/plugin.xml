@@ -4,6 +4,10 @@
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
+      <p>0.9.8:</p>
+      <ul>
+        <li>Proper handling of relative imports</li>
+      </ul>
       <p>0.9.7:</p>
       <ul>
         <li>Erlang support</li>
@@ -82,7 +86,7 @@
       </ul>
       ]]>
   </change-notes>
-  <version>0.9.7</version>
+  <version>0.9.8</version>
   <vendor>@fedor</vendor>
   <idea-version since-build="145.1"/>
 
