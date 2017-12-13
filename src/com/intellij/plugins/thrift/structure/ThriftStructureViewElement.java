@@ -16,7 +16,6 @@
 package com.intellij.plugins.thrift.structure;
 
 import com.intellij.ide.structureView.StructureViewTreeElement;
-import com.intellij.ide.structureView.impl.java.AccessLevelProvider;
 import com.intellij.ide.util.treeView.smartTree.SortableTreeElement;
 import com.intellij.ide.util.treeView.smartTree.TreeElement;
 import com.intellij.navigation.ItemPresentation;
@@ -26,7 +25,6 @@ import com.intellij.plugins.thrift.lang.psi.ThriftFile;
 import com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.PsiTreeUtil;
-import com.intellij.psi.util.PsiUtil;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -35,7 +33,7 @@ import java.util.List;
 /**
  * @author: Fedor.Korotkov
  */
-public class ThriftStructureViewElement implements StructureViewTreeElement, AccessLevelProvider, SortableTreeElement {
+public class ThriftStructureViewElement implements StructureViewTreeElement, SortableTreeElement {
   private final PsiElement myElement;
 
   public ThriftStructureViewElement(final PsiElement element) {
@@ -90,16 +88,6 @@ public class ThriftStructureViewElement implements StructureViewTreeElement, Acc
       }
     }
     return result.toArray(new TreeElement[result.size()]);
-  }
-
-  @Override
-  public int getAccessLevel() {
-    return PsiUtil.ACCESS_LEVEL_PUBLIC;
-  }
-
-  @Override
-  public int getSubLevel() {
-    return 0;
   }
 
   @Override
