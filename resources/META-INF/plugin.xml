@@ -7,6 +7,7 @@
       <p>0.9.8:</p>
       <ul>
         <li>Proper handling of relative imports</li>
+        <li>Bug fixes</li>
       </ul>
       <p>0.9.7:</p>
       <ul>
@@ -155,7 +156,7 @@
 
     <frameworkSupport implementation="com.intellij.plugins.thrift.config.facet.ThriftFacetSupportProvider"/>
     <facetType implementation="com.intellij.plugins.thrift.config.facet.ThriftFacetType"/>
-    <compileServer.plugin classpath="thrift-jps.jar"/>
+    <compileServer.plugin classpath="thrift-jps.jar,commons-io-2.4.jar"/>
 
   </extensions>
 
