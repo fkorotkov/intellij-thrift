@@ -17,12 +17,7 @@ import org.jetbrains.annotations.Nullable;
   name = ThriftProjectExtensionSerializer.NAME,
   storages = {
     @Storage(
-      id = "default",
-      file = StoragePathMacros.PROJECT_FILE
-    ),
-    @Storage(
-      id = "dir",
-      file = StoragePathMacros.PROJECT_CONFIG_DIR + "/" + ThriftProjectExtensionSerializer.CONFIG_FILE_NAME,
+      file = ThriftProjectExtensionSerializer.CONFIG_FILE_NAME,
       scheme = StorageScheme.DIRECTORY_BASED
     )
   }

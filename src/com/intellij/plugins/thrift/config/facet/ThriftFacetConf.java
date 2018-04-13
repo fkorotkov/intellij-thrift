@@ -51,7 +51,6 @@ import java.util.List;
   name = "ThriftFacetConfiguration",
   storages = {
     @Storage(
-      id = "default",
       file = "$MODULE_FILE$"
     )
   }

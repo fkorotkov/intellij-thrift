@@ -4,6 +4,10 @@
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
+      <p>0.9.9:</p>
+      <ul>
+        <li>Compatibility with IntelliJ 2018.1</li>
+      </ul>
       <p>0.9.8:</p>
       <ul>
         <li>Proper handling of relative imports</li>
@@ -87,9 +91,9 @@
       </ul>
       ]]>
   </change-notes>
-  <version>0.9.8</version>
+  <version>0.9.9</version>
   <vendor>@fedor</vendor>
-  <idea-version since-build="145.1"/>
+  <idea-version since-build="181.1"/>
 
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.lang</depends>
@@ -156,7 +160,7 @@
 
     <frameworkSupport implementation="com.intellij.plugins.thrift.config.facet.ThriftFacetSupportProvider"/>
     <facetType implementation="com.intellij.plugins.thrift.config.facet.ThriftFacetType"/>
-    <compileServer.plugin classpath="thrift-jps.jar,commons-io-2.4.jar"/>
+    <compileServer.plugin classpath="thrift-jps.jar;commons-io-2.4.jar"/>
 
   </extensions>
 
