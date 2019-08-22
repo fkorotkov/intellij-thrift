@@ -4,6 +4,10 @@
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
+      <p>1.0.0:</p>
+      <ul>
+        <li>Compatibility with IntelliJ 2019.2</li>
+      </ul>
       <p>0.9.9:</p>
       <ul>
         <li>Compatibility with IntelliJ 2018.1</li>
@@ -91,15 +95,16 @@
       </ul>
       ]]>
   </change-notes>
-  <version>0.9.9</version>
+  <version>1.0.0</version>
   <vendor>@fedor</vendor>
-  <idea-version since-build="181.1"/>
+  <idea-version since-build="192"/>
 
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.lang</depends>
   <depends>com.intellij.modules.vcs</depends>
   <depends>com.intellij.modules.xml</depends>
   <depends>com.intellij.modules.xdebugger</depends>
+  <depends>com.intellij.modules.java</depends>
 
   <application-components>
     <!-- Add your application components here -->

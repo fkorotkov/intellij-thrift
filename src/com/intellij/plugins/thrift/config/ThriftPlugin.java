@@ -16,10 +16,7 @@ import org.jetbrains.annotations.Nullable;
 @State(
   name = ThriftProjectExtensionSerializer.NAME,
   storages = {
-    @Storage(
-      file = ThriftProjectExtensionSerializer.CONFIG_FILE_NAME,
-      scheme = StorageScheme.DIRECTORY_BASED
-    )
+    @Storage(ThriftProjectExtensionSerializer.CONFIG_FILE_NAME)
   }
 )
 public class ThriftPlugin implements BaseComponent, PersistentStateComponent<Element>, ProjectComponent {

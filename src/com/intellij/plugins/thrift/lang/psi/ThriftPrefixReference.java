@@ -1,11 +1,14 @@
 package com.intellij.plugins.thrift.lang.psi;
 
+import com.intellij.model.SymbolResolveResult;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReferenceBase;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Collection;
 
 /**
  * Created by fkorotkov.
@@ -27,5 +30,11 @@ public class ThriftPrefixReference extends PsiReferenceBase<ThriftCustomType> {
   @Override
   public Object[] getVariants() {
     return PsiElement.EMPTY_ARRAY;
+  }
+
+  @NotNull
+  @Override
+  public Collection<? extends SymbolResolveResult> resolveReference() {
+    return super.resolveReference();
   }
 }
