@@ -4,7 +4,7 @@
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
-      <p>1.0.0:</p>
+      <p>0.10.0:</p>
       <ul>
         <li>Compatibility with IntelliJ 2019.2</li>
       </ul>
