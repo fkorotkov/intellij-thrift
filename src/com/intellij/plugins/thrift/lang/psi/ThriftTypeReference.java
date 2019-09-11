@@ -1,6 +1,7 @@
 package com.intellij.plugins.thrift.lang.psi;
 
 import com.intellij.codeInsight.lookup.LookupElementBuilder;
+import com.intellij.model.SymbolResolveResult;
 import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.util.io.FileUtil;
@@ -16,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -87,5 +89,11 @@ public class ThriftTypeReference extends PsiReferenceBase<ThriftCustomType> {
     else {
       return fun.fun(Pair.create(name, getElement().getContainingFile()));
     }
+  }
+
+  @NotNull
+  @Override
+  public Collection<? extends SymbolResolveResult> resolveReference() {
+    return super.resolveReference();
   }
 }
