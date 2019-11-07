@@ -3,7 +3,6 @@ package com.intellij.plugins.thrift.jps;
 import com.intellij.execution.process.BaseOSProcessHandler;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.CharsetToolkit;
-import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.plugins.thrift.config.ThriftCompilerOptions;
 import com.intellij.plugins.thrift.config.ThriftConfig;
 import com.intellij.plugins.thrift.config.target.Generator;
@@ -21,6 +20,7 @@ import org.jetbrains.jps.model.module.JpsModule;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +46,7 @@ public class ThriftBuilder extends ModuleLevelBuilder {
                         ModuleLevelBuilder.OutputConsumer outputConsumer) throws ProjectBuildException, IOException {
     ThriftConfig thriftConfig = ThriftConfig.getSettings(context.getProjectDescriptor().getProject());
 
-    final String compiler = VfsUtil.urlToPath(thriftConfig.getCompilerPath());
+    final String compiler = thriftConfig.getCompilerPath();
 
     final Map<ModuleBuildTarget, List<File>> toCompile = collectChangedFiles(dirtyFilesHolder);
 
@@ -106,7 +106,7 @@ public class ThriftBuilder extends ModuleLevelBuilder {
         genCmdLine.add(g.getOptionsString());
         genCmdLine.add("-out");
 
-        final String path = VfsUtil.urlToPath(g.getOutputDir());
+        final String path = new URL(g.getOutputDir()).getPath();
         genCmdLine.add(path);
         final File targetDir = new File(path);
 
