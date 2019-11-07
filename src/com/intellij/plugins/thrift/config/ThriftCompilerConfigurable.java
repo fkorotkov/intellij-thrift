@@ -75,7 +75,7 @@ public class ThriftCompilerConfigurable extends BaseConfigurable implements Sear
   @Override
   public JComponent createComponent() {
     if (configForm == null) {
-      ThriftPlugin plugin = ServiceManager.getService(project, ThriftPlugin.class);
+      ThriftPlugin plugin = project.getComponent(ThriftPlugin.class);
       configForm = new ThriftConfigForm(plugin);
     }
     return configForm;
