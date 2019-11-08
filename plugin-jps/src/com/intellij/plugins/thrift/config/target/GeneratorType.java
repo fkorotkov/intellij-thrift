@@ -106,24 +106,19 @@ public enum GeneratorType {
   XSD("xsd", "/fileTypes/xsdFile.png"),
   //---
   ;
-  private final Icon myIcon;
+  private final String iconName;
   protected final String name;
 
   GeneratorType(String name, final String iconName) {
     this.name = name;
-    myIcon = new IconLoader.LazyIcon() {
-      @Override
-      protected Icon compute() {
-        return IconLoader.getIcon(iconName);
-      }
-    };
+    this.iconName = iconName;
   }
 
   public Generator create() {
     return new Generator(this);
   }
 
-  public Icon getIcon() {
-    return myIcon;
+  public String getIconName(){
+    return iconName;
   }
 }

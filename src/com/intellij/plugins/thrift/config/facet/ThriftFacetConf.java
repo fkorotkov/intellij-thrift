@@ -20,6 +20,7 @@ import com.intellij.openapi.util.WriteExternalException;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileManager;
+import com.intellij.plugins.thrift.GeneratorIcons;
 import com.intellij.plugins.thrift.ThriftBundle;
 import com.intellij.plugins.thrift.config.ThriftCompilerOptions;
 import com.intellij.plugins.thrift.config.facet.options.OptionsDialogWrapper;
@@ -238,7 +239,7 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
             assert value != null;
 
             GeneratorType type = (GeneratorType)value;
-            setIcon(type.getIcon());
+            setIcon(GeneratorIcons.getIcon(type));
             append(type.name(), SimpleTextAttributes.REGULAR_ATTRIBUTES);
           }
         });
@@ -339,7 +340,7 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
         private final GeneratorType myType;
 
         public CreateGeneratorAction(GeneratorType type) {
-          super(type.name(), "", type.getIcon());
+          super(type.name(), "", GeneratorIcons.getIcon(type));
           myType = type;
         }
 
