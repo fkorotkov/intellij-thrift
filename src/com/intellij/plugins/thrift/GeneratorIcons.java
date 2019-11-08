@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GeneratorIcons {
+public final class GeneratorIcons {
 
   public static Icon getIcon(GeneratorType generatorType) {
     return LazyHolder.INSTANCE.getIconInstance(generatorType);
@@ -24,13 +24,15 @@ public class GeneratorIcons {
   private Map<GeneratorType, IconLoader.LazyIcon> icons = new HashMap<GeneratorType, IconLoader.LazyIcon>();
 
   private GeneratorIcons() {
+
     for (final GeneratorType generatorType : GeneratorType.values()) {
-      icons.put(generatorType, new IconLoader.LazyIcon() {
+      IconLoader.LazyIcon lazyIcon = new IconLoader.LazyIcon() {
         @Override
         protected Icon compute() {
           return IconLoader.getIcon(generatorType.getIconName());
         }
-      });
+      };
+      icons.put(generatorType, lazyIcon);
     }
   }
 }
