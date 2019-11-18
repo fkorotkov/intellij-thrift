@@ -1,0 +1,14 @@
+jar.archiveName = "plugin.jar"
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/gen'
+        }
+    }
+}
+
+
+dependencies {
+    compile project(':jps-plugin')
+}

@@ -1,0 +1,25 @@
+plugins {
+    id "org.jetbrains.intellij" version "0.4.13"
+}
+
+version = "${version}.$buildNumber"
+subprojects {
+    apply plugin: 'java'
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
+
+    apply plugin: 'org.jetbrains.intellij'
+    intellij {
+        version ideaVersion
+        plugins = ['copyright', 'java']
+        downloadSources Boolean.valueOf(sources)
+        sameSinceUntilBuild Boolean.valueOf(isEAP)
+    }
+
+    test {
+        testLogging {
+            exceptionFormat = 'full'
+        }
+    }
+}

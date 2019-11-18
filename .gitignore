@@ -1,3 +1,5 @@
-out/*
-.idea/workspace.xml
-.idea/thriftCompiler.xml
+.idea
+*.iml
+
+.gradle
+build

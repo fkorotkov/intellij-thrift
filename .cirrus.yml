@@ -1,0 +1,7 @@
+container:
+  image: gradle:latest
+
+task:
+  name: Test
+  build_script: gradle build
+  test_script: gradle test
