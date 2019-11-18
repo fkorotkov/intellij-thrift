@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftUnionImpl extends ThriftTopLevelDeclarationImpl implements ThriftUnion {
 
-  public ThriftUnionImpl(ASTNode node) {
+  public ThriftUnionImpl(@NotNull ASTNode node) {
     super(node);
   }
 

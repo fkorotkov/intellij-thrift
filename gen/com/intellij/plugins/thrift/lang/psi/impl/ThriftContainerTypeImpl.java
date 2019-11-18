@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftContainerTypeImpl extends ThriftPsiCompositeElementImpl implements ThriftContainerType {
 
-  public ThriftContainerTypeImpl(ASTNode node) {
+  public ThriftContainerTypeImpl(@NotNull ASTNode node) {
     super(node);
   }
 

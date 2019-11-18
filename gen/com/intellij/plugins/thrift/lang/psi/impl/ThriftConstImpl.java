@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftConstImpl extends ThriftTopLevelDeclarationImpl implements ThriftConst {
 
-  public ThriftConstImpl(ASTNode node) {
+  public ThriftConstImpl(@NotNull ASTNode node) {
     super(node);
   }
 

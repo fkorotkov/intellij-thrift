@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftTypedefImpl extends ThriftTopLevelDeclarationImpl implements ThriftTypedef {
 
-  public ThriftTypedefImpl(ASTNode node) {
+  public ThriftTypedefImpl(@NotNull ASTNode node) {
     super(node);
   }
 

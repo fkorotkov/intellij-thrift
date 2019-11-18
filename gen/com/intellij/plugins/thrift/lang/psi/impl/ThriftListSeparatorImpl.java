@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftListSeparatorImpl extends ThriftPsiCompositeElementImpl implements ThriftListSeparator {
 
-  public ThriftListSeparatorImpl(ASTNode node) {
+  public ThriftListSeparatorImpl(@NotNull ASTNode node) {
     super(node);
   }
 

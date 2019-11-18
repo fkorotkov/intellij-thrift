@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftTypeAnnotationsImpl extends ThriftPsiCompositeElementImpl implements ThriftTypeAnnotations {
 
-  public ThriftTypeAnnotationsImpl(ASTNode node) {
+  public ThriftTypeAnnotationsImpl(@NotNull ASTNode node) {
     super(node);
   }
 

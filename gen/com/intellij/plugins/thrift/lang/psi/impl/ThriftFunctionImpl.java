@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftFunctionImpl extends AbstractThriftDeclaration implements ThriftFunction {
 
-  public ThriftFunctionImpl(ASTNode node) {
+  public ThriftFunctionImpl(@NotNull ASTNode node) {
     super(node);
   }
 

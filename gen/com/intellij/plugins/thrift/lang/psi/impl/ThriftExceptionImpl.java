@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftExceptionImpl extends ThriftTopLevelDeclarationImpl implements ThriftException {
 
-  public ThriftExceptionImpl(ASTNode node) {
+  public ThriftExceptionImpl(@NotNull ASTNode node) {
     super(node);
   }
 

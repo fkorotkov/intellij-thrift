@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftSenumBodyImpl extends ThriftPsiCompositeElementImpl implements ThriftSenumBody {
 
-  public ThriftSenumBodyImpl(ASTNode node) {
+  public ThriftSenumBodyImpl(@NotNull ASTNode node) {
     super(node);
   }
 

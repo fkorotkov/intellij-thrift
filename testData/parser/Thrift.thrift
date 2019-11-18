@@ -36,6 +36,9 @@ namespace php ThriftTest
 namespace delphi Thrift.Test
 namespace cocoa ThriftTest
 namespace d ThriftTest
+namespace netcore ThriftTest
+namespace lua ThriftTest
+namespace xsd ThriftTest
 
 // Presence of namespaces and sub-namespaces for which there is
 // no generator should compile with warnings only

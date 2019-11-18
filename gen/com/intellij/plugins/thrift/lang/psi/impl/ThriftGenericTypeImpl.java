@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftGenericTypeImpl extends ThriftPsiCompositeElementImpl implements ThriftGenericType {
 
-  public ThriftGenericTypeImpl(ASTNode node) {
+  public ThriftGenericTypeImpl(@NotNull ASTNode node) {
     super(node);
   }
 

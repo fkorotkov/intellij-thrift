@@ -14,7 +14,7 @@ import com.intellij.psi.PsiReference;
 
 public class ThriftIncludeImpl extends ThriftPsiCompositeElementImpl implements ThriftInclude {
 
-  public ThriftIncludeImpl(ASTNode node) {
+  public ThriftIncludeImpl(@NotNull ASTNode node) {
     super(node);
   }
 
@@ -33,11 +33,13 @@ public class ThriftIncludeImpl extends ThriftPsiCompositeElementImpl implements 
     return findChildByType(LITERAL);
   }
 
+  @Override
   @NotNull
   public PsiReference[] getReferences() {
     return ThriftPsiUtil.getReferences(this);
   }
 
+  @Override
   @NotNull
   public String getPath() {
     return ThriftPsiUtil.getPath(this);
