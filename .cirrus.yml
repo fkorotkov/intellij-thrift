@@ -3,5 +3,5 @@ container:
 
 task:
   name: Test
-  build_script: gradle build
+  build_script: gradle classes testClasses
   test_script: gradle test
