@@ -75,6 +75,21 @@ Thrift File
     NAMESPACE_SCOPE
       PsiElement(Identifier)('d')
     PsiElement(Identifier)('ThriftTest')
+  NAMESPACE
+    PsiElement(Identifier)('namespace')
+    NAMESPACE_SCOPE
+      PsiElement(Identifier)('netcore')
+    PsiElement(Identifier)('ThriftTest')
+  NAMESPACE
+    PsiElement(Identifier)('namespace')
+    NAMESPACE_SCOPE
+      PsiElement(Identifier)('lua')
+    PsiElement(Identifier)('ThriftTest')
+  NAMESPACE
+    PsiElement(Identifier)('namespace')
+    NAMESPACE_SCOPE
+      PsiElement(Identifier)('xsd')
+    PsiElement(Identifier)('ThriftTest')
   PsiComment(Comment)('// Presence of namespaces and sub-namespaces for which there is')
   PsiComment(Comment)('// no generator should compile with warnings only')
   NAMESPACE

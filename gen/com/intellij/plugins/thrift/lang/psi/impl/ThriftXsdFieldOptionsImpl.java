@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftXsdFieldOptionsImpl extends ThriftPsiCompositeElementImpl implements ThriftXsdFieldOptions {
 
-  public ThriftXsdFieldOptionsImpl(ASTNode node) {
+  public ThriftXsdFieldOptionsImpl(@NotNull ASTNode node) {
     super(node);
   }
 

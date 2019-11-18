@@ -14,7 +14,7 @@ import com.intellij.psi.PsiReference;
 
 public class ThriftCustomTypeImpl extends ThriftPsiCompositeElementImpl implements ThriftCustomType {
 
-  public ThriftCustomTypeImpl(ASTNode node) {
+  public ThriftCustomTypeImpl(@NotNull ASTNode node) {
     super(node);
   }
 
@@ -33,6 +33,7 @@ public class ThriftCustomTypeImpl extends ThriftPsiCompositeElementImpl implemen
     return findNotNullChildByType(IDENTIFIER);
   }
 
+  @Override
   @NotNull
   public PsiReference[] getReferences() {
     return ThriftPsiUtil.getReferences(this);

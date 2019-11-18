@@ -81,7 +81,7 @@ public interface ThriftTokenTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-       if (type == BASE_TYPE) {
+      if (type == BASE_TYPE) {
         return new ThriftBaseTypeImpl(node);
       }
       else if (type == CONST) {

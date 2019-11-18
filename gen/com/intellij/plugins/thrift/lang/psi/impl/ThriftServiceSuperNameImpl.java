@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftServiceSuperNameImpl extends ThriftPsiCompositeElementImpl implements ThriftServiceSuperName {
 
-  public ThriftServiceSuperNameImpl(ASTNode node) {
+  public ThriftServiceSuperNameImpl(@NotNull ASTNode node) {
     super(node);
   }
 

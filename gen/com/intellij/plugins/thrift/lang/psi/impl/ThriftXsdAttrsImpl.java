@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftXsdAttrsImpl extends ThriftPsiCompositeElementImpl implements ThriftXsdAttrs {
 
-  public ThriftXsdAttrsImpl(ASTNode node) {
+  public ThriftXsdAttrsImpl(@NotNull ASTNode node) {
     super(node);
   }
 

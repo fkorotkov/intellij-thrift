@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftSemunFieldImpl extends ThriftPsiCompositeElementImpl implements ThriftSemunField {
 
-  public ThriftSemunFieldImpl(ASTNode node) {
+  public ThriftSemunFieldImpl(@NotNull ASTNode node) {
     super(node);
   }
 

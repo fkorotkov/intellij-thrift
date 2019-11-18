@@ -23,151 +23,15 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     boolean r;
     b = adapt_builder_(t, b, this, null);
     Marker m = enter_section_(b, 0, _COLLAPSE_, null);
-    if (t == BASE_TYPE) {
-      r = BaseType(b, 0);
-    }
-    else if (t == CONST) {
-      r = Const(b, 0);
-    }
-    else if (t == CONST_LIST) {
-      r = ConstList(b, 0);
-    }
-    else if (t == CONST_MAP) {
-      r = ConstMap(b, 0);
-    }
-    else if (t == CONST_VALUE) {
-      r = ConstValue(b, 0);
-    }
-    else if (t == CONTAINER_TYPE) {
-      r = ContainerType(b, 0);
-    }
-    else if (t == CPP_TYPE) {
-      r = CppType(b, 0);
-    }
-    else if (t == CUSTOM_TYPE) {
-      r = CustomType(b, 0);
-    }
-    else if (t == DEFINITION_NAME) {
-      r = DefinitionName(b, 0);
-    }
-    else if (t == DOUBLE_CONSTANT) {
-      r = DoubleConstant(b, 0);
-    }
-    else if (t == ENUM) {
-      r = Enum(b, 0);
-    }
-    else if (t == EXCEPTION) {
-      r = Exception(b, 0);
-    }
-    else if (t == FIELD) {
-      r = Field(b, 0);
-    }
-    else if (t == FIELD_ID) {
-      r = FieldID(b, 0);
-    }
-    else if (t == FIELD_REQ) {
-      r = FieldReq(b, 0);
-    }
-    else if (t == FIELD_TYPE) {
-      r = FieldType(b, 0);
-    }
-    else if (t == FUNCTION) {
-      r = Function(b, 0);
-    }
-    else if (t == FUNCTION_TYPE) {
-      r = FunctionType(b, 0);
-    }
-    else if (t == GENERIC_TYPE) {
-      r = GenericType(b, 0);
-    }
-    else if (t == INCLUDE) {
-      r = Include(b, 0);
-    }
-    else if (t == INT_CONSTANT) {
-      r = IntConstant(b, 0);
-    }
-    else if (t == LIST_SEPARATOR) {
-      r = ListSeparator(b, 0);
-    }
-    else if (t == LIST_TYPE) {
-      r = ListType(b, 0);
-    }
-    else if (t == MAP_TYPE) {
-      r = MapType(b, 0);
-    }
-    else if (t == NAMESPACE) {
-      r = Namespace(b, 0);
-    }
-    else if (t == NAMESPACE_SCOPE) {
-      r = NamespaceScope(b, 0);
-    }
-    else if (t == SENUM) {
-      r = Senum(b, 0);
-    }
-    else if (t == SERVICE) {
-      r = Service(b, 0);
-    }
-    else if (t == SERVICE_SUPER_NAME) {
-      r = ServiceSuperName(b, 0);
-    }
-    else if (t == SET_TYPE) {
-      r = SetType(b, 0);
-    }
-    else if (t == SIMPLE_BASE_TYPE) {
-      r = SimpleBaseType(b, 0);
-    }
-    else if (t == STRUCT) {
-      r = Struct(b, 0);
-    }
-    else if (t == THROWS) {
-      r = Throws(b, 0);
-    }
-    else if (t == TYPE_ANNOTATION) {
-      r = TypeAnnotation(b, 0);
-    }
-    else if (t == TYPE_ANNOTATION_LIST) {
-      r = TypeAnnotationList(b, 0);
-    }
-    else if (t == TYPE_ANNOTATIONS) {
-      r = TypeAnnotations(b, 0);
-    }
-    else if (t == TYPEDEF) {
-      r = Typedef(b, 0);
-    }
-    else if (t == UNION) {
-      r = Union(b, 0);
-    }
-    else if (t == XSD_ATTRS) {
-      r = XsdAttrs(b, 0);
-    }
-    else if (t == XSD_FIELD_OPTIONS) {
-      r = XsdFieldOptions(b, 0);
-    }
-    else if (t == ENUM_FIELD) {
-      r = enumField(b, 0);
-    }
-    else if (t == ENUM_FIELDS) {
-      r = enumFields(b, 0);
-    }
-    else if (t == FIELDS) {
-      r = fields(b, 0);
-    }
-    else if (t == SEMUN_FIELD) {
-      r = semunField(b, 0);
-    }
-    else if (t == SENUM_BODY) {
-      r = senumBody(b, 0);
-    }
-    else if (t == SERVICE_BODY) {
-      r = serviceBody(b, 0);
-    }
-    else {
-      r = parse_root_(t, b, 0);
-    }
+    r = parse_root_(t, b);
     exit_section_(b, 0, m, t, r, true, TRUE_CONDITION);
   }
 
-  protected boolean parse_root_(IElementType t, PsiBuilder b, int l) {
+  protected boolean parse_root_(IElementType t, PsiBuilder b) {
+    return parse_root_(t, b, 0);
+  }
+
+  static boolean parse_root_(IElementType t, PsiBuilder b, int l) {
     return Document(b, l + 1);
   }
 
@@ -231,11 +95,10 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   // (ConstValue ListSeparator?)*
   private static boolean ConstList_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ConstList_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!ConstList_1_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "ConstList_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -275,11 +138,10 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   // (ConstValue ':' ConstValue ListSeparator?)*
   private static boolean ConstMap_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ConstMap_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!ConstMap_1_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "ConstMap_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -380,11 +242,10 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   // topLevelElement*
   static boolean Document(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Document")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!topLevelElement(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "Document", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -640,11 +501,10 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   // (',' FieldType)*
   private static boolean GenericType_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "GenericType_2")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!GenericType_2_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "GenericType_2", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -784,7 +644,8 @@ public class ThriftParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // Multiply | 'cpp' | 'java' | 'py' | 'py.twisted' | 'perl' | 'rb' | 'js' | 'st' |
-  //                      'cocoa' | 'csharp' | 'c_glib' | 'go' | 'php' |  'd' | 'delphi'
+  //                      'cocoa' | 'csharp' | 'c_glib' | 'go' | 'php' |  'd' | 'delphi' | 'xsd' | 'lua' |
+  //                      'netcore'
   public static boolean NamespaceScope(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "NamespaceScope")) return false;
     boolean r;
@@ -805,6 +666,9 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, "php");
     if (!r) r = consumeToken(b, "d");
     if (!r) r = consumeToken(b, "delphi");
+    if (!r) r = consumeToken(b, "xsd");
+    if (!r) r = consumeToken(b, "lua");
+    if (!r) r = consumeToken(b, "netcore");
     exit_section_(b, l, m, r, false, null);
     return r;
   }
@@ -934,11 +798,9 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   static boolean SimpleContainerType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SimpleContainerType")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = MapType(b, l + 1);
     if (!r) r = SetType(b, l + 1);
     if (!r) r = ListType(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -1014,11 +876,10 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   public static boolean TypeAnnotationList(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "TypeAnnotationList")) return false;
     Marker m = enter_section_(b, l, _NONE_, TYPE_ANNOTATION_LIST, "<type annotation list>");
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!TypeAnnotation(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "TypeAnnotationList", c)) break;
-      c = current_position_(b);
     }
     exit_section_(b, l, m, true, false, braceRecovery_parser_);
     return true;
@@ -1228,11 +1089,10 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   public static boolean enumFields(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "enumFields")) return false;
     Marker m = enter_section_(b, l, _NONE_, ENUM_FIELDS, "<enum fields>");
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!enumField(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "enumFields", c)) break;
-      c = current_position_(b);
     }
     exit_section_(b, l, m, true, false, null);
     return true;
@@ -1287,11 +1147,10 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   public static boolean fields(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fields")) return false;
     Marker m = enter_section_(b, l, _NONE_, FIELDS, "<fields>");
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!Field(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "fields", c)) break;
-      c = current_position_(b);
     }
     exit_section_(b, l, m, true, false, curlyBraceRecovery_parser_);
     return true;
@@ -1302,11 +1161,10 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   static boolean fieldsWithBraceRecovery(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fieldsWithBraceRecovery")) return false;
     Marker m = enter_section_(b, l, _NONE_);
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!Field(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "fieldsWithBraceRecovery", c)) break;
-      c = current_position_(b);
     }
     exit_section_(b, l, m, true, false, braceRecovery_parser_);
     return true;
@@ -1422,11 +1280,10 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   public static boolean senumBody(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "senumBody")) return false;
     Marker m = enter_section_(b, l, _NONE_, SENUM_BODY, "<senum body>");
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!semunField(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "senumBody", c)) break;
-      c = current_position_(b);
     }
     exit_section_(b, l, m, true, false, null);
     return true;
@@ -1437,11 +1294,10 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   public static boolean serviceBody(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "serviceBody")) return false;
     Marker m = enter_section_(b, l, _NONE_, SERVICE_BODY, "<service body>");
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!serviceBody_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "serviceBody", c)) break;
-      c = current_position_(b);
     }
     exit_section_(b, l, m, true, false, functionsRecovery_parser_);
     return true;
@@ -1600,42 +1456,42 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     return r || p;
   }
 
-  final static Parser braceRecovery_parser_ = new Parser() {
+  static final Parser braceRecovery_parser_ = new Parser() {
     public boolean parse(PsiBuilder b, int l) {
       return braceRecovery(b, l + 1);
     }
   };
-  final static Parser curlyBraceRecovery_parser_ = new Parser() {
+  static final Parser curlyBraceRecovery_parser_ = new Parser() {
     public boolean parse(PsiBuilder b, int l) {
       return curlyBraceRecovery(b, l + 1);
     }
   };
-  final static Parser enumFieldRecovery_parser_ = new Parser() {
+  static final Parser enumFieldRecovery_parser_ = new Parser() {
     public boolean parse(PsiBuilder b, int l) {
       return enumFieldRecovery(b, l + 1);
     }
   };
-  final static Parser fieldRecovery_parser_ = new Parser() {
+  static final Parser fieldRecovery_parser_ = new Parser() {
     public boolean parse(PsiBuilder b, int l) {
       return fieldRecovery(b, l + 1);
     }
   };
-  final static Parser functionRecovery_parser_ = new Parser() {
+  static final Parser functionRecovery_parser_ = new Parser() {
     public boolean parse(PsiBuilder b, int l) {
       return functionRecovery(b, l + 1);
     }
   };
-  final static Parser functionsRecovery_parser_ = new Parser() {
+  static final Parser functionsRecovery_parser_ = new Parser() {
     public boolean parse(PsiBuilder b, int l) {
       return functionsRecovery(b, l + 1);
     }
   };
-  final static Parser semunFieldRecovery_parser_ = new Parser() {
+  static final Parser semunFieldRecovery_parser_ = new Parser() {
     public boolean parse(PsiBuilder b, int l) {
       return semunFieldRecovery(b, l + 1);
     }
   };
-  final static Parser topLevelRecover_parser_ = new Parser() {
+  static final Parser topLevelRecover_parser_ = new Parser() {
     public boolean parse(PsiBuilder b, int l) {
       return topLevelRecover(b, l + 1);
     }

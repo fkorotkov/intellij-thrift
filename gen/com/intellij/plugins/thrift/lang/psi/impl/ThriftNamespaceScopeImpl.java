@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftNamespaceScopeImpl extends ThriftPsiCompositeElementImpl implements ThriftNamespaceScope {
 
-  public ThriftNamespaceScopeImpl(ASTNode node) {
+  public ThriftNamespaceScopeImpl(@NotNull ASTNode node) {
     super(node);
   }
 

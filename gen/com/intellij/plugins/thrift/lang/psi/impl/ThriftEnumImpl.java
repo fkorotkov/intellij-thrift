@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftEnumImpl extends ThriftTopLevelDeclarationImpl implements ThriftEnum {
 
-  public ThriftEnumImpl(ASTNode node) {
+  public ThriftEnumImpl(@NotNull ASTNode node) {
     super(node);
   }
 

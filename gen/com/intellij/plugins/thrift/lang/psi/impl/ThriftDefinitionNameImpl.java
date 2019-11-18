@@ -13,7 +13,7 @@ import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
 public class ThriftDefinitionNameImpl extends ThriftPsiCompositeElementImpl implements ThriftDefinitionName {
 
-  public ThriftDefinitionNameImpl(ASTNode node) {
+  public ThriftDefinitionNameImpl(@NotNull ASTNode node) {
     super(node);
   }
 
@@ -32,17 +32,20 @@ public class ThriftDefinitionNameImpl extends ThriftPsiCompositeElementImpl impl
     return findNotNullChildByType(IDENTIFIER);
   }
 
+  @Override
   @NotNull
   public PsiElement setName(String name) {
     return ThriftPsiUtil.setName(this, name);
   }
 
+  @Override
   @Nullable
   @NonNls
   public String getName() {
     return ThriftPsiUtil.getName(this);
   }
 
+  @Override
   @NotNull
   public PsiElement getNameIdentifier() {
     return ThriftPsiUtil.getNameIdentifier(this);
