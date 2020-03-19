@@ -6,12 +6,12 @@ How to build
 ===============
 
 ```bahs
-./gradlew :thift:buildPlugin
+./gradlew :thrift:buildPlugin
 ```
 
 How to run locally with new changes
 ===============
 
 ```bahs
-./gradlew :thift:runIde
+./gradlew :thrift:runIde
 ```

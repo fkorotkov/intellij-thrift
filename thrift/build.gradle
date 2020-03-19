@@ -1,5 +1,13 @@
 jar.archiveName = "plugin.jar"
 
+patchPluginXml {
+    version = System.getenv().getOrDefault("CIRRUS_TAG", "1.0")
+}
+
+publishPlugin {
+    token = System.getenv().getOrDefault("JETBRAINS_TOKEN", "")
+}
+
 sourceSets {
     main {
         java {

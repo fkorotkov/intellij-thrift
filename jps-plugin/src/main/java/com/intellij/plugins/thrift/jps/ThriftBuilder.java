@@ -21,10 +21,7 @@ import org.jetbrains.jps.model.module.JpsModule;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -37,6 +34,12 @@ public class ThriftBuilder extends ModuleLevelBuilder {
 
   protected ThriftBuilder() {
     super(BuilderCategory.SOURCE_GENERATOR);
+  }
+
+  @NotNull
+  @Override
+  public List<String> getCompilableFileExtensions() {
+    return Collections.singletonList("thrift");
   }
 
   @Override

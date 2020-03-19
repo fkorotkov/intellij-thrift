@@ -2,6 +2,14 @@ container:
   image: gradle:latest
 
 task:
-  name: Test
+  name: Tests
   build_script: gradle classes testClasses
   test_script: gradle test
+
+task:
+  name: Publish
+  only_if: $CIRRUS_TAG != ''
+  depends_on: Tests
+  env:
+    JETBRAINS_TOKEN: ENCRYPTED[260a01be940eee2f33c35c8f069067b73c34244f297088843ad96d21c4062469d3628989d768056a5e42eb4e07f31c6b]
+  test_script: gradle :thrift:publishPlugin
