@@ -105,7 +105,7 @@
       ]]>
   </change-notes>
   <vendor>@fedor</vendor>
-  <idea-version since-build="201"/><!-- Will be patched by the plugin -->
+  <idea-version since-build="192"/><!-- Will be patched by the plugin -->
 
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.lang</depends>
