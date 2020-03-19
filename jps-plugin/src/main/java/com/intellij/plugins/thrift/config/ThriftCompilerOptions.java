@@ -1,7 +1,7 @@
 package com.intellij.plugins.thrift.config;
 
 import com.intellij.plugins.thrift.config.target.*;
-import com.intellij.util.xmlb.annotations.AbstractCollection;
+import com.intellij.util.xmlb.annotations.XCollection;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.jps.model.JpsElementChildRole;
 import org.jetbrains.jps.model.ex.JpsElementBase;
@@ -29,8 +29,7 @@ public class ThriftCompilerOptions extends JpsElementBase<ThriftCompilerOptions>
     return config == null ? new ThriftCompilerOptions() : config;
   }
 
-  @AbstractCollection(
-    surroundWithTag = false,
+  @XCollection(
     elementTypes = {AS3.class, Cocoa.class, Cpp.class, CSharp.class, Delphi.class, Erlang.class, Generator.class, Go.class, Graphviz.class,
       HTML.class, IGenerator.class, Java.class, Javascript.class, PHP.class, Python.class, Ruby.class}
   )
