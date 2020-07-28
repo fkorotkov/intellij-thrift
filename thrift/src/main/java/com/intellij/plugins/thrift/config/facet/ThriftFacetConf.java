@@ -51,9 +51,7 @@ import java.util.List;
 @State(
   name = "ThriftFacetConfiguration",
   storages = {
-    @Storage(
-      file = "$MODULE_FILE$"
-    )
+    @Storage("$MODULE_FILE$")
   }
 )
 public class ThriftFacetConf implements FacetConfiguration, PersistentStateComponent<ThriftCompilerOptions> {
@@ -64,16 +62,6 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
     return new FacetEditorTab[]{new ThriftFacetEditor(editorContext, validatorsManager)};
   }
 
-  @Override
-  @Deprecated
-  public void readExternal(Element element) throws InvalidDataException {
-  }
-
-  @Override
-  @Deprecated
-  public void writeExternal(Element element) throws WriteExternalException {
-  }
-
   @Nullable
   @Override
   public ThriftCompilerOptions getState() {
@@ -81,15 +69,12 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
   }
 
   @Override
-  public void loadState(ThriftCompilerOptions state) {
-    if (state != null) {
-      config = state;
-    }
+  public void loadState(@NotNull ThriftCompilerOptions state) {
+    config = state;
   }
 
   private class ThriftFacetEditor extends FacetEditorTab {
     private final FacetEditorContext myContext;
-    private final FacetValidatorsManager myManager;
 
     private final JComponent pane;
 
@@ -102,7 +87,6 @@ public class ThriftFacetConf implements FacetConfiguration, PersistentStateCompo
     public ThriftFacetEditor(FacetEditorContext context,
                              FacetValidatorsManager manager) {
       myContext = context;
-      myManager = manager;
 
       cleanOnBuildCheckBox.setText(ThriftBundle.message("thrift.facet.options.clean-output"));
       cleanOnBuildCheckBox.addChangeListener(new ChangeListener() {

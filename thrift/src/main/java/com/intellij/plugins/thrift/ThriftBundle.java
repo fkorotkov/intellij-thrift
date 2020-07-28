@@ -1,6 +1,7 @@
 package com.intellij.plugins.thrift;
 
 
+import com.intellij.AbstractBundle;
 import com.intellij.CommonBundle;
 import com.intellij.reference.SoftReference;
 import org.jetbrains.annotations.NonNls;
@@ -21,7 +22,7 @@ public class ThriftBundle extends ResourceBundle {
   private static final String BUNDLE = "ThriftBundle";
 
   public static String message(@PropertyKey(resourceBundle = BUNDLE) String key, Object... params) {
-    return CommonBundle.message(getBundle(), key, params);
+    return AbstractBundle.message(getBundle(), key, params);
   }
 
   private static ResourceBundle getBundle() {

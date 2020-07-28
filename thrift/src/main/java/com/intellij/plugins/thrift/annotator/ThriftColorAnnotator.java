@@ -3,6 +3,7 @@ package com.intellij.plugins.thrift.annotator;
 import com.intellij.lang.annotation.Annotation;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.Annotator;
+import com.intellij.lang.annotation.HighlightSeverity;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.plugins.thrift.highlight.ThriftSyntaxHighlighterColors;
 import com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes;
@@ -27,7 +28,8 @@ public class ThriftColorAnnotator implements Annotator {
   }
 
   private void annotateKeyword(@NotNull PsiElement element, @NotNull AnnotationHolder holder) {
-    final Annotation annotation = holder.createInfoAnnotation(element, null);
-    annotation.setTextAttributes(TextAttributesKey.find(ThriftSyntaxHighlighterColors.THRIFT_KEYWORD));
+    holder.newSilentAnnotation(HighlightSeverity.INFORMATION)
+      .textAttributes(TextAttributesKey.find(ThriftSyntaxHighlighterColors.THRIFT_KEYWORD))
+      .create();
   }
 }

@@ -68,8 +68,4 @@ public class ThriftParserDefinition implements ParserDefinition {
   public PsiFile createFile(FileViewProvider viewProvider) {
     return new ThriftFile(viewProvider);
   }
-
-  public SpaceRequirements spaceExistanceTypeBetweenTokens(ASTNode left, ASTNode right) {
-    return SpaceRequirements.MAY;
-  }
 }

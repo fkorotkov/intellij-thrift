@@ -25,11 +25,6 @@ import java.util.List;
  * Created by fkorotkov.
  */
 public class ThriftLineMarkerProvider implements LineMarkerProvider {
-  @Override
-  public void collectSlowLineMarkers(@NotNull List<PsiElement> elements, @NotNull Collection<LineMarkerInfo> result) {
-
-  }
-
   @Nullable
   @Override
   public LineMarkerInfo getLineMarkerInfo(@NotNull PsiElement element) {

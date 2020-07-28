@@ -4,6 +4,10 @@
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
+      <p>1.2:</p>
+      <ul>
+        <li>Compatibility with IntelliJ 2020.2</li>
+      </ul>
       <p>1.1:</p>
       <ul>
         <li>Compatibility with IntelliJ 2020.1</li>
@@ -105,7 +109,7 @@
       ]]>
   </change-notes>
   <vendor>@fedor</vendor>
-  <idea-version since-build="192"/><!-- Will be patched by the plugin -->
+  <idea-version since-build="202.*"/><!-- Will be patched by the plugin -->
 
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.lang</depends>
@@ -118,7 +122,7 @@
     <!-- Add your application components here -->
   </application-components>
   <extensions defaultExtensionNs="com.intellij">
-    <fileTypeFactory implementation="com.intellij.plugins.thrift.ThriftFileTypeLoader"/>
+    <fileType name="Thrift" extensions="thrift" language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftFileType"/>
     <lang.parserDefinition language="thrift" implementationClass="com.intellij.plugins.thrift.lang.parser.ThriftParserDefinition"/>
     <completion.contributor language="any" implementationClass="com.intellij.plugins.thrift.completion.ThriftKeywordCompletionContributor"/>
     <itemPresentationProvider forClass="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"
@@ -169,7 +173,7 @@
                      implementationClass="com.intellij.plugins.thrift.inspections.ThriftDuplicatesInspection"/>
 
     <projectConfigurable instance="com.intellij.plugins.thrift.config.ThriftCompilerConfigurable" id="intellij-thrift"
-                         displayName="Thrift compiler" parentId="project.propCompiler"/>
+                         displayName="Thrift Compiler" parentId="project.propCompiler"/>
 
     <frameworkSupport implementation="com.intellij.plugins.thrift.config.facet.ThriftFacetSupportProvider"/>
     <facetType implementation="com.intellij.plugins.thrift.config.facet.ThriftFacetType"/>

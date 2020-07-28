@@ -92,7 +92,7 @@ public class ThriftDuplicatesInspection extends LocalInspectionTool {
         }
       }
 
-      public void visitElement(PsiElement element) {
+      public void visitElement(@NotNull PsiElement element) {
         super.visitElement(element);
         element.acceptChildren(this);
       }

@@ -1,5 +1,5 @@
 plugins {
-    id "org.jetbrains.intellij" version "0.4.17"
+    id "org.jetbrains.intellij" version "0.4.21"
 }
 
 version = "${version}.$buildNumber"
@@ -8,6 +8,15 @@ subprojects {
     sourceCompatibility = javaVersion
     targetCompatibility = javaVersion
     tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
+
+    repositories {
+        mavenLocal()
+        jcenter()
+        mavenCentral()
+        maven { setUrl("https://repo.gradle.org/gradle/repo") }
+        maven { setUrl("https://maven.google.com/") }
+        maven { setUrl("https://dl.bintray.com/cirruslabs/maven") }
+    }
 
     apply plugin: 'org.jetbrains.intellij'
     intellij {
