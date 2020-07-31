@@ -122,7 +122,7 @@
     <!-- Add your application components here -->
   </application-components>
   <extensions defaultExtensionNs="com.intellij">
-    <fileType name="Thrift" extensions="thrift" language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftFileType"/>
+    <fileTypeFactory implementation="com.intellij.plugins.thrift.ThriftFileTypeLoader"/>
     <lang.parserDefinition language="thrift" implementationClass="com.intellij.plugins.thrift.lang.parser.ThriftParserDefinition"/>
     <completion.contributor language="any" implementationClass="com.intellij.plugins.thrift.completion.ThriftKeywordCompletionContributor"/>
     <itemPresentationProvider forClass="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"
