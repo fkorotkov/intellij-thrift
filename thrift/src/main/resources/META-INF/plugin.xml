@@ -182,6 +182,11 @@
   </extensions>
 
   <actions>
+    <action class="com.intellij.plugins.thrift.editor.GoToThriftDefinition"
+            id="com.intellij.plugins.thrift.editor.GoToThriftDefinition"
+            text="Go to Thrift source">
+      <add-to-group group-id="RunContextPopupGroup" anchor="first"/>
+    </action>
   </actions>
   <project-components>
     <component>
