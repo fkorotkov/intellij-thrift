@@ -178,7 +178,8 @@
     <frameworkSupport implementation="com.intellij.plugins.thrift.config.facet.ThriftFacetSupportProvider"/>
     <facetType implementation="com.intellij.plugins.thrift.config.facet.ThriftFacetType"/>
     <compileServer.plugin classpath="thrift-jps.jar;commons-io-2.4.jar"/>
-
+    <codeInsight.lineMarkerProvider language="Scala" implementationClass="com.intellij.plugins.thrift.editor.GoToThriftDefinitionMarkerProvider"/>
+    <codeInsight.lineMarkerProvider language="JAVA" implementationClass="com.intellij.plugins.thrift.editor.GoToThriftDefinitionMarkerProvider"/>
   </extensions>
 
   <actions>
