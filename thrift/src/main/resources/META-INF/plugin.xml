@@ -178,10 +178,16 @@
     <frameworkSupport implementation="com.intellij.plugins.thrift.config.facet.ThriftFacetSupportProvider"/>
     <facetType implementation="com.intellij.plugins.thrift.config.facet.ThriftFacetType"/>
     <compileServer.plugin classpath="thrift-jps.jar;commons-io-2.4.jar"/>
-
+    <codeInsight.lineMarkerProvider language="Scala" implementationClass="com.intellij.plugins.thrift.editor.GoToThriftDefinitionMarkerProvider"/>
+    <codeInsight.lineMarkerProvider language="JAVA" implementationClass="com.intellij.plugins.thrift.editor.GoToThriftDefinitionMarkerProvider"/>
   </extensions>
 
   <actions>
+    <action class="com.intellij.plugins.thrift.editor.GoToThriftDefinition"
+            id="com.intellij.plugins.thrift.editor.GoToThriftDefinition"
+            text="Go to Thrift source">
+      <add-to-group group-id="RunContextPopupGroup" anchor="first"/>
+    </action>
   </actions>
   <project-components>
     <component>
