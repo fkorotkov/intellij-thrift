@@ -34,12 +34,18 @@ public class GoToThriftDefinitionMarkerProvider extends RelatedItemLineMarkerPro
 
   private static Set<String> thriftStructBaseClasses =
       Sets.newHashSet(
+          "org.apache.thrift.TBase",
           "com.twitter.scrooge.ThriftStruct",
-          "org.apache.thrift.TBase"
+          "com.twitter.scrooge.ThriftEnum",
+          "com.twitter.scrooge.ThriftUnion",
+          "com.twitter.scrooge.ThriftException"
       );
 
   private boolean isThriftStruct(PsiClass element) {
-    return Arrays.stream(element.getSupers()).anyMatch(superClass -> thriftStructBaseClasses.contains(superClass.getQualifiedName()));
+    return Arrays
+        .stream(element.getSupers())
+        .anyMatch(superClass -> thriftStructBaseClasses.contains(superClass.getQualifiedName()))
+        || element.getAnnotation("javax.annotation.Generated") != null;
   }
 
   @Override
