@@ -8,8 +8,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import com.google.common.base.Stopwatch;
+import com.google.common.collect.Sets;
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo;
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider;
 import com.intellij.codeInsight.navigation.NavigationGutterIconBuilder;
@@ -30,10 +32,20 @@ import icons.ThriftIcons;
 public class GoToThriftDefinitionMarkerProvider extends RelatedItemLineMarkerProvider {
   static Logger logger = Logger.getInstance(GoToThriftDefinition.class);
 
+  private static Set<String> thriftStructBaseClasses =
+      Sets.newHashSet(
+          "com.twitter.scrooge.ThriftStruct",
+          "org.apache.thrift.TBase"
+      );
+
+  private boolean isThriftStruct(PsiClass element) {
+    return Arrays.stream(element.getSupers()).anyMatch(superClass -> thriftStructBaseClasses.contains(superClass.getQualifiedName()));
+  }
+
   @Override
   protected void collectNavigationMarkers(@NotNull PsiElement element,
                                           @NotNull Collection<? super RelatedItemLineMarkerInfo<?>> result) {
-    if (element instanceof PsiClass) {
+    if (element instanceof PsiClass && isThriftStruct((PsiClass)element)) {
       PsiClass psiClass = (PsiClass) element;
       String name = psiClass.getName();
       if (name != null) {
