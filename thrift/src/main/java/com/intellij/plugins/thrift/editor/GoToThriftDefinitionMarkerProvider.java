@@ -35,6 +35,7 @@ public class GoToThriftDefinitionMarkerProvider extends RelatedItemLineMarkerPro
   private static Set<String> thriftStructBaseClasses =
       Sets.newHashSet(
           "org.apache.thrift.TBase",
+          "org.apache.thrift.TEnum",
           "com.twitter.scrooge.ThriftStruct",
           "com.twitter.scrooge.ThriftEnum",
           "com.twitter.scrooge.ThriftUnion",
