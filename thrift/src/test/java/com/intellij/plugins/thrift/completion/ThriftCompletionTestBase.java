@@ -6,7 +6,6 @@ import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.plugins.thrift.ThriftCodeInsightFixtureTestCase;
 import com.intellij.testFramework.UsefulTestCase;
-import org.apache.commons.lang.StringUtils;
 
 import java.util.*;
 

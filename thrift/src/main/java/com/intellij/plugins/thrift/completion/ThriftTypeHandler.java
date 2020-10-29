@@ -8,7 +8,6 @@ import com.intellij.plugins.thrift.ThriftLanguage;
 import com.intellij.plugins.thrift.lang.psi.ThriftGenericType;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 
 /**

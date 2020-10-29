@@ -2,7 +2,6 @@ package com.intellij.plugins.thrift;
 
 
 import com.intellij.AbstractBundle;
-import com.intellij.CommonBundle;
 import com.intellij.reference.SoftReference;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;

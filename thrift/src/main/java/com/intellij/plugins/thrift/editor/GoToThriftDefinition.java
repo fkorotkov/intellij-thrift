@@ -1,10 +1,5 @@
 package com.intellij.plugins.thrift.editor;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.Duration;
-import java.util.List;
-
 import com.google.common.base.Stopwatch;
 import com.intellij.codeInsight.daemon.impl.PsiElementListNavigator;
 import com.intellij.ide.util.PsiElementListCellRenderer;
@@ -22,10 +17,14 @@ import com.intellij.plugins.thrift.lang.psi.ThriftStruct;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.search.GlobalSearchScope;
-
 import org.apache.commons.compress.utils.Lists;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.Duration;
+import java.util.List;
 
 public class GoToThriftDefinition extends AnAction {
   static Logger logger = Logger.getInstance(GoToThriftDefinition.class);

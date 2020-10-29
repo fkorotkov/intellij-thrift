@@ -1,12 +1,10 @@
 plugins {
-    id "org.jetbrains.intellij" version "0.4.21"
+    id "org.jetbrains.intellij" version "0.6.1"
 }
 
 version = "${version}.$buildNumber"
 subprojects {
     apply plugin: 'java'
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
     tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
 
     repositories {

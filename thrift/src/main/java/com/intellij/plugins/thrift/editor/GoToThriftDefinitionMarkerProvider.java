@@ -3,13 +3,6 @@
 
 package com.intellij.plugins.thrift.editor;
 
-import java.time.Duration;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Sets;
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo;
@@ -24,10 +17,11 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiIdentifier;
 import com.intellij.psi.PsiModifierList;
 import com.intellij.psi.search.GlobalSearchScope;
-
+import icons.ThriftIcons;
 import org.jetbrains.annotations.NotNull;
 
-import icons.ThriftIcons;
+import java.time.Duration;
+import java.util.*;
 
 public class GoToThriftDefinitionMarkerProvider extends RelatedItemLineMarkerProvider {
   static Logger logger = Logger.getInstance(GoToThriftDefinition.class);
