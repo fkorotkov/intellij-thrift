@@ -4,6 +4,7 @@ container:
 task:
   name: Tests
   build_script: gradle classes testClasses
+  verify_script: gradle verifyPlugin
   test_script: gradle test
 
 task:

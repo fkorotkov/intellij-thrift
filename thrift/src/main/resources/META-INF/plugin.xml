@@ -4,6 +4,10 @@
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
+      <p>1.4:</p>
+      <ul>
+        <li>Compatibility with IntelliJ 2020.3</li>
+      </ul>
       <p>1.2:</p>
       <ul>
         <li>Compatibility with IntelliJ 2020.2</li>
@@ -109,7 +113,7 @@
       ]]>
   </change-notes>
   <vendor>@fedor</vendor>
-  <idea-version since-build="202.*"/><!-- Will be patched by the plugin -->
+  <idea-version since-build="203.*"/><!-- Will be patched by the plugin -->
 
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.lang</depends>
