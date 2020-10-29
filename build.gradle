@@ -5,8 +5,6 @@ plugins {
 version = "${version}.$buildNumber"
 subprojects {
     apply plugin: 'java'
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
     tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
 
     repositories {
