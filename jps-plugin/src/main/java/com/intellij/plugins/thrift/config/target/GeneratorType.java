@@ -1,9 +1,5 @@
 package com.intellij.plugins.thrift.config.target;
 
-import com.intellij.openapi.util.IconLoader;
-
-import javax.swing.*;
-
 /**
  * 26.06.2014 14:38
  *
