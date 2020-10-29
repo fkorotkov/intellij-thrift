@@ -1,7 +1,6 @@
 package com.intellij.plugins.thrift.config;
 
 import com.intellij.ide.ui.UISettings;
-import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.options.BaseConfigurable;
 import com.intellij.openapi.options.ConfigurationException;
