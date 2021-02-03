@@ -66,8 +66,23 @@ public class ThriftDuplicatesInspection extends LocalInspectionTool {
         if (o instanceof ThriftService) {
           ThriftService service = (ThriftService) o;
           ThriftServiceBody body = service.getServiceBody();
+
           if (body != null) {
+            Set<String> methodNames = new HashSet<String>();
+
             for (ThriftFunction f : body.getFunctionList()) {
+              String methodName = f.getDefinitionName().getName();
+
+              if(!methodNames.add(methodName)){
+                result.add(manager.createProblemDescriptor(
+                        f.getIdentifier(),
+                        String.format("multiple methods with name '%s'", methodName),
+                        true,
+                        ProblemHighlightType.ERROR,
+                        isOnTheFly
+                ));
+              }
+
               result.addAll(checkFieldList(manager, isOnTheFly, f.getFieldList(), "args"));
               ThriftThrows t = f.getThrows();
               if (t != null) {
