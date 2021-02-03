@@ -21,6 +21,7 @@ public class ThriftSenumBodyImpl extends ThriftPsiCompositeElementImpl implement
     visitor.visitSenumBody(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof ThriftVisitor) accept((ThriftVisitor)visitor);
     else super.accept(visitor);
@@ -28,8 +29,8 @@ public class ThriftSenumBodyImpl extends ThriftPsiCompositeElementImpl implement
 
   @Override
   @NotNull
-  public List<ThriftSemunField> getSemunFieldList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, ThriftSemunField.class);
+  public List<ThriftSenumField> getSenumFieldList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, ThriftSenumField.class);
   }
 
 }

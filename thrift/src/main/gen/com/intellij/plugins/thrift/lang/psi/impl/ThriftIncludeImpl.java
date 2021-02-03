@@ -22,6 +22,7 @@ public class ThriftIncludeImpl extends ThriftPsiCompositeElementImpl implements 
     visitor.visitInclude(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof ThriftVisitor) accept((ThriftVisitor)visitor);
     else super.accept(visitor);
@@ -34,14 +35,12 @@ public class ThriftIncludeImpl extends ThriftPsiCompositeElementImpl implements 
   }
 
   @Override
-  @NotNull
-  public PsiReference[] getReferences() {
+  public @NotNull PsiReference[] getReferences() {
     return ThriftPsiUtil.getReferences(this);
   }
 
   @Override
-  @NotNull
-  public String getPath() {
+  public @NotNull String getPath() {
     return ThriftPsiUtil.getPath(this);
   }
 

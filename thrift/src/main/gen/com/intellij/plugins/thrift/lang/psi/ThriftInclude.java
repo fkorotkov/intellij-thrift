@@ -11,10 +11,8 @@ public interface ThriftInclude extends ThriftPsiCompositeElement {
   @Nullable
   PsiElement getLiteral();
 
-  @NotNull
-  PsiReference[] getReferences();
+  @NotNull PsiReference[] getReferences();
 
-  @NotNull
-  String getPath();
+  @NotNull String getPath();
 
 }

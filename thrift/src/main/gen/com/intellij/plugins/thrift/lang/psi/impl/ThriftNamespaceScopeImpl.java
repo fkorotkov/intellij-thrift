@@ -21,6 +21,7 @@ public class ThriftNamespaceScopeImpl extends ThriftPsiCompositeElementImpl impl
     visitor.visitNamespaceScope(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof ThriftVisitor) accept((ThriftVisitor)visitor);
     else super.accept(visitor);

@@ -21,6 +21,7 @@ public class ThriftFieldsImpl extends ThriftPsiCompositeElementImpl implements T
     visitor.visitFields(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof ThriftVisitor) accept((ThriftVisitor)visitor);
     else super.accept(visitor);

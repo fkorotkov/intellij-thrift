@@ -11,7 +11,6 @@ public interface ThriftCustomType extends ThriftPsiCompositeElement {
   @NotNull
   PsiElement getIdentifier();
 
-  @NotNull
-  PsiReference[] getReferences();
+  @NotNull PsiReference[] getReferences();
 
 }

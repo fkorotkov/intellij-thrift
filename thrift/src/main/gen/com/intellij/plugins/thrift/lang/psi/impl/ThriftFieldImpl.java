@@ -21,6 +21,7 @@ public class ThriftFieldImpl extends AbstractThriftDeclaration implements Thrift
     visitor.visitField(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof ThriftVisitor) accept((ThriftVisitor)visitor);
     else super.accept(visitor);

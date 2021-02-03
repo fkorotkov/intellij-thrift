@@ -4,8 +4,8 @@ package com.intellij.plugins.thrift.lang.psi;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.PsiNamedElement;
-import  com.intellij.navigation.NavigationItem;
-import  com.intellij.psi.PsiNameIdentifierOwner;
+import com.intellij.navigation.NavigationItem;
+import com.intellij.psi.PsiNameIdentifierOwner;
 
 public class ThriftVisitor extends PsiElementVisitor {
 
@@ -181,12 +181,12 @@ public class ThriftVisitor extends PsiElementVisitor {
     visitDeclarationBody(o);
   }
 
-  public void visitSemunField(@NotNull ThriftSemunField o) {
-    visitPsiCompositeElement(o);
-  }
-
   public void visitSenumBody(@NotNull ThriftSenumBody o) {
     visitDeclarationBody(o);
+  }
+
+  public void visitSenumField(@NotNull ThriftSenumField o) {
+    visitPsiCompositeElement(o);
   }
 
   public void visitServiceBody(@NotNull ThriftServiceBody o) {

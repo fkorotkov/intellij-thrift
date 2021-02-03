@@ -21,6 +21,7 @@ public class ThriftDefinitionNameImpl extends ThriftPsiCompositeElementImpl impl
     visitor.visitDefinitionName(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof ThriftVisitor) accept((ThriftVisitor)visitor);
     else super.accept(visitor);
@@ -33,21 +34,18 @@ public class ThriftDefinitionNameImpl extends ThriftPsiCompositeElementImpl impl
   }
 
   @Override
-  @NotNull
-  public PsiElement setName(String name) {
+  public @NotNull PsiElement setName(String name) {
     return ThriftPsiUtil.setName(this, name);
   }
 
   @Override
-  @Nullable
   @NonNls
-  public String getName() {
+  public @Nullable String getName() {
     return ThriftPsiUtil.getName(this);
   }
 
   @Override
-  @NotNull
-  public PsiElement getNameIdentifier() {
+  public @NotNull PsiElement getNameIdentifier() {
     return ThriftPsiUtil.getNameIdentifier(this);
   }
 
