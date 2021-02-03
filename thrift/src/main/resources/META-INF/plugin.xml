@@ -120,7 +120,6 @@
   <depends>com.intellij.modules.vcs</depends>
   <depends>com.intellij.modules.xml</depends>
   <depends>com.intellij.modules.xdebugger</depends>
-  <depends>com.intellij.modules.java</depends>
 
   <application-components>
     <!-- Add your application components here -->
@@ -150,6 +149,7 @@
     <lang.commenter language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftCommenter"/>
     <lang.implementationTextSelectioner language="thrift"
                                         implementationClass="com.intellij.plugins.thrift.ThriftImplementationTextSelectioner"/>
+    <liveTemplateContext implementation="com.intellij.plugins.thrift.ThriftContext"/>
 
     <!--<colorSettingsPage/>-->
     <!--<codeStyleSettingsProvider/>-->
