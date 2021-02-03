@@ -639,7 +639,8 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   /* ********************************************************** */
   // Multiply | 'cpp' | 'java' | 'py' | 'py.twisted' | 'perl' | 'rb' | 'js' | 'st' |
   //                      'cocoa' | 'csharp' | 'c_glib' | 'go' | 'php' |  'd' | 'delphi' | 'xsd' | 'lua' |
-  //                      'netcore' | 'rs'
+  //                      'netcore' | 'rs' | 'as3' | 'cl' | 'dart' | 'erl' | 'haxe' | 'hs'  |
+  //                      'javame' | 'json'  | 'netstd' | 'nodejs' | 'nodets' | 'ocaml'  | 'swift' | 'ts' | 'xml'
   public static boolean NamespaceScope(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "NamespaceScope")) return false;
     boolean r;
@@ -664,6 +665,21 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, "lua");
     if (!r) r = consumeToken(b, "netcore");
     if (!r) r = consumeToken(b, "rs");
+    if (!r) r = consumeToken(b, "as3");
+    if (!r) r = consumeToken(b, "cl");
+    if (!r) r = consumeToken(b, "dart");
+    if (!r) r = consumeToken(b, "erl");
+    if (!r) r = consumeToken(b, "haxe");
+    if (!r) r = consumeToken(b, "hs");
+    if (!r) r = consumeToken(b, "javame");
+    if (!r) r = consumeToken(b, "json");
+    if (!r) r = consumeToken(b, "netstd");
+    if (!r) r = consumeToken(b, "nodejs");
+    if (!r) r = consumeToken(b, "nodets");
+    if (!r) r = consumeToken(b, "ocaml");
+    if (!r) r = consumeToken(b, "swift");
+    if (!r) r = consumeToken(b, "ts");
+    if (!r) r = consumeToken(b, "xml");
     exit_section_(b, l, m, r, false, null);
     return r;
   }
@@ -847,21 +863,39 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Identifier '=' Literal ListSeparator?
+  // Identifier ('=' Literal ListSeparator?)?
   public static boolean TypeAnnotation(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "TypeAnnotation")) return false;
     if (!nextTokenIs(b, IDENTIFIER)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, IDENTIFIER, EQUALS, LITERAL);
-    r = r && TypeAnnotation_3(b, l + 1);
+    r = consumeToken(b, IDENTIFIER);
+    r = r && TypeAnnotation_1(b, l + 1);
     exit_section_(b, m, TYPE_ANNOTATION, r);
     return r;
   }
 
+  // ('=' Literal ListSeparator?)?
+  private static boolean TypeAnnotation_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TypeAnnotation_1")) return false;
+    TypeAnnotation_1_0(b, l + 1);
+    return true;
+  }
+
+  // '=' Literal ListSeparator?
+  private static boolean TypeAnnotation_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TypeAnnotation_1_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, EQUALS, LITERAL);
+    r = r && TypeAnnotation_1_0_2(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
   // ListSeparator?
-  private static boolean TypeAnnotation_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "TypeAnnotation_3")) return false;
+  private static boolean TypeAnnotation_1_0_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TypeAnnotation_1_0_2")) return false;
     ListSeparator(b, l + 1);
     return true;
   }

@@ -40,9 +40,9 @@ public class ThriftTypeAnnotationImpl extends ThriftPsiCompositeElementImpl impl
   }
 
   @Override
-  @NotNull
+  @Nullable
   public PsiElement getLiteral() {
-    return findNotNullChildByType(LITERAL);
+    return findChildByType(LITERAL);
   }
 
 }

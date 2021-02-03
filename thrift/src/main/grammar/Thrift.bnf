@@ -68,7 +68,8 @@ private std_namespace ::= 'namespace' (
 
 NamespaceScope  ::=  Multiply | 'cpp' | 'java' | 'py' | 'py.twisted' | 'perl' | 'rb' | 'js' | 'st' |
                      'cocoa' | 'csharp' | 'c_glib' | 'go' | 'php' |  'd' | 'delphi' | 'xsd' | 'lua' |
-                     'netcore' | 'rs'
+                     'netcore' | 'rs' | 'as3' | 'cl' | 'dart' | 'erl' | 'haxe' | 'hs'  |
+                     'javame' | 'json'  | 'netstd' | 'nodejs' | 'nodets' | 'ocaml'  | 'swift' | 'ts' | 'xml'
 
 DefinitionName ::= Identifier
 {implements="com.intellij.psi.PsiNamedElement, com.intellij.navigation.NavigationItem, com.intellij.psi.PsiNameIdentifierOwner" methods=[
@@ -162,6 +163,6 @@ ListSeparator   ::=  ',' | ';'
 
 TypeAnnotations ::= '(' TypeAnnotationList ')'
 TypeAnnotationList ::= TypeAnnotation* {recoverWhile=braceRecovery}
-TypeAnnotation ::= Identifier '=' Literal ListSeparator?
+TypeAnnotation ::= Identifier ('=' Literal ListSeparator?)?
 
 private braceRecovery ::= !(')')
