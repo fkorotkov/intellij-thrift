@@ -639,7 +639,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   /* ********************************************************** */
   // Multiply | 'cpp' | 'java' | 'py' | 'py.twisted' | 'perl' | 'rb' | 'js' | 'st' |
   //                      'cocoa' | 'csharp' | 'c_glib' | 'go' | 'php' |  'd' | 'delphi' | 'xsd' | 'lua' |
-  //                      'netcore'
+  //                      'netcore' | 'rs'
   public static boolean NamespaceScope(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "NamespaceScope")) return false;
     boolean r;
@@ -663,6 +663,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, "xsd");
     if (!r) r = consumeToken(b, "lua");
     if (!r) r = consumeToken(b, "netcore");
+    if (!r) r = consumeToken(b, "rs");
     exit_section_(b, l, m, r, false, null);
     return r;
   }

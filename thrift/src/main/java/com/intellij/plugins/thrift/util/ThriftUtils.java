@@ -16,7 +16,7 @@ public class ThriftUtils {
     "senum", "service", "struct", "typedef", "union", "required", "optional", "xsd_optional",
     "xsd_nillable", "oneway", "throws", "bool", "byte", "i8", "i16", "i32", "i64", "double",
     "string", "binary", "slist", "list", "map", "set", "cpp_type", "void", "true", "false",
-    "xsd", "lua", "netcore"
+    "xsd", "lua", "netcore", "rs"
   );
 
   public static Set<String> getKeywords() {
