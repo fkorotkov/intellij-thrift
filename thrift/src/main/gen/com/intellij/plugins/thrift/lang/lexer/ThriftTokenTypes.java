@@ -37,9 +37,9 @@ public interface ThriftTokenTypes {
   IElementType MAP_TYPE = new ThriftElementType("MAP_TYPE");
   IElementType NAMESPACE = new ThriftElementType("NAMESPACE");
   IElementType NAMESPACE_SCOPE = new ThriftElementType("NAMESPACE_SCOPE");
-  IElementType SEMUN_FIELD = new ThriftElementType("SEMUN_FIELD");
   IElementType SENUM = new ThriftElementType("SENUM");
   IElementType SENUM_BODY = new ThriftElementType("SENUM_BODY");
+  IElementType SENUM_FIELD = new ThriftElementType("SENUM_FIELD");
   IElementType SERVICE = new ThriftElementType("SERVICE");
   IElementType SERVICE_BODY = new ThriftElementType("SERVICE_BODY");
   IElementType SERVICE_SUPER_NAME = new ThriftElementType("SERVICE_SUPER_NAME");
@@ -168,14 +168,14 @@ public interface ThriftTokenTypes {
       else if (type == NAMESPACE_SCOPE) {
         return new ThriftNamespaceScopeImpl(node);
       }
-      else if (type == SEMUN_FIELD) {
-        return new ThriftSemunFieldImpl(node);
-      }
       else if (type == SENUM) {
         return new ThriftSenumImpl(node);
       }
       else if (type == SENUM_BODY) {
         return new ThriftSenumBodyImpl(node);
+      }
+      else if (type == SENUM_FIELD) {
+        return new ThriftSenumFieldImpl(node);
       }
       else if (type == SERVICE) {
         return new ThriftServiceImpl(node);

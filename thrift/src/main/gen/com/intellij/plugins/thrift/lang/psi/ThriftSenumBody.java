@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface ThriftSenumBody extends ThriftDeclarationBody {
 
   @NotNull
-  List<ThriftSemunField> getSemunFieldList();
+  List<ThriftSenumField> getSenumFieldList();
 
 }

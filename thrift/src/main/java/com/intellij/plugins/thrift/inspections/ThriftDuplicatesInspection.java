@@ -105,7 +105,7 @@ public class ThriftDuplicatesInspection extends LocalInspectionTool {
 
             Set<String> names = new HashSet<String>();
 
-            for(ThriftSemunField field : body.getSemunFieldList()){
+            for(ThriftSenumField field : body.getSenumFieldList()){
               if (!names.add(field.getLiteral().getText())){
                 result.add(manager.createProblemDescriptor(
                         field.getLiteral(),

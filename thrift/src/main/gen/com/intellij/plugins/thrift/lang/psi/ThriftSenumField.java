@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface ThriftSemunField extends ThriftPsiCompositeElement {
+public interface ThriftSenumField extends ThriftPsiCompositeElement {
 
   @Nullable
   ThriftListSeparator getListSeparator();
