@@ -77,32 +77,10 @@ public class ThriftDuplicatesInspection extends LocalInspectionTool {
           }
         }
 
-        Set<String> fieldNames = new HashSet<String>();
-        Set<String> fieldIds = new HashSet<String>();
-
-        for (ThriftDeclaration d : o.findSubDeclarations()) {
-          ThriftDefinitionName identifier = d.getIdentifier();
-          if (identifier != null && !fieldNames.add(identifier.getText())) {
-            // Repeated field names
-            result.add(manager.createProblemDescriptor(
-                    identifier,
-                    getDisplayName(),
-                    true,
-                    ProblemHighlightType.ERROR,
-                    isOnTheFly
-            ));
-          }
-
-          ThriftFieldID fieldID = PsiTreeUtil.getChildOfType(d, ThriftFieldID.class);
-          if (fieldID != null && !fieldIds.add(fieldID.getText())) {
-            //Reapted fieldIDs
-            result.add(manager.createProblemDescriptor(
-                    fieldID,
-                    getDisplayName(),
-                    true,
-                    ProblemHighlightType.ERROR,
-                    isOnTheFly
-            ));
+        if (o instanceof ThriftStruct) {
+          ThriftFields fields = ((ThriftStruct) o).getFields();
+          if (fields != null) {
+            result.addAll(checkFieldList(manager, isOnTheFly, fields.getFieldList(), "fields"));
           }
         }
       }
@@ -132,7 +110,7 @@ public class ThriftDuplicatesInspection extends LocalInspectionTool {
       if (id != null && !ids.add(id.getText())) {
         result.add(manager.createProblemDescriptor(
                 field.getIdentifier(),
-                String.format("multiple %s with id %d", part, id.getIntConstant()),
+                String.format("multiple %s with id %s", part, id.getIntConstant().getText()),
                 true,
                 ProblemHighlightType.ERROR,
                 isOnTheFly
