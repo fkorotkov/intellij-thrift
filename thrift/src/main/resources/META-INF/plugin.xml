@@ -149,6 +149,7 @@
     <lang.commenter language="thrift" implementationClass="com.intellij.plugins.thrift.ThriftCommenter"/>
     <lang.implementationTextSelectioner language="thrift"
                                         implementationClass="com.intellij.plugins.thrift.ThriftImplementationTextSelectioner"/>
+    <liveTemplateContext implementation="com.intellij.plugins.thrift.ThriftContext"/>
 
     <!--<colorSettingsPage/>-->
     <!--<codeStyleSettingsProvider/>-->
