@@ -55,26 +55,41 @@ public class ThriftDuplicatesInspection extends LocalInspectionTool {
         if (topIdentifier != null && !topLevelNames.add(topIdentifier.getText())) {
           // Repeated top level names
           result.add(manager.createProblemDescriptor(
-            topIdentifier,
-            getDisplayName(),
-            true,
-            ProblemHighlightType.ERROR,
-            isOnTheFly
+                  topIdentifier,
+                  getDisplayName(),
+                  true,
+                  ProblemHighlightType.ERROR,
+                  isOnTheFly
           ));
+        }
+
+        if (o instanceof ThriftService) {
+          ThriftService service = (ThriftService) o;
+          ThriftServiceBody body = service.getServiceBody();
+          if (body != null) {
+            for (ThriftFunction f : body.getFunctionList()) {
+              result.addAll(checkFieldList(manager, isOnTheFly, f.getFieldList(), "args"));
+              ThriftThrows t = f.getThrows();
+              if (t != null) {
+                result.addAll(checkFieldList(manager, isOnTheFly, t.getFieldList(), "throws"));
+              }
+            }
+          }
         }
 
         Set<String> fieldNames = new HashSet<String>();
         Set<String> fieldIds = new HashSet<String>();
+
         for (ThriftDeclaration d : o.findSubDeclarations()) {
           ThriftDefinitionName identifier = d.getIdentifier();
           if (identifier != null && !fieldNames.add(identifier.getText())) {
             // Repeated field names
             result.add(manager.createProblemDescriptor(
-              identifier,
-              getDisplayName(),
-              true,
-              ProblemHighlightType.ERROR,
-              isOnTheFly
+                    identifier,
+                    getDisplayName(),
+                    true,
+                    ProblemHighlightType.ERROR,
+                    isOnTheFly
             ));
           }
 
@@ -82,11 +97,11 @@ public class ThriftDuplicatesInspection extends LocalInspectionTool {
           if (fieldID != null && !fieldIds.add(fieldID.getText())) {
             //Reapted fieldIDs
             result.add(manager.createProblemDescriptor(
-              fieldID,
-              getDisplayName(),
-              true,
-              ProblemHighlightType.ERROR,
-              isOnTheFly
+                    fieldID,
+                    getDisplayName(),
+                    true,
+                    ProblemHighlightType.ERROR,
+                    isOnTheFly
             ));
           }
         }
@@ -98,5 +113,43 @@ public class ThriftDuplicatesInspection extends LocalInspectionTool {
       }
     }.visitFile(file);
     return ArrayUtil.toObjectArray(result, ProblemDescriptor.class);
+  }
+
+  private List<ProblemDescriptor> checkFieldList(
+          @NotNull final InspectionManager manager,
+          final boolean isOnTheFly,
+          List<ThriftField> fields,
+          String part
+  ) {
+    Set<String> names = new HashSet<String>();
+    Set<String> ids = new HashSet<String>();
+    final List<ProblemDescriptor> result = new ArrayList<ProblemDescriptor>();
+
+    for (ThriftField field : fields) {
+      ThriftFieldID id = field.getFieldID();
+      ThriftDefinitionName name = field.getDefinitionName();
+
+      if (id != null && !ids.add(id.getText())) {
+        result.add(manager.createProblemDescriptor(
+                field.getIdentifier(),
+                String.format("multiple %s with id %d", part, id.getIntConstant()),
+                true,
+                ProblemHighlightType.ERROR,
+                isOnTheFly
+        ));
+      }
+
+      if (name != null && !names.add(name.getText())) {
+        result.add(manager.createProblemDescriptor(
+                field.getIdentifier(),
+                String.format("multiple %s with name '%s'", part, name.getText()),
+                true,
+                ProblemHighlightType.ERROR,
+                isOnTheFly
+        ));
+      }
+    }
+
+    return result;
   }
 }
