@@ -162,6 +162,13 @@ public class ThriftDuplicatesInspection extends LocalInspectionTool {
             result.addAll(checkFieldList(manager, isOnTheFly, fields.getFieldList(), "fields"));
           }
         }
+
+        if (o instanceof ThriftStruct) {
+          ThriftFields fields = ((ThriftStruct) o).getFields();
+          if (fields != null) {
+            result.addAll(checkFieldList(manager, isOnTheFly, fields.getFieldList(), "fields"));
+          }
+        }
       }
 
       public void visitElement(@NotNull PsiElement element) {
