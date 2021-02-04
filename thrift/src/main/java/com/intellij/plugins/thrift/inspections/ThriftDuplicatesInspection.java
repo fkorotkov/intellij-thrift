@@ -63,32 +63,103 @@ public class ThriftDuplicatesInspection extends LocalInspectionTool {
           ));
         }
 
-        if (o instanceof ThriftService) {
-          ThriftService service = (ThriftService) o;
-          ThriftServiceBody body = service.getServiceBody();
+        if (o instanceof ThriftEnum) {
+          ThriftEnumFields enumFields = ((ThriftEnum) o).getEnumFields();
+          if (enumFields == null) {
+            return;
+          }
 
-          if (body != null) {
-            Set<String> methodNames = new HashSet<String>();
+          Set<String> names = new HashSet<String>();
+          Set<String> ids = new HashSet<String>();
+          for (ThriftEnumField enumField : enumFields.getEnumFieldList()) {
+            PsiElement nameIdentifier = enumField.getIdentifier();
 
-            for (ThriftFunction f : body.getFunctionList()) {
-              String methodName = f.getDefinitionName().getName();
+            if (!names.add(nameIdentifier.getText())) {
+              result.add(manager.createProblemDescriptor(
+                      enumField.getIdentifier(),
+                      String.format("multiple enum values name '%s'", nameIdentifier.getText()),
+                      true,
+                      ProblemHighlightType.ERROR,
+                      isOnTheFly
+              ));
+            }
 
-              if(!methodNames.add(methodName)){
+
+            ThriftIntConstant id = enumField.getIntConstant();
+            if (id != null && !ids.add(id.getText())) {
+              result.add(manager.createProblemDescriptor(
+                      enumField.getIntConstant(),
+                      String.format("multiple enum values with id '%s'", id.getText()),
+                      true,
+                      ProblemHighlightType.ERROR,
+                      isOnTheFly
+              ));
+            }
+          }
+
+        } else if (o instanceof ThriftSenum){
+            ThriftSenumBody body = ((ThriftSenum) o).getSenumBody();
+            if(body == null){
+              return;
+            }
+
+            Set<String> names = new HashSet<String>();
+
+            for(ThriftSenumField field : body.getSenumFieldList()){
+              if (!names.add(field.getLiteral().getText())){
                 result.add(manager.createProblemDescriptor(
-                        f.getIdentifier(),
-                        String.format("multiple methods with name '%s'", methodName),
+                        field.getLiteral(),
+                        String.format("multiple senum values %s", field.getLiteral().getText()),
                         true,
                         ProblemHighlightType.ERROR,
                         isOnTheFly
                 ));
               }
-
-              result.addAll(checkFieldList(manager, isOnTheFly, f.getFieldList(), "args"));
-              ThriftThrows t = f.getThrows();
-              if (t != null) {
-                result.addAll(checkFieldList(manager, isOnTheFly, t.getFieldList(), "throws"));
-              }
             }
+
+        } else if (o instanceof ThriftService) {
+          ThriftService service = (ThriftService) o;
+          ThriftServiceBody body = service.getServiceBody();
+
+          if (body == null) {
+            return;
+          }
+          Set<String> methodNames = new HashSet<String>();
+
+          for (ThriftFunction f : body.getFunctionList()) {
+            String methodName = f.getDefinitionName().getName();
+
+            if (!methodNames.add(methodName)) {
+              result.add(manager.createProblemDescriptor(
+                      f.getIdentifier(),
+                      String.format("multiple methods with name '%s'", methodName),
+                      true,
+                      ProblemHighlightType.ERROR,
+                      isOnTheFly
+              ));
+            }
+
+            result.addAll(checkFieldList(manager, isOnTheFly, f.getFieldList(), "args"));
+            ThriftThrows t = f.getThrows();
+            if (t != null) {
+              result.addAll(checkFieldList(manager, isOnTheFly, t.getFieldList(), "throws"));
+            }
+          }
+
+        } else if (o instanceof ThriftStruct) {
+          ThriftFields fields = ((ThriftStruct) o).getFields();
+          if (fields != null) {
+            result.addAll(checkFieldList(manager, isOnTheFly, fields.getFieldList(), "fields"));
+          }
+        } else if (o instanceof ThriftUnion) {
+          ThriftFields fields = ((ThriftUnion) o).getFields();
+          if (fields != null) {
+            result.addAll(checkFieldList(manager, isOnTheFly, fields.getFieldList(), "union values"));
+          }
+        } else if (o instanceof ThriftException) {
+          ThriftFields fields = ((ThriftException) o).getFields();
+          if (fields != null) {
+            result.addAll(checkFieldList(manager, isOnTheFly, fields.getFieldList(), "fields"));
           }
         }
 
@@ -124,7 +195,7 @@ public class ThriftDuplicatesInspection extends LocalInspectionTool {
 
       if (id != null && !ids.add(id.getText())) {
         result.add(manager.createProblemDescriptor(
-                field.getIdentifier(),
+                id.getIntConstant(),
                 String.format("multiple %s with id %s", part, id.getIntConstant().getText()),
                 true,
                 ProblemHighlightType.ERROR,

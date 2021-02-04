@@ -21,6 +21,7 @@ public class ThriftConstListImpl extends ThriftPsiCompositeElementImpl implement
     visitor.visitConstList(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof ThriftVisitor) accept((ThriftVisitor)visitor);
     else super.accept(visitor);

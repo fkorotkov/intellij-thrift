@@ -11,16 +11,17 @@ import static com.intellij.plugins.thrift.lang.lexer.ThriftTokenTypes.*;
 import com.intellij.plugins.thrift.lang.psi.*;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 
-public class ThriftSemunFieldImpl extends ThriftPsiCompositeElementImpl implements ThriftSemunField {
+public class ThriftSenumFieldImpl extends ThriftPsiCompositeElementImpl implements ThriftSenumField {
 
-  public ThriftSemunFieldImpl(@NotNull ASTNode node) {
+  public ThriftSenumFieldImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull ThriftVisitor visitor) {
-    visitor.visitSemunField(this);
+    visitor.visitSenumField(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof ThriftVisitor) accept((ThriftVisitor)visitor);
     else super.accept(visitor);

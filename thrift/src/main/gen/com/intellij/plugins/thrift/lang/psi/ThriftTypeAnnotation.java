@@ -13,7 +13,7 @@ public interface ThriftTypeAnnotation extends ThriftPsiCompositeElement {
   @NotNull
   PsiElement getIdentifier();
 
-  @NotNull
+  @Nullable
   PsiElement getLiteral();
 
 }

@@ -68,7 +68,8 @@ private std_namespace ::= 'namespace' (
 
 NamespaceScope  ::=  Multiply | 'cpp' | 'java' | 'py' | 'py.twisted' | 'perl' | 'rb' | 'js' | 'st' |
                      'cocoa' | 'csharp' | 'c_glib' | 'go' | 'php' |  'd' | 'delphi' | 'xsd' | 'lua' |
-                     'netcore'
+                     'netcore' | 'rs' | 'as3' | 'cl' | 'dart' | 'erl' | 'haxe' | 'hs'  |
+                     'javame' | 'json'  | 'netstd' | 'nodejs' | 'nodets' | 'ocaml'  | 'swift' | 'ts' | 'xml'
 
 DefinitionName ::= Identifier
 {implements="com.intellij.psi.PsiNamedElement, com.intellij.navigation.NavigationItem, com.intellij.psi.PsiNameIdentifierOwner" methods=[
@@ -90,17 +91,17 @@ private enumFieldRecovery ::= !('}' | Identifier)
 
 Senum           ::=  'senum' DefinitionName '{' senumBody '}' TypeAnnotations?
 {pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
-senumBody ::= semunField*
+senumBody ::= senumField*
 {implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationBody"}
-semunField ::= Literal ListSeparator? {recoverWhile=semunFieldRecovery}
-private semunFieldRecovery ::= !('}' | Literal)
+senumField ::= Literal ListSeparator? {recoverWhile=senumFieldRecovery}
+private senumFieldRecovery ::= !('}' | Literal)
 
 Struct          ::=  'struct' DefinitionName 'xsd_all'? '{' fields '}' TypeAnnotations?
 {pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
 fields ::= Field*
 {recoverWhile=curlyBraceRecovery implements="com.intellij.plugins.thrift.lang.psi.ThriftDeclarationBody"}
 private curlyBraceRecovery ::= !('}')
-Union           ::=  'union' DefinitionName 'xsd_all'? '{' fields '}'
+Union           ::=  'union' DefinitionName 'xsd_all'? '{' fields '}' TypeAnnotations?
 {pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
 Exception       ::=  'exception' DefinitionName '{' fields '}' TypeAnnotations?
 {pin=1 mixin="com.intellij.plugins.thrift.lang.psi.impl.ThriftTopLevelDeclarationImpl" implements="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"}
@@ -162,6 +163,6 @@ ListSeparator   ::=  ',' | ';'
 
 TypeAnnotations ::= '(' TypeAnnotationList ')'
 TypeAnnotationList ::= TypeAnnotation* {recoverWhile=braceRecovery}
-TypeAnnotation ::= Identifier '=' Literal ListSeparator?
+TypeAnnotation ::= Identifier ('=' Literal ListSeparator?)?
 
 private braceRecovery ::= !(')')

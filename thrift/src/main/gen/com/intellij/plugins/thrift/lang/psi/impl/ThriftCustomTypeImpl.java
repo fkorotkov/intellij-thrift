@@ -22,6 +22,7 @@ public class ThriftCustomTypeImpl extends ThriftPsiCompositeElementImpl implemen
     visitor.visitCustomType(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof ThriftVisitor) accept((ThriftVisitor)visitor);
     else super.accept(visitor);
@@ -34,8 +35,7 @@ public class ThriftCustomTypeImpl extends ThriftPsiCompositeElementImpl implemen
   }
 
   @Override
-  @NotNull
-  public PsiReference[] getReferences() {
+  public @NotNull PsiReference[] getReferences() {
     return ThriftPsiUtil.getReferences(this);
   }
 

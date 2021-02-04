@@ -273,10 +273,8 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   private static boolean DoubleConstant_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "DoubleConstant_0_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, PLUS);
     if (!r) r = consumeToken(b, MINUS);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -343,7 +341,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     r = p && report_error_(b, XsdFieldOptions(b, l + 1)) && r;
     r = p && report_error_(b, Field_6(b, l + 1)) && r;
     r = p && Field_7(b, l + 1) && r;
-    exit_section_(b, l, m, r, p, fieldRecovery_parser_);
+    exit_section_(b, l, m, r, p, ThriftParser::fieldRecovery);
     return r || p;
   }
 
@@ -445,7 +443,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     r = p && report_error_(b, consumeToken(b, RIGHTBRACE)) && r;
     r = p && report_error_(b, Function_6(b, l + 1)) && r;
     r = p && Function_7(b, l + 1) && r;
-    exit_section_(b, l, m, r, p, functionRecovery_parser_);
+    exit_section_(b, l, m, r, p, ThriftParser::functionRecovery);
     return r || p;
   }
 
@@ -537,10 +535,8 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   private static boolean Include_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Include_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, "include");
     if (!r) r = consumeToken(b, "cpp_include");
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -567,10 +563,8 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   private static boolean IntConstant_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "IntConstant_0_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, PLUS);
     if (!r) r = consumeToken(b, MINUS);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -645,7 +639,8 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   /* ********************************************************** */
   // Multiply | 'cpp' | 'java' | 'py' | 'py.twisted' | 'perl' | 'rb' | 'js' | 'st' |
   //                      'cocoa' | 'csharp' | 'c_glib' | 'go' | 'php' |  'd' | 'delphi' | 'xsd' | 'lua' |
-  //                      'netcore'
+  //                      'netcore' | 'rs' | 'as3' | 'cl' | 'dart' | 'erl' | 'haxe' | 'hs'  |
+  //                      'javame' | 'json'  | 'netstd' | 'nodejs' | 'nodets' | 'ocaml'  | 'swift' | 'ts' | 'xml'
   public static boolean NamespaceScope(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "NamespaceScope")) return false;
     boolean r;
@@ -669,6 +664,22 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, "xsd");
     if (!r) r = consumeToken(b, "lua");
     if (!r) r = consumeToken(b, "netcore");
+    if (!r) r = consumeToken(b, "rs");
+    if (!r) r = consumeToken(b, "as3");
+    if (!r) r = consumeToken(b, "cl");
+    if (!r) r = consumeToken(b, "dart");
+    if (!r) r = consumeToken(b, "erl");
+    if (!r) r = consumeToken(b, "haxe");
+    if (!r) r = consumeToken(b, "hs");
+    if (!r) r = consumeToken(b, "javame");
+    if (!r) r = consumeToken(b, "json");
+    if (!r) r = consumeToken(b, "netstd");
+    if (!r) r = consumeToken(b, "nodejs");
+    if (!r) r = consumeToken(b, "nodets");
+    if (!r) r = consumeToken(b, "ocaml");
+    if (!r) r = consumeToken(b, "swift");
+    if (!r) r = consumeToken(b, "ts");
+    if (!r) r = consumeToken(b, "xml");
     exit_section_(b, l, m, r, false, null);
     return r;
   }
@@ -852,21 +863,39 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Identifier '=' Literal ListSeparator?
+  // Identifier ('=' Literal ListSeparator?)?
   public static boolean TypeAnnotation(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "TypeAnnotation")) return false;
     if (!nextTokenIs(b, IDENTIFIER)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, IDENTIFIER, EQUALS, LITERAL);
-    r = r && TypeAnnotation_3(b, l + 1);
+    r = consumeToken(b, IDENTIFIER);
+    r = r && TypeAnnotation_1(b, l + 1);
     exit_section_(b, m, TYPE_ANNOTATION, r);
     return r;
   }
 
+  // ('=' Literal ListSeparator?)?
+  private static boolean TypeAnnotation_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TypeAnnotation_1")) return false;
+    TypeAnnotation_1_0(b, l + 1);
+    return true;
+  }
+
+  // '=' Literal ListSeparator?
+  private static boolean TypeAnnotation_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TypeAnnotation_1_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, EQUALS, LITERAL);
+    r = r && TypeAnnotation_1_0_2(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
   // ListSeparator?
-  private static boolean TypeAnnotation_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "TypeAnnotation_3")) return false;
+  private static boolean TypeAnnotation_1_0_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "TypeAnnotation_1_0_2")) return false;
     ListSeparator(b, l + 1);
     return true;
   }
@@ -881,7 +910,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
       if (!TypeAnnotation(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "TypeAnnotationList", c)) break;
     }
-    exit_section_(b, l, m, true, false, braceRecovery_parser_);
+    exit_section_(b, l, m, true, false, ThriftParser::braceRecovery);
     return true;
   }
 
@@ -922,7 +951,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // 'union' DefinitionName 'xsd_all'? '{' fields '}'
+  // 'union' DefinitionName 'xsd_all'? '{' fields '}' TypeAnnotations?
   public static boolean Union(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Union")) return false;
     boolean r, p;
@@ -933,7 +962,8 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     r = p && report_error_(b, Union_2(b, l + 1)) && r;
     r = p && report_error_(b, consumeToken(b, LEFTCURLYBRACE)) && r;
     r = p && report_error_(b, fields(b, l + 1)) && r;
-    r = p && consumeToken(b, RIGHTCURLYBRACE) && r;
+    r = p && report_error_(b, consumeToken(b, RIGHTCURLYBRACE)) && r;
+    r = p && Union_6(b, l + 1) && r;
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }
@@ -942,6 +972,13 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   private static boolean Union_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Union_2")) return false;
     consumeToken(b, "xsd_all");
+    return true;
+  }
+
+  // TypeAnnotations?
+  private static boolean Union_6(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Union_6")) return false;
+    TypeAnnotations(b, l + 1);
     return true;
   }
 
@@ -1026,7 +1063,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     r = r && enumField_1(b, l + 1);
     r = r && enumField_2(b, l + 1);
     r = r && enumField_3(b, l + 1);
-    exit_section_(b, l, m, r, false, enumFieldRecovery_parser_);
+    exit_section_(b, l, m, r, false, ThriftParser::enumFieldRecovery);
     return r;
   }
 
@@ -1077,10 +1114,8 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   private static boolean enumFieldRecovery_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "enumFieldRecovery_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, RIGHTCURLYBRACE);
     if (!r) r = consumeToken(b, IDENTIFIER);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -1115,7 +1150,6 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   private static boolean fieldRecovery_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fieldRecovery_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, RIGHTBRACE);
     if (!r) r = consumeToken(b, PLUS);
     if (!r) r = consumeToken(b, MINUS);
@@ -1138,7 +1172,6 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, INTEGER);
     if (!r) r = consumeToken(b, IDENTIFIER);
     if (!r) r = consumeToken(b, NUMBER);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -1152,7 +1185,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
       if (!Field(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "fields", c)) break;
     }
-    exit_section_(b, l, m, true, false, curlyBraceRecovery_parser_);
+    exit_section_(b, l, m, true, false, ThriftParser::curlyBraceRecovery);
     return true;
   }
 
@@ -1166,7 +1199,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
       if (!Field(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "fieldsWithBraceRecovery", c)) break;
     }
-    exit_section_(b, l, m, true, false, braceRecovery_parser_);
+    exit_section_(b, l, m, true, false, ThriftParser::braceRecovery);
     return true;
   }
 
@@ -1187,7 +1220,6 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   private static boolean functionRecovery_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "functionRecovery_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, "binary");
     if (!r) r = consumeToken(b, "bool");
     if (!r) r = consumeToken(b, "byte");
@@ -1206,7 +1238,6 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, RIGHTCURLYBRACE);
     if (!r) r = consumeToken(b, IDENTIFIER);
     if (!r) r = ListSeparator(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -1235,58 +1266,56 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // senumField*
+  public static boolean senumBody(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "senumBody")) return false;
+    Marker m = enter_section_(b, l, _NONE_, SENUM_BODY, "<senum body>");
+    while (true) {
+      int c = current_position_(b);
+      if (!senumField(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "senumBody", c)) break;
+    }
+    exit_section_(b, l, m, true, false, null);
+    return true;
+  }
+
+  /* ********************************************************** */
   // Literal ListSeparator?
-  public static boolean semunField(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "semunField")) return false;
+  public static boolean senumField(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "senumField")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, SEMUN_FIELD, "<semun field>");
+    Marker m = enter_section_(b, l, _NONE_, SENUM_FIELD, "<senum field>");
     r = consumeToken(b, LITERAL);
-    r = r && semunField_1(b, l + 1);
-    exit_section_(b, l, m, r, false, semunFieldRecovery_parser_);
+    r = r && senumField_1(b, l + 1);
+    exit_section_(b, l, m, r, false, ThriftParser::senumFieldRecovery);
     return r;
   }
 
   // ListSeparator?
-  private static boolean semunField_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "semunField_1")) return false;
+  private static boolean senumField_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "senumField_1")) return false;
     ListSeparator(b, l + 1);
     return true;
   }
 
   /* ********************************************************** */
   // !('}' | Literal)
-  static boolean semunFieldRecovery(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "semunFieldRecovery")) return false;
+  static boolean senumFieldRecovery(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "senumFieldRecovery")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NOT_);
-    r = !semunFieldRecovery_0(b, l + 1);
+    r = !senumFieldRecovery_0(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
   // '}' | Literal
-  private static boolean semunFieldRecovery_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "semunFieldRecovery_0")) return false;
+  private static boolean senumFieldRecovery_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "senumFieldRecovery_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, RIGHTCURLYBRACE);
     if (!r) r = consumeToken(b, LITERAL);
-    exit_section_(b, m, null, r);
     return r;
-  }
-
-  /* ********************************************************** */
-  // semunField*
-  public static boolean senumBody(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "senumBody")) return false;
-    Marker m = enter_section_(b, l, _NONE_, SENUM_BODY, "<senum body>");
-    while (true) {
-      int c = current_position_(b);
-      if (!semunField(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "senumBody", c)) break;
-    }
-    exit_section_(b, l, m, true, false, null);
-    return true;
   }
 
   /* ********************************************************** */
@@ -1299,7 +1328,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
       if (!serviceBody_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "serviceBody", c)) break;
     }
-    exit_section_(b, l, m, true, false, functionsRecovery_parser_);
+    exit_section_(b, l, m, true, false, ThriftParser::functionsRecovery);
     return true;
   }
 
@@ -1402,7 +1431,7 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     if (!r) r = Union(b, l + 1);
     if (!r) r = Exception(b, l + 1);
     if (!r) r = Service(b, l + 1);
-    exit_section_(b, l, m, r, false, topLevelRecover_parser_);
+    exit_section_(b, l, m, r, false, ThriftParser::topLevelRecover);
     return r;
   }
 
@@ -1425,7 +1454,6 @@ public class ThriftParser implements PsiParser, LightPsiParser {
   private static boolean topLevelRecover_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "topLevelRecover_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, "const");
     if (!r) r = consumeToken(b, "cpp_include");
     if (!r) r = consumeToken(b, "enum");
@@ -1439,7 +1467,6 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, "typedef");
     if (!r) r = consumeToken(b, "union");
     if (!r) r = consumeToken(b, "xsd_namespace");
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -1456,44 +1483,4 @@ public class ThriftParser implements PsiParser, LightPsiParser {
     return r || p;
   }
 
-  static final Parser braceRecovery_parser_ = new Parser() {
-    public boolean parse(PsiBuilder b, int l) {
-      return braceRecovery(b, l + 1);
-    }
-  };
-  static final Parser curlyBraceRecovery_parser_ = new Parser() {
-    public boolean parse(PsiBuilder b, int l) {
-      return curlyBraceRecovery(b, l + 1);
-    }
-  };
-  static final Parser enumFieldRecovery_parser_ = new Parser() {
-    public boolean parse(PsiBuilder b, int l) {
-      return enumFieldRecovery(b, l + 1);
-    }
-  };
-  static final Parser fieldRecovery_parser_ = new Parser() {
-    public boolean parse(PsiBuilder b, int l) {
-      return fieldRecovery(b, l + 1);
-    }
-  };
-  static final Parser functionRecovery_parser_ = new Parser() {
-    public boolean parse(PsiBuilder b, int l) {
-      return functionRecovery(b, l + 1);
-    }
-  };
-  static final Parser functionsRecovery_parser_ = new Parser() {
-    public boolean parse(PsiBuilder b, int l) {
-      return functionsRecovery(b, l + 1);
-    }
-  };
-  static final Parser semunFieldRecovery_parser_ = new Parser() {
-    public boolean parse(PsiBuilder b, int l) {
-      return semunFieldRecovery(b, l + 1);
-    }
-  };
-  static final Parser topLevelRecover_parser_ = new Parser() {
-    public boolean parse(PsiBuilder b, int l) {
-      return topLevelRecover(b, l + 1);
-    }
-  };
 }

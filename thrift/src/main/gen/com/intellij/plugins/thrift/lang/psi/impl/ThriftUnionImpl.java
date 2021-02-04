@@ -21,6 +21,7 @@ public class ThriftUnionImpl extends ThriftTopLevelDeclarationImpl implements Th
     visitor.visitUnion(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof ThriftVisitor) accept((ThriftVisitor)visitor);
     else super.accept(visitor);
@@ -30,6 +31,12 @@ public class ThriftUnionImpl extends ThriftTopLevelDeclarationImpl implements Th
   @Nullable
   public ThriftDefinitionName getDefinitionName() {
     return findChildByClass(ThriftDefinitionName.class);
+  }
+
+  @Override
+  @Nullable
+  public ThriftTypeAnnotations getTypeAnnotations() {
+    return findChildByClass(ThriftTypeAnnotations.class);
   }
 
   @Override
