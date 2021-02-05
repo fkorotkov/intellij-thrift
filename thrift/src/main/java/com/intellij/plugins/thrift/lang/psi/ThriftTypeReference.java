@@ -5,14 +5,12 @@ import com.intellij.model.SymbolResolveResult;
 import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.util.io.FileUtil;
+import com.intellij.plugins.thrift.lang.ThriftElementFactory;
 import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiReferenceBase;
-import com.intellij.util.ArrayUtil;
-import com.intellij.util.Function;
-import com.intellij.util.PathUtil;
-import com.intellij.util.Processor;
+import com.intellij.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -95,5 +93,16 @@ public class ThriftTypeReference extends PsiReferenceBase<ThriftCustomType> {
   @Override
   public Collection<? extends SymbolResolveResult> resolveReference() {
     return super.resolveReference();
+  }
+
+  @Override
+  public PsiElement handleElementRename(@NotNull String newElementName) throws IncorrectOperationException {
+    ThriftCustomType element = this.getElement();
+    PsiElement identifier = element.getIdentifier();
+    String currentText = identifier.getText();
+    String newText = TextRange.create(currentText.indexOf(".")+1, currentText.length()).replace(currentText, newElementName);
+
+    element.getIdentifier().replace(ThriftElementFactory.createCustomTypeFromText(element.getProject(), newText));
+    return element;
   }
 }

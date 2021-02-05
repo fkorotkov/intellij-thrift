@@ -136,8 +136,8 @@
     <iconProvider implementation="com.intellij.plugins.thrift.ThriftIconProvider"/>
     <lang.psiStructureViewFactory language="thrift" implementationClass="com.intellij.plugins.thrift.structure.ThriftStructureViewFactory"/>
     <lang.findUsagesProvider language="thrift" implementationClass="com.intellij.plugins.thrift.lang.ThriftFindUsagesProvider"/>
-    <lang.elementManipulator forClass="com.intellij.plugins.thrift.lang.psi.ThriftCustomType"
-                             implementationClass="com.intellij.plugins.thrift.lang.psi.manipulator.ThriftCustomTypeManipulator"/>
+    <lang.elementManipulator forClass="com.intellij.plugins.thrift.lang.psi.ThriftInclude"
+                             implementationClass="com.intellij.plugins.thrift.lang.psi.manipulator.ThriftIncludeManipulator"/>
 
     <lang.syntaxHighlighterFactory language="thrift"
                                    implementationClass="com.intellij.plugins.thrift.highlight.ThriftSyntaxHighlighterFactory"/>
