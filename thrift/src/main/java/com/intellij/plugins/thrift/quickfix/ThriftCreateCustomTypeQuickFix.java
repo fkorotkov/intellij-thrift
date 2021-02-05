@@ -1,6 +1,8 @@
 package com.intellij.plugins.thrift.quickfix;
 
 import com.intellij.codeInsight.intention.impl.BaseIntentionAction;
+import com.intellij.ide.util.EditSourceUtil;
+import com.intellij.navigation.NavigationItem;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Editor;
@@ -62,7 +64,7 @@ public class ThriftCreateCustomTypeQuickFix extends BaseIntentionAction {
           PsiElement struct = file.addAfter(newFile.getLastChild(), topLevelDeclaration);
           file.addBefore(newFile.getFirstChild(), struct); // new line
 
-          FileEditorManager.getInstance(project).getSelectedTextEditor().getCaretModel().moveToOffset(struct.getTextOffset()+9+type.getText().length());
+          EditSourceUtil.navigate((NavigationItem) struct, true, false);
         } else {
           String typeName = references[1].getRangeInElement().substring(type.getText());
 
@@ -76,8 +78,7 @@ public class ThriftCreateCustomTypeQuickFix extends BaseIntentionAction {
             PsiElement struct = importFile.add(newFile.getLastChild());
             importFile.addBefore(newFile.getFirstChild(), struct);
 
-            FileEditorManager.getInstance(project).openFile(((PsiFile) importFile).getVirtualFile(), true);
-            FileEditorManager.getInstance(project).getSelectedTextEditor().getCaretModel().moveToOffset(struct.getTextOffset()+9+typeName.length());
+            EditSourceUtil.navigate((NavigationItem) struct, true, false);
           }
         }
       });
