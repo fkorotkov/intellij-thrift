@@ -142,6 +142,7 @@
     <lang.syntaxHighlighterFactory language="thrift"
                                    implementationClass="com.intellij.plugins.thrift.highlight.ThriftSyntaxHighlighterFactory"/>
     <annotator language="thrift" implementationClass="com.intellij.plugins.thrift.annotator.ThriftColorAnnotator"/>
+    <annotator language="thrift" implementationClass="com.intellij.plugins.thrift.annotator.ThrowsAnnotator"/>
     <!--<lang.formatter/>-->
 
     <typedHandler implementation="com.intellij.plugins.thrift.completion.ThriftTypeHandler"/>
