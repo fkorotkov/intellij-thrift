@@ -22,7 +22,7 @@ public class UnresolvedReferenceAnnotator implements Annotator {
     PsiReference[] references = customType.getReferences();
 
     if (references.length == 2) {
-      String importName = references[1].getRangeInElement().substring(element.getText());
+      String importName = references[0].getRangeInElement().substring(element.getText());
       String typeName = references[1].getRangeInElement().substring(element.getText());
       if (references[0].resolve() == null) {
         holder.newAnnotation(HighlightSeverity.ERROR, String.format("unresolved import: '%s'", importName))
