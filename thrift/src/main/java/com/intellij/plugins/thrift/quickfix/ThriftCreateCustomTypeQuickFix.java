@@ -7,10 +7,8 @@ import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.plugins.thrift.lang.ThriftElementFactory;
-import com.intellij.plugins.thrift.lang.psi.ThriftCustomType;
-import com.intellij.plugins.thrift.lang.psi.ThriftStruct;
-import com.intellij.plugins.thrift.lang.psi.ThriftThrows;
-import com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration;
+import com.intellij.plugins.thrift.lang.psi.*;
+import com.intellij.plugins.thrift.util.ThriftPsiUtil;
 import com.intellij.pom.Navigatable;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
@@ -58,7 +56,8 @@ public class ThriftCreateCustomTypeQuickFix extends BaseIntentionAction {
     newElement = after.getParent().addAfter(newElement, after);
     after.getParent().addBefore(ThriftElementFactory.createNewLine(project), newElement);
 
-    Navigatable newElementDescriptor = EditSourceUtil.getDescriptor(newElement);
+    PsiElement body = PsiTreeUtil.findChildOfType(newElement, ThriftDeclarationBody.class);
+    Navigatable newElementDescriptor = EditSourceUtil.getDescriptor(body);
     if (newElementDescriptor != null) newElementDescriptor.navigate(true);
   }
 
