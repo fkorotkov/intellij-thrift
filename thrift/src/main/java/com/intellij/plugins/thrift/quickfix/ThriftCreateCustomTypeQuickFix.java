@@ -8,6 +8,8 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.plugins.thrift.lang.ThriftElementFactory;
 import com.intellij.plugins.thrift.lang.psi.ThriftCustomType;
+import com.intellij.plugins.thrift.lang.psi.ThriftStruct;
+import com.intellij.plugins.thrift.lang.psi.ThriftThrows;
 import com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration;
 import com.intellij.pom.Navigatable;
 import com.intellij.psi.PsiElement;
@@ -43,37 +45,43 @@ public class ThriftCreateCustomTypeQuickFix extends BaseIntentionAction {
     return true;
   }
 
+  public void addType(@NotNull Project project, @NotNull PsiElement after, String name) {
+    boolean isException = PsiTreeUtil.getParentOfType(type, ThriftThrows.class) != null;
+
+    PsiElement newElement;
+    if (isException) {
+      newElement = ThriftElementFactory.createExceptionFromText(project, String.format("exception %s {}", name));
+    } else {
+      newElement = ThriftElementFactory.createStructFromText(project, String.format("struct %s {}", name));
+    }
+
+    newElement = after.getParent().addAfter(newElement, after);
+    after.getParent().addBefore(ThriftElementFactory.createNewLine(project), newElement);
+
+    Navigatable newElementDescriptor = EditSourceUtil.getDescriptor(newElement);
+    if (newElementDescriptor != null) newElementDescriptor.navigate(true);
+  }
+
   @Override
   public void invoke(@NotNull Project project, Editor editor, PsiFile file) throws IncorrectOperationException {
     ApplicationManager.getApplication().invokeLater(() -> {
       WriteCommandAction.writeCommandAction(project).run(() -> {
         PsiReference[] references = type.getReferences();
-
-        PsiElement createdStruct;
         if (references.length == 1) {
-          PsiElement newStruct = ThriftElementFactory.createStructFromText(project, String.format("struct %s {}", type.getText()));
-
           ThriftTopLevelDeclaration topLevelDeclaration = PsiTreeUtil.getParentOfType(type, ThriftTopLevelDeclaration.class);
-
-          createdStruct = file.addAfter(newStruct, topLevelDeclaration);
+          addType(project, topLevelDeclaration, type.getText());
         } else {
-          String typeName = references[1].getRangeInElement().substring(type.getText());
-
-          PsiElement newStruct = ThriftElementFactory.createStructFromText(project, String.format("struct %s {}", typeName));
           PsiElement importFile = references[0].resolve();
 
           if (importFile == null) {
-              throw new IncorrectOperationException("can't resolve import");
+            throw new IncorrectOperationException("can't resolve import");
           }
 
-          createdStruct = importFile.add(newStruct);
+          String typeName = references[1].getRangeInElement().substring(type.getText());
+          addType(project, importFile.getLastChild(), typeName);
+
+
         }
-
-        createdStruct.getParent().addBefore(ThriftElementFactory.createNewLine(project), createdStruct);
-
-        Navigatable addedElementDescriptor = EditSourceUtil.getDescriptor(createdStruct);
-
-        if (addedElementDescriptor != null) addedElementDescriptor.navigate(true);
       });
     });
   }

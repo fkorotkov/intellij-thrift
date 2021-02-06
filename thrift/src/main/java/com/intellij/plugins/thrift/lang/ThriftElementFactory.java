@@ -3,6 +3,7 @@ package com.intellij.plugins.thrift.lang;
 import com.intellij.openapi.project.Project;
 import com.intellij.plugins.thrift.ThriftLanguage;
 import com.intellij.plugins.thrift.lang.psi.ThriftCustomType;
+import com.intellij.plugins.thrift.lang.psi.ThriftException;
 import com.intellij.plugins.thrift.lang.psi.ThriftFile;
 import com.intellij.plugins.thrift.lang.psi.ThriftStruct;
 import com.intellij.psi.PsiElement;
@@ -32,6 +33,13 @@ public class ThriftElementFactory {
     ThriftFile file = createFileFromText(project, text);
 
     return PsiTreeUtil.findChildOfType(file, ThriftStruct.class);
+  }
+
+  @NotNull
+  public static ThriftException createExceptionFromText(@NotNull Project project, @NotNull String text) {
+    ThriftFile file = createFileFromText(project, text);
+
+    return PsiTreeUtil.findChildOfType(file, ThriftException.class);
   }
 
   @NotNull
