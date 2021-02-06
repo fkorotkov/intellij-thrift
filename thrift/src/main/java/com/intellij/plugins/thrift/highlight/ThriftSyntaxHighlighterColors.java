@@ -19,6 +19,15 @@ public class ThriftSyntaxHighlighterColors {
   public static final TextAttributesKey DOC_COMMENT =
     createTextAttributesKey("THRIFT_DOC_COMMENT", DefaultLanguageHighlighterColors.DOC_COMMENT);
 
+  public static final TextAttributesKey THRIFT_PREFIX =
+    createTextAttributesKey("PREFIX", DefaultLanguageHighlighterColors.IDENTIFIER);
+  public static final TextAttributesKey THRIFT_IMPORTED_TYPE =
+    createTextAttributesKey("THRIFT_IMPORTED_TYPE", DefaultLanguageHighlighterColors.GLOBAL_VARIABLE);
+  public static final TextAttributesKey THRIFT_LOCAL_TYPE =
+          createTextAttributesKey("THRIFT_LOCAL_TYPE", DefaultLanguageHighlighterColors.LOCAL_VARIABLE);
+  public static final TextAttributesKey THRIFT_METHOD =
+          createTextAttributesKey("THRIFT_METHOD", DefaultLanguageHighlighterColors.FUNCTION_DECLARATION);
+
   public static final TextAttributesKey KEYWORD =
     createTextAttributesKey("THRIFT_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
   public static final TextAttributesKey NUMBER =
