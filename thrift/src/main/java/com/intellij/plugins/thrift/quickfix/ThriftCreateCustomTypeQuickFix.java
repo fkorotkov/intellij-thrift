@@ -2,19 +2,18 @@ package com.intellij.plugins.thrift.quickfix;
 
 import com.intellij.codeInsight.intention.impl.BaseIntentionAction;
 import com.intellij.ide.util.EditSourceUtil;
-import com.intellij.navigation.NavigationItem;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
-import com.intellij.plugins.thrift.ThriftLanguage;
+import com.intellij.plugins.thrift.lang.ThriftElementFactory;
 import com.intellij.plugins.thrift.lang.psi.ThriftCustomType;
 import com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration;
+import com.intellij.pom.Navigatable;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiFileFactory;
 import com.intellij.psi.PsiReference;
+import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NotNull;
 
@@ -50,37 +49,31 @@ public class ThriftCreateCustomTypeQuickFix extends BaseIntentionAction {
       WriteCommandAction.writeCommandAction(project).run(() -> {
         PsiReference[] references = type.getReferences();
 
-
+        PsiElement createdStruct;
         if (references.length == 1) {
-          PsiElement newFile = PsiFileFactory.
-                  getInstance(project).
-                  createFileFromText(ThriftLanguage.INSTANCE, String.format("\nstruct %s {}", type.getText()));
+          PsiElement newStruct = ThriftElementFactory.createStructFromText(project, String.format("struct %s {}", type.getText()));
 
-          PsiElement topLevelDeclaration = type;
-          while (!(topLevelDeclaration instanceof ThriftTopLevelDeclaration)) {
-            topLevelDeclaration = topLevelDeclaration.getParent();
-          }
+          ThriftTopLevelDeclaration topLevelDeclaration = PsiTreeUtil.getParentOfType(type, ThriftTopLevelDeclaration.class);
 
-          PsiElement struct = file.addAfter(newFile.getLastChild(), topLevelDeclaration);
-          file.addBefore(newFile.getFirstChild(), struct); // new line
-
-          EditSourceUtil.navigate((NavigationItem) struct, true, false);
+          createdStruct = file.addAfter(newStruct, topLevelDeclaration);
         } else {
           String typeName = references[1].getRangeInElement().substring(type.getText());
 
-          PsiFile newFile = PsiFileFactory.
-                  getInstance(project).
-                  createFileFromText(ThriftLanguage.INSTANCE, String.format("\nstruct %s {}", typeName));
-
+          PsiElement newStruct = ThriftElementFactory.createStructFromText(project, String.format("struct %s {}", typeName));
           PsiElement importFile = references[0].resolve();
 
-          if (importFile != null) {
-            PsiElement struct = importFile.add(newFile.getLastChild());
-            importFile.addBefore(newFile.getFirstChild(), struct);
-
-            EditSourceUtil.navigate((NavigationItem) struct, true, false);
+          if (importFile == null) {
+              throw new IncorrectOperationException("can't resolve import");
           }
+
+          createdStruct = importFile.add(newStruct);
         }
+
+        createdStruct.getParent().addBefore(ThriftElementFactory.createNewLine(project), createdStruct);
+
+        Navigatable addedElementDescriptor = EditSourceUtil.getDescriptor(createdStruct);
+
+        if (addedElementDescriptor != null) addedElementDescriptor.navigate(true);
       });
     });
   }
