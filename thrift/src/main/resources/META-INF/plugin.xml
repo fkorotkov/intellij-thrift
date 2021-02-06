@@ -172,10 +172,18 @@
                      key="thrift.inspection.unresolved.include"
                      groupKey="inspections.group.name" enabledByDefault="true"
                      implementationClass="com.intellij.plugins.thrift.inspections.ThriftUnresolvedIncludeInspection"/>
-    <localInspection language="thrift" shortName="ThriftDuplicates" bundle="ThriftBundle"
-                     key="thrift.inspection.unresolved.include"
+    <localInspection language="thrift" shortName="ThriftTopLevelDeclarationDuplicates" bundle="ThriftBundle"
+                     key="thrift.inspection.duplicates.top_level_declaration"
                      groupKey="inspections.group.name" enabledByDefault="true"
-                     implementationClass="com.intellij.plugins.thrift.inspections.ThriftDuplicatesInspection"/>
+                     implementationClass="com.intellij.plugins.thrift.inspections.ThriftTopLevelDeclarationDuplicatesInspection"/>
+    <localInspection language="thrift" shortName="ThriftIDDuplicates" bundle="ThriftBundle"
+                     key="thrift.inspection.duplicates.id"
+                     groupKey="inspections.group.name" enabledByDefault="true"
+                     implementationClass="com.intellij.plugins.thrift.inspections.ThriftIDDuplicatesInspection"/>
+    <localInspection language="thrift" shortName="ThriftNameDuplicates" bundle="ThriftBundle"
+                     key="thrift.inspection.duplicates.name"
+                     groupKey="inspections.group.name" enabledByDefault="true"
+                     implementationClass="com.intellij.plugins.thrift.inspections.ThriftNameDuplicatesInspection"/>
 
     <projectConfigurable instance="com.intellij.plugins.thrift.config.ThriftCompilerConfigurable" id="intellij-thrift"
                          displayName="Thrift Compiler" parentId="project.propCompiler"/>
