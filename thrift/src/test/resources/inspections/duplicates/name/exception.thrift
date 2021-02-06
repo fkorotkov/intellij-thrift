@@ -1,0 +1,12 @@
+exception SomeException {
+    1: i32 someField1
+    2: i32 <error descr="multiple fields with name 'someField1'">someField1</error>
+    3: i32 someField2
+    4: i32 someField3
+}
+
+exception SomeException {
+    1: i32 someField1
+    2: i32 someField2
+    3: i32 someField3
+}
