@@ -164,10 +164,6 @@
     <gotoClassContributor implementation="com.intellij.plugins.thrift.ThriftClassContributor"/>
     <gotoSymbolContributor implementation="com.intellij.plugins.thrift.ThriftSymbolContributor"/>
 
-    <localInspection language="thrift" shortName="ThriftUnresolvedSymbol" bundle="ThriftBundle"
-                     key="thrift.inspection.unresolved.symbol"
-                     groupKey="inspections.group.name" enabledByDefault="true"
-                     implementationClass="com.intellij.plugins.thrift.inspections.ThriftUnresolvedSymbolInspection"/>
     <localInspection language="thrift" shortName="ThriftUnresolvedInclude" bundle="ThriftBundle"
                      key="thrift.inspection.unresolved.include"
                      groupKey="inspections.group.name" enabledByDefault="true"
@@ -184,6 +180,7 @@
                      key="thrift.inspection.duplicates.name"
                      groupKey="inspections.group.name" enabledByDefault="true"
                      implementationClass="com.intellij.plugins.thrift.inspections.ThriftNameDuplicatesInspection"/>
+    <annotator language="thrift" implementationClass="com.intellij.plugins.thrift.annotator.UnresolvedReferenceAnnotator"/>
 
     <projectConfigurable instance="com.intellij.plugins.thrift.config.ThriftCompilerConfigurable" id="intellij-thrift"
                          displayName="Thrift Compiler" parentId="project.propCompiler"/>
