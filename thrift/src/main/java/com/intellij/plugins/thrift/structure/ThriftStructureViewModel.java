@@ -36,7 +36,7 @@ import org.jetbrains.annotations.NotNull;
 public class ThriftStructureViewModel extends StructureViewModelBase implements StructureViewModel.ElementInfoProvider {
   public ThriftStructureViewModel(@NotNull PsiFile psiFile) {
     super(psiFile, new ThriftStructureViewElement(psiFile));
-    withSorters(Sorter.ALPHA_SORTER, VisibilitySorter.INSTANCE);
+    withSorters(Sorter.ALPHA_SORTER);
     withSuitableClasses(ThriftDeclaration.class);
   }
 

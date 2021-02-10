@@ -16,6 +16,7 @@
 package com.intellij.plugins.thrift.structure;
 
 import com.intellij.ide.structureView.StructureViewTreeElement;
+import com.intellij.ide.structureView.impl.java.VisibilitySorter;
 import com.intellij.ide.util.treeView.smartTree.SortableTreeElement;
 import com.intellij.ide.util.treeView.smartTree.TreeElement;
 import com.intellij.navigation.ItemPresentation;
