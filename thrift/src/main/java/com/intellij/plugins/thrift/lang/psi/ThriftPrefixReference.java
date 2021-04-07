@@ -35,12 +35,6 @@ public class ThriftPrefixReference extends PsiReferenceBase<ThriftCustomType> {
     return PsiElement.EMPTY_ARRAY;
   }
 
-  @NotNull
-  @Override
-  public Collection<? extends SymbolResolveResult> resolveReference() {
-    return super.resolveReference();
-  }
-
   @Override
   public PsiElement handleElementRename(@NotNull String newElementName) throws IncorrectOperationException {
     ThriftCustomType element = this.getElement();
