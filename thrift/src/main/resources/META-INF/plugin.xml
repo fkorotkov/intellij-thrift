@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.intellij.plugins.thrift</id>
   <name>Thrift Support</name>
-  <description>Support for Thrift language</description>
+  <description>Support for Thrift language in IntelliJ Idea</description>
   <change-notes>
     <![CDATA[
       IntelliJ 2021.1 Support
@@ -10,6 +10,8 @@
   <vendor>@fedor</vendor>
   <idea-version since-build="203.*"/><!-- Will be patched by the plugin -->
 
+  <!-- Requires the Go plugin -->
+  <depends>org.jetbrains.plugins.go</depends>
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.lang</depends>
   <depends>com.intellij.modules.vcs</depends>
