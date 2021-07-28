@@ -1,6 +1,5 @@
 package com.intellij.plugins.thrift.lang.psi;
 
-import com.intellij.model.SymbolResolveResult;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.plugins.thrift.lang.ThriftElementFactory;

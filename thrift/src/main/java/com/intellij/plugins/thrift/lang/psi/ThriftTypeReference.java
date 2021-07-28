@@ -1,7 +1,6 @@
 package com.intellij.plugins.thrift.lang.psi;
 
 import com.intellij.codeInsight.lookup.LookupElementBuilder;
-import com.intellij.model.SymbolResolveResult;
 import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.util.io.FileUtil;
