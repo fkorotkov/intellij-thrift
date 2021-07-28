@@ -29,4 +29,10 @@ public class ThriftEditorCompletionTest extends ThriftCodeInsightFixtureTestCase
     myFixture.type('>');
     myFixture.checkResult("struct Foo {1: list<Foo><caret> list}");
   }
+
+  public void testExistingCurlyBrace(){
+    myFixture.configureByText(ThriftFileType.INSTANCE, "service Foo {<caret>}");
+    myFixture.type('}');
+    myFixture.checkResult("service Foo {}<caret>");
+  }
 }
