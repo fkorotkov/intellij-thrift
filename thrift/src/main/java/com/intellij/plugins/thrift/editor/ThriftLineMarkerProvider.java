@@ -43,7 +43,6 @@ public class ThriftLineMarkerProvider implements LineMarkerProvider {
       definitionName,
       definitionName.getTextRange(),
       AllIcons.Gutter.ImplementedMethod,
-      Pass.UPDATE_ALL,
       new Function<PsiElement, String>() {
         @Override
         public String fun(PsiElement element) {
@@ -62,7 +61,8 @@ public class ThriftLineMarkerProvider implements LineMarkerProvider {
           );
         }
       },
-      GutterIconRenderer.Alignment.RIGHT
+      GutterIconRenderer.Alignment.RIGHT,
+      () -> DaemonBundle.message("interface.is.implemented.too.many")
     );
   }
 }
