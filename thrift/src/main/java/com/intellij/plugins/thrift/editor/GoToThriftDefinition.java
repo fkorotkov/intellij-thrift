@@ -85,12 +85,17 @@ public class GoToThriftDefinition extends AnAction {
 
   @NotNull
   private List<ThriftDeclaration> getThriftDeclarations(PsiElement psiElement, Project project) {
-    if (psiElement instanceof PsiClass) {
-      PsiClass psiClassElement = (PsiClass) psiElement;
-      String name = psiClassElement.getName();
-      if (name != null) { // todo - handle multiple matches
-        return ThriftDeclarationIndex.findDeclaration(name, project, GlobalSearchScope.allScope(project));
+    // FIXME: The PsiClass might not valid in Non-Java editors such as GoLand
+    try {
+      if (psiElement instanceof PsiClass) {
+        PsiClass psiClassElement = (PsiClass) psiElement;
+        String name = psiClassElement.getName();
+        if (name != null) { // todo - handle multiple matches
+          return ThriftDeclarationIndex.findDeclaration(name, project, GlobalSearchScope.allScope(project));
+        }
       }
+    } catch (NoClassDefFoundError e) {
+      logger.warn("NoClassDefFoundError at GoToThriftDefinition.java:90");
     }
     return Lists.newArrayList();
   }
