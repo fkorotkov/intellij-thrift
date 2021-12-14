@@ -12,7 +12,6 @@ subprojects {
         mavenCentral()
         maven { setUrl("https://repo.gradle.org/gradle/repo") }
         maven { setUrl("https://maven.google.com/") }
-        maven { setUrl("https://dl.bintray.com/cirruslabs/maven") }
     }
 
     apply plugin: 'org.jetbrains.intellij'
