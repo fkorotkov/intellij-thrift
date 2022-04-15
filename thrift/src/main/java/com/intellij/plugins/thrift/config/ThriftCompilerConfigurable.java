@@ -11,6 +11,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.ui.TextBrowseFolderListener;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
+import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -20,7 +21,6 @@ import com.intellij.ui.components.JBLabel;
 import com.intellij.ui.components.JBTextField;
 import com.intellij.util.ui.JBInsets;
 import org.apache.commons.lang.StringUtils;
-import org.apache.sanselan.util.IOUtils;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -261,15 +261,11 @@ public class ThriftCompilerConfigurable extends BaseConfigurable implements Sear
           process.waitFor();
 
           byte[] stdOut;
-          InputStream stdOutIS = process.getInputStream();
-          try {
-            stdOut = IOUtils.getInputStreamBytes(stdOutIS);
-            if (stdOut == null || stdOut.length == 0) {
+          try (InputStream stdOutIS = process.getInputStream()) {
+            stdOut = FileUtil.loadBytes(stdOutIS);
+            if (stdOut.length == 0) {
               return null;
             }
-          }
-          finally {
-            stdOutIS.close();
           }
 
           return new String(stdOut);

@@ -1,5 +1,5 @@
 plugins {
-    id "org.jetbrains.intellij" version "0.6.5"
+    id "org.jetbrains.intellij" version "1.5.3" apply false
 }
 
 subprojects {
@@ -8,7 +8,6 @@ subprojects {
 
     repositories {
         mavenLocal()
-        jcenter()
         mavenCentral()
         maven { setUrl("https://repo.gradle.org/gradle/repo") }
         maven { setUrl("https://maven.google.com/") }
@@ -16,10 +15,14 @@ subprojects {
 
     apply plugin: 'org.jetbrains.intellij'
     intellij {
-        version project.property("ideaVersion")
-        plugins = ['copyright', 'java', 'org.intellij.scala:2021.3.14']
-        downloadSources Boolean.valueOf(sources)
-        sameSinceUntilBuild Boolean.valueOf(isEAP)
+        version = project.property('ideaVersion')
+        plugins = ['copyright', 'java', 'org.intellij.scala:2022.1.13']
+        downloadSources = Boolean.valueOf(project.property('sources') as String)
+        sameSinceUntilBuild = Boolean.valueOf(project.property('isEAP') as String)
+    }
+
+    tasks.named('patchPluginXml') {
+        sinceBuild = project.property('ideaSinceVersion')
     }
 
     test {

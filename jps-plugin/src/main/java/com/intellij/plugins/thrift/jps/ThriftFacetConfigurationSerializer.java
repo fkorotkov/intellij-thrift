@@ -34,8 +34,4 @@ public class ThriftFacetConfigurationSerializer extends JpsFacetConfigurationSer
 
     return configuration;
   }
-
-  @Override
-  protected void saveExtension(ThriftCompilerOptions extension, Element facetConfigurationTag, JpsModule module) {
-  }
 }

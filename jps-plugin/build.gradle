@@ -1,4 +1,4 @@
-jar.archiveName = "thrift-jps.jar"
+jar.archiveFileName = "thrift-jps.jar"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8

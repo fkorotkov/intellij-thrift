@@ -4,11 +4,11 @@
   <description>Support for Thrift language</description>
   <change-notes>
     <![CDATA[
-      IntelliJ 2021.1 Support
+      IntelliJ 2022.1 Support
     ]]>
   </change-notes>
   <vendor>@fedor</vendor>
-  <idea-version since-build="203.*"/><!-- Will be patched by the plugin -->
+  <idea-version since-build="212.4746.92"/><!-- Will be patched by the patchPluginXml task -->
 
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.lang</depends>
@@ -22,7 +22,7 @@
     <!-- Add your application components here -->
   </application-components>
   <extensions defaultExtensionNs="com.intellij">
-    <fileTypeFactory implementation="com.intellij.plugins.thrift.ThriftFileTypeLoader"/>
+    <fileType name="Thrift" implementationClass="com.intellij.plugins.thrift.ThriftFileType" fieldName="INSTANCE" language="thrift" extensions="thrift"/>
     <lang.parserDefinition language="thrift" implementationClass="com.intellij.plugins.thrift.lang.parser.ThriftParserDefinition"/>
     <completion.contributor language="any" implementationClass="com.intellij.plugins.thrift.completion.ThriftKeywordCompletionContributor"/>
     <itemPresentationProvider forClass="com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration"
@@ -90,7 +90,7 @@
   <actions>
     <action class="com.intellij.plugins.thrift.editor.GoToThriftDefinition"
             id="com.intellij.plugins.thrift.editor.GoToThriftDefinition"
-            text="Go to Thrift source">
+            text="Go to Thrift Source">
       <add-to-group group-id="RunContextPopupGroup" anchor="first"/>
     </action>
   </actions>

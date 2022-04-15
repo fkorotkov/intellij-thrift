@@ -1,6 +1,5 @@
 package com.intellij.plugins.thrift.config.facet;
 
-import com.intellij.facet.Facet;
 import com.intellij.facet.ui.FacetBasedFrameworkSupportProvider;
 import com.intellij.ide.util.frameworkSupport.FrameworkVersion;
 import com.intellij.openapi.roots.ModifiableRootModel;
@@ -10,13 +9,13 @@ import com.intellij.openapi.roots.ModifiableRootModel;
  *
  * @author xBlackCat
  */
-public class ThriftFacetSupportProvider extends FacetBasedFrameworkSupportProvider {
+public class ThriftFacetSupportProvider extends FacetBasedFrameworkSupportProvider<ThriftFacet> {
   protected ThriftFacetSupportProvider() {
     super(ThriftFacet.TYPE);
   }
 
   @Override
-  protected void setupConfiguration(Facet facet, ModifiableRootModel rootModel, FrameworkVersion version) {
-
+  protected void setupConfiguration(ThriftFacet facet, ModifiableRootModel rootModel, FrameworkVersion version) {
+    // Do nothing
   }
 }

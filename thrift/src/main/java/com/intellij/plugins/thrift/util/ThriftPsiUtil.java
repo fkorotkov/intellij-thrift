@@ -56,16 +56,9 @@ public class ThriftPsiUtil {
 
     final VirtualFile includedVirtualFile = ContainerUtil.find(
       FilenameIndex.getVirtualFilesByName(
-        include.getProject(),
         PathUtil.getFileName(includePath),
         GlobalSearchScope.allScope(include.getProject())
-      ),
-      new Condition<VirtualFile>() {
-        @Override
-        public boolean value(VirtualFile file) {
-          return file.getPath().endsWith(includePath);
-        }
-      }
+      ), file -> file.getPath().endsWith(includePath)
     );
 
     return includedVirtualFile != null ? include.getManager().findFile(includedVirtualFile) : null;
