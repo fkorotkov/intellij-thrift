@@ -1,9 +1,9 @@
 package com.intellij.plugins.thrift.inspections;
 
 import com.intellij.codeInspection.LocalInspectionTool;
-import com.intellij.plugins.thrift.ThriftCodeInsightFixtureTestCase;
+import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase;
 
-abstract public class ThriftInspectionTestBase extends ThriftCodeInsightFixtureTestCase {
+abstract public class ThriftInspectionTestBase extends LightJavaCodeInsightFixtureTestCase {
   private final String myPath;
   Class<? extends LocalInspectionTool>  inspection;
 
@@ -26,6 +26,7 @@ abstract public class ThriftInspectionTestBase extends ThriftCodeInsightFixtureT
     return myPath;
   }
 
+  @SuppressWarnings("unchecked")
   protected void doTest() {
     myFixture.enableInspections(this.inspection);
     myFixture.configureByFile(getTestName(true) + ".thrift");

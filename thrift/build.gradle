@@ -1,4 +1,4 @@
-jar.archiveName = "plugin.jar"
+jar.archiveFileName = "plugin.jar"
 
 patchPluginXml {
     version = System.getenv().getOrDefault("CIRRUS_TAG", "1.0")
@@ -23,5 +23,5 @@ sourceSets {
 
 
 dependencies {
-    compile project(':jps-plugin')
+    implementation project(':jps-plugin')
 }

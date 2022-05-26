@@ -5,13 +5,15 @@ Plugin to support Thrift language in IntelliJ
 How to build
 ===============
 
-```bahs
+[JDK 11 or later](https://adoptium.net/) is required to build from source.
+
+```bash
 ./gradlew :thrift:buildPlugin
 ```
 
 How to run locally with new changes
 ===============
 
-```bahs
+```bash
 ./gradlew :thrift:runIde
 ```

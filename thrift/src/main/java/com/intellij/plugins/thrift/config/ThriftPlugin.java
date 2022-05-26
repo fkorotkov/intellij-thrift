@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
     @Storage(ThriftProjectExtensionSerializer.CONFIG_FILE_NAME)
   }
 )
-public class ThriftPlugin implements NamedComponent, PersistentStateComponent<Element>, ProjectComponent {
+public class ThriftPlugin implements NamedComponent, PersistentStateComponent<Element> {
   private ThriftConfig myConfig;
 
   @Nullable

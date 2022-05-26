@@ -42,11 +42,6 @@ public class ThriftProjectExtensionSerializer extends JpsProjectExtensionSeriali
     }
   }
 
-  @Override
-  public void saveExtension(@NotNull JpsProject project, @NotNull Element componentTag) {
-
-  }
-
 
   /**
    * <p>Converts a String to a Boolean.</p>
