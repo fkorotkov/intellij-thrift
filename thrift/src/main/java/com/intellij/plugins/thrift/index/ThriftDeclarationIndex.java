@@ -3,8 +3,8 @@ package com.intellij.plugins.thrift.index;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.plugins.thrift.ThriftFileType;
-import com.intellij.plugins.thrift.lang.psi.ThriftDeclaration;
-import com.intellij.plugins.thrift.lang.psi.ThriftTopLevelDeclaration;
+import com.intellij.plugins.thrift.lang.psi.*;
+import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
@@ -87,25 +87,52 @@ public class ThriftDeclarationIndex extends ScalarIndexExtension<String> {
   public static List<ThriftDeclaration> findDeclaration(@NotNull final String name,
                                                         @NotNull Project project,
                                                         @NotNull GlobalSearchScope scope) {
-    final List<ThriftDeclaration> result = new ArrayList<ThriftDeclaration>();
+    final List<ThriftDeclaration> result = new ArrayList<>();
+    final PsiManager manager = PsiManager.getInstance(project);
+    FileBasedIndex.getInstance().getFilesWithKey(
+            THRIFT_DECLARATION_INDEX,
+            Collections.singleton(name),
+            file -> {
+              PsiFile psiFile = manager.findFile(file);
+              if (psiFile != null) {
+                for (PsiElement child : psiFile.getChildren()) {
+                  if (child instanceof ThriftTopLevelDeclaration && name.equals(((ThriftDeclaration) child).getName())) {
+                    result.add((ThriftDeclaration) child);
+                  }
+                }
+              }
+              return true;
+            },
+            scope
+    );
+    return result;
+  }
+
+  public static List<ThriftDeclaration> findDeclaration(@NotNull final String name,
+                                                        @NotNull String requiredNamespace,
+                                                        @NotNull Project project,
+                                                        @NotNull GlobalSearchScope scope) {
+    final List<ThriftDeclaration> result = new ArrayList<>();
     final PsiManager manager = PsiManager.getInstance(project);
     FileBasedIndex.getInstance().getFilesWithKey(
       THRIFT_DECLARATION_INDEX,
       Collections.singleton(name),
-      new Processor<VirtualFile>() {
-        @Override
-        public boolean process(VirtualFile file) {
-          PsiFile psiFile = manager.findFile(file);
-          if (psiFile != null) {
-            for (PsiElement child : psiFile.getChildren()) {
-              if (child instanceof ThriftTopLevelDeclaration && name.equals(((ThriftDeclaration)child).getName())) {
-                result.add((ThriftDeclaration)child);
+            file -> {
+              PsiFile psiFile = manager.findFile(file);
+              List<String> availableNamespaces = new ArrayList<>(Collections.emptyList());
+              if (psiFile != null) {
+                for (PsiElement child : psiFile.getChildren()) {
+                  if (child instanceof ThriftNamespace || (child instanceof PsiComment && child.getText().contains("namespace"))) {
+                    String fullNamespaceName = child.getText();
+                    availableNamespaces.add(fullNamespaceName.substring(fullNamespaceName.lastIndexOf(" ") + 1));
+                  }
+                  if (child instanceof ThriftTopLevelDeclaration && name.equals(((ThriftDeclaration) child).getName()) && availableNamespaces.contains(requiredNamespace)) {
+                    result.add((ThriftDeclaration) child);
+                  }
+                }
               }
-            }
-          }
-          return true;
-        }
-      },
+              return true;
+            },
       scope
     );
     return result;
