@@ -115,8 +115,8 @@ public class ThriftDeclarationIndex extends ScalarIndexExtension<String> {
     final List<ThriftDeclaration> result = new ArrayList<>();
     final PsiManager manager = PsiManager.getInstance(project);
     FileBasedIndex.getInstance().getFilesWithKey(
-      THRIFT_DECLARATION_INDEX,
-      Collections.singleton(name),
+            THRIFT_DECLARATION_INDEX,
+            Collections.singleton(name),
             file -> {
               PsiFile psiFile = manager.findFile(file);
               List<String> availableNamespaces = new ArrayList<>(Collections.emptyList());
