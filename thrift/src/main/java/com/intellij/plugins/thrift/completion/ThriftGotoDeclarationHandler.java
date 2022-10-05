@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -48,10 +49,12 @@ public class ThriftGotoDeclarationHandler implements GotoDeclarationHandler {
                     .map(ResolveResult::getElement)
                     .filter(javaResolveResult -> javaResolveResult instanceof PsiClass)
                     .map(javaResolveResult -> ((PsiClass) javaResolveResult).getQualifiedName())
+                    .filter(Objects::nonNull)
                     .collect(Collectors.toList());
         } else if (psiReference instanceof ScReference){
             fullyQualifiedNames = Stream.of(((ScReference) psiReference).multiResolveScala(/*incompleteCode = */ false))
                     .map(ScalaResolveResult::qualifiedNameId)
+                    .filter(Objects::nonNull)
                     .map(qualifiedName -> qualifiedName.substring(qualifiedName.lastIndexOf(":") + 1))
                     .distinct()
                     .collect(Collectors.toList());
