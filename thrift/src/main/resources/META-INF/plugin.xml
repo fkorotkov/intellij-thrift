@@ -85,6 +85,9 @@
     <frameworkSupport implementation="com.intellij.plugins.thrift.config.facet.ThriftFacetSupportProvider"/>
     <facetType implementation="com.intellij.plugins.thrift.config.facet.ThriftFacetType"/>
     <compileServer.plugin classpath="thrift-jps.jar" />
+
+   <gotoDeclarationHandler order="first" implementation="com.intellij.plugins.thrift.completion.ThriftGotoDeclarationHandler"/>
+
   </extensions>
 
   <actions>
